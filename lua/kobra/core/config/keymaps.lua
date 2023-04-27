@@ -35,9 +35,7 @@ if layout.colemak then
   map('', 'j', 'n', opts)
   map('', 'k', 'e', opts)
   map('', 'l', 'i', opts)
-
-  -- this one is mainly for copilot
-  map('', '<C-t>', '<C-i>', opts)
+  map('', '<C-l>', '<C-i>', opts)
 end
 
 -- better up/down
@@ -96,3 +94,5 @@ map('n', '<leader>aa', '<cmd>tabnew<cr>', { desc = 'New Tab' })
 map('n', '<leader>an', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 map('n', '<leader>ac', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 map('n', '<leader>ap', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
+map('n', '<leader>amn', '<cmd>+tabmove<cr>', { desc = 'Move Current Tab to Next' })
+map('n', '<leader>amp', '<cmd>-tabmove<cr>', { desc = 'Move Current Tab to Previous' })

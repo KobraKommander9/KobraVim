@@ -152,7 +152,7 @@ M.did_init = false
 function M.init()
   if not M.did_init then
     M.did_init = true
-    require('kobra.core.util').lazy_notify()
+    require('kobra.util').lazy_notify()
 
     require('kobra.core.commands').init()
     require('kobra.core').load('options')
