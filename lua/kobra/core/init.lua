@@ -109,11 +109,7 @@ function M.setup(opts)
     end,
   })
 
-  local ok, globals = pcall(require, 'kobra.globals')
-  if not ok then
-    globals = {}
-  end
-  require('kobra.core.globals').setup(globals)
+  require('kobra.core.globals').setup(options.globals or {})
 end
 
 function M.has(range)
