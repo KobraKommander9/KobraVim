@@ -8,6 +8,15 @@ local defaults = {
     autocmds = true,
     keymaps = true,
   },
+  paths = {
+    home = os.getenv('HOME'),
+    data = string.format('%s/site', vim.fn.stdpath('data')),
+    config = vim.fn.stdpath('config'),
+    cache = vim.fn.stdpath('cache'),
+  },
+  layouts = {
+    colemak = true,
+  },
   icons = {
     diagnostics = {
       Error = ' ',
@@ -108,8 +117,6 @@ function M.setup(opts)
       vim.cmd.colorscheme('carbonfox')
     end,
   })
-
-  require('kobra.core.globals').setup(options.globals or {})
 end
 
 function M.has(range)
