@@ -94,7 +94,7 @@ M[#M+1] = {
       }),
       desc = 'Goto Symbol (Workspace)',
     },
-    { '<leader>st', '<cmd>lua require'telescope'.extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
+    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
   },
   opts = function(_, opts)
     opts.defaults = {
