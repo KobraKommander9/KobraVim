@@ -10,12 +10,30 @@ local defaults = {
   },
   paths = {
     home = os.getenv('HOME'),
-    data = string.format('%s/site', vim.fn.stdpath('data')),
+    data = vim.fn.stdpath('data') .. '/site',
     config = vim.fn.stdpath('config'),
     cache = vim.fn.stdpath('cache'),
   },
   layouts = {
-    colemak = true,
+    colemak = false,
+  },
+  start_screen = {
+    dot_files = '~/dot-files',
+    folders = {
+      { 'Projects', '~/Projects' },
+    },
+    workspaces = {
+      {
+        'Project Sessions',
+        'p',
+        '~/Projects',
+      },
+      {
+        'Dotfile Sessions',
+        'd',
+        '~/dotfiles',
+      },
+    },
   },
   icons = {
     diagnostics = {
