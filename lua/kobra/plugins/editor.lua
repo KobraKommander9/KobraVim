@@ -128,7 +128,8 @@ M[#M+1] = {
       },
     }
 
-    return vim.tbl_deep_extend('force', options, opts)
+    -- return vim.tbl_deep_extend('force', options, opts)
+    return options
   end,
 }
 
@@ -152,7 +153,6 @@ M[#M+1] = {
 -- file browser
 M[#M+1] = {
   'telescope.nvim',
-  event = 'VeryLazy',
   keys = {
     { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
   },
@@ -188,11 +188,7 @@ M[#M+1] = {
       }
     end
 
-    vim.notify('hello')
     return vim.tbl_deep_extend('keep', opts, options)
-  end,
-  config = function()
-    vim.notify('config')
   end,
 }
 
