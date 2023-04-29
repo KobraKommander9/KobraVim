@@ -78,20 +78,6 @@ M[#M+1] = {
         end
       end,
     },
-    -- telescope integration
-    {
-      'nvim-telescope/telescope.nvim',
-      event = 'VeryLazy',
-      keys = {
-        { '<leader>sn', '<cmd>Telescope notify<cr>', 'Notify Messages' },
-      },
-      opts = function()
-        if require('kobra.util').has('nvim-notify') then
-          vim.notify('loading notify telescope extension')
-          require('telescope').load_extension('notify')
-        end
-      end,
-    },
   },
   opts = {
     lsp = {
@@ -114,6 +100,14 @@ M[#M+1] = {
     { '<leader>snd', function() require('noice').cmd('dismiss') end, desc = 'Dismiss All' },
     { '<c-f>', function() if not require('noice.lsp').scroll(4) then return '<c-f>' end end, silent = true, expr = true, desc = 'Scroll forward', mode = {'i', 'n', 's'} },
     { '<c-b>', function() if not require('noice.lsp').scroll(-4) then return '<c-b>' end end, silent = true, expr = true, desc = 'Scroll backward', mode = {'i', 'n', 's'}},
+    {
+      '<leader>sn',
+      function()
+        require('telescope').load_extension('notify')
+        require('telescope').extensions.notify()
+      end,
+      'Notify Messages',
+    },
   },
 }
 
