@@ -190,7 +190,6 @@ function screen.setup(_, opts)
       header,
       { type = 'padding', val = 2 },
       top_buttons,
-      folder_section,
       sessions_section,
       mru,
       { type = 'padding', val = 1 },
@@ -199,6 +198,10 @@ function screen.setup(_, opts)
     },
     opts = startify.opts,
   }
+
+  if #folder_section > 0 then
+    table.insert(config.layout, 5, folder_section)
+  end
 
   return vim.tbl_deep_extend('force', config, opts)
 end
