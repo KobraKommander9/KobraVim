@@ -161,12 +161,15 @@ M[#M+1] = {
     },
   },
   opts = function(_, opts)
-    opts.extensions.file_browser = {
+    local extensions = opts.extensions or {}
+
+    extensions.file_browser = {
       hijack_netrw = true,
       grouped = true,
       display_stat = false,
       hidden = true,
     }
+    opts.extensions = extensions
 
     if require('kobra.core').layouts.colemak then
       local actions = require('telescope').extensions.file_browser.actions
