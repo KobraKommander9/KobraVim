@@ -96,7 +96,7 @@ M[#M+1] = {
     },
     { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
   },
-  config = function(_, opts)
+  opts = function(_, opts)
     local layouts = require('kobra.core').layouts
     local n, p, j, k
     if layouts.colemak then
@@ -137,49 +137,52 @@ M[#M+1] = {
       },
     }
 
-    require('telescope').setup(vim.tbl_deep_extend('force', options, opts))
+    return vim.tbl_deep_extend('force', options, opts)
   end,
 }
 
 -- file browser
 M[#M+1] = {
-  'nvim-telescope/telescope-file-browser.nvim',
-  event = 'VeryLazy',
-  keys = {
-    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
-  },
-  opts = function(_, opts)
-    local options = {
-      hijack_netrw = true,
-      grouped = true,
-      display_stat = false,
-      hidden = true,
-    }
+  'nvim-telescope/telescope.nvim',
+  dependencies = {
+    'nvim-telescope/telescope-file-browser.nvim',
+    event = 'VeryLazy',
+    keys = {
+      { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
+    },
+    opts = function(_, opts)
+      local options = {
+        hijack_netrw = true,
+        grouped = true,
+        display_stat = false,
+        hidden = true,
+      }
 
-    if require('kobra.core').layouts.colemak then
-      local actions = require('telescope').extensions.file_browser.actions
-      options.mappings = {
-        i = {
-          ['<C-a>'] = actions.create,
-          ['<C-r>'] = actions.rename,
-          ['<C-y>'] = actions.copy,
-          ['<C-x>'] = actions.remove,
-          ['<C-h>'] = actions.toggle_hidden,
+      if require('kobra.core').layouts.colemak then
+        local actions = require('telescope').extensions.file_browser.actions
+        options.mappings = {
+          i = {
+            ['<C-a>'] = actions.create,
+            ['<C-r>'] = actions.rename,
+            ['<C-y>'] = actions.copy,
+            ['<C-x>'] = actions.remove,
+            ['<C-h>'] = actions.toggle_hidden,
+          },
+        }
+      end
+
+      return vim.tbl_deep_extend('force', options, opts)
+    end,
+    config = function(_, opts)
+      local config = {
+        extensions = {
+          file_browser = opts,
         },
       }
-    end
-
-    return vim.tbl_deep_extend('force', options, opts)
-  end,
-  config = function(_, opts)
-    local config = {
-      extensions = {
-        file_browser = opts,
-      },
-    }
-    require('telescope').setup(config)
-    require('telescope').load_extension('file_browser')
-  end,
+      require('telescope').setup(config)
+      require('telescope').load_extension('file_browser')
+    end,
+  },
 }
 
 -- easily jump to any location and enhanced f/t motions for leap
