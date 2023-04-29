@@ -136,7 +136,7 @@ M[#M+1] = {
 M[#M+1] = {
   'telescope.nvim',
   keys = {
-    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
+    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', desc = 'Text (args)' },
   },
   dependencies = {
     { 'nvim-telescope/telescope-live-grep-args.nvim' },
@@ -153,7 +153,7 @@ M[#M+1] = {
 M[#M+1] = {
   'telescope.nvim',
   keys = {
-    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
+    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', desc = 'File Browser' },
   },
   dependencies = {
     {
