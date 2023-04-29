@@ -138,6 +138,7 @@ M[#M+1] = {
       callback = function()
         local stats = require('lazy').stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+        vim.notify('hello')
         startify.config.layout[#startify.config.layout].val = '⚡ Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
         pcall(vim.cmd.AlphaRedraw)
       end,
