@@ -1,9 +1,9 @@
 local statusline = {}
 
-local utils = require('heirline.utils')
-local colors = require('kobra.config.ui.lines.colors')
-
 statusline.statusline = function()
+  local utils = require('heirline.utils')
+  local colors = require('kobra.config.ui.lines.colors')
+
   require('heirline').load_colors(colors.colors())
 
   vim.api.nvim_create_augroup('Heirline', { clear = true })
