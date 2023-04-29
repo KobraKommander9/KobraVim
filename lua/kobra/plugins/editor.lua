@@ -96,7 +96,7 @@ M[#M+1] = {
     },
     { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
   },
-  opts = function(_, opts)
+  config = function(_, opts)
     local layouts = require('kobra.core').layouts
     local n, p, j, k
     if layouts.colemak then
@@ -135,8 +135,8 @@ M[#M+1] = {
       },
     }
 
-    return vim.tbl_deep_extend('force', options, opts)
-  end
+    require('telescope').setup(vim.tbl_deep_extend('force', options, opts))
+  end,
 }
 
 -- file browser
