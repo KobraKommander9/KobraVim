@@ -134,7 +134,7 @@ M[#M+1] = {
     require('alpha').setup(startify.config)
 
     vim.api.nvim_create_autocmd('User', {
-      pattern = 'KobraVimStarted',
+      pattern = 'LazyVimStarted',
       callback = function()
         local stats = require('lazy').stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
