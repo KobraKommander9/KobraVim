@@ -23,7 +23,7 @@ M[#M+1] = {
 M[#M+1] = {
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
-  event = 'BufEnter',
+  event = 'VeryLazy',
   version = false,
   dependencies = {
     {
