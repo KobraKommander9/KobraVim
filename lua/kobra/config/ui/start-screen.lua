@@ -148,9 +148,6 @@ function screen.setup(_, opts)
     return { get_mru() }
   end
 
-  -- disable MRU cwd
-  startify.section.mru_cwd.val = {{ type = 'padding', val = 0 }}
-
   startify.section.bottom_buttons.val = {
     startify.button('q', 'Quit NVIM', ':qa<CR>'),
   }
@@ -159,19 +156,10 @@ function screen.setup(_, opts)
     { type = 'text', val = 'footer' },
   }
 
-  local config = startify.config
-  config.layout[2] = {
-    type = 'text',
-    val = kobra,
-    opts = {
-      hl = 'Type',
-      shrink_margin = false,
-    }
-  }
-
+  local folder_section = {}
   for _, folder in ipairs(options.folders) do
     if #folder == 2 then
-      table.insert(config.layout, {
+      table.insert(folder_section, {
         type = 'group',
         val = {
           { type = 'padding', val = 1 },
@@ -188,10 +176,26 @@ function screen.setup(_, opts)
     end
   end
 
-  table.insert(config.layout, {
+  local sessions_section = {
     type = 'group',
     val = require('possession.utils').throttle(get_sessions, 5000),
-  })
+  }
+
+  local config = {
+    layout = {
+      { type = 'padding', val = 1 },
+      startify.section.header,
+      { type = 'padding', val = 2 },
+      startify.section.top_buttons,
+      folder_section,
+      sessions_section,
+      startify.section.mru,
+      { type = 'padding', val = 1 },
+      startify.section.bottom_buttons,
+      startify.section.footer,
+    },
+    opts = startify.opts,
+  }
 
   return vim.tbl_deep_extend('force', config, opts)
 end
