@@ -150,39 +150,36 @@ M[#M+1] = {
     keys = {
       { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
     },
-    opts = function(_, opts)
-      local options = {
-        hijack_netrw = true,
-        grouped = true,
-        display_stat = false,
-        hidden = true,
-      }
-
-      if require('kobra.core').layouts.colemak then
-        local actions = require('telescope').extensions.file_browser.actions
-        options.mappings = {
-          i = {
-            ['<C-a>'] = actions.create,
-            ['<C-r>'] = actions.rename,
-            ['<C-y>'] = actions.copy,
-            ['<C-x>'] = actions.remove,
-            ['<C-h>'] = actions.toggle_hidden,
-          },
-        }
-      end
-
-      return vim.tbl_deep_extend('force', options, opts)
-    end,
-    config = function(_, opts)
-      local config = {
-        extensions = {
-          file_browser = opts,
-        },
-      }
-      require('telescope').setup(config)
+    config = function()
       require('telescope').load_extension('file_browser')
     end,
   },
+  opts = function(_, opts)
+    local options = {
+      extensions = {
+        file_browser = {
+          hijack_netrw = true,
+          grouped = true,
+          display_stat = false,
+          hidden = true,
+        },
+      },
+    }
+
+    if require('kobra.core').layouts.colemak then
+      options.extensions.file_browser.mappings = {
+        i = {
+          ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+          ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+          ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+          ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+          ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+        },
+      }
+    end
+
+    return vim.tbl_deep_extend('keep', opts, options)
+  end,
 }
 
 -- easily jump to any location and enhanced f/t motions for leap
