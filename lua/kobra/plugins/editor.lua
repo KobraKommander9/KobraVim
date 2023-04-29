@@ -174,19 +174,54 @@ M[#M+1] = {
           }
         end
 
-        options = vim.tbl_deep_extend('keep', opts, options)
-
         if require('kobra.util').has('telescope-file-browser.nvim') then
           require('telescope').load_extension('file_browser')
-          if options.extensions.file_browser.hijack_netrw then
-            require('kobra.config.telescope.file_browser').hijack_netrw()
-          end
         end
 
-        return options
+        return vim.tbl_deep_extend('keep', opts, options)
       end,
     },
   },
+  config = function()
+    local netrw_bufname
+    
+    pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
+    vim.api.nvim_create_autocmd('VimEnter', {
+      pattern = '*',
+      once = true,
+      callback = function()
+        pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('BufEnter', {
+      group = vim.api.nvim_create_augroup('telescope-file-browser.nvim', { clear = true }),
+      pattern = '*',
+      callback = function()
+        vim.schedule(function()
+          if vim.bo[0].filetype == 'netrw' then
+            return
+          end
+
+          local bufname = vim.api.nvim_buf_get_name(0)
+          if vim.fn.isdirectory(bufname) == 0 then
+            _, netrw_bufname = pcall(vim.fn.expand, '#:p:h')
+            return
+          end
+
+          if netrw_bufname == bufname then
+            netrw_bufname = nil
+            return
+          else
+            netrw_bufname = bufname
+          end
+
+          vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
+          vim.api.nvim_command('Telescope file_browser cwd=' .. vim.fn.expand('%:p:h'))
+        end)
+      end
+    })
+  end,
 }
 
 -- easily jump to any location and enhanced f/t motions for leap
