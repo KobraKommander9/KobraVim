@@ -148,11 +148,10 @@ M[#M+1] = {
 -- file browser
 M[#M+1] = {
   'telescope.nvim',
-  event = 'VimEnter',
+  event = 'BufEnter',
   dependencies = {
     {
       'nvim-telescope/telescope-file-browser.nvim',
-      event = 'VeryLazy',
       config = function()
         require('telescope').load_extension('file_browser')
       end,
