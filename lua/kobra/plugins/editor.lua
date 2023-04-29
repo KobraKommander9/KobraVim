@@ -135,7 +135,7 @@ M[#M+1] = {
       },
     }
 
-    require('telescope').setup(vim.tbl_deep_extend('force', options, opts))
+    require('telescope').setup(options)
   end,
 }
 
