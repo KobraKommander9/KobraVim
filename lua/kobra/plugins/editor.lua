@@ -128,8 +128,7 @@ M[#M+1] = {
       },
     }
 
-    -- return vim.tbl_deep_extend('force', options, opts)
-    return options
+    return vim.tbl_deep_extend('force', options, opts)
   end,
 }
 
@@ -165,19 +164,17 @@ M[#M+1] = {
     },
   },
   opts = function(_, opts)
-    local options = {
-      extensions = {
-        file_browser = {
-          hijack_netrw = true,
-          grouped = true,
-          display_stat = false,
-          hidden = true,
-        },
+    opts.extensions = {
+      file_browser = {
+        hijack_netrw = true,
+        grouped = true,
+        display_stat = false,
+        hidden = true,
       },
     }
 
     if require('kobra.core').layouts.colemak then
-      options.extensions.file_browser.mappings = {
+      opts.extensions.file_browser.mappings = {
         i = {
           ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
           ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
@@ -188,7 +185,7 @@ M[#M+1] = {
       }
     end
 
-    return vim.tbl_deep_extend('keep', opts, options)
+    return opts
   end,
 }
 
