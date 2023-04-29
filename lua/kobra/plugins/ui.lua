@@ -103,7 +103,7 @@ M[#M+1] = {
 }
 
 M[#M+1] = {
-  'goolord/alpha.nvim',
+  'goolord/alpha-nvim',
   event = 'VimEnter',
   dependencies = { 'jedrzejboczar/possession.nvim' },
   opts = require('kobra.config.ui.start-screen').setup,
