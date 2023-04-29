@@ -150,44 +150,44 @@ M[#M+1] = {
 }
 
 -- file browser
--- M[#M+1] = {
---   'telescope.nvim',
---   keys = {
---     { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', desc = 'File Browser' },
---   },
---   dependencies = {
---     {
---       'nvim-telescope/telescope-file-browser.nvim',
---       config = function()
---         require('telescope').load_extension('file_browser')
---       end,
---     },
---   },
---   opts = function(_, opts)
---     opts.extensions = {
---       file_browser = {
---         hijack_netrw = true,
---         grouped = true,
---         display_stat = false,
---         hidden = true,
---       },
---     }
---
---     if require('kobra.core').layouts.colemak then
---       opts.extensions.file_browser.mappings = {
---         i = {
---           ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
---           ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
---           ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
---           ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
---           ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
---         },
---       }
---     end
---
---     return opts
---   end,
--- }
+M[#M+1] = {
+  'telescope.nvim',
+  keys = {
+    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', desc = 'File Browser' },
+  },
+  dependencies = {
+    {
+      'nvim-telescope/telescope-file-browser.nvim',
+      config = function()
+        require('telescope').load_extension('file_browser')
+      end,
+    },
+  },
+  opts = function(_, opts)
+    opts.extensions = {
+      file_browser = {
+        hijack_netrw = true,
+        grouped = true,
+        display_stat = false,
+        hidden = true,
+      },
+    }
+
+    -- if require('kobra.core').layouts.colemak then
+    --   opts.extensions.file_browser.mappings = {
+    --     i = {
+    --       ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+    --       ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+    --       ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+    --       ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+    --       ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+    --     },
+    --   }
+    -- end
+
+    return opts
+  end,
+}
 
 -- easily jump to any location and enhanced f/t motions for leap
 M[#M+1] = {
