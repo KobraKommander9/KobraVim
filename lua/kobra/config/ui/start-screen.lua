@@ -32,7 +32,7 @@ end
 
 local get_folders = function(dir)
   local startify = require('alpha.themes.startify')
-  local files = scandir(dir)
+  local files = scandir(dir .. '/')
 
   local buttons = {}
   for i, fn in ipairs(files) do
@@ -152,8 +152,7 @@ function screen.setup()
     { type = 'text', val = 'footer' },
   }
 
-  local config = startify.config
-  config.layout[2] = {
+  startify.config.layout[2] = {
     type = 'text',
     val = kobra,
     opts = {
@@ -162,7 +161,7 @@ function screen.setup()
     }
   }
 
-  table.insert(config.layout, 5, {
+  table.insert(startify.config.layout, 5, {
     type = 'group',
     val = {
       { type = 'padding', val = 1 },
@@ -177,12 +176,12 @@ function screen.setup()
     },
   })
 
-  table.insert(config.layout, 6, {
+  table.insert(startify.config.layout, 6, {
     type = 'group',
     val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
-  return config
+  return startify
 end
 
 function screen.setup_new()
