@@ -85,8 +85,10 @@ M[#M+1] = {
       keys = {
         { '<leader>sn', '<cmd>Telescope notify<cr>', 'Notify Messages' },
       },
-      config = function()
-        require('telescope').load_extension('notify')
+      opts = function()
+        if require('kobra.util').has('nvim-notify') then
+          require('telescope').load_extension('notify')
+        end
       end,
     },
   },

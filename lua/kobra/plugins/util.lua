@@ -33,19 +33,25 @@ M[#M+1] = {
     'PossessionList',
     'PossessionMigrate',
   },
+  dependencies = {
+    {
+      'nvim-telescope/telescope.nvim',
+      event = 'VeryLazy',
+      keys = {
+        { '<leader>qs', '<cmd>Telescope possession list<cr>', desc = 'List Sessions' },
+      },
+      opts = function()
+        if require('kobra.util').has('possession.nvim') then
+          require('telescope').load_extension('possession')
+        end
+      end,
+    },
+  },
   keys = {
     { '<leader>qc', ':PossessionClose<cr>', desc = 'Close Session' },
     { '<leader>qd', function() input('PossessionDelete') end, desc = 'Delete Session' },
     { '<leader>qr', function() input('PossessionLoad') end, desc = 'Restore Session' },
     { '<leader>ql', ':PossessionLoad<cr>', desc = 'Restore Last Session' },
-    {
-      '<leader>qs',
-      function()
-        require('telescope').load_extension('possession')
-        require('telescope').extensions.possession.list()
-      end,
-      desc = 'List Sessions',
-    },
     { '<leader>qw', ':PossessionSave<cr>', desc = 'Save Current Session' },
     { '<leader>qW', function() input('PossessionSave') end, desc = 'Save Session' },
   },
