@@ -1,25 +1,5 @@
 local screen = {}
 
-local alpha_ok, alpha = pcall(require, 'alpha')
-if not alpha_ok then
-  return
-end
-
-local startify_ok, startify = pcall(require, 'alpha.themes.startify')
-if not startify_ok then
-  return
-end
-
-local utils_ok, utils = pcall(require, 'possession.utils')
-if not utils_ok then
-  return
-end
-
-local query_ok, query = pcall(require, 'possession.query')
-if not query_ok then
-  return
-end
-
 local options = require('kobra.core').start_screen
 
 local kobra = {
@@ -51,6 +31,7 @@ local function scandir(dir)
 end
 
 local get_folders = function(dir)
+  local startify = require('alpha.themes.startify')
   local files = scandir(dir)
 
   local buttons = {}
@@ -92,6 +73,8 @@ local get_folders = function(dir)
 end
 
 local get_sessions = function()
+  local startify = require('alpha.themes.startify')
+  local query = require('poseession.query')
   return query.alpha_workspace_layout(options.workspaces, startify.button, {
     others_name = 'Other Sessions',
   })
@@ -107,6 +90,8 @@ local get_extension = function(fn)
 end
 
 local get_mru = function()
+  local startify = require('alpha.themes.startify')
+
   local opts = startify.mru_opts
   local items_number = 5
   local old_files = {}
@@ -136,6 +121,8 @@ local get_mru = function()
 end
 
 function screen.setup(_, opts)
+  local startify = require('alpha.themes.startify')
+
   startify.section.header = {
     type = 'text',
     val = kobra,
@@ -203,7 +190,7 @@ function screen.setup(_, opts)
 
   table.insert(config.layout, {
     type = 'group',
-    val = utils.throttle(get_sessions, 5000),
+    val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
   return vim.tbl_deep_extend('force', config, opts)
