@@ -71,6 +71,7 @@ M[#M+1] = {
     -- which key integration
     {
       'folke/which-key.nvim',
+      event = 'VeryLazy',
       opts = function(_, opts)
         if require('kobra.util').has('noice.nvim') then
           opts.defaults['<leader>sn'] = { name = '+noice' }
@@ -80,6 +81,7 @@ M[#M+1] = {
     -- telescope integration
     {
       'nvim-telescope/telescope.nvim',
+      event = 'VeryLazy',
       keys = {
         { '<leader>sn', '<cmd>Telescope notify<cr>', 'Notify Messages' },
       },
