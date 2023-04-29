@@ -135,7 +135,7 @@ local get_mru = function()
   }
 end
 
-function screen.setup()
+function screen.setup(_, opts)
   startify.section.header = {
     type = 'text',
     val = kobra,
@@ -206,7 +206,7 @@ function screen.setup()
     val = utils.throttle(get_sessions, 5000),
   })
 
-  return config
+  return vim.tbl_deep_extend('force', config, opts)
 end
 
 screen.fun = {
