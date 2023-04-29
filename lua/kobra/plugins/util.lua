@@ -38,13 +38,17 @@ M[#M+1] = {
     { '<leader>qd', function() input('PossessionDelete') end, desc = 'Delete Session' },
     { '<leader>qr', function() input('PossessionLoad') end, desc = 'Restore Session' },
     { '<leader>ql', ':PossessionLoad<cr>', desc = 'Restore Last Session' },
-    { '<leader>qs', ':Telescope possession list<cr>', desc = 'List Sessions' },
+    {
+      '<leader>qs',
+      function()
+        require('telescope').load_extension('possession')
+        require('telescope').extensions.possession.list()
+      end,
+      desc = 'List Sessions',
+    },
     { '<leader>qw', ':PossessionSave<cr>', desc = 'Save Current Session' },
     { '<leader>qW', function() input('PossessionSave') end, desc = 'Save Session' },
   },
-  config = function()
-    require('telescope').load_extension('possession')
-  end,
 }
 
 M[#M+1] = { 'nvim-lua/plenary.nvim', lazy = true }
