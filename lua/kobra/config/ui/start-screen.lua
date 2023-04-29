@@ -156,12 +156,11 @@ function screen.setup()
     { type = 'text', val = 'footer' },
   }
 
-  local config = startify.config
   local index = 5
 
   for _, folder in ipairs(options.folders) do
     if #folder == 2 then
-      table.insert(config, index, {
+      table.insert(startify.config.layout, index, {
         type = 'group',
         val = {
           { type = 'padding', val = 1 },
@@ -180,12 +179,12 @@ function screen.setup()
     end
   end
 
-  table.insert(config.layout, index, {
+  table.insert(startify.config.layout, index, {
     type = 'group',
     val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
-  return config
+  return startify
 end
 
 screen.fun = {
