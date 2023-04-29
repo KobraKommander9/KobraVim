@@ -196,7 +196,7 @@ function screen.setup(_, opts)
       bottom_buttons,
       footer,
     },
-    opts = startify.opts,
+    opts = startify.config,
   }
 
   if #folder_section > 0 then
