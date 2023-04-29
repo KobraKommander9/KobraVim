@@ -185,7 +185,8 @@ function screen.setup(_, opts)
     val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
-  return config.layout
+  -- return vim.tbl_deep_extend('force', config, opts)
+  return config
 end
 
 screen.fun = {
