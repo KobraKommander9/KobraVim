@@ -1,7 +1,7 @@
 local statusline = {}
 
 local utils = require('heirline.utils')
-local colors = require('kobra.plugins.config.ui.lines.colors')
+local colors = require('kobra.config.ui.lines.colors')
 
 statusline.statusline = function()
   require('heirline').load_colors(colors.colors())
@@ -14,7 +14,7 @@ statusline.statusline = function()
     group = 'Heirline',
   })
 
-  local components = require('kobra.plugins.config.ui.lines.components')
+  local components = require('kobra.config.ui.lines.components')
   return vim.tbl_extend('force', components.parent(), components.statusline())
 end
 
