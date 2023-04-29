@@ -42,6 +42,7 @@ M[#M+1] = {
       },
       opts = function()
         if require('kobra.util').has('possession.nvim') then
+          vim.notify('loading possession telescope extension')
           require('telescope').load_extension('possession')
         end
       end,

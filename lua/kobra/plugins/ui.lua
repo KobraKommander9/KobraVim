@@ -87,6 +87,7 @@ M[#M+1] = {
       },
       opts = function()
         if require('kobra.util').has('nvim-notify') then
+          vim.notify('loading notify telescope extension')
           require('telescope').load_extension('notify')
         end
       end,

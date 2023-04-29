@@ -141,38 +141,47 @@ M[#M+1] = {
 
 -- file browser
 M[#M+1] = {
-  'telescope.nvim',
+  'nvim-telescope/telescope-file-browser.nvim',
+  event = 'VeryLazy',
+  keys = {
+    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
+  },
   dependencies = {
-    'nvim-telescope/telescope-file-browser.nvim',
-    event = 'VeryLazy',
-    keys = {
-      { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
-    },
-    opts = function(_, opts)
-      local options = {
-        hijack_netrw = true,
-        grouped = true,
-        display_stat = false,
-        hidden = true,
-      }
-
-      if require('kobra.core').layouts.colemak then
-        options.mappings = {
-          i = {
-            ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
-            ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
-            ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
-            ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
-            ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+    {
+      'nvim-telescope/telescope.nvim',
+      event = 'VeryLazy',
+      opts = function(_, opts)
+        local options = {
+          extensions = {
+            file_browser = {
+              hijack_netrw = true,
+              grouped = true,
+              display_stat = false,
+              hidden = true,
+            },
           },
         }
-      end
 
-      return vim.tbl_deep_extend('keep', opts, options)
-    end,
-    config = function(_, opts)
-      require('telescope._extensions.file_browser.config').setup(opts)
-    end,
+        if require('kobra.core').layouts.colemak then
+          options.extensions.file_browser.mappings = {
+            i = {
+              ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+              ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+              ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+              ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+              ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+            },
+          }
+        end
+
+        if require('kobra.util').has('telescope-file-browser.nvim') then
+          vim.notify('loading telescope-file-browser.nvim')
+          require('telescope').load_extension('file_browser')
+        end
+
+        return vim.tbl_deep_extend('keep', opts, options)
+      end,
+    },
   },
 }
 
