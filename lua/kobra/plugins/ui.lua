@@ -129,7 +129,7 @@ M[#M+1] = {
       })
     end
 
-    require('alpha').setup(startify.config)
+    require('alpha').setup(startify)
 
     vim.api.nvim_create_autocmd('User', {
       pattern = 'KobraVimStarted',
