@@ -120,7 +120,7 @@ local get_mru = function()
   }
 end
 
-function screen.setup()
+function screen.setup_old()
   local startify = require('alpha.themes.startify')
   startify.section.header = {
     type = 'text',
@@ -184,7 +184,7 @@ function screen.setup()
   return startify
 end
 
-function screen.setup_new()
+function screen.setup()
   local startify = require('alpha.themes.startify')
   startify.section.header = {
     type = 'text',
