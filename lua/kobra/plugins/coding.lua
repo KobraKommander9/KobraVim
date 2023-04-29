@@ -6,7 +6,7 @@ M[#M+1] = {
     and [[ echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp ]]
     or nil,
   dependencies = {
-    'rafamadriz/friendl-snippets',
+    'rafamadriz/friendly-snippets',
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load()
     end,
