@@ -148,7 +148,7 @@ M[#M+1] = {
 -- file browser
 M[#M+1] = {
   'telescope.nvim',
-  event = { 'DirChangedPre', 'BufNewFile' },
+  event = 'VimEnter',
   dependencies = {
     {
       'nvim-telescope/telescope-file-browser.nvim',
