@@ -26,13 +26,8 @@ M[#M+1] = {
   event = 'VeryLazy',
   version = false,
   dependencies = {
-    {
-      'nvim-telescope/telescope-file-browser.nvim',
-      event = 'VeryLazy',
-      config = function()
-        require('telescope').load_extension('file_browser')
-      end,
-    },
+    { 'nvim-telescope/telescope-file-browser.nvim' },
+    { 'nvim-telescope/telescope-live-grep-args.nvim' },
   },
   keys = {
     { '<leader>/', util.telescope('live_grep'), desc = 'Grep (root dir)' },
@@ -62,6 +57,7 @@ M[#M+1] = {
     { '<leader>sm', '<cmd>Telescope marks<cr>', desc = 'Jump to Mark' },
     { '<leader>so', '<cmd>Telescope vim_options<cr>', desc = 'Options' },
     { '<leader>sR', '<cmd>Telescope resume<cr>', desc = 'Resume' },
+    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', desc = 'Text (args)' },
     { '<leader>sw', util.telescope('grep_string'), desc = 'Word (root dir)' },
     { '<leader>sW', util.telescope('grep_string', { cwd = false }), desc = 'Word (cwd)' },
     { '<leader>uC', util.telescope('colorscheme', { enable_preview = true }), desc = 'Colorscheme with preview' },
@@ -119,11 +115,15 @@ M[#M+1] = {
         ['<c-' .. k .. '>'] = 'move_selection_previous',
         ['<c-b>'] = 'file_split',
         ['<c-x>'] = 'delete_buffer',
+        ['<c-i>'] = function()
+          return require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' })
+        end,
       },
       n = {
         q = 'close',
       },
     }
+
 
     local options = {
       defaults = {
@@ -160,22 +160,9 @@ M[#M+1] = {
 
     return vim.tbl_deep_extend('force', options, opts)
   end,
-}
-
--- telescope live args
-M[#M+1] = {
-  'telescope.nvim',
-  keys = {
-    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', desc = 'Text (args)' },
-  },
-  dependencies = {
-    { 'nvim-telescope/telescope-live-grep-args.nvim' },
-  },
-  opts = function(_, opts)
-    opts.defaults.mappings.i['<c-i>'] = function()
-      return require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' })
-    end
-    return opts
+  config = function(_, opts)
+    require('telescope').setup(opts)
+    require('telescope').load_extension('file_browser')
   end,
 }
 
