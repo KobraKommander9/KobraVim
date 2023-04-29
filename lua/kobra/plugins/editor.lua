@@ -97,11 +97,6 @@ M[#M+1] = {
     { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
   },
   opts = function(_, opts)
-    opts.defaults = {
-      prompt_prefix = ' ',
-      selection_caret = ' ',
-    }
-
     local layouts = require('kobra.core').layouts
     local n, p, j, k
     if layouts.colemak then
@@ -110,7 +105,7 @@ M[#M+1] = {
       n, p, j, k = 'n', 'p', 'j', 'k'
     end
 
-    opts.defaults.mappings = {
+    local mappings = {
       i = {
         ['<c-' .. n .. '>'] = function(...)
           return require('telescope.actions').cycle_history_next(...)
@@ -141,13 +136,20 @@ M[#M+1] = {
       },
     }
 
-    opts.defaults.file_ignore_patterns = {
-      '.git/',
-      'node_modules',
-      'plz-out',
+    local options = {
+      defaults = {
+        prompt_prefix = ' ',
+        selection_caret = ' ',
+        mappings = mappings,
+        file_ignore_patterns = {
+          '.git/',
+          'node_modules',
+          'plz-out',
+        },
+      },
     }
 
-    return opts
+    return vim.tbl_deep_extend('force', options, opts)
   end
 }
 
