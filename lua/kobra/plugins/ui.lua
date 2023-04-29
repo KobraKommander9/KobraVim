@@ -22,7 +22,7 @@ M[#M+1] = {
   },
   init = function()
     -- when noice is not enabled, install notify on VeryLazy
-    local util = require('kobravim.util')
+    local util = require('kobra.util')
     if not util.has('noice.nvim') then
       util.on_very_lazy(function()
         vim.notify = require('notify')
