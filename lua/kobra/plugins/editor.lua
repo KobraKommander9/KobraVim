@@ -141,6 +141,12 @@ M[#M+1] = {
       },
     }
 
+    opts.defaults.file_ignore_patterns = {
+      '.git/',
+      'node_modules',
+      'plz-out',
+    }
+
     return opts
   end
 }
@@ -181,6 +187,7 @@ M[#M+1] = {
         file_browser = opts,
       },
     }
+    vim.notify('File Browser', opts.defaults.file_ignore_patterns[1])
     require('telescope').setup(config)
     require('telescope').load_extension('file_browser')
   end,
