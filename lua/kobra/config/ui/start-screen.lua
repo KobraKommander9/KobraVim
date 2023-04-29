@@ -123,7 +123,7 @@ end
 function screen.setup(_, opts)
   local startify = require('alpha.themes.startify')
 
-  startify.section.header = {
+  local header = {
     type = 'text',
     val = kobra,
     opts = {
@@ -132,27 +132,30 @@ function screen.setup(_, opts)
     }
   }
 
-  startify.section.top_buttons.val = {
+  local top_buttons = startify.section.top_buttons
+  top_buttons.val = {
     startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
   }
 
   if type(options.dot_files) == 'string' then
     table.insert(
-      startify.section.top_buttons.val,
+      top_buttons.val,
       startify.button('df', 'Dot Files', '<cmd>e ' .. options.dot_files .. ' | cd %:p:h<cr>')
     )
   end
 
-  startify.section.mru.val[2].val = 'Recent Files'
-  startify.section.mru.val[4].val = function()
+  local mru = startify.section.mru
+  mru.val[2].val = 'Recent Files'
+  mru.val[4].val = function()
     return { get_mru() }
   end
 
-  startify.section.bottom_buttons.val = {
+  local bottom_buttons = startify.section.bottom_buttons
+  bottom_buttons.val = {
     startify.button('q', 'Quit NVIM', ':qa<CR>'),
   }
 
-  startify.section.footer = {
+  local footer = {
     { type = 'text', val = 'footer' },
   }
 
@@ -184,15 +187,15 @@ function screen.setup(_, opts)
   local config = {
     layout = {
       { type = 'padding', val = 1 },
-      startify.section.header,
+      header,
       { type = 'padding', val = 2 },
-      startify.section.top_buttons,
+      top_buttons,
       folder_section,
       sessions_section,
-      startify.section.mru,
+      mru,
       { type = 'padding', val = 1 },
-      startify.section.bottom_buttons,
-      startify.section.footer,
+      bottom_buttons,
+      footer,
     },
     opts = startify.opts,
   }
