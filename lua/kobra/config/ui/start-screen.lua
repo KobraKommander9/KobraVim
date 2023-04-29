@@ -135,7 +135,7 @@ local get_mru = function()
   }
 end
 
-function screen.opts()
+function screen.setup()
   startify.section.header = {
     type = 'text',
     val = kobra,

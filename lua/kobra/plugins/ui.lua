@@ -105,7 +105,7 @@ M[#M+1] = {
 M[#M+1] = {
   'goolord/alpha.nvim',
   event = 'VimEnter',
-  opts = require('kobra.config.ui.start-screen').opts,
+  opts = require('kobra.config.ui.start-screen').setup(),
   config = function(_, dashboard)
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == 'lazy' then
