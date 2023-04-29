@@ -135,6 +135,7 @@ M[#M+1] = {
       },
     }
 
+    vim.notify('seting up...')
     return vim.tbl_deep_extend('force', options, opts)
   end,
 }
@@ -178,13 +179,14 @@ M[#M+1] = {
           require('telescope').load_extension('file_browser')
         end
 
+        vim.notify('what??')
         return vim.tbl_deep_extend('keep', opts, options)
       end,
     },
   },
   config = function()
     local netrw_bufname
-    
+
     pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
     vim.api.nvim_create_autocmd('VimEnter', {
       pattern = '*',
@@ -217,9 +219,11 @@ M[#M+1] = {
           end
 
           vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
+          vim.notify('doing it...')
           vim.api.nvim_command('Telescope file_browser cwd=' .. vim.fn.expand('%:p:h'))
         end)
-      end
+      end,
+      desc = 'telescope-file-browser.nvim replacement for netrw',
     })
   end,
 }
