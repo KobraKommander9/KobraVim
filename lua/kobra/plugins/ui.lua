@@ -77,6 +77,13 @@ M[#M+1] = {
         end
       end,
     },
+    -- telescope integration
+    {
+      'nvim-telescope/telescope.nvim',
+      keys = {
+        { '<leader>sn', '<cmd>Telescope notify<cr>', 'Notify Messages' },
+      },
+    },
   },
   opts = {
     lsp = {
@@ -119,7 +126,7 @@ M[#M+1] = {
       })
     end
 
-    require('alpha').setup(dashboard.opts)
+    require('alpha').setup(dashboard.opts or {})
 
     vim.api.nvim_create_autocmd('User', {
       pattern = 'KobraVimStarted',
