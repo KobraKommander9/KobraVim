@@ -74,7 +74,7 @@ end
 
 local get_sessions = function()
   local startify = require('alpha.themes.startify')
-  local query = require('poseession.query')
+  local query = require('possession.query')
   return query.alpha_workspace_layout(options.workspaces, startify.button, {
     others_name = 'Other Sessions',
   })
