@@ -149,7 +149,6 @@ M[#M+1] = {
   dependencies = {
     {
       'nvim-telescope/telescope.nvim',
-      event = 'VeryLazy',
       opts = function(_, opts)
         local options = {
           extensions = {
