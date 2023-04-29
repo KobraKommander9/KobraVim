@@ -170,20 +170,21 @@ M[#M+1] = {
         grouped = true,
         display_stat = false,
         hidden = true,
+        mappings = opts.defaults.mappings,
       },
     }
 
-    -- if require('kobra.core').layouts.colemak then
-    --   opts.extensions.file_browser.mappings = {
-    --     i = {
-    --       ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
-    --       ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
-    --       ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
-    --       ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
-    --       ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
-    --     },
-    --   }
-    -- end
+    if require('kobra.core').layouts.colemak then
+      opts.extensions.file_browser.mappings = {
+        i = {
+          ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+          ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+          ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+          ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+          ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+        },
+      }
+    end
 
     return opts
   end,
