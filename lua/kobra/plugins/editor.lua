@@ -147,33 +147,22 @@ M[#M+1] = {
 
 -- file browser
 M[#M+1] = {
-  'telescope.nvim',
+  'nvim-telescope/telescope-file-browser.nvim',
   event = 'BufEnter',
-  dependencies = {
-    {
-      'nvim-telescope/telescope-file-browser.nvim',
-      config = function()
-        require('telescope').load_extension('file_browser')
-      end,
-      keys = {
-        { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
-      },
-    },
+  keys = {
+    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
   },
   opts = function(_, opts)
-    local extensions = opts.extensions or {}
-
-    extensions.file_browser = {
+    local options = {
       hijack_netrw = true,
       grouped = true,
       display_stat = false,
       hidden = true,
     }
-    opts.extensions = extensions
 
     if require('kobra.core').layouts.colemak then
       local actions = require('telescope').extensions.file_browser.actions
-      opts.extensions.file_browser.mappings = {
+      options.mappings = {
         i = {
           ['<C-a>'] = actions.create,
           ['<C-r>'] = actions.rename,
@@ -184,7 +173,16 @@ M[#M+1] = {
       }
     end
 
-    return opts
+    return vim.tbl_deep_extend('force', options, opts)
+  end,
+  config = function(_, opts)
+    local config = {
+      extensions = {
+        file_browser = opts,
+      },
+    }
+    require('telescope').setup(config)
+    require('telescope').load_extension('file_browser')
   end,
 }
 
