@@ -188,7 +188,11 @@ M[#M+1] = {
       }
     end
 
+    vim.notify('hello')
     return vim.tbl_deep_extend('keep', opts, options)
+  end,
+  config = function()
+    vim.notify('config')
   end,
 }
 
