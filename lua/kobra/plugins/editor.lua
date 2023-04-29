@@ -103,6 +103,7 @@ M[#M+1] = {
     }
 
     local layouts = require('kobra.core').layouts
+    vim.notiy('layouts.colemak: ' .. tostring(layouts.colemak))
     local n, p, j, k
     if layouts.colemak then
       n, p, j, k = 'j', 'k', 'n', 'e'

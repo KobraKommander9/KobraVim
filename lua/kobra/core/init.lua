@@ -94,6 +94,7 @@ M.renames = {
 local options
 
 function M.setup(opts)
+  vim.notify('setting up KobraVim')
   options = vim.tbl_deep_extend('force', defaults, opts or {})
   if not M.has() then
     require('lazy.core.util').error(

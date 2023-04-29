@@ -78,8 +78,8 @@ map('n', '<leader>xl', '<cmd>lopen<cr>', { desc = 'Location List' })
 map('n', '<leader>xq', '<cmd>copen<cr>', { desc = 'Quickfix List' })
 
 -- quit
-map('n', '<leader>q!', '<cmd>q<cr>', { desc = 'Quit' })
-map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
+map('n', '<leader>qq', '<cmd>q<cr>', { desc = 'Quit' })
+map('n', '<leader>q!', '<cmd>qa<cr>', { desc = 'Quit All' })
 
 -- windows
 map('n', '<leader>ww', '<C-W>p', { desc = 'Other window' })
