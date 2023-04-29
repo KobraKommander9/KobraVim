@@ -186,7 +186,6 @@ end
 
 function screen.setup_new()
   local startify = require('alpha.themes.startify')
-
   startify.section.header = {
     type = 'text',
     val = kobra,
@@ -212,6 +211,9 @@ function screen.setup_new()
     return { get_mru() }
   end
 
+  -- disable MRU cwd
+  startify.section.mru_cwd.val = {{ type = 'padding', val = 0 }}
+
   startify.section.bottom_buttons.val = {
     startify.button('q', 'Quit NVIM', ':qa<CR>'),
   }
@@ -220,12 +222,10 @@ function screen.setup_new()
     { type = 'text', val = 'footer' },
   }
 
-  local config = startify.config
   local index = 5
-
   for _, folder in ipairs(options.folders) do
     if #folder == 2 then
-      table.insert(config, index, {
+      table.insert(startify.config.layout, index, {
         type = 'group',
         val = {
           { type = 'padding', val = 1 },
@@ -244,12 +244,11 @@ function screen.setup_new()
     end
   end
 
-  table.insert(config.layout, index, {
+  table.insert(startify.config.layout, index, {
     type = 'group',
     val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
-  startify.config = config
   return startify
 end
 
