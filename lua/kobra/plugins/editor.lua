@@ -152,6 +152,7 @@ M[#M+1] = {
 -- file browser
 M[#M+1] = {
   'telescope.nvim',
+  event = 'VeryLazy',
   keys = {
     { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
   },
