@@ -43,7 +43,7 @@ map('n', keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
 map('n', keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
 
 -- move to window using the <ctrl> hjkl keys
-map('n', '<C-' .. keys.h .. '>', '<C-w>h', { desc = 'Go to left window' })
+map('n', '<C-h>', '<C-w>h', { desc = 'Go to left window' })
 map('n', '<C-' .. keys.j .. '>', '<C-w>j', { desc = 'Go to lower window' })
 map('n', '<C-' .. keys.k .. '>', '<C-w>k', { desc = 'Go to upper window' })
 map('n', '<C-' .. keys.l .. '>', '<C-w>l', { desc = 'Go to right window' })

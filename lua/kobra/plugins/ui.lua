@@ -49,16 +49,16 @@ M[#M+1] = {
 M[#M+1] = {
   'nanozuki/tabby.nvim',
   event = 'VeryLazy',
-  config = require('kobra.plugins.config.ui.tabline').setup,
+  config = require('kobra.config.ui.tabline').setup,
 }
 
 M[#M+1] = {
   'rebelot/heirline.nvim',
   event = 'VeryLazy',
   opts = {
-    statusline = require('kobra.plugins.config.ui.lines.statusline').statusline(),
-    winbar = require('kobra.plugins.config.ui.lines.winbar').winbar(),
-    -- tabline = require('kobra.plugins.config.ui.lines.tabline').tabline(),
+    statusline = require('kobra.config.ui.lines.statusline').statusline(),
+    winbar = require('kobra.config.ui.lines.winbar').winbar(),
+    -- tabline = require('kobra.config.ui.lines.tabline').tabline(),
   },
 }
 
@@ -103,7 +103,7 @@ M[#M+1] = {
 M[#M+1] = {
   'goolord/alpha.nvim',
   event = 'VimEnter',
-  opts = require('kobra.plugins.config.ui.start-screen').opts,
+  opts = require('kobra.config.ui.start-screen').opts,
   config = function(_, dashboard)
     -- close Lazy and re-open when the dashboard is ready
     if vim.o.filetype == 'lazy' then
