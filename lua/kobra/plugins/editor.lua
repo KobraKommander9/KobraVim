@@ -19,18 +19,28 @@ M[#M+1] = {
   },
 }
 
--- fuzzy finder
+-- fuzzy finder and file browser
 M[#M+1] = {
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
+  event = 'BufEnter',
   version = false,
+  dependencies = {
+    {
+      'nvim-telescope/telescope-file-browser.nvim',
+      event = 'VeryLazy',
+      config = function()
+        require('telescope').load_extension('file_browser')
+      end,
+    },
+  },
   keys = {
     { '<leader>/', util.telescope('live_grep'), desc = 'Grep (root dir)' },
     { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
     -- find
     { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
-    { '<leader>ff', util.telescope('files', { hidden = true }), desc = 'Find Files (root dir)' },
-    { '<leader>fF', util.telescope('files', { cwd = false, hidden = true }), desc = 'Find Files (cwd)' },
+    { '<leader>ff', '<cmd>Telescope file_browser hidden=true<cr>', desc = 'Find Files' },
+    { '<leader>fF', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', desc = 'File Browser' },
     { '<leader>fr', '<cmd>Telescope oldfiles<cr>', desc = 'Recent' },
     { '<leader>fR', util.telescope('oldfiles', { cwd = vim.loop.cwd() }), desc = 'Recent (cwd)' },
     -- git
@@ -126,56 +136,29 @@ M[#M+1] = {
           'plz-out',
         },
       },
+      extensions = {
+        file_browser = {
+          hijack_netrw = true,
+          grouped = true,
+          display_stat = false,
+          hidden = true,
+        },
+      }
     }
 
+    if require('kobra.core').layouts.colemak then
+      options.extensions.file_browser.mappings = {
+        i = {
+          ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+          ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+          ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+          ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+          ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+        },
+      }
+    end
+
     return vim.tbl_deep_extend('force', options, opts)
-  end,
-  config = function(_, opts)
-    local netrw_bufname
-
-    pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
-    vim.api.nvim_create_autocmd('VimEnter', {
-      pattern = '*',
-      once = true,
-      callback = function()
-        pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('BufEnter', {
-      group = vim.api.nvim_create_augroup('telescope.nvim', { clear = true }),
-      pattern = '*',
-      callback = function()
-        vim.schedule(function()
-          if vim.bo[0].filetype == 'netrw' then
-            return
-          end
-          local bufname = vim.api.nvim_buf_get_name(0)
-          if vim.fn.isdirectory(bufname) == 0 then
-            _, netrw_bufname = pcall(vim.fn.expand, '#:p:h')
-            return
-          end
-
-          -- prevents reopening of file-browser if exiting without selecting a file
-          if netrw_bufname == bufname then
-            netrw_bufname = nil
-            return
-          else
-            netrw_bufname = bufname
-          end
-
-          -- ensure no buffers remain with the directory name
-          vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
-
-          require('telescope.builtin').find_files {
-            cwd = vim.fn.expand '%:p:h',
-          }
-        end)
-      end,
-      desc = 'telescope.nvim replacement for netrw',
-    })
-
-    require('telescope').setup(opts)
   end,
 }
 
@@ -195,47 +178,6 @@ M[#M+1] = {
     return opts
   end,
 }
-
--- file browser
--- M[#M+1] = {
---   'telescope.nvim',
---   keys = {
---     { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', desc = 'File Browser' },
---   },
---   dependencies = {
---     {
---       'nvim-telescope/telescope-file-browser.nvim',
---       config = function()
---         require('telescope').load_extension('file_browser')
---       end,
---     },
---   },
---   opts = function(_, opts)
---     opts.extensions = {
---       file_browser = {
---         hijack_netrw = true,
---         grouped = true,
---         display_stat = false,
---         hidden = true,
---         mappings = opts.defaults.mappings,
---       },
---     }
---
---     if require('kobra.core').layouts.colemak then
---       opts.extensions.file_browser.mappings = {
---         i = {
---           ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
---           ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
---           ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
---           ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
---           ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
---         },
---       }
---     end
---
---     return opts
---   end,
--- }
 
 -- easily jump to any location and enhanced f/t motions for leap
 M[#M+1] = {
