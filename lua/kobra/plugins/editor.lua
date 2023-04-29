@@ -149,6 +149,7 @@ M[#M+1] = {
   dependencies = {
     {
       'nvim-telescope/telescope.nvim',
+      event = 'VeryLazy',
       opts = function(_, opts)
         local options = {
           extensions = {
@@ -173,12 +174,16 @@ M[#M+1] = {
           }
         end
 
+        options = vim.tbl_deep_extend('keep', opts, options)
+
         if require('kobra.util').has('telescope-file-browser.nvim') then
-          vim.notify('loading telescope-file-browser.nvim')
           require('telescope').load_extension('file_browser')
+          if options.extensions.file_browser.hijack_netrw then
+            require('kobra.config.telescope.file_browser').hijack_netrw()
+          end
         end
 
-        return vim.tbl_deep_extend('keep', opts, options)
+        return options
       end,
     },
   },
