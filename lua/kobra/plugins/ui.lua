@@ -83,6 +83,9 @@ M[#M+1] = {
       keys = {
         { '<leader>sn', '<cmd>Telescope notify<cr>', 'Notify Messages' },
       },
+      config = function()
+        require('telescope').load_extension('notify')
+      end,
     },
   },
   opts = {
