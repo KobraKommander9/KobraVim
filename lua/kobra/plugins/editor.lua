@@ -107,6 +107,7 @@ M[#M+1] = {
     local n, p, j, k
     if layouts.colemak then
       n, p, j, k = 'j', 'k', 'n', 'e'
+      vim.notify('setup telescope for colemak')
     else
       n, p, j, k = 'n', 'p', 'j', 'k'
     end
