@@ -24,9 +24,6 @@ M[#M+1] = {
   'nvim-telescope/telescope.nvim',
   cmd = 'Telescope',
   version = false,
-  dependencies = {
-    'nvim-telescope/telescope-live-grep-args.nvim',
-  },
   keys = {
     { '<leader>/', util.telescope('live_grep'), desc = 'Grep (root dir)' },
     { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
@@ -94,7 +91,6 @@ M[#M+1] = {
       }),
       desc = 'Goto Symbol (Workspace)',
     },
-    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
   },
   opts = function(_, opts)
     local layouts = require('kobra.core').layouts
@@ -113,9 +109,6 @@ M[#M+1] = {
         ['<c-' .. k .. '>'] = 'move_selection_previous',
         ['<c-b>'] = 'file_split',
         ['<c-x>'] = 'delete_buffer',
-        ['<c-i>'] = function()
-          return require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' })
-        end,
       },
       n = {
         q = 'close',
@@ -139,88 +132,62 @@ M[#M+1] = {
   end,
 }
 
+-- telescope live args
+M[#M+1] = {
+  'telescope.nvim',
+  keys = {
+    { '<leader>st', '<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>', 'Text (args)' },
+  },
+  dependencies = {
+    { 'nvim-telescope/telescope-live-grep-args.nvim' },
+  },
+  opts = function(_, opts)
+    opts.defaults.mappings.i['<c-i>'] = function()
+      return require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' })
+    end
+    return opts
+  end,
+}
+
 -- file browser
 M[#M+1] = {
-  'nvim-telescope/telescope-file-browser.nvim',
-  event = 'VeryLazy',
+  'telescope.nvim',
   keys = {
     { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
   },
   dependencies = {
     {
-      'nvim-telescope/telescope.nvim',
-      opts = function(_, opts)
-        local options = {
-          extensions = {
-            file_browser = {
-              hijack_netrw = true,
-              grouped = true,
-              display_stat = false,
-              hidden = true,
-            },
-          },
-        }
-
-        if require('kobra.core').layouts.colemak then
-          options.extensions.file_browser.mappings = {
-            i = {
-              ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
-              ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
-              ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
-              ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
-              ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
-            },
-          }
-        end
-
-        if require('kobra.util').has('telescope-file-browser.nvim') then
-          require('telescope').load_extension('file_browser')
-        end
-
-        return vim.tbl_deep_extend('keep', opts, options)
+      'nvim-telescope/telescope-file-browser.nvim',
+      config = function()
+        require('telescope').load_extension('file_browser')
       end,
     },
   },
-  config = function()
-    local netrw_bufname
+  opts = function(_, opts)
+    local options = {
+      extensions = {
+        file_browser = {
+          hijack_netrw = true,
+          grouped = true,
+          display_stat = false,
+          hidden = true,
+        },
+      },
+    }
 
-    pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
-    vim.api.nvim_create_autocmd('VimEnter', {
-      pattern = '*',
-      once = true,
-      callback = function()
-        pcall(vim.api.nvim_clear_autocmds, { group = 'FileExplorer' })
-      end,
-    })
+    if require('kobra.core').layouts.colemak then
+      options.extensions.file_browser.mappings = {
+        i = {
+          ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+          ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+          ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+          ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+          ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+        },
+      }
+    end
 
-    vim.api.nvim_create_autocmd('BufEnter', {
-      group = vim.api.nvim_create_augroup('telescope-file-browser.nvim', { clear = true }),
-      pattern = '*',
-      callback = function()
-        vim.schedule(function()
-          if vim.bo[0].filetype == 'netrw' then
-            return
-          end
-
-          local bufname = vim.api.nvim_buf_get_name(0)
-          if vim.fn.isdirectory(bufname) == 0 then
-            _, netrw_bufname = pcall(vim.fn.expand, '#:p:h')
-            return
-          end
-
-          if netrw_bufname == bufname then
-            netrw_bufname = nil
-            return
-          else
-            netrw_bufname = bufname
-          end
-
-          vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
-          vim.api.nvim_command('Telescope file_browser cwd=' .. vim.fn.expand('%:p:h'))
-        end)
-      end,
-      desc = 'telescope-file-browser.nvim replacement for netrw',
-    })
+    return vim.tbl_deep_extend('keep', opts, options)
   end,
 }
 
