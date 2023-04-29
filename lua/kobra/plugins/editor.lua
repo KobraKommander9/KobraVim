@@ -154,7 +154,7 @@ M[#M+1] = {
 -- file browser
 M[#M+1] = {
   'nvim-telescope/telescope-file-browser.nvim',
-  event = 'BufEnter',
+  event = 'VimEnter',
   keys = {
     { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
   },
@@ -187,7 +187,6 @@ M[#M+1] = {
         file_browser = opts,
       },
     }
-    vim.notify('File Browser', opts.defaults.file_ignore_patterns[1])
     require('telescope').setup(config)
     require('telescope').load_extension('file_browser')
   end,
