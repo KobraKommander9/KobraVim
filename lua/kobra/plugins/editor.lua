@@ -167,7 +167,7 @@ M[#M+1] = {
           -- ensure no buffers remain with the directory name
           vim.api.nvim_buf_set_option(0, 'bufhidden', 'wipe')
 
-          require('telescope').extensions.file_browser.file_browser {
+          require('telescope.builtin').find_files {
             cwd = vim.fn.expand '%:p:h',
           }
         end)

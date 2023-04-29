@@ -120,7 +120,7 @@ function screen.setup()
 	  [[ ██████  ██████████████████ ██████████████ █████ █████ ████ ██████ ]],
     [[                                                                             ]],
   }
-  
+
   local startify = require('alpha.themes.startify')
   startify.section.header = {
     type = 'text',
