@@ -143,28 +143,23 @@ M[#M+1] = {
 
 -- file browser
 M[#M+1] = {
-  'nvim-telescope/telescope-file-browser.nvim',
-  event = 'VeryLazy',
-  keys = {
-    { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
-  },
+  'telescope.nvim',
   dependencies = {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-file-browser.nvim',
     event = 'VeryLazy',
+    keys = {
+      { '<leader>ff', '<cmd>Telescope file_browser path=%:p:h hidden=true<cr>', 'Find Browser' },
+    },
     opts = function(_, opts)
       local options = {
-        extensions = {
-          file_browser = {
-            hijack_netrw = true,
-            grouped = true,
-            display_stat = false,
-            hidden = true,
-          },
-        },
+        hijack_netrw = true,
+        grouped = true,
+        display_stat = false,
+        hidden = true,
       }
 
       if require('kobra.core').layouts.colemak then
-        options.extensions.file_browser.mappings = {
+        options.mappings = {
           i = {
             ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
             ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
@@ -177,10 +172,10 @@ M[#M+1] = {
 
       return vim.tbl_deep_extend('keep', opts, options)
     end,
+    config = function(_, opts)
+      require('telescope._extensions.file_browser.config').setup(opts)
+    end,
   },
-  config = function()
-    require('telescope').load_extension('file_browser')
-  end,
 }
 
 -- easily jump to any location and enhanced f/t motions for leap
