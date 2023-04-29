@@ -123,7 +123,7 @@ end
 function screen.setup(_, opts)
   local startify = require('alpha.themes.startify')
 
-  local header = {
+  startify.section.header = {
     type = 'text',
     val = kobra,
     opts = {
@@ -132,37 +132,36 @@ function screen.setup(_, opts)
     }
   }
 
-  local top_buttons = startify.section.top_buttons
-  top_buttons.val = {
+  startify.section.top_buttons.val = {
     startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
   }
 
   if type(options.dot_files) == 'string' then
     table.insert(
-      top_buttons.val,
+      startify.section.top_buttons.val,
       startify.button('df', 'Dot Files', '<cmd>e ' .. options.dot_files .. ' | cd %:p:h<cr>')
     )
   end
 
-  local mru = startify.section.mru
-  mru.val[2].val = 'Recent Files'
-  mru.val[4].val = function()
+  startify.section.mru.val[2].val = 'Recent Files'
+  startify.section.mru.val[4].val = function()
     return { get_mru() }
   end
 
-  local bottom_buttons = startify.section.bottom_buttons
-  bottom_buttons.val = {
+  startify.section.bottom_buttons.val = {
     startify.button('q', 'Quit NVIM', ':qa<CR>'),
   }
 
-  local footer = {
+  startify.section.footer = {
     { type = 'text', val = 'footer' },
   }
 
-  local folder_section = {}
+  local config = startify.config
+  local index = 5
+
   for _, folder in ipairs(options.folders) do
     if #folder == 2 then
-      table.insert(folder_section, {
+      table.insert(config, index, {
         type = 'group',
         val = {
           { type = 'padding', val = 1 },
@@ -176,32 +175,15 @@ function screen.setup(_, opts)
           },
         },
       })
+
+      index = index + 1
     end
   end
 
-  local sessions_section = {
+  table.insert(config.layout, index, {
     type = 'group',
     val = require('possession.utils').throttle(get_sessions, 5000),
-  }
-
-  local config = {
-    layout = {
-      { type = 'padding', val = 1 },
-      header,
-      { type = 'padding', val = 2 },
-      top_buttons,
-      sessions_section,
-      mru,
-      { type = 'padding', val = 1 },
-      bottom_buttons,
-      footer,
-    },
-    opts = startify.config,
-  }
-
-  if #folder_section > 0 then
-    table.insert(config.layout, 5, folder_section)
-  end
+  })
 
   return vim.tbl_deep_extend('force', config, opts)
 end
