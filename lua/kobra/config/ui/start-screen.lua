@@ -120,7 +120,7 @@ local get_mru = function()
   }
 end
 
-function screen.setup(_, opts)
+function screen.setup()
   local startify = require('alpha.themes.startify')
 
   startify.section.header = {
@@ -185,7 +185,6 @@ function screen.setup(_, opts)
     val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
-  -- return vim.tbl_deep_extend('force', config, opts)
   return config
 end
 
