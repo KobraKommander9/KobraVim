@@ -107,32 +107,18 @@ M[#M+1] = {
 
     local mappings = {
       i = {
-        ['<c-' .. n .. '>'] = function(...)
-          return require('telescope.actions').cycle_history_next(...)
-        end,
-        ['<c-' .. p .. '>'] = function(...)
-          return require('telescope.actions').cycle_history_prev(...)
-        end,
-        ['<c-' .. j .. '>'] = function(...)
-          return require('telescope.actions').move_selection_next(...)
-        end,
-        ['<c-' .. k .. '>'] = function(...)
-          return require('telescope.actions').move_selection_previous(...)
-        end,
-        ['<c-b>'] = function(...)
-          return require('telescope.actions').file_split(...)
-        end,
-        ['<c-x>'] = function(...)
-          return require('telescope.actions').delete_buffer(...)
-        end,
+        ['<c-' .. n .. '>'] = 'cycle_history_next',
+        ['<c-' .. p .. '>'] = 'cycle_history_prev',
+        ['<c-' .. j .. '>'] = 'move_selection_next',
+        ['<c-' .. k .. '>'] = 'move_selection_previous',
+        ['<c-b>'] = 'file_split',
+        ['<c-x>'] = 'delete_buffer',
         ['<c-i>'] = function()
           return require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' })
         end,
       },
       n = {
-        q = function(...)
-          return require('telescope.actions').close(...)
-        end,
+        q = 'close',
       },
     }
 
