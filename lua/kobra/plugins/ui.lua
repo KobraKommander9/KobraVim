@@ -62,7 +62,7 @@ M[#M+1] = {
       -- tabline = require('kobra.config.ui.lines.tabline').tabline(),
       opts = {
         disable_winbar_cb = function(args)
-          return require('heirline.conditions').buffer_matcheds({
+          return require('heirline.conditions').buffer_matches({
             buftype = { 'nofile', 'prompt', 'help', 'quickfix' },
             filetype = { '^git.*', 'fugitive', 'Trouble', 'dashboard' },
           }, args.buf)
