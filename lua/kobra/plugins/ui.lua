@@ -87,8 +87,8 @@ M[#M+1] = {
       },
     },
     presets = {
-      bottom_search = true,
-      command_palette = true,
+      -- bottom_search = true,
+      -- command_palette = true,
       long_message_to_split = true,
     },
   },
@@ -135,7 +135,7 @@ M[#M+1] = {
       callback = function()
         local stats = require('lazy').stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        startify.section.footer.val = '⚡ Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
+        startify.config.layout[#startify.config.layout].val = '⚡ Neovim loaded ' .. stats.count .. ' plugins in ' .. ms .. 'ms'
         pcall(vim.cmd.AlphaRedraw)
       end,
     })
