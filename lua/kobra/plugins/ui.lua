@@ -71,7 +71,6 @@ M[#M+1] = {
     -- which key integration
     {
       'folke/which-key.nvim',
-      event = 'VeryLazy',
       opts = function(_, opts)
         if require('kobra.util').has('noice.nvim') then
           opts.defaults['<leader>sn'] = { name = '+noice' }
@@ -87,8 +86,8 @@ M[#M+1] = {
       },
     },
     presets = {
-      -- bottom_search = true,
-      -- command_palette = true,
+      bottom_search = true,
+      command_palette = true,
       long_message_to_split = true,
     },
   },
