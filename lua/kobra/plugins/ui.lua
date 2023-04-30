@@ -60,6 +60,14 @@ M[#M+1] = {
       statusline = require('kobra.config.ui.lines.statusline').statusline(),
       winbar = require('kobra.config.ui.lines.winbar').winbar(),
       -- tabline = require('kobra.config.ui.lines.tabline').tabline(),
+      opts = {
+        disable_winbar_cb = function(args)
+          return require('heirline.conditions').buffer_matcheds({
+            buftype = { 'nofile', 'prompt', 'help', 'quickfix' },
+            filetype = { '^git.*', 'fugitive', 'Trouble', 'dashboard' },
+          }, args.buf)
+        end,
+      },
     })
   end,
 }
