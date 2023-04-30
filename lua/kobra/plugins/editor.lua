@@ -98,7 +98,7 @@ M[#M+1] = {
       desc = 'Goto Symbol (Workspace)',
     },
   },
-  opts = function(_, opts)
+  config = function(_, opts)
     local layouts = require('kobra.core').layouts
     local n, p, j, k
     if layouts.colemak then
@@ -123,7 +123,6 @@ M[#M+1] = {
         q = 'close',
       },
     }
-
 
     local options = {
       defaults = {
@@ -158,10 +157,8 @@ M[#M+1] = {
       }
     end
 
-    return vim.tbl_deep_extend('force', options, opts)
-  end,
-  config = function(_, opts)
-    require('telescope').setup(opts)
+    options = vim.tbl_deep_extend('force', options, opts)
+    require('telescope').setup(options)
     require('telescope').load_extension('file_browser')
   end,
 }
