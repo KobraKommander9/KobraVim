@@ -113,7 +113,6 @@ M[#M+1] = {
 M[#M+1] = {
   'goolord/alpha-nvim',
   event = 'VimEnter',
-  dependencies = { 'jedrzejboczar/possession.nvim' },
   opts = require('kobra.config.ui.start-screen').setup,
   config = function(_, startify)
     -- close Lazy and re-open when the dashboard is ready
