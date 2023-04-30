@@ -52,17 +52,17 @@ M[#M+1] = {
   config = require('kobra.config.ui.tabline').setup,
 }
 
-M[#M+1] = {
-  'rebelot/heirline.nvim',
-  event = 'VeryLazy',
-  config = function()
-    require('heirline').setup({
-      statusline = require('kobra.config.ui.lines.statusline').statusline(),
-      winbar = require('kobra.config.ui.lines.winbar').winbar(),
-      -- tabline = require('kobra.config.ui.lines.tabline').tabline(),
-    })
-  end,
-}
+-- M[#M+1] = {
+--   'rebelot/heirline.nvim',
+--   event = 'VeryLazy',
+--   config = function()
+--     require('heirline').setup({
+--       statusline = require('kobra.config.ui.lines.statusline').statusline(),
+--       winbar = require('kobra.config.ui.lines.winbar').winbar(),
+--       -- tabline = require('kobra.config.ui.lines.tabline').tabline(),
+--     })
+--   end,
+-- }
 
 M[#M+1] = {
   'folke/noice.nvim',
