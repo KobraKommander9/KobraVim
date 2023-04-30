@@ -13,10 +13,10 @@ local lsp_status = {
   update = { 'LspAttach', 'LspDetach' },
   provider = function()
     local lsp_val = ' LSP'
-    local progress_ok, progress = pcall(require, 'lsp-progress')
-    if progress_ok then
-      lsp_val = progress.progress()
-    end
+    -- local progress_ok, progress = pcall(require, 'lsp-progress')
+    -- if progress_ok then
+    --   lsp_val = progress.progress()
+    -- end
     return lsp_val
   end,
   hl = 'UserRvWhite',

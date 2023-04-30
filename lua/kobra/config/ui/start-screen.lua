@@ -155,7 +155,8 @@ function screen.setup()
   }
 
   startify.section.footer = {
-    { type = 'text', val = 'footer' },
+    type = 'text',
+    val = 'footer',
   }
 
   startify.config.layout[2] = {
