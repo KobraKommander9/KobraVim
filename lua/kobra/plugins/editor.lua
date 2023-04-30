@@ -213,6 +213,7 @@ M[#M+1] = {
       ['<leader>f'] = { name = '+file/find' },
       ['<leader>g'] = { name = '+git' },
       ['<leader>gh'] = { name = '+hunks' },
+      ['<leader>l'] = { name = '+lsp' },
       ['<leader>q'] = { name = '+quit/session' },
       ['<leader>s'] = { name = '+search' },
       ['<leader>u'] = { name = '+ui' },
