@@ -1,5 +1,6 @@
 local screen = {}
 
+require('kobra.core').init()
 local options = require('kobra.core').start_screen
 
 local function scandir(dir)
