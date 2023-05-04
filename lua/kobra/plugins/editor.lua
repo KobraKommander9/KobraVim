@@ -151,11 +151,11 @@ M[#M+1] = {
     if require('kobra.core').layouts.colemak then
       options.extensions.file_browser.mappings = {
         i = {
-          ['<C-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
-          ['<C-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
-          ['<C-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
-          ['<C-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
-          ['<C-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
+          ['<c-a>'] = function(...) require('telescope').extensions.file_browser.actions.create(...) end,
+          ['<c-r>'] = function(...) require('telescope').extensions.file_browser.actions.rename(...) end,
+          ['<c-y>'] = function(...) require('telescope').extensions.file_browser.actions.copy(...) end,
+          ['<c-x>'] = function(...) require('telescope').extensions.file_browser.actions.remove(...) end,
+          ['<c-h>'] = function(...) require('telescope').extensions.file_browser.actions.toggle_hidden(...) end,
         },
       }
     end
