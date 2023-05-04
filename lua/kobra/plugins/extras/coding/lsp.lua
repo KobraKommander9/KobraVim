@@ -32,7 +32,7 @@ M[#M + 1] = {
 			}
 		end
 
-		return vim.tbl_deep_extend("keep", opts, options)
+		return vim.tbl_deep_extend("force", options, opts)
 	end,
 }
 
