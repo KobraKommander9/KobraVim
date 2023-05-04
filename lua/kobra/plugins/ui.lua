@@ -4,11 +4,11 @@ M[#M+1] = {
   'xiyaowong/transparent.nvim',
   lazy = false,
   -- cond = require('kobra.core').ui.background == 'transparent',
-  -- opts = {
-  --   extra_groups = {
-  --     'NormalFloat',
-  --   },
-  -- },
+  opts = {
+    exclude_groups = {
+      'NotifyBackground',
+    },
+  },
 }
 
 M[#M+1] = {
