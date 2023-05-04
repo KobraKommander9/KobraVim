@@ -1,17 +1,9 @@
 local M = {}
 
 M[#M+1] = {
-  'tribela/vim-transparent',
+  'xiaowong/transparent.nvim',
   lazy = false,
-  -- cond = require('kobra.core').ui.background == 'transparent',
-  config = function()
-    vim.api.nvim_create_augroup('transparent', { clear = true })
-    vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
-      pattern = '*',
-      callback = function()
-      end,
-    })
-  end,
+  cond = require('kobra.core').ui.background == 'transparent',
 }
 
 M[#M+1] = {
