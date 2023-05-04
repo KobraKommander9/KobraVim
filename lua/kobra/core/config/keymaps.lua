@@ -55,8 +55,8 @@ map("i", "<A-" .. keys.j .. ">", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down"
 map("i", "<A-" .. keys.k .. ">", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<A-" .. keys.j .. ">", ':m ">+1<cr>gv=gv', { desc = "Move down" })
 map("v", "<A-" .. keys.k .. ">", ':m "<-2<cr>gv=gv', { desc = "Move up" })
-map("x", "<A-" .. keys.j .. ">", ':m ">+1<cr>gv=gv', { desc = "Move down" })
-map("x", "<A-" .. keys.k .. ">", ':m "<-2<cr>gv=gv', { desc = "Move up" })
+map("x", "<A-" .. keys.j .. ">", ':m ">+1<cr>gv-gv', { desc = "Move down" })
+map("x", "<A-" .. keys.k .. ">", ':m "<-2<cr>gv-gv', { desc = "Move up" })
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
