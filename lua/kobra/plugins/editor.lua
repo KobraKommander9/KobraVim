@@ -31,8 +31,7 @@ M[#M + 1] = {
 -- fuzzy finder and file browser
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
-	cmd = "Telescope",
-	event = "VimEnter",
+	lazy = false,
 	version = false,
 	dependencies = {
 		{ "nvim-telescope/telescope-file-browser.nvim" },
