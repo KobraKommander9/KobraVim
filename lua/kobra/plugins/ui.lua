@@ -3,7 +3,12 @@ local M = {}
 M[#M+1] = {
   'xiyaowong/transparent.nvim',
   lazy = false,
-  cond = require('kobra.core').ui.background == 'transparent',
+  -- cond = require('kobra.core').ui.background == 'transparent',
+  opts = {
+    extra_groups = {
+      'NormalFloat',
+    },
+  },
 }
 
 M[#M+1] = {
