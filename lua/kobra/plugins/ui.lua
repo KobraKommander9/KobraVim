@@ -1,7 +1,7 @@
 local M = {}
 
 M[#M+1] = {
-  'xiaowong/transparent.nvim',
+  'xiyaowong/transparent.nvim',
   lazy = false,
   cond = require('kobra.core').ui.background == 'transparent',
 }
