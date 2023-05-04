@@ -32,7 +32,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
-	event = { "VimEnter", "BufReadPre" },
+	event = "VimEnter",
 	version = false,
 	dependencies = {
 		{ "nvim-telescope/telescope-file-browser.nvim" },
