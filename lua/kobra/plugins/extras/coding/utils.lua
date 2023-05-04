@@ -6,7 +6,7 @@ M[#M+1] = {
 }
 
 M[#M+1] = {
-  'f-persion/git-blame.nvim',
+  'f-person/git-blame.nvim',
   event = 'BufReadPre',
 }
 
