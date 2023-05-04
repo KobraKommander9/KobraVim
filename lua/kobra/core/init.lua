@@ -4,6 +4,9 @@ M.lazy_version = '>=9.1.0'
 
 local defaults = {
   colorscheme = 'carbonfox',
+  ui = {
+    background = 'transparent',
+  },
   defaults = {
     autocmds = true,
     keymaps = true,

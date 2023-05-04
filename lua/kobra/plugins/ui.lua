@@ -1,6 +1,20 @@
 local M = {}
 
 M[#M+1] = {
+  'tribela/vim-transparent',
+  lazy = false,
+  -- cond = require('kobra.core').ui.background == 'transparent',
+  config = function()
+    vim.api.nvim_create_augroup('transparent', { clear = true })
+    vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
+      pattern = '*',
+      callback = function()
+      end,
+    })
+  end,
+}
+
+M[#M+1] = {
   'rcarriga/nvim-notify',
   keys = {
     {
