@@ -13,7 +13,7 @@ M[#M+1] = {
   lazy = false,
   config = true,
   cond = true,
-  version = false
+  version = '*',
 }
 
 return M
