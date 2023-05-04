@@ -32,7 +32,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
-	event = "VimEnter",
+	event = "BufEnter",
 	version = false,
 	dependencies = {
 		{ "nvim-telescope/telescope-file-browser.nvim" },
@@ -193,7 +193,6 @@ M[#M + 1] = {
 			}
 		end
 
-		vim.notify("telescope loaded")
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("telescope").setup(options)
 		require("telescope").load_extension("file_browser")
