@@ -3,6 +3,7 @@ local M = {}
 M[#M+1] = {
   'xiyaowong/transparent.nvim',
   lazy = false,
+  -- TODO: do this differently
   -- cond = require('kobra.core').ui.background == 'transparent',
   opts = {
     exclude_groups = {

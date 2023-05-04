@@ -126,4 +126,19 @@ M.opts = function(name)
   return Plugin.values(plugin, 'opts', false)
 end
 
+M.lsp_get_config = function(server)
+  local configs = require('lspconfig.configs')
+  return rawget(configs, server)
+end
+
+M.lsp_disable = function(server, cond)
+  local util = require('lspconfig.util')
+  local def = M.lsp_get_config(server)
+  def.document_config.on_new_config = util.add_hook_before(def.document_config.on_new_config, function(config, root_dir)
+    if cond(root_dir, config) then
+      config.enabled = false
+    end
+  end)
+end
+
 return M
