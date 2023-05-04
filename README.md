@@ -5,7 +5,7 @@ This is configured the same way as LazyVim, except there are a few different val
 local defaults = {
   colorscheme = 'carbonfox',
   ui = {
-    background = 'transparent',
+    background = 'transparent', -- set this to anything but 'transparent' for it to use your colorscheme background
   },
   defaults = {
     autocmds = true,
@@ -18,15 +18,15 @@ local defaults = {
     cache = vim.fn.stdpath('cache'),
   },
   layouts = {
-    colemak = false,
+    colemak = false, -- set this to true if a colemak user
   },
   start_screen = {
-    dot_files = '~/dot-files',
-    folders = {
-      { 'Projects', '~/Projects' },
+    dot_files = '~/dot-files', -- the location of your dot files
+    folders = { -- folders you want to have show up on the start screen
+      { 'Projects', '~/Projects' }, -- each value should be of the format: { title, path }
     },
-    workspaces = {
-      {
+    workspaces = { -- workspaces for start screen session display
+      { -- each should be of the format: { title, key, path }
         'Project Sessions',
         'p',
         '~/Projects',
