@@ -35,6 +35,8 @@ M[#M+1] = {
   keys = {
     { '<leader>/', util.telescope('live_grep'), desc = 'Grep (root dir)' },
     { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
+    -- buffers
+    { '<leader>bl', '<cmd>Telescope buffers<cr>', desc = 'List Buffers' },
     -- find
     { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
     { '<leader>ff', '<cmd>Telescope file_browser hidden=true<cr>', desc = 'Find Files' },

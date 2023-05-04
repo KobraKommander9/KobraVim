@@ -1,6 +1,34 @@
 local M = {}
 
 M[#M+1] = {
+  'dnlhc/glance.nvim',
+  keys = { '<leader>l' },
+  cmd = { 'Glance' },
+  opts = function(_, opts)
+    local options = {}
+
+    if require('kobra.core').layout.colemak then
+      options.mappings = {
+        list = {
+          j = false,
+          k = false,
+          n = function() require('glance').actions.next() end,
+          e = function() require('glance').actions.previous() end,
+          ['<leader>l'] = false,
+          ['<c-l>'] = function() require('glance').actions.enter_win('preview') end,
+        },
+        preview = {
+          ['<leader>l'] = false,
+          ['<c-l>'] = function() require('glance').actions.enter_win('list') end,
+        },
+      }
+    end
+
+    return vim.tbl_deep_extend('keep', opts, options)
+  end,
+}
+
+M[#M+1] = {
   'neovim/nvim-lspconfig',
   dependencies = {
     {
