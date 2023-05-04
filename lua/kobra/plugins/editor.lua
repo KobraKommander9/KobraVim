@@ -114,8 +114,6 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
-		require("kobra.core").init()
-
 		local layouts = require("kobra.core").layouts
 		local n, p, j, k
 		if layouts.colemak then
@@ -195,6 +193,7 @@ M[#M + 1] = {
 			}
 		end
 
+		vim.notify("telescope loaded")
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("telescope").setup(options)
 		require("telescope").load_extension("file_browser")
