@@ -1,7 +1,7 @@
 KobraVim is heavily inspired by [LazyVim](https://github.com/LazyVim/LazyVim) and powered by 💤[lazy.nvim](https://github.com/folke/lazy.nvim). You can get started with the [starter](https://github.com/KobraKommander9/KobraVim-starter).
 
 This is configured the same way as LazyVim, except there are a few different values or options, as this comes with sensible defaults for [colemak](https://colemak.com/) users. The defaults:
-```
+```lua
 local defaults = {
   colorscheme = 'carbonfox',
   ui = {
