@@ -3,8 +3,7 @@ local M = {}
 M[#M + 1] = {
 	"xiyaowong/transparent.nvim",
 	lazy = false,
-	-- TODO: do this differently
-	-- cond = require('kobra.core').ui.background == 'transparent',
+	cond = require("kobra.core").ui.background == "transparent",
 	opts = {
 		exclude_groups = {
 			"NotifyBackground",
@@ -23,15 +22,23 @@ M[#M + 1] = {
 			desc = "Dismiss all Notifications",
 		},
 	},
-	opts = {
-		timeout = 3000,
-		max_height = function()
-			return math.floor(vim.o.lines * 0.75)
-		end,
-		max_width = function()
-			return math.floor(vim.o.columns * 0.75)
-		end,
-	},
+	opts = function(_, opts)
+		local options = {
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
+		}
+
+		if require("kobra.core").ui.background == "transparent" then
+			options.background_colour = "#000000"
+		end
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
 	init = function()
 		-- when noice is not enabled, install notify on VeryLazy
 		local util = require("kobra.util")
