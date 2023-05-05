@@ -115,7 +115,6 @@ M[#M + 1] = {
 	},
 	config = function(_, opts)
 		local n, p, j, k
-		vim.notify(require("kobra.core").layouts.colemak)
 		if require("kobra.core").layouts.colemak then
 			n, p, j, k = "j", "k", "n", "e"
 		else
@@ -160,7 +159,6 @@ M[#M + 1] = {
 			},
 		}
 
-		vim.notify(require("kobra.core").layouts.colemak)
 		if require("kobra.core").layouts.colemak then
 			options.extensions.file_browser.mappings = {
 				i = {
@@ -183,7 +181,6 @@ M[#M + 1] = {
 			}
 		end
 
-		vim.notify(require("kobra.core").layouts.colemak)
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("telescope").setup(options)
 		require("telescope").load_extension("file_browser")

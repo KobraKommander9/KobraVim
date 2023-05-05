@@ -23,7 +23,6 @@ M[#M + 1] = {
 			},
 		}
 
-		vim.notify(require("kobra.core").layouts.colemak)
 		if require("kobra.core").layouts.colemak then
 			options.mappings.list.j = false
 			options.mappings.list.k = false
