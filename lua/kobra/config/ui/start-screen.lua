@@ -17,7 +17,7 @@ local function scandir(dir)
   return t
 end
 
-local get_folders = function(dir)
+local get_folders = function(prefix, dir)
   local startify = require('alpha.themes.startify')
   local files = scandir(dir .. '/')
 
@@ -43,7 +43,7 @@ local get_folders = function(dir)
 
     local short_fn = vim.fn.fnamemodify(fn, ':~')
     local cd_cmd = ' | cd %:p:h'
-    local file_button_el = startify.button(tostring(i), ico_txt .. short_fn, '<cmd>e ' .. fn .. cd_cmd .. '<cr>')
+    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, '<cmd>e ' .. fn .. cd_cmd .. '<cr>')
     local fn_start = short_fn:match('.*[/\\]')
     if fn_start ~= nil then
       table.insert(fb_hl, { 'Comment', #ico_txt, #fn_start + #ico_txt })
@@ -180,7 +180,24 @@ function screen.setup()
           {
             type = 'group',
             val = function()
-              return { get_folders(folder[2]) }
+              return { get_folders('', folder[2]) }
+            end,
+          },
+        },
+      })
+    end
+
+    if #folder == 3 then
+      table.insert(startify.config.layout, index, {
+        type = 'group',
+        val = {
+          { type = 'padding', val = 1 },
+          { type = 'text', val = folder[1], opts = { hl = 'SpecialComment' } },
+          { type = 'padding', val = 1 },
+          {
+            type = 'group',
+            val = function()
+              return { get_folders(folder[2], folder[3]) }
             end,
           },
         },
