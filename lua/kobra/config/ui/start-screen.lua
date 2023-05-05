@@ -1,6 +1,6 @@
 local screen = {}
 
-local options = require('kobra.core').start_screen
+-- local options = 
 
 local function scandir(dir)
   local t = {}
@@ -62,7 +62,7 @@ end
 local get_sessions = function()
   local startify = require('alpha.themes.startify')
   local query = require('possession.query')
-  return query.alpha_workspace_layout(options.workspaces, startify.button, {
+  return query.alpha_workspace_layout(require('kobra.core').start_screen.workspaces, startify.button, {
     others_name = 'Other Sessions',
   })
 end
@@ -135,10 +135,10 @@ function screen.setup()
     startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
   }
 
-  if type(options.dot_files) == 'string' then
+  if type(require('kobra.core').start_screen.dot_files) == 'string' then
     table.insert(
       startify.section.top_buttons.val,
-      startify.button('df', 'Dot Files', '<cmd>e ' .. options.dot_files .. ' | cd %:p:h<cr>')
+      startify.button('df', 'Dot Files', '<cmd>e ' .. require('kobra.core').start_screen.dot_files .. ' | cd %:p:h<cr>')
     )
   end
 
@@ -169,7 +169,7 @@ function screen.setup()
   }
 
   local index = 5
-  for _, folder in ipairs(options.folders) do
+  for _, folder in ipairs(require('kobra.core').start_screen.folders) do
     if #folder == 2 then
       table.insert(startify.config.layout, index, {
         type = 'group',
