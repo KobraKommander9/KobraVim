@@ -45,8 +45,16 @@ M[#M + 1] = {
 		{ "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
 		-- find
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-		{ "<leader>ff", "<cmd>Telescope file_browser hidden=true<cr>", desc = "Find Files" },
+		{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
 		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
+		{
+			"<leader>fa",
+			function()
+				local root = require("kobra.util").get_root()
+				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
+			end,
+			desc = "File Browser (root)",
+		},
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
 		-- git
