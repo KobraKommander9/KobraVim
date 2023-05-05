@@ -1,6 +1,6 @@
 local screen = {}
 
-local options = require('kobra.core').start_screen
+-- local options = 
 
 local function scandir(dir)
   local t = {}
@@ -17,7 +17,7 @@ local function scandir(dir)
   return t
 end
 
-local get_folders = function(dir)
+local get_folders = function(prefix, dir)
   local startify = require('alpha.themes.startify')
   local files = scandir(dir .. '/')
 
@@ -43,7 +43,7 @@ local get_folders = function(dir)
 
     local short_fn = vim.fn.fnamemodify(fn, ':~')
     local cd_cmd = ' | cd %:p:h'
-    local file_button_el = startify.button(tostring(i), ico_txt .. short_fn, '<cmd>e ' .. fn .. cd_cmd .. '<cr>')
+    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, '<cmd>e ' .. fn .. cd_cmd .. '<cr>')
     local fn_start = short_fn:match('.*[/\\]')
     if fn_start ~= nil then
       table.insert(fb_hl, { 'Comment', #ico_txt, #fn_start + #ico_txt })
@@ -62,7 +62,7 @@ end
 local get_sessions = function()
   local startify = require('alpha.themes.startify')
   local query = require('possession.query')
-  return query.alpha_workspace_layout(options.workspaces, startify.button, {
+  return query.alpha_workspace_layout(require('kobra.core').start_screen.workspaces, startify.button, {
     others_name = 'Other Sessions',
   })
 end
@@ -135,10 +135,10 @@ function screen.setup()
     startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
   }
 
-  if type(options.dot_files) == 'string' then
+  if type(require('kobra.core').start_screen.dot_files) == 'string' then
     table.insert(
       startify.section.top_buttons.val,
-      startify.button('df', 'Dot Files', '<cmd>e ' .. options.dot_files .. ' | cd %:p:h<cr>')
+      startify.button('df', 'Dot Files', '<cmd>e ' .. require('kobra.core').start_screen.dot_files .. ' | cd %:p:h<cr>')
     )
   end
 
@@ -169,7 +169,7 @@ function screen.setup()
   }
 
   local index = 5
-  for _, folder in ipairs(options.folders) do
+  for _, folder in ipairs(require('kobra.core').start_screen.folders) do
     if #folder == 2 then
       table.insert(startify.config.layout, index, {
         type = 'group',
@@ -180,12 +180,29 @@ function screen.setup()
           {
             type = 'group',
             val = function()
-              return { get_folders(folder[2]) }
+              return { get_folders('', folder[2]) }
             end,
           },
         },
       })
+      index = index + 1
+    end
 
+    if #folder == 3 then
+      table.insert(startify.config.layout, index, {
+        type = 'group',
+        val = {
+          { type = 'padding', val = 1 },
+          { type = 'text', val = folder[1], opts = { hl = 'SpecialComment' } },
+          { type = 'padding', val = 1 },
+          {
+            type = 'group',
+            val = function()
+              return { get_folders(folder[2], folder[3]) }
+            end,
+          },
+        },
+      })
       index = index + 1
     end
   end

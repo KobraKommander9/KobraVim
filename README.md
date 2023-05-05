@@ -3,6 +3,7 @@
 KobraVim is heavily inspired by [LazyVim](https://github.com/LazyVim/LazyVim) and powered by 💤[lazy.nvim](https://github.com/folke/lazy.nvim). You can get started with the [starter](https://github.com/KobraKommander9/KobraVim-starter).
 
 This is configured the same way as LazyVim, except there are a few different values or options, as this comes with sensible defaults for [colemak](https://colemak.com/) users. The defaults:
+
 ```lua
 local defaults = {
   colorscheme = 'carbonfox',
@@ -26,6 +27,7 @@ local defaults = {
     dot_files = '~/dot-files', -- the location of your dot files
     folders = { -- folders you want to have show up on the start screen
       { 'Projects', '~/Projects' }, -- each value should be of the format: { title, path }
+      { 'Matrix', 'm', '~/Matrix' }, -- or of the format: { title, prefix, path }
     },
     workspaces = { -- workspaces for start screen session display
       { -- each should be of the format: { title, key, path }
@@ -94,4 +96,5 @@ local defaults = {
 ```
 
 ## Troubleshooting
+
 If something isn't working correctly, first try running `:checkhealth kobra`. If the issue persists, open a ticket.
