@@ -16,9 +16,11 @@ M[#M + 1] = {
 			list = {
 				n = require("glance").actions.next,
 				e = require("glance").actions.previous,
+				["<leader>l"] = false,
 				["<c-l>"] = require("glance").actions.enter_win("preview"),
 			},
 			preview = {
+				["<leader>l"] = false,
 				["<c-l>"] = require("glance").actions.enter_win("list"),
 			},
 		}
