@@ -50,9 +50,7 @@ M[#M + 1] = {
 					group = vim.api.nvim_create_augroup("LspFormat." .. buffer, { clear = true }),
 					buffer = buffer,
 					callback = function()
-						if require("kobra.plugins.lsp.format").autoformat then
-							require("go.format").goimport()
-						end
+						require("go.format").goimport()
 					end,
 				})
 			end
