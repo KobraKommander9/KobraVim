@@ -114,9 +114,8 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
-		local layouts = require("kobra.core").layouts
 		local n, p, j, k
-		if layouts.colemak then
+		if require("kobra.core").layouts.colemak then
 			n, p, j, k = "j", "k", "n", "e"
 		else
 			n, p, j, k = "n", "p", "j", "k"
