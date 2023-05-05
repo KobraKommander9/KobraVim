@@ -92,3 +92,6 @@ local defaults = {
   },
 }
 ```
+
+## Troubleshooting
+If something isn't working correctly, first try running `:checkhealth KobraVim`. If the issue persists, open a ticket.
