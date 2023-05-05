@@ -98,7 +98,11 @@ local options
 
 function M.setup(opts)
 	if opts.start_screen and opts.start_screen.folders then
-		options.start_screen.folders = opts.start_screen.folders
+		options = {
+			start_screen = {
+				folders = {},
+			},
+		}
 	end
 
 	options = vim.tbl_deep_extend("force", defaults, opts or {})
