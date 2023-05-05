@@ -3,10 +3,10 @@ local M = {}
 M[#M + 1] = {
 	"dnlhc/glance.nvim",
 	keys = {
-		{ "<leader>ld", "<cmd>Glance definitions<cr>", desc = "Goto Definition" },
-		{ "<leader>lI", "<cmd>Glance implementations<cr>", desc = "Goto Implementations" },
-		{ "<leader>lr", "<cmd>Glance references<cr>", desc = "Goto References" },
-		{ "<leader>lt", "<cmd>Glance type_definitions<cr>", desc = "Goto Type Definitions" },
+		{ "<leader>lgd", "<cmd>Glance definitions<cr>", desc = "Goto Definition" },
+		{ "<leader>lgi", "<cmd>Glance implementations<cr>", desc = "Goto Implementations" },
+		{ "<leader>lgr", "<cmd>Glance references<cr>", desc = "Goto References" },
+		{ "<leader>lgt", "<cmd>Glance type_definitions<cr>", desc = "Goto Type Definitions" },
 	},
 	cmd = { "Glance" },
 	opts = function(_, opts)
@@ -47,6 +47,9 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"SmiteshP/nvim-navbuddy",
+			keys = {
+				{ "<leader>bn", "<cmd>Navbuddy<cr>", desc = "Navbuddy" },
+			},
 			config = function(_, opts)
 				local actions = require("nvim-navbuddy.actions")
 				local config = {
