@@ -14,21 +14,14 @@ M[#M + 1] = {
 
 		options.mappings = {
 			list = {
-				["<leader>l"] = false,
+				n = require("glance").actions.next,
+				e = require("glance").actions.previous,
 				["<c-l>"] = require("glance").actions.enter_win("preview"),
 			},
 			preview = {
-				["<leader>l"] = false,
 				["<c-l>"] = require("glance").actions.enter_win("list"),
 			},
 		}
-
-		if require("kobra.core").layouts.colemak then
-			options.mappings.list.j = false
-			options.mappings.list.k = false
-			options.mappings.list.n = require("glance").actions.next
-			options.mappings.list.e = require("glance").actions.previous()
-		end
 
 		return vim.tbl_deep_extend("force", options, opts)
 	end,
