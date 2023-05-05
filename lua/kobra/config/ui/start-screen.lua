@@ -185,6 +185,7 @@ function screen.setup()
           },
         },
       })
+      index = index + 1
     end
 
     if #folder == 3 then
@@ -202,7 +203,6 @@ function screen.setup()
           },
         },
       })
-
       index = index + 1
     end
   end
