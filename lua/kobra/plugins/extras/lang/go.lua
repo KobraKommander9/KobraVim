@@ -47,7 +47,7 @@ M[#M + 1] = {
 		require("kobra.util").on_attach(function(client, buffer)
 			if client.name == "gopls" then
 				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = vim.api.nvim_create_augroup("LspFormat." .. buffer, { clear = true }),
+					group = vim.api.nvim_create_augroup("GoImport." .. buffer, { clear = true }),
 					buffer = buffer,
 					callback = function()
 						require("go.format").goimport()
