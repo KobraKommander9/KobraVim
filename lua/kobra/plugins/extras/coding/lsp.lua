@@ -2,34 +2,40 @@ local M = {}
 
 M[#M + 1] = {
 	"dnlhc/glance.nvim",
-	keys = { "<leader>l" },
+	keys = {
+		{ "<leader>ld", "<cmd>Glance definitions<cr>", desc = "Goto Definition" },
+		{ "<leader>lI", "<cmd>Glance implementations<cr>", desc = "Goto Implementations" },
+		{ "<leader>lr", "<cmd>Glance references<cr>", desc = "Goto References" },
+		{ "<leader>lt", "<cmd>Glance type_definitions<cr>", desc = "Goto Type Definitions" },
+	},
 	cmd = { "Glance" },
 	opts = function(_, opts)
 		local options = {}
 
+		options.mappings = {
+			list = {
+				["<leader>l"] = false,
+				["<c-l>"] = function()
+					require("glance").actions.enter_win("preview")
+				end,
+			},
+			preview = {
+				["<leader>l"] = false,
+				["<c-l>"] = function()
+					require("glance").actions.enter_win("list")
+				end,
+			},
+		}
+
 		if require("kobra.core").layouts.colemak then
-			options.mappings = {
-				list = {
-					j = false,
-					k = false,
-					n = function()
-						require("glance").actions.next()
-					end,
-					e = function()
-						require("glance").actions.previous()
-					end,
-					["<leader>l"] = false,
-					["<c-l>"] = function()
-						require("glance").actions.enter_win("preview")
-					end,
-				},
-				preview = {
-					["<leader>l"] = false,
-					["<c-l>"] = function()
-						require("glance").actions.enter_win("list")
-					end,
-				},
-			}
+			options.mappings.list.j = false
+			options.mappings.list.k = false
+			options.mappings.list.n = function()
+				require("glance").actions.next()
+			end
+			options.mappings.list.e = function()
+				require("glance").actions.previous()
+			end
 		end
 
 		return vim.tbl_deep_extend("force", options, opts)
