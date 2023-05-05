@@ -56,20 +56,3 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	group = augroup("auto_change_dir"),
 	command = [[ silent! lcd %:p:h ]],
 })
-
-if vim.fn.executable("wollemi") == 1 then
-	print("wollemi found, setting up autocmds")
-	-- run wollemi when saving a go file
-	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-		group = augroup("wollemi_go"),
-		pattern = { "*.go" },
-		command = [[ silent exec '!wollemi --log fatal gofmt' shellescape(expand('%:h'), 1) ]],
-	})
-
-	-- run wollemi when saving a plz file
-	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-		group = augroup("wollemi_plz"),
-		pattern = { "*.plz" },
-		command = [[ silent exec '!wollemi --log fatal fmt' shellescape(expand('%:h'), 1) ]],
-	})
-end
