@@ -1,3 +1,5 @@
+<img width="1792" alt="image" src="https://user-images.githubusercontent.com/118004611/236312846-acfe9254-d6ac-497b-bba3-f01d3bf153b9.png">
+
 KobraVim is heavily inspired by [LazyVim](https://github.com/LazyVim/LazyVim) and powered by 💤[lazy.nvim](https://github.com/folke/lazy.nvim). You can get started with the [starter](https://github.com/KobraKommander9/KobraVim-starter).
 
 This is configured the same way as LazyVim, except there are a few different values or options, as this comes with sensible defaults for [colemak](https://colemak.com/) users. The defaults:

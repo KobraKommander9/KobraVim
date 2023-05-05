@@ -32,7 +32,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
-	event = "VeryLazy",
+	event = "BufEnter",
 	version = false,
 	dependencies = {
 		{ "nvim-telescope/telescope-file-browser.nvim" },
@@ -129,9 +129,6 @@ M[#M + 1] = {
 				["<c-" .. k .. ">"] = "move_selection_previous",
 				["<c-b>"] = "file_split",
 				["<c-x>"] = "delete_buffer",
-				["<c-i>"] = function()
-					return require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " })
-				end,
 			},
 			n = {
 				q = "close",
@@ -155,6 +152,20 @@ M[#M + 1] = {
 					grouped = true,
 					display_stat = false,
 					hidden = true,
+				},
+				live_grep_args = {
+					mappings = {
+						i = {
+							["<c-'"] = function()
+								return require("telescope-live-grep-args.actions").quote_promt()
+							end,
+							["<c-i>"] = function()
+								return require("telescope-live-grep-args.actions").quote_prompt({
+									postfix = " --iglob ",
+								})
+							end,
+						},
+					},
 				},
 			},
 		}

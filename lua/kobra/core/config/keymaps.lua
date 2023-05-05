@@ -38,6 +38,9 @@ if layouts.colemak then
 	map("", "<C-l>", "<C-i>", opts)
 end
 
+-- better paste
+map("v", "p", '"_dP', { silent = true })
+
 -- better up/down
 map("n", keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
 map("n", keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
