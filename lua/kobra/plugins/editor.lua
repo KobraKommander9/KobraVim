@@ -43,6 +43,8 @@ M[#M + 1] = {
 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
 		-- buffers
 		{ "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
+		-- diagnostics
+		{ "<leader>dg", "<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics" },
 		-- find
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 		{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
@@ -253,6 +255,7 @@ M[#M + 1] = {
 			["<leader>a"] = { name = "+tabs" },
 			["<leader>b"] = { name = "+buffer" },
 			["<leader>c"] = { name = "+code" },
+			["<leader>d"] = { name = "+diagnostics" },
 			["<leader>f"] = { name = "+file/find" },
 			["<leader>g"] = { name = "+git" },
 			["<leader>gh"] = { name = "+hunks" },
@@ -261,7 +264,7 @@ M[#M + 1] = {
 			["<leader>s"] = { name = "+search" },
 			["<leader>u"] = { name = "+ui" },
 			["<leader>w"] = { name = "+windows" },
-			["<leader>x"] = { name = "+diagnostics/quickfix" },
+			["<leader>x"] = { name = "+quickfix" },
 		},
 	},
 	config = function(_, opts)
