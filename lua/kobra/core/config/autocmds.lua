@@ -50,9 +50,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })
-
--- auto change window directory when navigating buffers
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	group = augroup("auto_change_dir"),
-	command = [[ silent! lcd %:p:h ]],
-})
