@@ -183,25 +183,25 @@ M[#M + 1] = {
 			options.extensions.file_browser.mappings = {
 				i = {
 					["<c-" .. n .. ">"] = function(...)
-						require("telescope").actions.cycle_history_next(...)
+						require("telescope.actions").cycle_history_next(...)
 					end,
 					["<c-" .. p .. ">"] = function(...)
-						require("telescope").actions.cycle_history_prev(...)
+						require("telescope.actions").cycle_history_prev(...)
 					end,
 					["<c-" .. j .. ">"] = function(...)
-						require("telescope").actions.move_selection_next(...)
+						require("telescope.actions").move_selection_next(...)
 					end,
 					["<c-" .. k .. ">"] = function(...)
-						require("telescope").actions.move_selection_previous(...)
+						require("telescope.actions").move_selection_previous(...)
 					end,
 					["<c-t>"] = function(...)
-						require("telescope").actions.select_tab(...)
+						require("telescope.actions").select_tab(...)
 					end,
 					["<c-v>"] = function(...)
-						require("telescope").actions.select_vertical(...)
+						require("telescope.actions").select_vertical(...)
 					end,
 					["<c-b>"] = function(...)
-						require("telescope").actions.select_horizontal(...)
+						require("telescope.actions").select_horizontal(...)
 					end,
 					["<c-a>"] = function(...)
 						require("telescope").extensions.file_browser.actions.create(...)
