@@ -138,13 +138,29 @@ M[#M + 1] = {
 				["<c-" .. p .. ">"] = "cycle_history_prev",
 				["<c-" .. j .. ">"] = "move_selection_next",
 				["<c-" .. k .. ">"] = "move_selection_previous",
-				["<c-b>"] = "file_split",
+				["<c-t>"] = "select_tab",
+				["<c-v>"] = "select_vertical",
+				["<c-b>"] = "select_horizontal",
 				["<c-x>"] = "delete_buffer",
 			},
 			n = {
 				q = "close",
 			},
 		}
+
+		local fbactions = require("telescope").extensions.file_browser.actions
+		local fbmappings = {}
+		if require("kobra.core").layouts.colemak then
+			fbmappings = {
+				i = {
+					["<c-a>"] = fbactions.create,
+					["<c-r>"] = fbactions.rename,
+					["<c-y>"] = fbactions.copy,
+					["<c-x>"] = fbactions.remove,
+					["<c-h>"] = fbactions.toggle_hidden,
+				},
+			}
+		end
 
 		local options = {
 			defaults = {
@@ -163,6 +179,7 @@ M[#M + 1] = {
 					grouped = true,
 					display_stat = false,
 					hidden = true,
+					mappings = fbmappings,
 				},
 				live_grep_args = {
 					mappings = {
@@ -176,28 +193,6 @@ M[#M + 1] = {
 				},
 			},
 		}
-
-		if require("kobra.core").layouts.colemak then
-			options.extensions.file_browser.mappings = {
-				i = {
-					["<c-a>"] = function(...)
-						require("telescope").extensions.file_browser.actions.create(...)
-					end,
-					["<c-r>"] = function(...)
-						require("telescope").extensions.file_browser.actions.rename(...)
-					end,
-					["<c-y>"] = function(...)
-						require("telescope").extensions.file_browser.actions.copy(...)
-					end,
-					["<c-x>"] = function(...)
-						require("telescope").extensions.file_browser.actions.remove(...)
-					end,
-					["<c-h>"] = function(...)
-						require("telescope").extensions.file_browser.actions.toggle_hidden(...)
-					end,
-				},
-			}
-		end
 
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("telescope").setup(options)
