@@ -138,7 +138,9 @@ M[#M + 1] = {
 				["<c-" .. p .. ">"] = "cycle_history_prev",
 				["<c-" .. j .. ">"] = "move_selection_next",
 				["<c-" .. k .. ">"] = "move_selection_previous",
-				["<c-b>"] = "file_split",
+				["<c-t>"] = "select_tab",
+				["<c-v>"] = "select_vertical",
+				["<c-b>"] = "select_horizontal",
 				["<c-x>"] = "delete_buffer",
 			},
 			n = {
@@ -180,6 +182,27 @@ M[#M + 1] = {
 		if require("kobra.core").layouts.colemak then
 			options.extensions.file_browser.mappings = {
 				i = {
+					["<c-" .. n .. ">"] = function(...)
+						require("telescope").actions.cycle_history_next(...)
+					end,
+					["<c-" .. p .. ">"] = function(...)
+						require("telescope").actions.cycle_history_prev(...)
+					end,
+					["<c-" .. j .. ">"] = function(...)
+						require("telescope").actions.move_selection_next(...)
+					end,
+					["<c-" .. k .. ">"] = function(...)
+						require("telescope").actions.move_selection_previous(...)
+					end,
+					["<c-t>"] = function(...)
+						require("telescope").actions.select_tab(...)
+					end,
+					["<c-v>"] = function(...)
+						require("telescope").actions.select_vertical(...)
+					end,
+					["<c-b>"] = function(...)
+						require("telescope").actions.select_horizontal(...)
+					end,
 					["<c-a>"] = function(...)
 						require("telescope").extensions.file_browser.actions.create(...)
 					end,
