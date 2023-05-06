@@ -167,7 +167,7 @@ M[#M + 1] = {
 				live_grep_args = {
 					mappings = {
 						i = {
-							["<c-p"] = require("telescope-live-grep-args.actions").quote_promt(),
+							["<c-p"] = require("telescope-live-grep-args.actions").quote_prompt(),
 							["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt({
 								postfix = " --iglob ",
 							}),
