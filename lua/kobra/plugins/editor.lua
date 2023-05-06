@@ -148,6 +148,20 @@ M[#M + 1] = {
 			},
 		}
 
+		local fbactions = require("telescope").extensions.file_browser.actions
+		local fbmappings = {}
+		if require("kobra.core").layouts.colemak then
+			fbmappings = {
+				i = {
+					["<c-a>"] = fbactions.create,
+					["<c-r>"] = fbactions.rename,
+					["<c-y>"] = fbactions.copy,
+					["<c-x>"] = fbactions.remove,
+					["<c-h>"] = fbactions.toggle_hidden,
+				},
+			}
+		end
+
 		local options = {
 			defaults = {
 				prompt_prefix = " ",
@@ -165,6 +179,7 @@ M[#M + 1] = {
 					grouped = true,
 					display_stat = false,
 					hidden = true,
+					mappings = fbmappings,
 				},
 				live_grep_args = {
 					mappings = {
@@ -178,49 +193,6 @@ M[#M + 1] = {
 				},
 			},
 		}
-
-		if require("kobra.core").layouts.colemak then
-			options.extensions.file_browser.mappings = {
-				i = {
-					["<c-" .. n .. ">"] = function(...)
-						require("telescope.actions").cycle_history_next(...)
-					end,
-					["<c-" .. p .. ">"] = function(...)
-						require("telescope.actions").cycle_history_prev(...)
-					end,
-					["<c-" .. j .. ">"] = function(...)
-						require("telescope.actions").move_selection_next(...)
-					end,
-					["<c-" .. k .. ">"] = function(...)
-						require("telescope.actions").move_selection_previous(...)
-					end,
-					["<c-t>"] = function(...)
-						require("telescope.actions").select_tab(...)
-					end,
-					["<c-v>"] = function(...)
-						require("telescope.actions").select_vertical(...)
-					end,
-					["<c-b>"] = function(...)
-						require("telescope.actions").select_horizontal(...)
-					end,
-					["<c-a>"] = function(...)
-						require("telescope").extensions.file_browser.actions.create(...)
-					end,
-					["<c-r>"] = function(...)
-						require("telescope").extensions.file_browser.actions.rename(...)
-					end,
-					["<c-y>"] = function(...)
-						require("telescope").extensions.file_browser.actions.copy(...)
-					end,
-					["<c-x>"] = function(...)
-						require("telescope").extensions.file_browser.actions.remove(...)
-					end,
-					["<c-h>"] = function(...)
-						require("telescope").extensions.file_browser.actions.toggle_hidden(...)
-					end,
-				},
-			}
-		end
 
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("telescope").setup(options)
