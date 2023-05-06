@@ -119,6 +119,8 @@ map("n", "<leader>uc", function()
 	util.toggle("conceallevel", false, { 0, conceallevel })
 end, { desc = "Toggle Conceal" })
 
+map("n", "<leader>ua", util.toggle("autochdir"), { desc = "Toggle Autochdir" })
+
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
 	map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
