@@ -34,7 +34,7 @@ M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
 	event = "BufEnter",
-	version = "0.1.1",
+	version = false,
 	dependencies = {
 		{ "nvim-telescope/telescope-file-browser.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" },
