@@ -26,6 +26,7 @@ M[#M + 1] = {
 			desc = "Replace in files (Spectre)",
 		},
 	},
+	config = true,
 }
 
 -- fuzzy finder and file browser
