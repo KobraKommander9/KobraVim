@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- auto change window directory when navigating buffers
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	group = augroup("auto_change_dir"),
-	command = [[ silent! lcd %:p:h ]],
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+-- 	group = augroup("auto_change_dir"),
+-- 	command = [[ silent! lcd %:p:h ]],
+-- })
