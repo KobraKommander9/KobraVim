@@ -12,6 +12,11 @@ M[#M + 1] = {
 		},
 	},
 	opts = {
+		default_file_explorer = false,
+		keymaps = {
+			["<C-s>"] = false,
+			["<C-v>"] = "actions.select_vsplit",
+		},
 		view_options = {
 			show_hidden = true,
 		},
