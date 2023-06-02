@@ -106,23 +106,19 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
-		-- local n, p, j, k
-		-- if require("kobra.core").layouts.colemak then
-		-- 	n, p, j, k = "j", "k", "n", "e"
-		-- else
-		-- 	n, p, j, k = "n", "p", "j", "k"
-		-- end
+		local n, p, j, k
+		if require("kobra.core").layouts.colemak then
+			n, p, j, k = "j", "k", "n", "e"
+		else
+			n, p, j, k = "n", "p", "j", "k"
+		end
 
 		local mappings = {
 			i = {
-				-- ["<c-" .. n .. ">"] = "cycle_history_next",
-				-- ["<c-" .. p .. ">"] = "cycle_history_prev",
-				-- ["<c-" .. j .. ">"] = "move_selection_next",
-				-- ["<c-" .. k .. ">"] = "move_selection_previous",
-				["<c-j>"] = "cycle_history_next",
-				["<c-k>"] = "cycle_history_prev",
-				["<c-n>"] = "move_selection_next",
-				["<c-e>"] = "move_selection_previous",
+				["<c-" .. n .. ">"] = "cycle_history_next",
+				["<c-" .. p .. ">"] = "cycle_history_prev",
+				["<c-" .. j .. ">"] = "move_selection_next",
+				["<c-" .. k .. ">"] = "move_selection_previous",
 				["<c-t>"] = "select_tab",
 				["<c-v>"] = "select_vertical",
 				["<c-b>"] = "select_horizontal",
