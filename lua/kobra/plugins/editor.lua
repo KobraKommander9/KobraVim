@@ -170,6 +170,7 @@ M[#M + 1] = {
 				i = {
 					["<c-a>"] = actions.create,
 					["<c-l>"] = actions.goto_home_dir,
+					["<c-e>"] = false,
 					["<c-r>"] = actions.rename,
 					["<c-y>"] = actions.copy,
 					["<c-x>"] = actions.remove,
