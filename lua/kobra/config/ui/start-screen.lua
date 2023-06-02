@@ -151,7 +151,6 @@ local bottom_buttons = function()
 end
 
 local function folder_groups()
-  local startify = require('alpha.themes.startify')
   local groups = {}
 
   for _, folder in ipairs(require('kobra.core').start_screen.folders) do
@@ -263,6 +262,7 @@ screen.fun = {
   get_sessions = get_sessions,
 }
 
+screen.section = section
 screen.config = config
 
 return screen
