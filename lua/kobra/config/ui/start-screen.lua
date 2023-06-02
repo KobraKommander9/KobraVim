@@ -107,71 +107,56 @@ local get_mru = function()
   }
 end
 
-function screen.setup()
-  local kobra = {
-    [[                                                                             ]],
-	  [[ █████  ████     ████             █████                             ]],
-	  [[ █████ ████      █████              █████      ██                     ]],
-	  [[  ████████       █████               █████                             ]],
-	  [[  ███████  ███ █████   ██ █ ██ ███████ ███   ███████████   ]],
-	  [[  █████████ ███████████ █████████████████ █████ ██████████████   ]],
-	  [[ █████████ ████ ██ ██████  ███ ███████ █████ █████ ████ █████   ]],
-	  [[ ████ ████ ████ ██ ████ ██  █████████ █████ █████ ████ █████  ]],
-	  [[ ██████  ██████████████████ ██████████████ █████ █████ ████ ██████ ]],
-    [[                                                                             ]],
-  }
+local kobra = {
+  [[                                                                             ]],
+  [[ █████  ████     ████             █████                              ]],
+  [[ █████ ████      █████              █████      ██                     ]],
+  [[  ████████       █████               █████                             ]],
+  [[  ███████  ███ █████   ██ █ ██ ███████ ███   ███████████   ]],
+  [[  █████████ ███████████ █████████████████ █████ ██████████████   ]],
+  [[ █████████ ████ ██ ██████  ███ ███████ █████ █████ ████ █████   ]],
+  [[ ████ ████ ████ ██ ████ ██  █████████ █████ █████ ████ █████  ]],
+  [[ ██████  ██████████████████ ██████████████ █████ █████ ████ ██████ ]],
+  [[                                                                             ]],
+}
 
+local header = {
+  type = 'text',
+  val = kobra,
+  opts = {
+    hl = 'Type',
+    shrink_margin = false,
+  },
+}
+
+local top_buttons = function()
   local startify = require('alpha.themes.startify')
-  startify.section.header = {
-    type = 'text',
-    val = kobra,
-    opts = {
-      hl = 'Type',
-      shrink_margin = false,
-    }
-  }
-
-  startify.section.top_buttons.val = {
+  local buttons = {
     startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
   }
 
   if type(require('kobra.core').start_screen.dot_files) == 'string' then
     table.insert(
-      startify.section.top_buttons.val,
+      buttons,
       startify.button('df', 'Dot Files', '<cmd>e ' .. require('kobra.core').start_screen.dot_files .. ' | cd %:p:h<cr>')
     )
   end
 
-  startify.section.mru.val[2].val = 'Recent Files'
-  startify.section.mru.val[4].val = function()
-    return { get_mru() }
-  end
+  return buttons
+end
 
-  -- disable MRU cwd
-  startify.section.mru_cwd.val = {{ type = 'padding', val = 0 }}
+local bottom_buttons = function()
+  local startify = require('alpha.themes.startify')
+  return startify.button('q', 'Quit NVIM', ':qa<CR>')
+end
 
-  startify.section.bottom_buttons.val = {
-    startify.button('q', 'Quit NVIM', ':qa<CR>'),
-  }
+local function folder_groups()
+  local startify = require('alpha.themes.startify')
+  local groups = {}
 
-  startify.section.footer = {
-    type = 'text',
-    val = '',
-  }
-
-  startify.config.layout[2] = {
-    type = 'text',
-    val = kobra,
-    opts = {
-      hl = 'Type',
-      shrink_margin = false,
-    }
-  }
-
-  local index = 5
   for _, folder in ipairs(require('kobra.core').start_screen.folders) do
     if #folder == 2 then
-      table.insert(startify.config.layout, index, {
+      table.insert(groups, {
         type = 'group',
         val = {
           { type = 'padding', val = 1 },
@@ -185,11 +170,10 @@ function screen.setup()
           },
         },
       })
-      index = index + 1
     end
 
     if #folder == 3 then
-      table.insert(startify.config.layout, index, {
+      table.insert(groups, {
         type = 'group',
         val = {
           { type = 'padding', val = 1 },
@@ -203,22 +187,82 @@ function screen.setup()
           },
         },
       })
-      index = index + 1
     end
   end
 
-  table.insert(startify.config.layout, index, {
+  table.insert(groups, {
     type = 'group',
     val = require('possession.utils').throttle(get_sessions, 5000),
   })
 
-  return startify
+  return groups
 end
+
+local section = {
+  header = header,
+  top_buttons = {
+    type = 'group',
+    val = top_buttons,
+  },
+  folders = {
+    type = 'group',
+    val = folder_groups,
+  },
+  mru = {
+    type = 'group',
+    val = {
+      { type = 'padding', val = 1 },
+      { type = 'text', val = 'Recent Files', opts = { hl = 'SpecialComment' } },
+      { type = 'padding', val = 1 },
+      {
+        type = 'group',
+        val = function()
+          return { get_mru() }
+        end,
+      },
+    },
+  },
+  bottom_buttons = {
+    type = 'group',
+    val = bottom_buttons,
+  },
+  footer = {
+    type = 'text',
+    val = '',
+  },
+}
+
+local config = {
+  layout = {
+    { type = 'padding', val = 1 },
+    section.header,
+    { type = 'padding', val = 2 },
+    section.top_buttons,
+    section.folders,
+    section.mru,
+    { type = 'padding', val = 1 },
+    section.bottom_buttons,
+    section.footer,
+  },
+  opts = {
+    margin = 3,
+    redraw_on_size = false,
+    setup = function()
+      vim.api.nvim_create_autocmd('DirChanged', {
+        pattern = '*',
+        group = 'alpha_temp',
+        callback = function () require('alpha').redraw() end,
+      })
+    end,
+  },
+}
 
 screen.fun = {
   scandir = scandir,
   get_folders = get_folders,
   get_sessions = get_sessions,
 }
+
+screen.config = config
 
 return screen
