@@ -241,6 +241,7 @@ local config = {
     section.mru,
     { type = 'padding', val = 1 },
     section.bottom_buttons,
+    { type = 'padding', val = 1 },
     section.footer,
   },
   opts = {
