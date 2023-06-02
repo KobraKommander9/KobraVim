@@ -62,6 +62,9 @@ local search_count = {
 	end,
 	provider = function(self)
 		local search = self.search
+		if not search then
+			return ""
+		end
 		return string.format("[%d/%d]", search.current, math.min(search.total, search.maxcount))
 	end,
 }
