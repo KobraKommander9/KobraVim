@@ -185,8 +185,9 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
-	opts = require("kobra.config.ui.start-screen").config,
 	config = function(_, opts)
+		local options = vim.tbl_deep_extend("force", require("kobra.config.ui.start-screen").config, opts)
+
 		-- close Lazy and re-open when the dashboard is ready
 		if vim.o.filetype == "lazy" then
 			vim.cmd.close()
@@ -198,14 +199,14 @@ M[#M + 1] = {
 			})
 		end
 
-		require("alpha").setup(opts)
+		require("alpha").setup(options)
 
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "LazyVimStarted",
 			callback = function()
 				local stats = require("lazy").stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				require("kobra.config.ui.start-screen").config.layout[9].val = "⚡ Neovim loaded "
+				require("kobra.config.ui.start-screen").section.footer.val = "⚡ Neovim loaded "
 					.. stats.count
 					.. " plugins in "
 					.. ms
