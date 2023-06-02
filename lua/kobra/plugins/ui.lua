@@ -205,7 +205,7 @@ M[#M + 1] = {
 			callback = function()
 				local stats = require("lazy").stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				require("kobra.config.ui.start-screen").section.footer.val = "⚡ Neovim loaded "
+				require("kobra.config.ui.start-screen").config.layout[9].val = "⚡ Neovim loaded "
 					.. stats.count
 					.. " plugins in "
 					.. ms
