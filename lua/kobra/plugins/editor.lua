@@ -129,6 +129,7 @@ M[#M + 1] = {
 			},
 		}
 
+		local fbactions = require("telescope").extensions.file_browser.actions
 		local options = {
 			defaults = {
 				prompt_prefix = " ",
@@ -138,6 +139,25 @@ M[#M + 1] = {
 					".git/",
 					"node_modules",
 					"plz-out",
+				},
+			},
+			extensions = {
+				file_browser = {
+					hijack_netrw = true,
+					grouped = true,
+					display_stat = false,
+					hidden = true,
+					mappings = {
+						i = {
+							["<c-a>"] = fbactions.create,
+							["<c-l>"] = fbactions.goto_home_dir,
+							["<c-e>"] = require("telescope.actions").move_selection_previous,
+							["<c-r>"] = fbactions.rename,
+							["<c-y>"] = fbactions.copy,
+							["<c-x>"] = fbactions.remove,
+							["<c-h>"] = fbactions.toggle_hidden,
+						},
+					},
 				},
 			},
 		}
@@ -164,8 +184,12 @@ M[#M + 1] = {
 	},
 	config = function(_, opts)
 		local actions = require("telescope").extensions.file_browser.actions
-		local mappings = {}
-		if require("kobra.core").layouts.colemak then
+
+		local options = {
+			hijack_netrw = true,
+			grouped = true,
+			display_stat = false,
+			hidden = true,
 			mappings = {
 				i = {
 					["<c-a>"] = actions.create,
@@ -176,15 +200,7 @@ M[#M + 1] = {
 					["<c-x>"] = actions.remove,
 					["<c-h>"] = actions.toggle_hidden,
 				},
-			}
-		end
-
-		local options = {
-			hijack_netrw = true,
-			grouped = true,
-			display_stat = false,
-			hidden = true,
-			mappings = mappings,
+			},
 		}
 
 		options = vim.tbl_deep_extend("force", options, opts)
