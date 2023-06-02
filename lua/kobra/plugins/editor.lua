@@ -163,12 +163,20 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
+		local e
+		if require("kobra.core").layouts.colemak then
+			e = "E"
+		else
+			e = "e"
+		end
+
 		local actions = require("telescope").extensions.file_browser.actions
 		local mappings = {}
 		if require("kobra.core").layouts.colemak then
 			mappings = {
 				i = {
 					["<c-a>"] = actions.create,
+					["<c-" .. e .. ">"] = actions.goto_home_dir,
 					["<c-r>"] = actions.rename,
 					["<c-y>"] = actions.copy,
 					["<c-x>"] = actions.remove,
