@@ -113,7 +113,7 @@ M[#M + 1] = {
 			n, p, j, k = "n", "p", "j", "k"
 		end
 
-		vim.notify(n, p, j, k)
+		vim.notify(n .. " " .. p .. " " .. j .. " " .. k)
 		local mappings = {
 			i = {
 				["<c-" .. n .. ">"] = "cycle_history_next",
