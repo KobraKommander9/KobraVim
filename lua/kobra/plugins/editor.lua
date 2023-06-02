@@ -33,7 +33,11 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
+	event = "BufEnter",
 	version = false,
+	dependencies = {
+		"nvim-telescope/telescope-file-browser.nvim",
+	},
 	keys = {
 		{ "<leader>/", util.telescope("live_grep"), desc = "Grep (root dir)" },
 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
@@ -46,6 +50,15 @@ M[#M + 1] = {
 		{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
+		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
+		{
+			"<leader>fa",
+			function()
+				local root = require("kobra.util").get_root()
+				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
+			end,
+			desc = "File Browser (root)",
+		},
 		-- git
 		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
 		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
@@ -164,51 +177,6 @@ M[#M + 1] = {
 
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("telescope").setup(options)
-	end,
-}
-
-M[#M + 1] = {
-	"nvim-telescope/telescope-file-browser.nvim",
-	event = "BufEnter",
-	dependencies = { "nvim-telescope/telescope.nvim" },
-	keys = {
-		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
-		{
-			"<leader>fa",
-			function()
-				local root = require("kobra.util").get_root()
-				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
-			end,
-			desc = "File Browser (root)",
-		},
-	},
-	config = function(_, opts)
-		local actions = require("telescope").extensions.file_browser.actions
-
-		local options = {
-			hijack_netrw = true,
-			grouped = true,
-			display_stat = false,
-			hidden = true,
-			mappings = {
-				i = {
-					["<c-a>"] = actions.create,
-					["<c-l>"] = actions.goto_home_dir,
-					["<c-e>"] = require("telescope.actions").move_selection_previous,
-					["<c-r>"] = actions.rename,
-					["<c-y>"] = actions.copy,
-					["<c-x>"] = actions.remove,
-					["<c-h>"] = actions.toggle_hidden,
-				},
-			},
-		}
-
-		options = vim.tbl_deep_extend("force", options, opts)
-		require("telescope").setup({
-			extensions = {
-				file_browser = options,
-			},
-		})
 		require("telescope").load_extension("file_browser")
 	end,
 }
