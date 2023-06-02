@@ -239,8 +239,8 @@ local config = {
     section.top_buttons,
     section.folders,
     section.mru,
-    -- { type = 'padding', val = 1 },
-    -- section.bottom_buttons,
+    { type = 'padding', val = 1 },
+    section.bottom_buttons,
     -- section.footer,
   },
   opts = {
