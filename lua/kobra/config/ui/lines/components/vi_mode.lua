@@ -1,5 +1,3 @@
-local utils = require("heirline.utils")
-
 local mode_names = function()
 	return {
 		n = "N",
@@ -72,12 +70,7 @@ local macro_rec = {
 	condition = function()
 		return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
 	end,
-	provider = " ",
-	utils.surround({ "[", "]" }, nil, {
-		provider = function()
-			return vim.fn.reg_recording()
-		end,
-	}),
+	provider = " [" .. vim.fn.reg_recording() .. "]",
 	update = {
 		"RecordingEnter",
 		"RecordingLeave",
