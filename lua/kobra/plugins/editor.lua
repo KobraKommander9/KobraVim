@@ -149,6 +149,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"nvim-telescope/telescope-file-browser.nvim",
+	event = "BufEnter",
 	dependencies = { "nvim-telescope/telescope.nvim" },
 	keys = {
 		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
@@ -162,10 +163,32 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
-		local fbactions = require("telescope").extensions.file_browser.actions
-		local mappings = {}
+		local n, p, j, k
 		if require("kobra.core").layouts.colemak then
-			mappings = {
+			n, p, j, k = "j", "k", "n", "e"
+		else
+			n, p, j, k = "n", "p", "j", "k"
+		end
+
+		local mappings = {
+			i = {
+				["<c-" .. n .. ">"] = "cycle_history_next",
+				["<c-" .. p .. ">"] = "cycle_history_prev",
+				["<c-" .. j .. ">"] = "move_selection_next",
+				["<c-" .. k .. ">"] = "move_selection_previous",
+				["<c-t>"] = "select_tab",
+				["<c-v>"] = "select_vertical",
+				["<c-b>"] = "select_horizontal",
+				["<c-x>"] = "delete_buffer",
+			},
+			n = {
+				q = "close",
+			},
+		}
+
+		local fbactions = require("telescope").extensions.file_browser.actions
+		if require("kobra.core").layouts.colemak then
+			mappings = vim.tbl_deep_extend("force", mappings, {
 				i = {
 					["<c-a>"] = fbactions.create,
 					["<c-r>"] = fbactions.rename,
@@ -173,7 +196,7 @@ M[#M + 1] = {
 					["<c-x>"] = fbactions.remove,
 					["<c-h>"] = fbactions.toggle_hidden,
 				},
-			}
+			})
 		end
 
 		local options = {
