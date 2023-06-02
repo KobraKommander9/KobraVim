@@ -147,7 +147,7 @@ end
 
 local bottom_buttons = function()
   local startify = require('alpha.themes.startify')
-  return startify.button('q', 'Quit NVIM', ':qa<CR>')
+  return { startify.button('q', 'Quit NVIM', ':qa<CR>') }
 end
 
 local function folder_groups()
