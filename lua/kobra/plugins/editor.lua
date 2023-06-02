@@ -165,7 +165,7 @@ M[#M + 1] = {
 	config = function(_, opts)
 		local e
 		if require("kobra.core").layouts.colemak then
-			e = "E"
+			e = "l"
 		else
 			e = "e"
 		end
