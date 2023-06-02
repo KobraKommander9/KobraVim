@@ -113,6 +113,7 @@ M[#M + 1] = {
 			n, p, j, k = "n", "p", "j", "k"
 		end
 
+		vim.notify(n, p, j, k)
 		local mappings = {
 			i = {
 				["<c-" .. n .. ">"] = "cycle_history_next",
@@ -163,40 +164,18 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
-		local n, p, j, k
+		local actions = require("telescope").extensions.file_browser.actions
+		local mappings = {}
 		if require("kobra.core").layouts.colemak then
-			n, p, j, k = "j", "k", "n", "e"
-		else
-			n, p, j, k = "n", "p", "j", "k"
-		end
-
-		local mappings = {
-			i = {
-				["<c-" .. n .. ">"] = "cycle_history_next",
-				["<c-" .. p .. ">"] = "cycle_history_prev",
-				["<c-" .. j .. ">"] = "move_selection_next",
-				["<c-" .. k .. ">"] = "move_selection_previous",
-				["<c-t>"] = "select_tab",
-				["<c-v>"] = "select_vertical",
-				["<c-b>"] = "select_horizontal",
-				["<c-x>"] = "delete_buffer",
-			},
-			n = {
-				q = "close",
-			},
-		}
-
-		local fbactions = require("telescope").extensions.file_browser.actions
-		if require("kobra.core").layouts.colemak then
-			mappings = vim.tbl_deep_extend("force", mappings, {
+			mappings = {
 				i = {
-					["<c-a>"] = fbactions.create,
-					["<c-r>"] = fbactions.rename,
-					["<c-y>"] = fbactions.copy,
-					["<c-x>"] = fbactions.remove,
-					["<c-h>"] = fbactions.toggle_hidden,
+					["<c-a>"] = actions.create,
+					["<c-r>"] = actions.rename,
+					["<c-y>"] = actions.copy,
+					["<c-x>"] = actions.remove,
+					["<c-h>"] = actions.toggle_hidden,
 				},
-			})
+			}
 		end
 
 		local options = {
