@@ -33,12 +33,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
-	event = "BufEnter",
-	version = "0.1.1",
-	dependencies = {
-		{ "nvim-telescope/telescope-file-browser.nvim" },
-		{ "nvim-telescope/telescope-live-grep-args.nvim" },
-	},
+	version = false,
 	keys = {
 		{ "<leader>/", util.telescope("live_grep"), desc = "Grep (root dir)" },
 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
@@ -49,15 +44,6 @@ M[#M + 1] = {
 		-- find
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 		{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
-		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
-		{
-			"<leader>fa",
-			function()
-				local root = require("kobra.util").get_root()
-				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
-			end,
-			desc = "File Browser (root)",
-		},
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
 		-- git
@@ -79,11 +65,6 @@ M[#M + 1] = {
 		{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
 		{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
 		{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-		{
-			"<leader>st",
-			'<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>',
-			desc = "Text (args)",
-		},
 		{ "<leader>sw", util.telescope("grep_string"), desc = "Word (root dir)" },
 		{ "<leader>sW", util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
 		{ "<leader>uC", util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
@@ -148,20 +129,6 @@ M[#M + 1] = {
 			},
 		}
 
-		local fbactions = require("telescope").extensions.file_browser.actions
-		local fbmappings = {}
-		if require("kobra.core").layouts.colemak then
-			fbmappings = {
-				i = {
-					["<c-a>"] = fbactions.create,
-					["<c-r>"] = fbactions.rename,
-					["<c-y>"] = fbactions.copy,
-					["<c-x>"] = fbactions.remove,
-					["<c-h>"] = fbactions.toggle_hidden,
-				},
-			}
-		end
-
 		local options = {
 			defaults = {
 				prompt_prefix = " ",
@@ -173,30 +140,87 @@ M[#M + 1] = {
 					"plz-out",
 				},
 			},
-			extensions = {
-				file_browser = {
-					hijack_netrw = true,
-					grouped = true,
-					display_stat = false,
-					hidden = true,
-					mappings = fbmappings,
+		}
+
+		options = vim.tbl_deep_extend("force", options, opts)
+		require("telescope").setup(options)
+	end,
+}
+
+M[#M + 1] = {
+	"nvim-telescope/telescope-file-browser.nvim",
+	dependencies = { "nvim-telescope/telescope.nvim" },
+	keys = {
+		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
+		{
+			"<leader>fa",
+			function()
+				local root = require("kobra.util").get_root()
+				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
+			end,
+			desc = "File Browser (root)",
+		},
+	},
+	config = function(_, opts)
+		local fbactions = require("telescope").extensions.file_browser.actions
+		local mappings = {}
+		if require("kobra.core").layouts.colemak then
+			mappings = {
+				i = {
+					["<c-a>"] = fbactions.create,
+					["<c-r>"] = fbactions.rename,
+					["<c-y>"] = fbactions.copy,
+					["<c-x>"] = fbactions.remove,
+					["<c-h>"] = fbactions.toggle_hidden,
 				},
-				live_grep_args = {
-					mappings = {
-						i = {
-							["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-							["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({
-								postfix = " --iglob ",
-							}),
-						},
-					},
+			}
+		end
+
+		local options = {
+			hijack_netrw = true,
+			grouped = true,
+			display_stat = false,
+			hidden = true,
+			mappings = mappings,
+		}
+
+		options = vim.tbl_deep_extend("force", options, opts)
+		require("telescope").setup({
+			extensions = {
+				file_browser = options,
+			},
+		})
+		require("telescope").load_extension("file_browser")
+	end,
+}
+
+M[#M + 1] = {
+	"nvim-telescope/telescope-live-grep-args.nvim",
+	keys = {
+		{
+			"<leader>st",
+			'<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>',
+			desc = "Text (args)",
+		},
+	},
+	config = function(_, opts)
+		local options = {
+			mappings = {
+				i = {
+					["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+					["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({
+						postfix = " --iglob ",
+					}),
 				},
 			},
 		}
 
 		options = vim.tbl_deep_extend("force", options, opts)
-		require("telescope").setup(options)
-		require("telescope").load_extension("file_browser")
+		require("telescope").setup({
+			extensions = {
+				live_grep_args = options,
+			},
+		})
 	end,
 }
 
