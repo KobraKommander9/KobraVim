@@ -2,6 +2,7 @@ local M = {}
 
 M[#M + 1] = {
 	"stevearc/oil.nvim",
+	cmd = "Oil",
 	keys = {
 		{
 			"<leader>bo",
