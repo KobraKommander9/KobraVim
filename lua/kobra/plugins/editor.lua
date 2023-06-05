@@ -152,6 +152,7 @@ M[#M + 1] = {
 	dependencies = {
 		"nvim-telescope/telescope.nvim",
 	},
+	cmd = "Telescope",
 	keys = {
 		{ "<leader>ff", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
 		{
@@ -166,10 +167,13 @@ M[#M + 1] = {
 	config = function(_, opts)
 		local fbactions = require("telescope").extensions.file_browser.actions
 		local options = {
-			hijack_netrw = true,
 			grouped = true,
+			hidden = { file_browser = true, folder_browser = true },
+			respect_gitignore = false,
+			quiet = true,
 			display_stat = false,
-			hidden = true,
+			hijack_netrw = true,
+			prompt_path = true,
 			mappings = {
 				i = {
 					["<c-a>"] = fbactions.create,
@@ -184,6 +188,7 @@ M[#M + 1] = {
 		}
 
 		options = vim.tbl_deep_extend("force", options, opts)
+		require("telescope").setup(options)
 		require("telescope").load_extension("file_browser")
 	end,
 }
