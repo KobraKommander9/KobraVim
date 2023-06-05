@@ -53,14 +53,15 @@ local vi_mode = {
 }
 
 local search_count = {
-	condition = function()
-		return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
-	end,
 	init = function(self)
 		local ok, search = pcall(vim.fn.searchcount)
 		if ok and search.total then
 			self.search = search
 		end
+	end,
+	condition = function(self)
+		local search = self.search and (self.search.maxcount > 0 and true or false) or true
+		return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0 and search
 	end,
 	provider = function(self)
 		local search = self.search
