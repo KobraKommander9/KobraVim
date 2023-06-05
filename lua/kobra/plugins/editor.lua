@@ -33,11 +33,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
-	event = "BufEnter",
 	version = false,
-	dependencies = {
-		"nvim-telescope/telescope-file-browser.nvim",
-	},
 	keys = {
 		{ "<leader>/", util.telescope("live_grep"), desc = "Grep (root dir)" },
 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
@@ -50,15 +46,6 @@ M[#M + 1] = {
 		{ "<leader>fF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
-		{ "<leader>ff", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
-		{
-			"<leader>fa",
-			function()
-				local root = require("kobra.util").get_root()
-				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
-			end,
-			desc = "File Browser (root)",
-		},
 		-- git
 		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
 		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
@@ -142,7 +129,6 @@ M[#M + 1] = {
 			},
 		}
 
-		local fbactions = require("telescope").extensions.file_browser.actions
 		local options = {
 			defaults = {
 				prompt_prefix = " ",
@@ -154,35 +140,59 @@ M[#M + 1] = {
 					"plz-out",
 				},
 			},
-			extensions = {
-				file_browser = {
-					hijack_netrw = true,
-					grouped = true,
-					display_stat = false,
-					hidden = true,
-					mappings = {
-						i = {
-							["<c-a>"] = fbactions.create,
-							["<c-l>"] = fbactions.goto_home_dir,
-							["<c-e>"] = require("telescope.actions").move_selection_previous,
-							["<c-r>"] = fbactions.rename,
-							["<c-y>"] = fbactions.copy,
-							["<c-x>"] = fbactions.remove,
-							["<c-h>"] = fbactions.toggle_hidden,
-						},
-					},
+		}
+
+		options = vim.tbl_deep_extend("force", options, opts)
+		require("telescope").setup(options)
+	end,
+}
+
+M[#M + 1] = {
+	"nvim-telescope/telescope-file-browser.nvim",
+	dependencies = {
+		"nvim-telescope/telescope.nvim",
+	},
+	keys = {
+		{ "<leader>ff", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
+		{
+			"<leader>fa",
+			function()
+				local root = require("kobra.util").get_root()
+				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
+			end,
+			desc = "File Browser (root)",
+		},
+	},
+	config = function(_, opts)
+		local fbactions = require("telescope").extensions.file_browser.actions
+		local options = {
+			hijack_netrw = true,
+			grouped = true,
+			display_stat = false,
+			hidden = true,
+			mappings = {
+				i = {
+					["<c-a>"] = fbactions.create,
+					["<c-l>"] = fbactions.goto_home_dir,
+					["<c-e>"] = require("telescope.actions").move_selection_previous,
+					["<c-r>"] = fbactions.rename,
+					["<c-y>"] = fbactions.copy,
+					["<c-x>"] = fbactions.remove,
+					["<c-h>"] = fbactions.toggle_hidden,
 				},
 			},
 		}
 
 		options = vim.tbl_deep_extend("force", options, opts)
-		require("telescope").setup(options)
 		require("telescope").load_extension("file_browser")
 	end,
 }
 
 M[#M + 1] = {
 	"nvim-telescope/telescope-live-grep-args.nvim",
+	dependencies = {
+		"nvim-telescope/telescope.nvim",
+	},
 	keys = {
 		{
 			"<leader>st",
