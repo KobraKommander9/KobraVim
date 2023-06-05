@@ -126,7 +126,13 @@ local kobra = {
 
 local header = {
   type = 'text',
-  val = kobra,
+  val = function()
+    local h = require("kobra.core").start_screen.header
+    if h ~= false then
+      return h
+    end
+    return ""
+  end,
   opts = {
     hl = 'Type',
     shrink_margin = false,
@@ -270,7 +276,7 @@ screen.fun = {
   get_folders = get_folders,
   get_sessions = get_sessions,
 }
-
+screen.kobra = kobra
 screen.section = section
 screen.config = config
 

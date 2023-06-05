@@ -21,6 +21,7 @@ local defaults = {
 		colemak = false,
 	},
 	start_screen = {
+		header = require("kobra.config.ui.start-screen").kobra,
 		buttons = {
 			{ "df", "Dot Files", "~/dot-files" },
 			{ "fg", "Furious George", "~/fg" },
