@@ -47,10 +47,10 @@ M[#M + 1] = {
 		{ "<leader>dg", "<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics" },
 		-- find
 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-		{ "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
+		{ "<leader>fF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
 		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
-		{ "<leader>fF", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
+		{ "<leader>ff", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
 		{
 			"<leader>fa",
 			function()
