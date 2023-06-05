@@ -7,7 +7,7 @@ M[#M + 1] = {
 		{
 			"<leader>bo",
 			function()
-				vim.cmd("Oil " .. vim.fn.expand("%:p:h"))
+				vim.cmd("Oil --float " .. vim.fn.expand("%:p:h"))
 			end,
 			desc = "Open Current Directory",
 		},

@@ -42,8 +42,8 @@ local get_folders = function(prefix, dir)
     ico_txt = ico .. ' '
 
     local short_fn = vim.fn.fnamemodify(fn, ':~')
-    local cd_cmd = ' | cd %:p:h'
-    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, '<cmd>e ' .. fn .. cd_cmd .. '<cr>')
+    local cd_cmd = '<cmd>Telescope file_browser hidden=true path='
+    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, cd_cmd .. fn .. '<cr>')
     local fn_start = short_fn:match('.*[/\\]')
     if fn_start ~= nil then
       table.insert(fb_hl, { 'Comment', #ico_txt, #fn_start + #ico_txt })
