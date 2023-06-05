@@ -16,7 +16,7 @@ local function scandir(dir)
 end
 
 local telescope_cmd = function(path)
-  if vim.fn.isdirectory(path) then
+  if vim.fn.isdirectory(vim.fn.fnamemodify(path, ':p:h')) then
     return '<cmd>cd ' .. path .. ' | Telescope file_browser hidden=true path=%:p:h<cr>'
   end
   return '<cmd>e ' .. path
@@ -141,7 +141,7 @@ local top_buttons = function()
 
   if type(require("kobra.core").start_screen.buttons) == "table" then
     for _, button in ipairs(require("kobra.core").start_screen.buttons) do
-      if #button == 3 and (vim.fn.filereadable(button[3]) ~= 0 or vim.fn.isdirectory(button[3]) ~= 0) then
+      if #button == 3 and (vim.fn.filereadable(vim.fn.fnamemodify(button[3], ':p:h')) ~= 0 or vim.fn.isdirectory(vim.fnamemodify(button[3], ':p:h')) ~= 0) then
         table.insert(
           buttons,
           startify.button(button[1], button[2], telescope_cmd(button[3]))
@@ -162,7 +162,7 @@ local function folder_groups()
   local groups = {}
 
   for _, folder in ipairs(require('kobra.core').start_screen.folders) do
-    if #folder == 2 and vim.fn.isdirectory(folder[2]) ~= 0 then
+    if #folder == 2 and vim.fn.isdirectory(vim.fn.fnamemodify(folder[2], ':p:h')) ~= 0 then
       table.insert(groups, {
         type = 'group',
         val = {
@@ -179,7 +179,7 @@ local function folder_groups()
       })
     end
 
-    if #folder == 3 and vim.fn.isdirectory(folder[3]) ~= 0 then
+    if #folder == 3 and vim.fn.isdirectory(vim.fn.fnamemodify(folder[3], ':p:h')) ~= 0 then
       table.insert(groups, {
         type = 'group',
         val = {
