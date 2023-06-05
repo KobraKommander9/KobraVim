@@ -21,7 +21,10 @@ local defaults = {
 		colemak = false,
 	},
 	start_screen = {
-		dot_files = "~/dot-files",
+		buttons = {
+			{ "df", "Dot Files", "~/dot-files" },
+			{ "fg", "Furious George", "~/fg" },
+		},
 		folders = {
 			{ "Projects", "~/Projects" },
 		},

@@ -1,7 +1,5 @@
 local screen = {}
 
--- local options = 
-
 local function scandir(dir)
   local t = {}
   local i = 0
@@ -15,6 +13,13 @@ local function scandir(dir)
   end
 
   return t
+end
+
+local telescope_cmd = function(path)
+  if vim.fn.isdirectory(path) then
+    return '<cmd>cd ' .. path .. ' | Telescope file_browser hidden=true path=%:p:h<cr>'
+  end
+  return '<cmd>e ' .. path
 end
 
 local get_folders = function(prefix, dir)
@@ -42,8 +47,7 @@ local get_folders = function(prefix, dir)
     ico_txt = ico .. ' '
 
     local short_fn = vim.fn.fnamemodify(fn, ':~')
-    local tel_cmd = '| Telescope file_browser hidden=true path=%:p:h<cr>'
-    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, '<cmd>cd ' .. fn .. tel_cmd)
+    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, telescope_cmd(fn))
     local fn_start = short_fn:match('.*[/\\]')
     if fn_start ~= nil then
       table.insert(fb_hl, { 'Comment', #ico_txt, #fn_start + #ico_txt })
@@ -135,11 +139,15 @@ local top_buttons = function()
     startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
   }
 
-  if type(require('kobra.core').start_screen.dot_files) == 'string' then
-    table.insert(
-      buttons,
-      startify.button('df', 'Dot Files', '<cmd>e ' .. require('kobra.core').start_screen.dot_files .. ' | cd %:p:h<cr>')
-    )
+  if type(require("kobra.core").start_screen.buttons) == "table" then
+    for _, button in ipairs(require("kobra.core").start_screen.buttons) do
+      if #button == 3 and (vim.fn.filereadable(button[3]) ~= 0 or vim.fn.isdirectory(button[3]) ~= 0) then
+        table.insert(
+          buttons,
+          startify.button(button[1], button[2], telescope_cmd(button[3]))
+        )
+      end
+    end
   end
 
   return buttons
@@ -154,7 +162,7 @@ local function folder_groups()
   local groups = {}
 
   for _, folder in ipairs(require('kobra.core').start_screen.folders) do
-    if #folder == 2 then
+    if #folder == 2 and vim.fn.isdirectory(folder[2]) ~= 0 then
       table.insert(groups, {
         type = 'group',
         val = {
@@ -171,7 +179,7 @@ local function folder_groups()
       })
     end
 
-    if #folder == 3 then
+    if #folder == 3 and vim.fn.isdirectory(folder[3]) ~= 0 then
       table.insert(groups, {
         type = 'group',
         val = {
