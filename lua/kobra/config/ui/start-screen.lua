@@ -145,11 +145,12 @@ local top_buttons = function()
 
   if type(require("kobra.core").start_screen.buttons) == "table" then
     for button, data in pairs(require("kobra.core").start_screen.buttons) do
-      if type(data) == "table" and #data == 2 then
-        if (vim.fn.filereadable(vim.fn.fnamemodify(data[2], ':p:h')) ~= 0 or vim.fn.isdirectory(vim.fn.fnamemodify(data[2], ':p:h')) ~= 0) then
+      if type(button) == "number" and type(data) == "table" and #data == 3 then
+        if (vim.fn.filereadable(vim.fn.fnamemodify(data[3], ':p:h')) ~= 0 or vim.fn.isdirectory(vim.fn.fnamemodify(data[3], ':p:h')) ~= 0) then
           table.insert(
             buttons,
-            startify.button(button, data[1], telescope_cmd(data[2]))
+            button,
+            startify.button(data[1], data[2], telescope_cmd(data[3]))
           )
         end
       end
