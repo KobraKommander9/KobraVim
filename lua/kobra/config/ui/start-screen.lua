@@ -159,7 +159,7 @@ local top_buttons = function()
         if (vim.fn.filereadable(vim.fn.fnamemodify(data[2], ':p:h')) ~= 0 or vim.fn.isdirectory(vim.fn.fnamemodify(data[2], ':p:h')) ~= 0) then
           table.insert(
             buttons,
-            startify.button(key, data[2], telescope_cmd(data[2]))
+            startify.button(key, data[1], telescope_cmd(data[2]))
           )
         end
       end
