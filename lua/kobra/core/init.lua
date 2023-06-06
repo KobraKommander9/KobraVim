@@ -23,7 +23,7 @@ local defaults = {
 	start_screen = {
 		header = require("kobra.config.ui.start-screen").kobra,
 		buttons = {
-			[1] = { "df", "Dot Files", "~/dot-files" },
+			["df"] = { "Dot Files", "~/dot-files" },
 		},
 		folders = {
 			{ "Projects", "~/Projects" },
