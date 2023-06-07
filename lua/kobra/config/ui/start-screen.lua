@@ -16,6 +16,7 @@ local function scandir(dir)
 end
 
 local function exists(file)
+  file = vim.fn.expand(file)
   local ok, _, code = os.rename(file, file)
   if not ok then
     if code == 13 then
