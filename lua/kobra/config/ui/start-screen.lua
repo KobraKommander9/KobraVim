@@ -15,8 +15,23 @@ local function scandir(dir)
   return t
 end
 
+local function exists(file)
+  local ok, err, code = os.rename(file, file)
+  if not ok then
+    if code == 13 then
+      -- Permission denied, but it exists
+      return true
+    end
+  end
+  return ok, err
+end
+
+local function isdir(path)
+  return exists(path..'/')
+end
+
 local telescope_cmd = function(path)
-  if vim.fn.isdirectory(vim.fn.fnamemodify(path, ':p:h')) then
+  if isdir(path) then
     return '<cmd>cd ' .. path .. ' | Telescope file_browser hidden=true path=%:p:h<cr>'
   end
   return '<cmd>e ' .. path
@@ -155,13 +170,11 @@ local top_buttons = function()
 
     for _, key in ipairs(ordered) do
       local data = opts[key]
-      if type(data) == "table" and #data == 2 then
-        if (vim.fn.filereadable(vim.fn.fnamemodify(data[2], ':p:h')) ~= 0 or vim.fn.isdirectory(vim.fn.fnamemodify(data[2], ':p:h')) ~= 0) then
-          table.insert(
-            buttons,
-            startify.button(key, data[1], telescope_cmd(data[2]))
-          )
-        end
+      if type(data) == "table" and #data == 2 and (exists(data[2]) or isdir(data[2])) then
+        table.insert(
+          buttons,
+          startify.button(key, data[1], telescope_cmd(data[2]))
+        )
       end
     end
   end
@@ -178,7 +191,7 @@ local function folder_groups()
   local groups = {}
 
   for _, folder in ipairs(require('kobra.core').start_screen.folders) do
-    if #folder == 2 and vim.fn.isdirectory(vim.fn.fnamemodify(folder[2], ':p:h')) ~= 0 then
+    if #folder == 2 and isdir(folder[2]) then
       table.insert(groups, {
         type = 'group',
         val = {
@@ -195,7 +208,7 @@ local function folder_groups()
       })
     end
 
-    if #folder == 3 and vim.fn.isdirectory(vim.fn.fnamemodify(folder[3], ':p:h')) ~= 0 then
+    if #folder == 3 and isdir(folder[3]) then
       table.insert(groups, {
         type = 'group',
         val = {
