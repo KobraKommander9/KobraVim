@@ -16,14 +16,15 @@ local function scandir(dir)
 end
 
 local function exists(file)
-  local ok, err, code = os.rename(file, file)
+  local ok, _, code = os.rename(file, file)
   if not ok then
     if code == 13 then
       -- Permission denied, but it exists
       return true
     end
+    return false
   end
-  return ok, err
+  return true
 end
 
 local function isdir(path)
