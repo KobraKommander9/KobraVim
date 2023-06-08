@@ -10,10 +10,10 @@ M[#M + 1] = {
 	},
 	ft = { "css", "html", "javascript", "typescript", "lua", "vim" },
 	opts = {
-		"css",
+		css = { rgb_fn = true },
 		"html",
-		"javascript",
-		"typescript",
+		javascript = { rgb_fn = true },
+		typescript = { rgb_fn = true },
 		"lua",
 		"vim",
 	},
