@@ -2,14 +2,21 @@ local M = {}
 
 M[#M + 1] = {
 	"norcalli/nvim-colorizer.lua",
-	event = "BufEnter",
 	keys = {
 		{ "<leader>bca", "<cmd>ColorizerAttachToBuffer<cr>", desc = "Colorize current buffer" },
 		{ "<leader>bcd", "<cmd>ColorizerDetachFromBuffer<cr>", desc = "Stop colorizing current buffer" },
 		{ "<leader>bcr", "<cmd>ColorizerReloadAllBuffers<cr>", desc = "Reload colorizer on all buffers" },
 		{ "<leader>bct", "<cmd>ColorizerToggle<cr>", desc = "Toggle colorizer" },
 	},
-	config = true,
+	ft = { "css", "html", "javascript", "typescript", "lua", "vim" },
+	opts = {
+		"css",
+		"html",
+		"javascript",
+		"typescript",
+		"lua",
+		"vim",
+	},
 }
 
 M[#M + 1] = {
