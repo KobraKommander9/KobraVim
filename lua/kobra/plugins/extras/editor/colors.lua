@@ -10,13 +10,12 @@ M[#M + 1] = {
 	},
 	ft = { "css", "html", "javascript", "typescript", "lua", "vim" },
 	opts = {
-		css = { rgb_fn = true },
-		"html",
-		javascript = { rgb_fn = true },
-		typescript = { rgb_fn = true },
-		"lua",
-		"vim",
-		mode = "foreground",
+		css = { rgb_fn = true, mode = "foreground" },
+		html = { rgb_fn = true, mode = "foreground" },
+		javascript = { rgb_fn = true, mode = "foreground" },
+		typescript = { rgb_fn = true, mode = "foreground" },
+		lua = { rgb_fn = true, mode = "foreground" },
+		vim = { rgb_fn = true, mode = "foreground" },
 	},
 }
 
