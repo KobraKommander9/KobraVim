@@ -19,4 +19,13 @@ M[#M + 1] = {
 	},
 }
 
+M[#M + 1] = {
+	"folke/which-key.nvim",
+	opts = {
+		defaults = {
+			["<leader>bc"] = { name = "+colors" },
+		},
+	},
+}
+
 return M
