@@ -16,6 +16,7 @@ M[#M + 1] = {
 		typescript = { rgb_fn = true },
 		"lua",
 		"vim",
+		mode = "foreground",
 	},
 }
 
