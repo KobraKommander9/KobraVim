@@ -154,14 +154,12 @@ local header = {
   },
 }
 
-local top_buttons = function()
+local get_buttons = function(buttons)
   local startify = require('alpha.themes.startify')
-  local buttons = {
-    startify.button('f', 'New file', ':ene <BAR> startinsert <CR>'),
-  }
+  local tbl = {}
 
-  if type(require("kobra.core").start_screen.buttons) == "table" then
-    local opts = require("kobra.core").start_screen.buttons
+  if type(buttons) == "table" then
+    local opts = buttons
     local ordered = {}
     for button, _ in pairs(opts) do
       if type(button) == "string" then
@@ -172,21 +170,26 @@ local top_buttons = function()
 
     for _, key in ipairs(ordered) do
       local data = opts[key]
-      if type(data) == "table" and #data == 2 and (exists(data[2]) or isdir(data[2])) then
-        table.insert(
-          buttons,
-          startify.button(key, data[1], telescope_cmd(data[2]))
-        )
+
+      if type(data) == "string" and data == "new_file" then
+        table.insert(tbl, startify.button(key, 'New file', ':ene <BAR> startinsert <CR>'))
+      elseif type(data) == "string" and data == "quit" then
+        table.insert(tbl, startify.button(key, "Quit NVIM", ":qa<CR>"))
+      elseif type(data) == "table" and #data == 2 and (exists(data[2]) or isdir(data[2])) then
+        table.insert(tbl, startify.button(key, data[1], telescope_cmd(data[2])))
       end
     end
   end
 
-  return buttons
+  return tbl
+end
+
+local top_buttons = function()
+  return get_buttons(require("kobra.core").start_screen.buttons)
 end
 
 local bottom_buttons = function()
-  local startify = require('alpha.themes.startify')
-  return { startify.button('q', 'Quit NVIM', ':qa<CR>') }
+  return get_buttons(require("kobra.core").start_screen.bottom_buttons)
 end
 
 local function folder_groups()
