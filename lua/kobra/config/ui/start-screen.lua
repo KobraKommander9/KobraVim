@@ -166,7 +166,14 @@ local get_buttons = function(buttons)
         table.insert(ordered, button)
       end
     end
-    table.sort(ordered)
+    table.sort(ordered, function(a, b)
+      if #a < #b then
+        return true
+      elseif #b < #a then
+        return false
+      end
+      return a < b
+    end)
 
     for _, key in ipairs(ordered) do
       local data = opts[key]
