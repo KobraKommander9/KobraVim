@@ -12,7 +12,7 @@ M[#M + 1] = {
 		"nvim-telescope/telescope.nvim",
 	},
 	keys = {
-		{ "<leader>fB", "<cmd>Telescope vim_bookmarks all", desc = "Find Bookmarks" },
+		{ "<leader>fB", "<cmd>Telescope vim_bookmarks all<cr>", desc = "Find Bookmarks" },
 	},
 	config = function()
 		require("telescope").load_extension("vim_bookmarks")
