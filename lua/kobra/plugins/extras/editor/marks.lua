@@ -3,6 +3,7 @@ local M = {}
 M[#M + 1] = {
 	"LeonHeidelbach/trailblazer.nvim",
 	cmd = {
+		"TrailBlazerOpenTrailMarkList",
 		"TrailBlazerSaveSession",
 		"TrailBlazerLoadSession",
 		"TrailBlazerDeleteSession",
@@ -28,6 +29,7 @@ M[#M + 1] = {
 			{ "m.", mode = { "n", "v" }, desc = "Switch to Next Trail Mark Stack" },
 			{ "m,", mode = { "n", "v" }, desc = "Switch to Previous Trail Mark Stack" },
 			{ "mS", mode = { "n", "v" }, desc = "Set Trail Mark Stack Sort Mode" },
+			{ "ml", "<cmd>TrailBlazerOpenTrailMarkList<cr>", desc = "Open Trail Mark List" },
 		}
 	end,
 	config = function(_, opts)
