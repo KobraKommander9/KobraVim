@@ -5,7 +5,7 @@ local util = require("kobra.util")
 -- better escape
 M[#M + 1] = {
 	"max397574/better-escape.nvim",
-	keys = { "jk", "qn" },
+	event = "InsertEnter",
 	opts = {
 		mapping = { "jk", "qn" },
 	},
