@@ -1,26 +1,27 @@
 local M = {}
 
 M[#M + 1] = {
-	"microsoft/vscode-js-debug",
+	"mfussenegger/nvim-dap",
 	dependencies = {
-		"mfussenegger/nvim-dap",
+		"mxsdev/nvim-dap-vscode-js",
+		build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+		config = function()
+			require("dap-vscode-js").setup({
+				debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
+				adapters = {
+					"chrome",
+					"pwa-node",
+					"pwa-chrome",
+					"pwa-msedge",
+					"node-terminal",
+					"pwa-extensionHost",
+					"node",
+					"chrome",
+				},
+			})
+		end,
 	},
-	build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
 	config = function()
-		require("dap-vscode-js").setup({
-			debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
-			adapters = {
-				"chrome",
-				"pwa-node",
-				"pwa-chrome",
-				"pwa-msedge",
-				"node-terminal",
-				"pwa-extensionHost",
-				"node",
-				"chrome",
-			},
-		})
-
 		local js_based_languages = { "typescript", "javascript", "typescriptreact" }
 		for _, language in ipairs(js_based_languages) do
 			require("dap").configurations[language] = {
