@@ -40,15 +40,6 @@ local virtual_text = {
 	opts = {},
 }
 
-local which_key = {
-	"folke/which-key.nvim",
-	optional = true,
-	opts = {
-		["<leader>p"] = { name = "+debug" },
-		["<leader>pa"] = { name = "+adapters" },
-	},
-}
-
 local mason_dap = {
 	"jay-babu/mason-nvim-dap.nvim",
 	dependencies = "mason.nvim",
@@ -97,7 +88,6 @@ M[#M + 1] = {
 	dependencies = {
 		pretty_ui,
 		virtual_text,
-		which_key,
 		mason_dap,
 	},
 	keys = get_keys,
@@ -113,6 +103,14 @@ M[#M + 1] = {
 			)
 		end
 	end,
+}
+
+M[#M + 1] = {
+	"folke/which-key.nvim",
+	opts = {
+		["<leader>p"] = { name = "+debug" },
+		["<leader>pa"] = { name = "+adapters" },
+	},
 }
 
 return M

@@ -1,13 +1,5 @@
 local M = {}
 
-local which_key = {
-	"folke/which-key.nvim",
-	optional = true,
-	opts = {
-		["<leader>t"] = { name = "+tests" },
-	},
-}
-
 local dap = {
 	"mfussenegger/nvim-dap",
 	optional = true,
@@ -18,10 +10,16 @@ local dap = {
 }
 
 M[#M + 1] = {
+	"folke/which-key.nvim",
+	opts = {
+		["<leader>t"] = { name = "+tests" },
+	},
+}
+
+M[#M + 1] = {
 	"nvim-neotest/neotest",
 	dependencies = {
 		dap,
-		which_key,
 		"nvim-neotest/neotest-go",
 		"haydenmeade/neotest-jest",
 	},
