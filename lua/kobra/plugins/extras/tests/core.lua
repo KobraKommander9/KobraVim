@@ -12,7 +12,9 @@ local dap = {
 M[#M + 1] = {
 	"folke/which-key.nvim",
 	opts = {
-		["<leader>t"] = { name = "+tests" },
+		defaults = {
+			["<leader>t"] = { name = "+tests" },
+		},
 	},
 }
 

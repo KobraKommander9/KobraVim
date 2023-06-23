@@ -108,8 +108,10 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"folke/which-key.nvim",
 	opts = {
-		["<leader>p"] = { name = "+debug" },
-		["<leader>pa"] = { name = "+adapters" },
+		defaults = {
+			["<leader>p"] = { name = "+debug" },
+			["<leader>pa"] = { name = "+adapters" },
+		},
 	},
 }
 
