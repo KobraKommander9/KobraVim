@@ -1,6 +1,6 @@
 local M = {}
 
-M[#M + 1] = {
+local which_key = {
 	"folke/which-key.nvim",
 	optional = true,
 	opts = {
@@ -8,7 +8,7 @@ M[#M + 1] = {
 	},
 }
 
-M[#M + 1] = {
+local dap = {
 	"mfussenegger/nvim-dap",
 	optional = true,
   -- stylua: ignore
@@ -20,6 +20,8 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-neotest/neotest",
 	dependencies = {
+		dap,
+		which_key,
 		"nvim-neotest/neotest-go",
 		"haydenmeade/neotest-jest",
 	},
