@@ -2,22 +2,10 @@ local M = {}
 
 local pretty_ui = {
 	"rcarriga/nvim-dap-ui",
+  -- stylua: ignore
 	keys = {
-		{
-			"<leader>pu",
-			function()
-				require("dapui").toggle({})
-			end,
-			desc = "Dap UI",
-		},
-		{
-			"<leader>pe",
-			function()
-				require("dapui").eval()
-			end,
-			desc = "Eval",
-			mode = { "n", "v" },
-		},
+    { "<leader>pu", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+		{ "<leader>pe", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "v" } },
 	},
 	opts = function()
 		local e = "e"
@@ -72,105 +60,22 @@ local mason_dap = {
 	},
 }
 
+-- stylua: ignore
 local keys = {
-	{
-		"<leader>pB",
-		function()
-			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-		end,
-		desc = "Breakpoint Condition",
-	},
-	{
-		"<leader>pb",
-		function()
-			require("dap").toggle_breakpoint()
-		end,
-		desc = "Toggle Breakpoint",
-	},
-	{
-		"<leader>pc",
-		function()
-			require("dap").continue()
-		end,
-		desc = "Continue",
-	},
-	{
-		"<leader>pC",
-		function()
-			require("dap").run_to_cursor()
-		end,
-		desc = "Run to Cursor",
-	},
-	{
-		"<leader>pg",
-		function()
-			require("dap").goto_()
-		end,
-		desc = "Go to line (no execute)",
-	},
-	{
-		"<leader>pi",
-		function()
-			require("dap").step_into()
-		end,
-		desc = "Step Into",
-	},
-	{
-		"<leader>pl",
-		function()
-			require("dap").run_last()
-		end,
-		desc = "Run Last",
-	},
-	{
-		"<leader>po",
-		function()
-			require("dap").step_out()
-		end,
-		desc = "Step Out",
-	},
-	{
-		"<leader>pO",
-		function()
-			require("dap").step_over()
-		end,
-		desc = "Step Over",
-	},
-	{
-		"<leader>pp",
-		function()
-			require("dap").pause()
-		end,
-		desc = "Pause",
-	},
-	{
-		"<leader>pr",
-		function()
-			require("dap").repl.toggle()
-		end,
-		desc = "Toggle REPL",
-	},
-	{
-		"<leader>ps",
-		function()
-			require("dap").session()
-		end,
-		desc = "Session",
-	},
-	{
-		"<leader>pt",
-		function()
-			require("dap").terminate()
-		end,
-		desc = "Terminate",
-	},
-	{
-		"<leader>pw",
-		function()
-			require("dap.ui.widgets").hover()
-		end,
-		desc = "Widgets",
-	},
+	{ "<leader>pB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "Breakpoint Condition" },
+	{ "<leader>pb", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
+	{ "<leader>pc", function() require("dap").continue() end, desc = "Continue" },
+	{ "<leader>pC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
+	{ "<leader>pg", function() require("dap").goto_() end, desc = "Go to line (no execute)" },
+	{ "<leader>pi", function() require("dap").step_into() end, desc = "Step Into" },
+	{ "<leader>pl", function() require("dap").run_last() end, desc = "Run Last" },
+	{ "<leader>po", function() require("dap").step_out() end, desc = "Step Out" },
+	{ "<leader>pO", function() require("dap").step_over() end, desc = "Step Over" },
+	{ "<leader>pp", function() require("dap").pause() end, desc = "Pause" },
+	{ "<leader>pr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
+	{ "<leader>ps", function() require("dap").session() end, desc = "Session" },
+	{ "<leader>pt", function() require("dap").terminate() end, desc = "Terminate" },
+	{ "<leader>pw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
 }
 
 local function get_keys()
@@ -179,20 +84,10 @@ local function get_keys()
 		strokes = { j = "n", k = "e" }
 	end
 
-	local res = table.insert(keys, {
-		"<leader>p" .. strokes.j,
-		function()
-			require("dap").down()
-		end,
-		desc = "Down",
-	})
-	res = table.insert(res, {
-		"<leader>p" .. strokes.k,
-		function()
-			require("dap").up()
-		end,
-		desc = "Up",
-	})
+  -- stylua: ignore
+	local res = table.insert(keys, { "<leader>p" .. strokes.j, function() require("dap").down() end, desc = "Down" })
+  -- stylua: ignore
+	res = table.insert(keys, { "<leader>p" .. strokes.k, function() require("dap").up() end, desc = "Up" })
 
 	return res
 end

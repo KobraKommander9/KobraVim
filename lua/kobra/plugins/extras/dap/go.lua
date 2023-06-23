@@ -4,21 +4,10 @@ M[#M + 1] = {
 	"mfussenegger/nvim-dap",
 	dependencies = {
 		"leoluz/nvim-dap-go",
+    -- stylua: ignore
 		keys = {
-			{
-				"<leader>paG",
-				function()
-					require("dap-go").debug_test()
-				end,
-				desc = "Debug Test (Go)",
-			},
-			{
-				"<leader>pag",
-				function()
-					require("dap-go").debug_last_test()
-				end,
-				desc = "Debug Last Test (Go)",
-			},
+			{ "<leader>paG", function() require("dap-go").debug_test() end, desc = "Debug Test (Go)" },
+			{ "<leader>pag", function() require("dap-go").debug_last_test() end, desc = "Debug Last Test (Go)" },
 		},
 		opts = {
 			dap_configurations = {
