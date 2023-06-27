@@ -141,6 +141,8 @@ M[#M + 1] = {
 		local fbactions = require("telescope").extensions.file_browser.actions
 		local options = {
 			defaults = {
+				path_display = { "truncate" },
+				sorting_strategy = "ascending",
 				layout_config = {
 					horizontal = { prompt_position = "top", preview_width = 0.55 },
 					vertical = { mirror = false },
