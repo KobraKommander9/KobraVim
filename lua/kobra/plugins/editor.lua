@@ -403,7 +403,7 @@ M[#M + 1] = {
 		{ "<leader>n", '<cmd>lua require"grapple".cycle_forward()<cr>', desc = "Cycle Forward" },
 		{ "<leader>e", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
 		{ "<leader>i", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
-		{ "<leader>m", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
+		{ "<leader>h", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
 	},
 	opts = {
 		scope = "git_branch",
