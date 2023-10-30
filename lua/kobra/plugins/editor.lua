@@ -274,7 +274,6 @@ M[#M + 1] = {
 			["<leader>g"] = { name = "+git" },
 			["<leader>gh"] = { name = "+hunks" },
 			["<leader>l"] = { name = "+lsp" },
-			["<leader>n"] = { name = "+project" },
 			["<leader>q"] = { name = "+quit/session" },
 			["<leader>s"] = { name = "+search" },
 			["<leader>u"] = { name = "+ui" },
@@ -401,10 +400,10 @@ M[#M + 1] = {
 		"GrappleUntag",
 	},
 	keys = {
-		{ "<leader>nn", '<cmd>lua require"grapple".select({ key = "{name}" })<cr>', desc = "Select Tag" },
-		{ "<leader>nN", '<cmd>lua require"grapple".toggle({ key = "{name}" })<cr>', desc = "Toggle Tag" },
+		{ "<leader>nn", '<cmd>lua require"grapple".cycle_forward()<cr>', desc = "Cycle Forward" },
+		{ "<leader>ne", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
 		{ "<leader>np", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
-		{ "<leader>nt", '<cmd>lua require"grapple".toggle<cr>', desc = "Tag" },
+		{ "<leader>n", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
 	},
 	opts = {
 		scope = "git_branch",
