@@ -8,6 +8,9 @@ return {
 	end,
 	provider = function()
 		local key = require("grapple").key()
+		if key == nil then
+			return ""
+		end
 		return " [" .. key .. "]"
 	end,
 	hl = "UserPurpleN",
