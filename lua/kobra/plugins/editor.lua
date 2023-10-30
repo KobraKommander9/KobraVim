@@ -401,8 +401,8 @@ M[#M + 1] = {
 	},
 	keys = {
 		{ "<leader>n", '<cmd>lua require"grapple".cycle_forward()<cr>', desc = "Cycle Forward" },
-		{ "<leader>e", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
-		{ "<leader>np", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
+		{ "<leader>N", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
+		{ "<leader>e", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
 		{ "<leader>m", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
 	},
 	opts = {
