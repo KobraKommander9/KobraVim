@@ -11,7 +11,7 @@ return {
 		if key == nil then
 			return ""
 		end
-		return " [" .. key .. "]"
+		return " [" .. key .. "]"
 	end,
 	hl = "UserPurpleN",
 }

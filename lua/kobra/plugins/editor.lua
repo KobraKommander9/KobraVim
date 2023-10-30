@@ -400,10 +400,10 @@ M[#M + 1] = {
 		"GrappleUntag",
 	},
 	keys = {
-		{ "<leader>nn", '<cmd>lua require"grapple".cycle_forward()<cr>', desc = "Cycle Forward" },
-		{ "<leader>ne", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
+		{ "<leader>n", '<cmd>lua require"grapple".cycle_forward()<cr>', desc = "Cycle Forward" },
+		{ "<leader>e", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
 		{ "<leader>np", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
-		{ "<leader>n", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
+		{ "<leader>m", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
 	},
 	opts = {
 		scope = "git_branch",
