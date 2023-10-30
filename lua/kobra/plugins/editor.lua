@@ -26,7 +26,7 @@ M[#M + 1] = {
 	config = true,
 }
 
--- fuzzy finder and file browser
+-- fuzzy finder
 M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {
