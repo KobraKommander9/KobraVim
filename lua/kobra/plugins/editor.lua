@@ -274,6 +274,7 @@ M[#M + 1] = {
 			["<leader>g"] = { name = "+git" },
 			["<leader>gh"] = { name = "+hunks" },
 			["<leader>l"] = { name = "+lsp" },
+			["<leader>n"] = { name = "+project" },
 			["<leader>q"] = { name = "+quit/session" },
 			["<leader>s"] = { name = "+search" },
 			["<leader>u"] = { name = "+ui" },
@@ -381,6 +382,32 @@ M[#M + 1] = {
 			desc = "Previous todo comment",
 		},
 		{ "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
+	},
+}
+
+-- file navigation
+M[#M + 1] = {
+	"cbochs/grapple.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	event = "BufReadPost",
+	cmd = {
+		"Grapple",
+		"GrappleCycle",
+		"GrapplePopup",
+		"GrappleReset",
+		"GrappleSelect",
+		"GrappleTag",
+		"GrappleToggle",
+		"GrappleUntag",
+	},
+	keys = {
+		{ "<leader>nn", '<cmd>lua require"grapple".select({ key = "{name}" })<cr>', desc = "Select Tag" },
+		{ "<leader>nN", '<cmd>lua require"grapple".toggle({ key = "{name}" })<cr>', desc = "Toggle Tag" },
+		{ "<leader>np", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
+		{ "<leader>nt", '<cmd>lua require"grapple".toggle<cr>', desc = "Tag" },
+	},
+	opts = {
+		scope = "git_branch",
 	},
 }
 
