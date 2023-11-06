@@ -20,6 +20,9 @@ local defaults = {
 	layouts = {
 		colemak = false,
 	},
+	lsp = {
+		logging = "off",
+	},
 	start_screen = {
 		header = require("kobra.config.ui.start-screen").kobra,
 		buttons = {
@@ -159,6 +162,8 @@ function M.setup(opts)
 			vim.cmd.colorscheme("carbonfox")
 		end,
 	})
+
+	vim.lsp.set_log_level(options.lsp.logging)
 end
 
 function M.has(range)

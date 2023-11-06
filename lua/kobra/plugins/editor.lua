@@ -56,7 +56,7 @@ M[#M + 1] = {
 			desc = "File Browser (root)",
 		},
 		-- git
-		{ "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
+		{ "<leader>gC", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
 		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
 		-- search
 		{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },

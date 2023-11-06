@@ -238,10 +238,13 @@ local function folder_groups()
     end
   end
 
-  table.insert(groups, {
-    type = 'group',
-    val = require('possession.utils').throttle(get_sessions, 5000),
-  })
+  local _, ok = pcall(require, "possession")
+  if ok then
+    table.insert(groups, {
+      type = 'group',
+      val = require('possession.utils').throttle(get_sessions, 5000),
+    })
+  end
 
   return groups
 end
