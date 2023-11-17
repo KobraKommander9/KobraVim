@@ -34,7 +34,16 @@ M[#M + 1] = {
 
 -- fuzzy finder
 M[#M + 1] = {
+	"echasnovski/mini.fuzzy",
+	event = "VeryLazy",
+	version = false,
+}
+
+M[#M + 1] = {
 	"nvim-telescope/telescope.nvim",
+	dependencies = {
+		"echasnovski/mini.fuzzy",
+	},
 	cmd = "Telescope",
 	version = false,
 	keys = {
@@ -134,6 +143,7 @@ M[#M + 1] = {
 
 		local options = {
 			defaults = {
+				generic_sorter = require("mini.fuzzy").get_telescope_sorter,
 				path_display = { "truncate" },
 				sorting_strategy = "ascending",
 				layout_config = {
