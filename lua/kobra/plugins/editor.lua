@@ -29,7 +29,13 @@ M[#M + 1] = {
 -- file browser
 M[#M + 1] = {
 	"echasnovski/mini.pick",
+	cmd = "Pick",
 	version = false,
+	config = function(_, opts)
+		local options = {}
+		options = vim.tbl_deep_extend("force", options, opts)
+		require("mini.pick").setup(options)
+	end,
 }
 
 -- fuzzy finder
@@ -169,38 +175,38 @@ M[#M + 1] = {
 	end,
 }
 
-M[#M + 1] = {
-	"nvim-telescope/telescope-live-grep-args.nvim",
-	dependencies = {
-		"nvim-telescope/telescope.nvim",
-	},
-	keys = {
-		{
-			"<leader>st",
-			'<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>',
-			desc = "Text (args)",
-		},
-	},
-	config = function(_, opts)
-		local options = {
-			mappings = {
-				i = {
-					["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-					["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({
-						postfix = " --iglob ",
-					}),
-				},
-			},
-		}
-
-		options = vim.tbl_deep_extend("force", options, opts)
-		require("telescope").setup({
-			extensions = {
-				live_grep_args = options,
-			},
-		})
-	end,
-}
+-- M[#M + 1] = {
+-- 	"nvim-telescope/telescope-live-grep-args.nvim",
+-- 	dependencies = {
+-- 		"nvim-telescope/telescope.nvim",
+-- 	},
+-- 	keys = {
+-- 		{
+-- 			"<leader>st",
+-- 			'<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>',
+-- 			desc = "Text (args)",
+-- 		},
+-- 	},
+-- 	config = function(_, opts)
+-- 		local options = {
+-- 			mappings = {
+-- 				i = {
+-- 					["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+-- 					["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({
+-- 						postfix = " --iglob ",
+-- 					}),
+-- 				},
+-- 			},
+-- 		}
+--
+-- 		options = vim.tbl_deep_extend("force", options, opts)
+-- 		require("telescope").setup({
+-- 			extensions = {
+-- 				live_grep_args = options,
+-- 			},
+-- 		})
+-- 	end,
+-- }
 
 -- easily jump to any location and enhanced f/t motions for leap
 M[#M + 1] = {
