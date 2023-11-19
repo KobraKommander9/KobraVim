@@ -26,23 +26,19 @@ M[#M + 1] = {
 	config = true,
 }
 
--- file browser
-M[#M + 1] = {
-	"echasnovski/mini.pick",
-	cmd = "Pick",
-	version = false,
-	config = function(_, opts)
-		local options = {}
-		options = vim.tbl_deep_extend("force", options, opts)
-		require("mini.pick").setup(options)
-	end,
-}
-
 -- fuzzy finder
 M[#M + 1] = {
 	"echasnovski/mini.fuzzy",
 	event = "VeryLazy",
 	version = false,
+	config = true,
+}
+
+M[#M + 1] = {
+	"echasnovski/mini.pick",
+	cmd = "Pick",
+	version = false,
+	config = true,
 }
 
 M[#M + 1] = {
