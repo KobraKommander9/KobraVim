@@ -13,6 +13,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"luukvbaal/statuscol.nvim",
+	event = "BufEnter",
 	config = function(_, opts)
 		local builtin = require("statuscol.builtin")
 		local options = {
