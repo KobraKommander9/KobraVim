@@ -26,7 +26,7 @@ M[#M + 1] = {
 				},
 				{ text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
 				{
-					sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+					sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, wrap = true },
 					click = "v:lua.ScSa",
 				},
 			},
