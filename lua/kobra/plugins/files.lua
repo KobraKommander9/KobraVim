@@ -66,7 +66,7 @@ local setupCwdMapping = function()
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "MiniFilesBufferCreate",
 		callback = function(args)
-			vim.keymap.set("n", "g~", files_set_cwd, { buffer = args.data.buf_id })
+			vim.keymap.set("n", "g/", files_set_cwd, { buffer = args.data.buf_id })
 		end,
 	})
 end
@@ -77,13 +77,13 @@ M[#M + 1] = {
 	event = "VimEnter",
 	keys = {
 		{
-			"<leader>bt",
+			"<leader>ff",
 			function(...)
 				if not MiniFiles.close() then
 					MiniFiles.open(...)
 				end
 			end,
-			desc = "Toggle File Viewer",
+			desc = "View Files",
 		},
 	},
 	version = false,

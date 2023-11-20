@@ -32,9 +32,9 @@ local function isdir(path)
   return exists(path..'/')
 end
 
-local telescope_cmd = function(path)
+local open_cmd = function(path)
   if isdir(path) then
-    return '<cmd>cd ' .. path .. ' | Telescope file_browser hidden=true path=%:p:h<cr>'
+    return '<cmd>cd ' .. path .. ' | lua MiniFiles.open("%:p:h")<cr>'
   end
   return '<cmd>e ' .. path
 end
@@ -64,7 +64,7 @@ local get_folders = function(prefix, dir)
     ico_txt = ico .. ' '
 
     local short_fn = vim.fn.fnamemodify(fn, ':~')
-    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, telescope_cmd(fn))
+    local file_button_el = startify.button(prefix .. tostring(i), ico_txt .. short_fn, open_cmd(fn))
     local fn_start = short_fn:match('.*[/\\]')
     if fn_start ~= nil then
       table.insert(fb_hl, { 'Comment', #ico_txt, #fn_start + #ico_txt })
@@ -183,7 +183,7 @@ local get_buttons = function(buttons)
       elseif type(data) == "string" and data == "quit" then
         table.insert(tbl, startify.button(key, "Quit NVIM", ":qa<CR>"))
       elseif type(data) == "table" and #data == 2 and (exists(data[2]) or isdir(data[2])) then
-        table.insert(tbl, startify.button(key, data[1], telescope_cmd(data[2])))
+        table.insert(tbl, startify.button(key, data[1], open_cmd(data[2])))
       end
     end
   end
