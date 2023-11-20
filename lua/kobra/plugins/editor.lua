@@ -192,31 +192,31 @@ M[#M + 1] = {
 	event = "BufReadPost",
 	config = function(_, opts)
 		local options = {}
-
-		if require("kobra.core").layouts.colemak then
-			options.setupFoldKeymaps = false
-
-			local function normal(cmdStr)
-				vim.cmd.normal({ cmdStr, bang = true })
-			end
-
-			local function foldOrNot()
-				local count = vim.v.count1
-				for _ = 1, count, 1 do
-					local isOnFold = vim.fn.foldclosed(".") > -1 ---@diagnostic disable-line: param-type-mismatch
-					if isOnFold then
-						pcall(normal, "zo")
-					else
-						normal("i")
-					end
-				end
-			end
-
-			local origami = require("origami")
-
-			vim.keymap.set("n", "h", origami.h, { desc = "Origami h" })
-			vim.keymap.set("n", "i", foldOrNot, { desc = "Origami i" })
-		end
+		--
+		-- if require("kobra.core").layouts.colemak then
+		-- 	options.setupFoldKeymaps = false
+		--
+		-- 	local function normal(cmdStr)
+		-- 		vim.cmd.normal({ cmdStr, bang = true })
+		-- 	end
+		--
+		-- 	local function foldOrNot()
+		-- 		local count = vim.v.count1
+		-- 		for _ = 1, count, 1 do
+		-- 			local isOnFold = vim.fn.foldclosed(".") > -1 ---@diagnostic disable-line: param-type-mismatch
+		-- 			if isOnFold then
+		-- 				pcall(normal, "zo")
+		-- 			else
+		-- 				normal("i")
+		-- 			end
+		-- 		end
+		-- 	end
+		--
+		-- 	local origami = require("origami")
+		--
+		-- 	vim.keymap.set("n", "h", origami.h, { desc = "Origami h" })
+		-- 	vim.keymap.set("n", "i", foldOrNot, { desc = "Origami i" })
+		-- end
 
 		options = vim.tbl_deep_extend("force", options, opts)
 		require("origami").setup(options)
