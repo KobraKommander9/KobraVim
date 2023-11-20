@@ -43,7 +43,7 @@ M[#M + 1] = {
 	keys = {
 		{ "<leader>:", "<cmd>Pick commands<cr>", desc = "Commands" },
 		-- buffers
-		{ "<leader>bl", "<cmd>Pick buf_lines<cr>", desc = "List Buffers" },
+		{ "<leader>bl", "<cmd>Pick buffers<cr>", desc = "Buffers" },
 		-- diagnostics
 		{ "<leader>dg", "<cmd>Pick diagnostic<cr>", desc = "Diagnostics" },
 		-- find
@@ -55,6 +55,7 @@ M[#M + 1] = {
 		{ "<leader>gf", "<cmd>Pick git_files<cr>", desc = "Git Files" },
 		{ "<leader>gH", "<cmd>Pick git_hunks<cr>", desc = "Git Hunks" },
 		-- search
+		{ "<leader>sb", "<cmd>Pick buf_lines<cr>", desc = "In Buffer" },
 		{ "<leader>sc", "<cmd>Pick list scope='changelist'<cr>", desc = "Change List" },
 		{ "<leader>sh", "<cmd>Pick history<cr>", desc = "History" },
 		{ "<leader>sH", "<cmd>Pick hl_groups<cr>", desc = "Highlights" },
@@ -65,7 +66,7 @@ M[#M + 1] = {
 		{ "<leader>sM", "<cmd>Pick marks<cr>", desc = "Marks" },
 		{ "<leader>so", "<cmd>Pick options<cr>", desc = "Options" },
 		{ "<leader>sq", "<cmd>Pick list scope='quickfix'<cr>", desc = "Quickfix List" },
-		{ "<leader>sr", "<cmd>Pick registers<cr>", desc = "Registers" },
+		{ "<leader>sR", "<cmd>Pick registers<cr>", desc = "Registers" },
 		{ "<leader>ss", "<cmd>Pick spellsuggest<cr>", desc = "Spelling Suggestions" },
 		{ "<leader>st", "<cmd>Pick treesitter<cr>", desc = "Treesitter Nodes" },
 	},
