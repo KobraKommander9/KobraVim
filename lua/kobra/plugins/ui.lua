@@ -12,6 +12,31 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
+	"luukvbaal/statuscol.nvim",
+	config = function(_, opts)
+		local builtin = require("statuscol.builtin")
+		local options = {
+			relculright = true,
+			segments = {
+				{ text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+				{
+					sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+					click = "v:lua.ScSa",
+				},
+				{ text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+				{
+					sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+					click = "v:lua.ScSa",
+				},
+			},
+		}
+
+		options = vim.tbl_deep_extend("force", options, opts)
+		require("statuscol").setup(options)
+	end,
+}
+
+M[#M + 1] = {
 	"rcarriga/nvim-notify",
 	keys = {
 		{
