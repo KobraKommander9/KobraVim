@@ -34,7 +34,7 @@ end
 
 local open_cmd = function(path)
   if isdir(path) then
-    return '<cmd>cd ' .. path .. ' | lua MiniFiles.open("%:p:h")<cr>'
+    return '<cmd>cd ' .. path .. ' | lua MiniFiles.open(vim.fn.expand("%:p:h"))<cr>'
   end
   return '<cmd>e ' .. path
 end
