@@ -38,6 +38,7 @@ local setupSplitMappings = function()
 			end)
 
 			MiniFiles.set_target_window(new_target_window)
+			MiniFiles.go_in()
 		end
 
 		-- adding 'desc' will result into 'show_help' entries
