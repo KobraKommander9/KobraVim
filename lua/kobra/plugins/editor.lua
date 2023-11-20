@@ -27,200 +27,168 @@ M[#M + 1] = {
 }
 
 -- fuzzy finder
-M[#M + 1] = {
-	"nvim-telescope/telescope.nvim",
-	dependencies = {
-		"nvim-telescope/telescope-file-browser.nvim",
-	},
-	cmd = "Telescope",
-	version = false,
-	keys = {
-		{ "<leader>/", util.telescope("live_grep"), desc = "Grep (root dir)" },
-		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-		-- buffers
-		{ "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
-		-- diagnostics
-		{ "<leader>dg", "<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics" },
-		-- find
-		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-		{ "<leader>fF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
-		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
-		{ "<leader>ff", "<cmd>Telescope file_browser path=%:p:h hidden=true<cr>", desc = "File Browser" },
-		{
-			"<leader>fa",
-			function()
-				local root = require("kobra.util").get_root()
-				vim.api.nvim_command("Telescope file_browser hidden=true path=" .. root)
-			end,
-			desc = "File Browser (root)",
-		},
-		-- git
-		{ "<leader>gC", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
-		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
-		-- search
-		{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-		{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-		{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-		{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-		{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
-		{ "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-		{ "<leader>sg", util.telescope("live_grep"), desc = "Grep (root dir)" },
-		{ "<leader>sG", util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-		{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-		{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-		{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-		{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
-		{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-		{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-		{ "<leader>sw", util.telescope("grep_string"), desc = "Word (root dir)" },
-		{ "<leader>sW", util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
-		{ "<leader>uC", util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
-		{
-			"<leader>ss",
-			util.telescope("lsp_document_symbols", {
-				symbols = {
-					"Class",
-					"Function",
-					"Method",
-					"Constructor",
-					"Interface",
-					"Module",
-					"Struct",
-					"Trait",
-					"Field",
-					"Property",
-				},
-			}),
-			desc = "Goto Symbol",
-		},
-		{
-			"<leader>sS",
-			util.telescope("lsp_dynamic_workspace_symbols", {
-				symbols = {
-					"Class",
-					"Function",
-					"Method",
-					"Constructor",
-					"Interface",
-					"Module",
-					"Struct",
-					"Trait",
-					"Field",
-					"Property",
-				},
-			}),
-			desc = "Goto Symbol (Workspace)",
-		},
-	},
-	config = function(_, opts)
-		local n, p, j, k
-		if require("kobra.core").layouts.colemak then
-			n, p, j, k = "j", "k", "n", "e"
-		else
-			n, p, j, k = "n", "p", "j", "k"
-		end
+-- M[#M + 1] = {
+-- 	"nvim-telescope/telescope.nvim",
+-- 	dependencies = {
+-- 		"echasnovski/mini.fuzzy",
+-- 	},
+-- 	cmd = "Telescope",
+-- 	version = false,
+-- 	keys = {
+-- 		{ "<leader>/", util.telescope("live_grep"), desc = "Grep (root dir)" },
+-- 		{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+-- 		-- buffers
+-- 		{ "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
+-- 		-- diagnostics
+-- 		{ "<leader>dg", "<cmd>Telescope diagnostics<cr>", "Telescope Document Diagnostics" },
+-- 		-- find
+-- 		{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+-- 		{ "<leader>fF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
+-- 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+-- 		{ "<leader>fR", util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
+-- 		-- git
+-- 		{ "<leader>gC", "<cmd>Telescope git_commits<cr>", desc = "Commits" },
+-- 		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Status" },
+-- 		-- search
+-- 		{ "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
+-- 		{ "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+-- 		{ "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+-- 		{ "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
+-- 		{ "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
+-- 		{ "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
+-- 		{ "<leader>sg", util.telescope("live_grep"), desc = "Grep (root dir)" },
+-- 		{ "<leader>sG", util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
+-- 		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
+-- 		{ "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
+-- 		{ "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+-- 		{ "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
+-- 		{ "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+-- 		{ "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
+-- 		{ "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
+-- 		{ "<leader>sw", util.telescope("grep_string"), desc = "Word (root dir)" },
+-- 		{ "<leader>sW", util.telescope("grep_string", { cwd = false }), desc = "Word (cwd)" },
+-- 		{ "<leader>uC", util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
+-- 		{
+-- 			"<leader>ss",
+-- 			util.telescope("lsp_document_symbols", {
+-- 				symbols = {
+-- 					"Class",
+-- 					"Function",
+-- 					"Method",
+-- 					"Constructor",
+-- 					"Interface",
+-- 					"Module",
+-- 					"Struct",
+-- 					"Trait",
+-- 					"Field",
+-- 					"Property",
+-- 				},
+-- 			}),
+-- 			desc = "Goto Symbol",
+-- 		},
+-- 		{
+-- 			"<leader>sS",
+-- 			util.telescope("lsp_dynamic_workspace_symbols", {
+-- 				symbols = {
+-- 					"Class",
+-- 					"Function",
+-- 					"Method",
+-- 					"Constructor",
+-- 					"Interface",
+-- 					"Module",
+-- 					"Struct",
+-- 					"Trait",
+-- 					"Field",
+-- 					"Property",
+-- 				},
+-- 			}),
+-- 			desc = "Goto Symbol (Workspace)",
+-- 		},
+-- 	},
+-- 	config = function(_, opts)
+-- 		local n, p, j, k
+-- 		if require("kobra.core").layouts.colemak then
+-- 			n, p, j, k = "j", "k", "n", "e"
+-- 		else
+-- 			n, p, j, k = "n", "p", "j", "k"
+-- 		end
+--
+-- 		local mappings = {
+-- 			i = {
+-- 				["<c-" .. n .. ">"] = "cycle_history_next",
+-- 				["<c-" .. p .. ">"] = "cycle_history_prev",
+-- 				["<c-" .. j .. ">"] = "move_selection_next",
+-- 				["<c-" .. k .. ">"] = "move_selection_previous",
+-- 				["<c-t>"] = "select_tab",
+-- 				["<c-v>"] = "select_vertical",
+-- 				["<c-b>"] = "select_horizontal",
+-- 				["<c-x>"] = "delete_buffer",
+-- 			},
+-- 			n = {
+-- 				q = "close",
+-- 			},
+-- 		}
+--
+-- 		local options = {
+-- 			defaults = {
+-- 				generic_sorter = require("mini.fuzzy").get_telescope_sorter,
+-- 				path_display = { "truncate" },
+-- 				sorting_strategy = "ascending",
+-- 				layout_config = {
+-- 					horizontal = { prompt_position = "top", preview_width = 0.55 },
+-- 					vertical = { mirror = false },
+-- 					width = 0.87,
+-- 					height = 0.80,
+-- 					preview_cutoff = 120,
+-- 				},
+-- 				prompt_prefix = " ",
+-- 				selection_caret = " ",
+-- 				mappings = mappings,
+-- 				file_ignore_patterns = {
+-- 					".git/",
+-- 					"node_modules",
+-- 					"plz-out",
+-- 				},
+-- 			},
+-- 		}
+--
+-- 		options = vim.tbl_deep_extend("force", options, opts)
+-- 		require("telescope").setup(options)
+-- 	end,
+-- }
 
-		local mappings = {
-			i = {
-				["<c-" .. n .. ">"] = "cycle_history_next",
-				["<c-" .. p .. ">"] = "cycle_history_prev",
-				["<c-" .. j .. ">"] = "move_selection_next",
-				["<c-" .. k .. ">"] = "move_selection_previous",
-				["<c-t>"] = "select_tab",
-				["<c-v>"] = "select_vertical",
-				["<c-b>"] = "select_horizontal",
-				["<c-x>"] = "delete_buffer",
-			},
-			n = {
-				q = "close",
-			},
-		}
-
-		local fbactions = require("telescope").extensions.file_browser.actions
-		local options = {
-			defaults = {
-				path_display = { "truncate" },
-				sorting_strategy = "ascending",
-				layout_config = {
-					horizontal = { prompt_position = "top", preview_width = 0.55 },
-					vertical = { mirror = false },
-					width = 0.87,
-					height = 0.80,
-					preview_cutoff = 120,
-				},
-				prompt_prefix = " ",
-				selection_caret = " ",
-				mappings = mappings,
-				file_ignore_patterns = {
-					".git/",
-					"node_modules",
-					"plz-out",
-				},
-			},
-			extensions = {
-				file_browser = {
-					grouped = true,
-					hidden = { file_browser = true, folder_browser = true },
-					respect_gitignore = false,
-					quiet = true,
-					display_stat = false,
-					hijack_netrw = true,
-					prompt_path = true,
-					mappings = {
-						i = {
-							["<c-a>"] = fbactions.create,
-							["<c-l>"] = fbactions.goto_home_dir,
-							["<c-e>"] = require("telescope.actions").move_selection_previous,
-							["<c-r>"] = fbactions.rename,
-							["<c-y>"] = fbactions.copy,
-							["<c-x>"] = fbactions.remove,
-							["<c-h>"] = fbactions.toggle_hidden,
-						},
-					},
-				},
-			},
-		}
-
-		options = vim.tbl_deep_extend("force", options, opts)
-		require("telescope").setup(options)
-		require("telescope").load_extension("file_browser")
-	end,
-}
-
-M[#M + 1] = {
-	"nvim-telescope/telescope-live-grep-args.nvim",
-	dependencies = {
-		"nvim-telescope/telescope.nvim",
-	},
-	keys = {
-		{
-			"<leader>st",
-			'<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>',
-			desc = "Text (args)",
-		},
-	},
-	config = function(_, opts)
-		local options = {
-			mappings = {
-				i = {
-					["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-					["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({
-						postfix = " --iglob ",
-					}),
-				},
-			},
-		}
-
-		options = vim.tbl_deep_extend("force", options, opts)
-		require("telescope").setup({
-			extensions = {
-				live_grep_args = options,
-			},
-		})
-	end,
-}
+-- M[#M + 1] = {
+-- 	"nvim-telescope/telescope-live-grep-args.nvim",
+-- 	dependencies = {
+-- 		"nvim-telescope/telescope.nvim",
+-- 	},
+-- 	keys = {
+-- 		{
+-- 			"<leader>st",
+-- 			'<cmd>lua require"telescope".extensions.live_grep_args.live_grep_args{}<cr>',
+-- 			desc = "Text (args)",
+-- 		},
+-- 	},
+-- 	config = function(_, opts)
+-- 		local options = {
+-- 			mappings = {
+-- 				i = {
+-- 					["<c-g>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+-- 					["<c-i>"] = require("telescope-live-grep-args.actions").quote_prompt({
+-- 						postfix = " --iglob ",
+-- 					}),
+-- 				},
+-- 			},
+-- 		}
+--
+-- 		options = vim.tbl_deep_extend("force", options, opts)
+-- 		require("telescope").setup({
+-- 			extensions = {
+-- 				live_grep_args = options,
+-- 			},
+-- 		})
+-- 	end,
+-- }
 
 -- easily jump to any location and enhanced f/t motions for leap
 M[#M + 1] = {
