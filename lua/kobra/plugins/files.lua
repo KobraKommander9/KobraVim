@@ -78,9 +78,9 @@ M[#M + 1] = {
 	keys = {
 		{
 			"<leader>ff",
-			function(...)
+			function()
 				if not MiniFiles.close() then
-					MiniFiles.open(...)
+					MiniFiles.open(vim.fn.expand("%:p:h"))
 				end
 			end,
 			desc = "View Files",
