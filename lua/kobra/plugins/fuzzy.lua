@@ -9,6 +9,7 @@ M[#M + 1] = {
 		{ "<leader>sf", "<cmd>Pick files<cr>", desc = "Search Files" },
 		{ "<leader>sg", "<cmd>Pick grep_live<cr>", desc = "Live Grep" },
 		{ "<leader>sG", "<cmd>Pick grep<cr>", desc = "Grep" },
+		{ "<leader>s?", "<cmd>Pick help<cr>", desc = "Help" },
 	},
 	config = function(_, opts)
 		local options = {}
@@ -24,6 +25,8 @@ M[#M + 1] = {
 				scroll_down = "<C-d>",
 				scroll_right = "<C-i>",
 				scroll_up = "<C-u>",
+				toggle_info = "<S-Tab>",
+				toggle_preview = "<Tab>",
 			}
 		end
 
