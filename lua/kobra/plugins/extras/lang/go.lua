@@ -60,4 +60,17 @@ M[#M + 1] = {
 	end,
 }
 
+M[#M + 1] = {
+	"jose-elias-alvarez/null-ls.nvim",
+	opts = function(_, opts)
+		local options = {
+			sources = {
+				require("null-ls").builtins.diagnostics.revive,
+			},
+		}
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
+}
+
 return M
