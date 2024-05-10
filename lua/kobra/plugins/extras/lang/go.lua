@@ -17,9 +17,8 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-treesitter/nvim-treesitter",
 	opts = function(_, opts)
-		if type(opts.ensure_installed) == "table" then
-			vim.list_extend(opts.ensure_installed, { "go", "proto" })
-		end
+		opts.ensure_installed = opts.ensure_installed or {}
+		vim.list_extend(opts.ensure_installed, { "go", "proto" })
 	end,
 }
 
@@ -44,7 +43,7 @@ M[#M + 1] = {
 			},
 		}
 
-		require("kobra.util").on_attach(function(client, buffer)
+		KobraVim.on_attach(function(client, buffer)
 			if client.name == "gopls" then
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = vim.api.nvim_create_augroup("GoImport." .. buffer, { clear = true }),

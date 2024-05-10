@@ -41,9 +41,8 @@ M[#M + 1] = {
 	end,
 	init = function()
 		-- when noice is not enabled, install notify on VeryLazy
-		local util = require("kobra.util")
-		if not util.has("noice.nvim") then
-			util.on_very_lazy(function()
+		if not KobraVim.has("noice.nvim") then
+			KobraVim.on_very_lazy(function()
 				vim.notify = require("notify")
 			end)
 		end
@@ -222,7 +221,7 @@ M[#M + 1] = {
 	lazy = true,
 	init = function()
 		vim.g.navic_silence = true
-		require("kobra.util").on_attach(function(client, buffer)
+		KobraVim.on_attach(function(client, buffer)
 			if client.server_capabilities.documentSymbolProvider then
 				require("nvim-navic").attach(client, buffer)
 			end

@@ -1,5 +1,4 @@
 local layouts = require("kobra.core").layouts
-local util = require("kobra.util")
 
 local function map(mode, lhs, rhs, opts)
 	local keys = require("lazy.core.handler").handlers.keys
@@ -100,27 +99,27 @@ map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 map("n", "<leader>uf", require("kobra.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
 
 map("n", "<leader>us", function()
-	util.toggle("spell")
+	KobraVim.toggle("spell")
 end, { desc = "Toggle Spelling" })
 
 map("n", "<leader>uw", function()
-	util.toggle("wrap")
+	KobraVim.toggle("wrap")
 end, { desc = "Toggle Word Wrap" })
 
 map("n", "<leader>ul", function()
-	util.toggle("relativenumber", true)
-	util.toggle("number")
+	KobraVim.toggle("relativenumber", true)
+	KobraVim.toggle("number")
 end, { desc = "Toggle Line Numbers" })
 
-map("n", "<leader>ud", util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
+map("n", "<leader>ud", KobraVim.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 map("n", "<leader>uc", function()
-	util.toggle("conceallevel", false, { 0, conceallevel })
+	KobraVim.toggle("conceallevel", false, { 0, conceallevel })
 end, { desc = "Toggle Conceal" })
 
 map("n", "<leader>ua", function()
-	util.toggle("autochdir")
+	KobraVim.toggle("autochdir")
 end, { desc = "Toggle Autochdir" })
 
 -- highlights under cursor

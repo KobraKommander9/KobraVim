@@ -1,3 +1,5 @@
+_G.KobraVim = require("kobra.util")
+
 local M = {}
 
 M.lazy_version = ">=9.1.0"
@@ -202,7 +204,7 @@ M.did_init = false
 function M.init()
 	if not M.did_init then
 		M.did_init = true
-		require("kobra.util").lazy_notify()
+		KobraVim.lazy_notify()
 
 		require("kobra.core.commands").init()
 		require("kobra.core").load("options")

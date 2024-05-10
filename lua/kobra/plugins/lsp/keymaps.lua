@@ -47,7 +47,7 @@ function M.get()
 			},
 		}
 
-		if require("kobra.util").has("inc-rename.nvim") then
+		if KobraVim.has("inc-rename.nvim") then
 			M._keys[#M._keys + 1] = {
 				"<leader>cr",
 				function()
