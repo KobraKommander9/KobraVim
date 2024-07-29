@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup(opts)
-	_G.Core = Core
+	_G.Core = require("kobra.core")
 	Core.setup(opts)
 end
 
