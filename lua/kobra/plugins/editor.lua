@@ -58,14 +58,14 @@ M[#M + 1] = {
 				miniclue.gen_clues.z(),
 
 				-- move
-				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m" },
+				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
 				-- clues
 				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
@@ -85,15 +85,17 @@ M[#M + 1] = {
 	"echasnovski/mini.move",
 	event = "BufEnter",
 	opts = {
-		left = "<leader>mh",
-		right = "<leader>m" .. Keys.l,
-		down = "<leader>m" .. Keys.j,
-		up = "<leader>m" .. Keys.k,
+		mappings = {
+			left = "<leader>mh",
+			right = "<leader>m" .. Keys.l,
+			down = "<leader>m" .. Keys.j,
+			up = "<leader>m" .. Keys.k,
 
-		line_left = "<leader>mh",
-		line_right = "<leader>m" .. Keys.l,
-		line_down = "<leader>m" .. Keys.j,
-		line_up = "<leader>m" .. Keys.k,
+			line_left = "<leader>mh",
+			line_right = "<leader>m" .. Keys.l,
+			line_down = "<leader>m" .. Keys.j,
+			line_up = "<leader>m" .. Keys.k,
+		},
 	},
 }
 
