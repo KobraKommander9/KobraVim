@@ -14,7 +14,7 @@ M[#M + 1] = {
 	config = function(_, opts)
 		local options = {}
 
-		if Core.layouts.colemak then
+		if require("kobra.core").layouts.colemak then
 			options.mappings = {
 				choose_marked = "<C-m>",
 				delete_left = "<C-b>",

@@ -218,7 +218,7 @@ function M.init()
 		M.did_init = true
 		KobraVim.lazy_notify()
 
-		Core.load("options")
+		require("kobra.core").load("options")
 		local Plugin = require("lazy.core.plugin")
 		local add = Plugin.Spec.add
 		Plugin.Spec.add = function(self, plugin, ...)

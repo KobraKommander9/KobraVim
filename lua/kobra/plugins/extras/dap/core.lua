@@ -9,7 +9,7 @@ local pretty_ui = {
 	},
 	opts = function()
 		local e = "e"
-		if Core.layouts.colemak then
+		if require("kobra.core").layouts.colemak then
 			e = "l"
 		end
 
@@ -60,7 +60,7 @@ M[#M + 1] = {
 	},
 	keys = function()
 		local strokes = { j = "j", k = "k" }
-		if Core.layouts.colemak then
+		if require("kobra.core").layouts.colemak then
 			strokes = { j = "n", k = "e" }
 		end
 
@@ -85,7 +85,7 @@ M[#M + 1] = {
     }
 	end,
 	config = function()
-		local Config = Core
+		local Config = require("kobra.core")
 		vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
 		for name, sign in pairs(Config.icons.dap) do

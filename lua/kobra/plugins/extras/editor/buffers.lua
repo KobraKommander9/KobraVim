@@ -39,7 +39,7 @@ M[#M + 1] = {
 	opts = function(_, opts)
 		local options = {}
 
-		if Core.layout.colemak then
+		if require("kobra.core").layout.colemak then
 			options.keys = {
 				win_move_mode = {
 					n = "down",

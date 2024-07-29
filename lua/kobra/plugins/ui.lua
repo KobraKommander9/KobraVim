@@ -3,7 +3,7 @@ local M = {}
 M[#M + 1] = {
 	"xiyaowong/transparent.nvim",
 	lazy = false,
-	cond = Core.ui.background == "transparent",
+	cond = require("kobra.core").ui.background == "transparent",
 	opts = {
 		exclude_groups = {
 			"NotifyBackground",
@@ -33,7 +33,7 @@ M[#M + 1] = {
 			end,
 		}
 
-		if Core.ui.background == "transparent" then
+		if require("kobra.core").ui.background == "transparent" then
 			options.background_colour = "#000000"
 		end
 
@@ -293,7 +293,7 @@ M[#M + 1] = {
 			separator = " ",
 			highlight = true,
 			depth_limit = 5,
-			icons = Core.icons.kinds,
+			icons = require("kobra.core").icons.kinds,
 		}
 	end,
 }

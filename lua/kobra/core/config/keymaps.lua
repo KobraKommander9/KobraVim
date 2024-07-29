@@ -1,4 +1,4 @@
-local layouts = Core.layouts
+local layouts = require("kobra.core").layouts
 
 local function map(mode, lhs, rhs, opts)
 	local keys = require("lazy.core.handler").handlers.keys

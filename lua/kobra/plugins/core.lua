@@ -1,4 +1,4 @@
-Core.init()
+require("kobra.core").init()
 
 local M = {}
 
