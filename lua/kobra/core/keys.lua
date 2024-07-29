@@ -24,38 +24,35 @@ function M.setup(opts)
 
 	keys = vim.deepcopy(defaults)
 	if opts.colemak then
+		local key_opts = { silent = true, noremap = true }
+
 		keys.j = "n"
 		keys.k = "e"
 		keys.l = "i"
+		map("", "n", "j", key_opts)
+		map("", "e", "k", key_opts)
+		map("", "i", "l", key_opts)
 
 		keys.n = "j"
 		keys.e = "k"
 		keys.i = "l"
+		map("", "j", "n", key_opts)
+		map("", "k", "e", key_opts)
+		map("", "l", "i", key_opts)
 
 		keys.J = "N"
 		keys.K = "E"
 		keys.L = "I"
+		map("", "N", "J", key_opts)
+		map("", "E", "K", key_opts)
+		map("", "I", "L", key_opts)
 
 		keys.N = "J"
 		keys.E = "K"
 		keys.I = "L"
-
-		local key_opts = { silent = true, noremap = true }
-		map("", "n", keys.j, key_opts)
-		map("", "e", keys.k, key_opts)
-		map("", "i", keys.l, key_opts)
-
-		map("", "N", keys.J, key_opts)
-		map("", "E", keys.K, key_opts)
-		map("", "I", keys.L, key_opts)
-
-		map("", keys.j, "n", key_opts)
-		map("", keys.k, "e", key_opts)
-		map("", keys.l, "i", key_opts)
-
-		map("", keys.J, "N", key_opts)
-		map("", keys.K, "E", key_opts)
-		map("", keys.L, "I", key_opts)
+		map("", "J", "N", key_opts)
+		map("", "K", "E", key_opts)
+		map("", "L", "I", key_opts)
 	end
 end
 
