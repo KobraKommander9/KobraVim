@@ -1,27 +1,27 @@
 local M = {}
 
-local setupKeys = function()
-	local layouts = require("kobra.core").layouts
+local defaults = {
+	j = "j",
+	k = "k",
+	l = "l",
 
-	local keys = {
-		j = "j",
-		k = "k",
-		l = "l",
+	J = "J",
+	K = "K",
+	L = "L",
 
-		J = "J",
-		K = "K",
-		L = "L",
+	n = "n",
+	e = "e",
+	i = "i",
 
-		n = "n",
-		e = "e",
-		i = "i",
+	N = "N",
+	E = "E",
+	I = "I",
+}
 
-		N = "N",
-		E = "E",
-		I = "I",
-	}
-
-	if layouts.colemak then
+local keys
+function M.setup(opts)
+	keys = vim.deepcopy(defaults)
+	if opts.colemak then
 		keys.j = "n"
 		keys.k = "e"
 		keys.l = "i"
@@ -38,12 +38,15 @@ local setupKeys = function()
 		keys.E = "K"
 		keys.I = "L"
 	end
-
-	return keys
 end
 
 setmetatable(M, {
-	__index = setupKeys(),
+	__index = function(_, key)
+		if keys == nil then
+			return vim.deepcopy(defaults)[key]
+		end
+		return keys[key]
+	end,
 })
 
 return M

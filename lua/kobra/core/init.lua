@@ -145,6 +145,8 @@ function M.setup(opts)
 		error("Exiting")
 	end
 
+	require("kobra.core.keys").setup(options.layouts)
+
 	local loadDefaults = function()
 		for def in pairs(defaults.defaults) do
 			M.load(def)
