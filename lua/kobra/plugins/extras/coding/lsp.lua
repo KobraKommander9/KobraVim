@@ -45,7 +45,7 @@ M[#M + 1] = {
 					},
 				}
 
-				if require("kobra.core").layouts.colemak then
+				if Core.layouts.colemak then
 					config.use_default_mappings = false
 					config.mappings = {
 						["<esc>"] = actions.close,

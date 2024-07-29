@@ -11,7 +11,7 @@ M[#M + 1] = {
 	keys = function()
 		local keys = { j = "j", k = "k" }
 
-		if require("kobra.core").layouts.colemak then
+		if Core.layouts.colemak then
 			keys = { j = "n", k = "e" }
 		end
 
@@ -38,7 +38,7 @@ M[#M + 1] = {
 			k = "k",
 		}
 
-		if require("kobra.core").layouts.colemak then
+		if Core.layouts.colemak then
 			keys = {
 				j = "n",
 				k = "e",
@@ -48,11 +48,11 @@ M[#M + 1] = {
 		local options = {
 			trail_mark_in_text_highlights_enabled = false,
 			trail_mark_symbol_line_indicators_enabled = true,
-			mark_symbol = require("kobra.core").icons.marks.Flag,
-			newest_mark_symbol = require("kobra.core").icons.marks.Newest,
-			cursor_mark_symbol = require("kobra.core").icons.marks.Cursor,
-			next_mark_symbol = require("kobra.core").icons.marks.Next,
-			previous_mark_symbol = require("kobra.core").icons.marks.Previous,
+			mark_symbol = Core.icons.marks.Flag,
+			newest_mark_symbol = Core.icons.marks.Newest,
+			cursor_mark_symbol = Core.icons.marks.Cursor,
+			next_mark_symbol = Core.icons.marks.Next,
+			previous_mark_symbol = Core.icons.marks.Previous,
 			mappings = {
 				nv = {
 					motions = {

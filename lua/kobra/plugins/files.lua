@@ -91,7 +91,7 @@ M[#M + 1] = {
 	config = function(_, opts)
 		local options = {}
 
-		if require("kobra.core").layouts.colemak then
+		if Core.layouts.colemak then
 			options.mappings = {
 				go_in = "i",
 				go_in_plus = "I",

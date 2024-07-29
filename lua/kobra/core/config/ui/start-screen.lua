@@ -131,7 +131,7 @@ end
 local header = {
   type = 'text',
   val = function()
-    local h = require("kobra.core").start_screen.header
+    local h = Core.start_screen.header
     if h ~= false then
       return h
     end
@@ -181,11 +181,11 @@ local get_buttons = function(buttons)
 end
 
 local top_buttons = function()
-  return get_buttons(require("kobra.core").start_screen.buttons)
+  return get_buttons(Core.start_screen.buttons)
 end
 
 local bottom_buttons = function()
-  return get_buttons(require("kobra.core").start_screen.bottom_buttons)
+  return get_buttons(Core.start_screen.bottom_buttons)
 end
 
 local function folder_groups()
