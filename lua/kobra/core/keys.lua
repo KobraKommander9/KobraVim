@@ -41,21 +41,21 @@ function M.setup(opts)
 		keys.I = "L"
 
 		local key_opts = { silent = true, noremap = true }
+		map("", "n", keys.j, key_opts)
+		map("", "e", keys.k, key_opts)
+		map("", "i", keys.l, key_opts)
+
+		map("", "N", keys.J, key_opts)
+		map("", "E", keys.K, key_opts)
+		map("", "I", keys.L, key_opts)
+
 		map("", keys.j, "n", key_opts)
 		map("", keys.k, "e", key_opts)
 		map("", keys.l, "i", key_opts)
 
-		map("", keys.n, "j", key_opts)
-		map("", keys.e, "k", key_opts)
-		map("", keys.i, "l", key_opts)
-
 		map("", keys.J, "N", key_opts)
 		map("", keys.K, "E", key_opts)
 		map("", keys.L, "I", key_opts)
-
-		map("", keys.N, "J", key_opts)
-		map("", keys.E, "K", key_opts)
-		map("", keys.I, "L", key_opts)
 	end
 end
 
