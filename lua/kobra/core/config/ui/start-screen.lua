@@ -83,7 +83,7 @@ end
 local get_sessions = function()
   local startify = require('alpha.themes.startify')
   local query = require('possession.query')
-  return query.alpha_workspace_layout(require('kobra.core').start_screen.workspaces, startify.button, {
+  return query.alpha_workspace_layout(Core.start_screen.workspaces, startify.button, {
     others_name = 'Other Sessions',
   })
 end
@@ -191,7 +191,7 @@ end
 local function folder_groups()
   local groups = {}
 
-  for _, folder in ipairs(require('kobra.core').start_screen.folders) do
+  for _, folder in ipairs(Core.start_screen.folders) do
     if #folder == 2 and isdir(folder[2]) then
       table.insert(groups, {
         type = 'group',
