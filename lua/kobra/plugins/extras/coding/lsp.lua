@@ -83,16 +83,6 @@ M[#M + 1] = {
 
 						N = actions.move_down,
 						E = actions.move_up,
-
-						t = actions.telescope({
-							layout_config = {
-								height = 0.6,
-								width = 0.6,
-								prompt_position = "top",
-								preview_width = 0.5,
-							},
-							layout_strategy = "horizontal",
-						}),
 					}
 				end
 

@@ -164,7 +164,6 @@ M[#M + 1] = {
 -- todo comments
 M[#M + 1] = {
 	"folke/todo-comments.nvim",
-	cmd = { "TodoTelescope" },
 	event = { "BufReadPost", "BufNewFile" },
 	config = true,
 	keys = {
@@ -182,7 +181,6 @@ M[#M + 1] = {
 			end,
 			desc = "Previous todo comment",
 		},
-		{ "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme" },
 	},
 }
 

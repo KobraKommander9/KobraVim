@@ -72,7 +72,7 @@ M.get_root = function()
 
 	local roots = {}
 	if path then
-		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+		for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
 			local workspace = client.config.workspace_folders
 			local paths = workspace
 					and vim.tbl_map(function(ws)
@@ -102,24 +102,6 @@ M.get_root = function()
 	end
 
 	return root
-end
-
-M.telescope = function(builtin, opts)
-	local params = { builtin = builtin, opts = opts }
-	return function()
-		builtin = params.builtin
-		opts = params.opts
-		opts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, opts or {})
-		if builtin == "files" then
-			if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
-				opts.show_untracked = true
-				builtin = "git_files"
-			else
-				builtin = "find_files"
-			end
-		end
-		require("telescope.builtin")[builtin](opts)
-	end
 end
 
 M.opts = function(name)
@@ -178,7 +160,7 @@ M.toggle_diagnostics = function()
 		vim.diagnostic.enable()
 		Util.info("Enabled diagnostics", { title = "Diagnostics" })
 	else
-		vim.diagnostic.disable()
+		vim.diagnostic.enable(false)
 		Util.warn("Disabled diagnostics", { title = "Diagnostics" })
 	end
 end

@@ -1,4 +1,4 @@
-local layouts = require("kobra.core").layouts
+local layouts = Core.layouts
 
 local function map(mode, lhs, rhs, opts)
 	local keys = require("lazy.core.handler").handlers.keys
@@ -34,10 +34,10 @@ if layouts.colemak then
 	map("", "n", "j", opts)
 	map("", "e", "k", opts)
 	map("", "i", "l", opts)
+
 	map("", "j", "n", opts)
 	map("", "k", "e", opts)
 	map("", "l", "i", opts)
-	map("", "<C-l>", "<C-i>", opts)
 end
 
 -- better paste

@@ -50,14 +50,6 @@ M[#M + 1] = {
 			desc = "Restore Session",
 		},
 		{ "<leader>ql", ":PossessionLoad<cr>", desc = "Restore Last Session" },
-		{
-			"<leader>qs",
-			function()
-				require("telescope").load_extension("possession")
-				require("telescope").extensions.possession.list()
-			end,
-			desc = "List Sessions",
-		},
 		{ "<leader>qw", ":PossessionSave<cr>", desc = "Save Current Session" },
 		{
 			"<leader>qW",
