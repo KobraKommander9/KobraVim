@@ -1,102 +1,5 @@
 local M = {}
 
-local Keys = require("kobra.core.keys")
-
--- next key clues
-M[#M + 1] = {
-	"echasnovski/mini.clue",
-	event = "VeryLazy",
-	opts = function(_, opts)
-		local miniclue = require("mini.clue")
-
-		local options = {
-			triggers = {
-				-- Leader triggers
-				{ mode = "n", keys = "<Leader>" },
-				{ mode = "x", keys = "<Leader>" },
-
-				-- Built-in completion
-				{ mode = "i", keys = "<C-x>" },
-
-				-- g key
-				{ mode = "n", keys = "g" },
-				{ mode = "x", keys = "g" },
-
-				-- marks
-				{ mode = "n", keys = "'" },
-				{ mode = "n", keys = "`" },
-				{ mode = "x", keys = "'" },
-				{ mode = "x", keys = "`" },
-
-				-- registers
-				{ mode = "n", keys = '"' },
-				{ mode = "x", keys = '"' },
-				{ mode = "i", keys = "<C-r>" },
-				{ mode = "c", keys = "<C-r>" },
-
-				-- window commands
-				{ mode = "n", keys = "<C-w>" },
-
-				-- `z` key
-				{ mode = "n", keys = "z" },
-				{ mode = "x", keys = "z" },
-
-				-- move
-				{ mode = "n", keys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" },
-			},
-			clues = {
-				miniclue.gen_clues.builtin_completion(),
-				miniclue.gen_clues.g(),
-				miniclue.gen_clues.marks(),
-				miniclue.gen_clues.registers(),
-				miniclue.gen_clues.windows({
-					submode_move = true,
-					submode_navigate = true,
-					submode_resize = true,
-				}),
-				miniclue.gen_clues.z(),
-
-				-- move
-				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m" },
-
-				-- clues
-				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
-				{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
-				{ mode = "n", keys = "<leader>gh", desc = "+Git Hunks" },
-				{ mode = "n", keys = "<leader>u", desc = "+UI" },
-				{ mode = "n", keys = "<leader>q", desc = "+Quit" },
-			},
-		}
-
-		return vim.tbl_extend("force", options, opts)
-	end,
-}
-
--- move text
-M[#M + 1] = {
-	"echasnovski/mini.move",
-	event = "VeryLazy",
-	opts = {
-		left = "<leader>mh",
-		right = "<leader>m" .. Keys.l,
-		down = "<leader>m" .. Keys.j,
-		up = "<leader>m" .. Keys.k,
-
-		line_left = "<leader>mh",
-		line_right = "<leader>m" .. Keys.l,
-		line_down = "<leader>m" .. Keys.j,
-		line_up = "<leader>m" .. Keys.k,
-	},
-}
-
 -- better escape
 M[#M + 1] = {
 	"max397574/better-escape.nvim",
@@ -109,7 +12,6 @@ M[#M + 1] = {
 -- global search and replace
 M[#M + 1] = {
 	"nvim-pack/nvim-spectre",
-	cmd = { "Spectre" },
 	keys = {
 		{
 			"<leader>sr",
@@ -151,6 +53,40 @@ M[#M + 1] = {
 		leap.add_default_mappings(true)
 		vim.keymap.del({ "x", "o" }, "x")
 		vim.keymap.del({ "x", "o" }, "X")
+	end,
+}
+
+-- which key
+M[#M + 1] = {
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+	opts = {
+		plugins = { spelling = true },
+		defaults = {
+			mode = { "n", "v" },
+			["g"] = { name = "+goto" },
+			["gz"] = { name = "+surround" },
+			["]"] = { name = "+next" },
+			["["] = { name = "+prev" },
+			["<leader>a"] = { name = "+tabs" },
+			["<leader>b"] = { name = "+buffer" },
+			["<leader>c"] = { name = "+code" },
+			["<leader>d"] = { name = "+diagnostics" },
+			["<leader>f"] = { name = "+file/find" },
+			["<leader>g"] = { name = "+git" },
+			["<leader>gh"] = { name = "+hunks" },
+			["<leader>l"] = { name = "+lsp" },
+			["<leader>q"] = { name = "+quit/session" },
+			["<leader>s"] = { name = "+search" },
+			["<leader>u"] = { name = "+ui" },
+			["<leader>w"] = { name = "+windows" },
+			["<leader>x"] = { name = "+quickfix" },
+		},
+	},
+	config = function(_, opts)
+		local wk = require("which-key")
+		wk.setup(opts)
+		wk.register(opts.defaults)
 	end,
 }
 
@@ -222,6 +158,56 @@ M[#M + 1] = {
 	keys = {
 		{ "]]", desc = "Next Reference" },
 		{ "[[", desc = "Prev Reference" },
+	},
+}
+
+-- todo comments
+M[#M + 1] = {
+	"folke/todo-comments.nvim",
+	event = { "BufReadPost", "BufNewFile" },
+	config = true,
+	keys = {
+		{
+			"]t",
+			function()
+				require("todo-comments").jump_next()
+			end,
+			desc = "Next todo comment",
+		},
+		{
+			"[t",
+			function()
+				require("todo-comments").jump_prev()
+			end,
+			desc = "Previous todo comment",
+		},
+	},
+}
+
+-- file navigation
+M[#M + 1] = {
+	"cbochs/grapple.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	event = "BufReadPost",
+	cmd = {
+		"Grapple",
+		"GrappleCycle",
+		"GrapplePopup",
+		"GrappleReset",
+		"GrappleSelect",
+		"GrappleTag",
+		"GrappleToggle",
+		"GrappleUntag",
+	},
+	keys = {
+		{ "<leader>n", '<cmd>lua require"grapple".cycle_forward()<cr>', desc = "Cycle Forward" },
+		{ "<leader>e", '<cmd>lua require"grapple".cycle_backward()<cr>', desc = "Cycle Backward" },
+		{ "<leader>i", "<cmd>GrapplePopup tags<cr>", desc = "View Tags" },
+		{ "<leader>o", "<cmd>GrappleReset<cr>", desc = "Reset Tags" },
+		{ "<leader>h", '<cmd>lua require"grapple".toggle{}<cr>', desc = "Tag" },
+	},
+	opts = {
+		scope = "git_branch",
 	},
 }
 

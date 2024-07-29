@@ -1,4 +1,4 @@
-local layouts = require("kobra.core").layouts
+local Keys = require("kobra.core.keys")
 
 local function map(mode, lhs, rhs, opts)
 	local keys = require("lazy.core.handler").handlers.keys
@@ -11,55 +11,45 @@ local function map(mode, lhs, rhs, opts)
 	end
 end
 
-local keys = {
-	j = "j",
-	k = "k",
-	l = "l",
-	n = "n",
-	N = "N",
-	e = "e",
-	i = "i",
-}
+local opts = { silent = true, noremap = true }
+map("", "j", Keys.j, opts)
+map("", "k", Keys.k, opts)
+map("", "l", Keys.l, opts)
 
-if layouts.colemak then
-	keys.j = "n"
-	keys.k = "e"
-	keys.l = "i"
-	keys.n = "j"
-	keys.N = "J"
-	keys.e = "k"
-	keys.i = "l"
+map("", "J", Keys.J, opts)
+map("", "K", Keys.K, opts)
+map("", "L", Keys.L, opts)
 
-	local opts = { silent = true, noremap = true }
-	map("", "n", "j", opts)
-	map("", "e", "k", opts)
-	map("", "i", "l", opts)
+map("", "n", Keys.n, opts)
+map("", "e", Keys.e, opts)
+map("", "i", Keys.i, opts)
 
-	map("", "j", "n", opts)
-	map("", "k", "e", opts)
-	map("", "l", "i", opts)
-end
+map("", "N", Keys.N, opts)
+map("", "E", Keys.E, opts)
+map("", "I", Keys.I, opts)
 
 -- better paste
 map("v", "p", '"_dP', { silent = true })
 
 -- better up/down
-map("n", keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
-map("n", keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
+map("n", Keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
+map("n", Keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
 
 -- move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-" .. keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-" .. keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-" .. keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
+map("n", "<C-" .. Keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-" .. Keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-" .. Keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
 
 -- move lines
-map("n", "<A-" .. keys.j .. ">", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<A-" .. keys.k .. ">", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<A-" .. keys.j .. ">", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-" .. keys.k .. ">", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<A-" .. keys.j .. ">", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<A-" .. keys.k .. ">", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+--[[
+map("n", "<A-" .. Keys.j .. ">", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-" .. Keys.k .. ">", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<A-" .. Keys.j .. ">", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-" .. Keys.k .. ">", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<A-" .. Keys.j .. ">", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-" .. Keys.k .. ">", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+--]]
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -76,15 +66,17 @@ map(
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map({ "n", "x", "o" }, keys.n, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map({ "n", "x", "o" }, keys.N, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map({ "n", "x", "o" }, Keys.n, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map({ "n", "x", "o" }, Keys.N, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr>", { desc = "Save file" })
 
 -- better indenting
+--[[
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+--]]
 
 -- lazy
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
@@ -132,10 +124,12 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>q!", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- windows
+--[[
 map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>wb", "<C-W>s", { desc = "Split window below" })
 map("n", "<leader>wr", "<C-W>v", { desc = "Split window right" })
+--]]
 
 -- tabs
 map("n", "<leader>al", "<cmd>tablast<cr>", { desc = "Last Tab" })
