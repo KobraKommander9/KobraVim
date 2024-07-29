@@ -5,13 +5,9 @@ local M = {}
 M.lazy_version = ">=9.1.0"
 
 local defaults = {
-	colorscheme = "dracula",
-	ui = {
-		background = "transparent",
-	},
 	defaults = {
 		autocmds = true,
-		commans = true,
+		commands = true,
 		keymaps = true,
 	},
 	paths = {
@@ -26,93 +22,106 @@ local defaults = {
 	lsp = {
 		logging = "off",
 	},
-	start_screen = {
-		header = require("kobra.core.config.ui.start-screen").kobra,
-		buttons = {
-			["f"] = "new_file",
-			["df"] = { "Dot Files", "~/dot-files" },
-		},
-		bottom_buttons = {
-			["q"] = "quit",
-		},
-		folders = {
-			{ "Projects", "~/Projects" },
-		},
-		workspaces = {
-			{
-				"Project Sessions",
-				"p",
-				"~/Projects",
+	ui = {
+		background = "transparent",
+		colorscheme = "dracula",
+		start_screen = {
+			header = {
+				[[ █████  ████     ████             █████                              ]],
+				[[ █████ ████      █████              █████      ██                     ]],
+				[[  ████████       █████               █████                             ]],
+				[[  ███████  ███ █████   ██ █ ██ ███████ ███   ███████████   ]],
+				[[  █████████ ███████████ █████████████████ █████ ██████████████   ]],
+				[[ █████████ ████ ██ ██████  ███ ███████ █████ █████ ████ █████   ]],
+				[[ ████ ████ ████ ██ ████ ██  █████████ █████ █████ ████ █████  ]],
+				[[ ██████  ██████████████████ ██████████████ █████ █████ ████ ██████ ]],
 			},
-			{
-				"Dotfile Sessions",
-				"d",
-				"~/dotfiles",
+			buttons = {
+				["f"] = "new_file",
+				["df"] = { "Dot Files", "~/dot-files" },
+			},
+			bottom_buttons = {
+				["q"] = "quit",
+			},
+			folders = {
+				{ "Projects", "~/Projects" },
+			},
+			workspaces = {
+				{
+					"Project Sessions",
+					"p",
+					"~/Projects",
+				},
+				{
+					"Dotfile Sessions",
+					"d",
+					"~/dotfiles",
+				},
 			},
 		},
-	},
-	icons = {
-		diagnostics = {
-			Error = " ",
-			Warn = " ",
-			Hint = " ",
-			Info = " ",
-		},
-		git = {
-			added = " ",
-			modified = "󰏫 ",
-			removed = " ",
-		},
-		kinds = {
-			Array = " ",
-			Boolean = " ",
-			Class = " ",
-			Color = " ",
-			Constant = " ",
-			Constructor = " ",
-			Copilot = " ",
-			Enum = " ",
-			EnumMember = " ",
-			Event = " ",
-			Field = " ",
-			File = " ",
-			Folder = " ",
-			Function = " ",
-			Interface = " ",
-			Key = " ",
-			Keyword = " ",
-			Method = " ",
-			Module = " ",
-			Namespace = " ",
-			Null = " ",
-			Number = " ",
-			Object = " ",
-			Operator = " ",
-			Package = " ",
-			Property = " ",
-			Reference = " ",
-			Snippet = " ",
-			String = " ",
-			Struct = " ",
-			Text = " ",
-			TypeParameter = " ",
-			Unit = " ",
-			Value = " ",
-			Variable = " ",
-		},
-		marks = {
-			Flag = "󰈿",
-			Newest = "",
-			Cursor = "󰇀",
-			Next = "",
-			Previous = "",
-		},
-		dap = {
-			Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-			Breakpoint = " ",
-			BreakpointCondition = " ",
-			BreakpointRejected = { " ", "DiagnosticError" },
-			LogPoint = ".>",
+		icons = {
+			diagnostics = {
+				Error = " ",
+				Warn = " ",
+				Hint = " ",
+				Info = " ",
+			},
+			git = {
+				added = " ",
+				modified = "󰏫 ",
+				removed = " ",
+			},
+			kinds = {
+				Array = " ",
+				Boolean = " ",
+				Class = " ",
+				Color = " ",
+				Constant = " ",
+				Constructor = " ",
+				Copilot = " ",
+				Enum = " ",
+				EnumMember = " ",
+				Event = " ",
+				Field = " ",
+				File = " ",
+				Folder = " ",
+				Function = " ",
+				Interface = " ",
+				Key = " ",
+				Keyword = " ",
+				Method = " ",
+				Module = " ",
+				Namespace = " ",
+				Null = " ",
+				Number = " ",
+				Object = " ",
+				Operator = " ",
+				Package = " ",
+				Property = " ",
+				Reference = " ",
+				Snippet = " ",
+				String = " ",
+				Struct = " ",
+				Text = " ",
+				TypeParameter = " ",
+				Unit = " ",
+				Value = " ",
+				Variable = " ",
+			},
+			marks = {
+				Flag = "󰈿",
+				Newest = "",
+				Cursor = "󰇀",
+				Next = "",
+				Previous = "",
+			},
+			dap = {
+				Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+				Breakpoint = " ",
+				BreakpointCondition = " ",
+				BreakpointRejected = { " ", "DiagnosticError" },
+				LogPoint = ".>",
+			},
 		},
 	},
 }
@@ -164,7 +173,7 @@ function M.setup(opts)
 		msg = "Could not load colorscheme",
 		on_error = function(msg)
 			require("lazy.core.util").error(msg)
-			vim.cmd.colorscheme(defaults.colorscheme)
+			vim.cmd.colorscheme(defaults.ui.colorscheme)
 		end,
 	})
 
