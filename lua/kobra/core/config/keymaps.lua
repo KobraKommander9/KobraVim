@@ -1,5 +1,5 @@
 local Keys = require("kobra.core.keys")
-local Util = require("kobra.core.util")
+local Util = require("kobra.util")
 
 -- better paste
 Util.keymap("v", "p", '"_dP', { silent = true })
