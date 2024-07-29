@@ -59,13 +59,21 @@ M[#M + 1] = {
 
 				-- move
 				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "n", keys = "<leader>mi", postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "n", keys = "<leader>mn", postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "n", keys = "<leader>me", postkeys = "<leader>m", desc = "Move up" },
 				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "x", keys = "<leader>mi", postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "x", keys = "<leader>mn", postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "x", keys = "<leader>me", postkeys = "<leader>m", desc = "Move up" },
+				-- { mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				-- { mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				-- { mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				-- { mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				-- { mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				-- { mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				-- { mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				-- { mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
 				-- clues
 				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
