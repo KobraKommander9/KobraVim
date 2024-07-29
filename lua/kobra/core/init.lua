@@ -11,6 +11,7 @@ local defaults = {
 	},
 	defaults = {
 		autocmds = true,
+		commans = true,
 		keymaps = true,
 	},
 	paths = {
@@ -142,12 +143,14 @@ function M.setup(opts)
 			pattern = "VeryLazy",
 			callback = function()
 				M.load("autocmds")
+				M.load("commands")
 				M.load("keymaps")
 			end,
 		})
 	else
 		-- load them now so they affect the opened buffers
 		M.load("autocmds")
+		M.load("commands")
 		M.load("keymaps")
 	end
 
@@ -206,7 +209,6 @@ function M.init()
 		M.did_init = true
 		KobraVim.lazy_notify()
 
-		require("kobra.core.commands").init()
 		require("kobra.core").load("options")
 		local Plugin = require("lazy.core.plugin")
 		local add = Plugin.Spec.add
