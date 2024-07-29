@@ -67,7 +67,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nanozuki/tabby.nvim",
 	event = "VeryLazy",
-	config = require("kobra.config.ui.tabline").setup,
+	config = require("kobra.core.config.ui.tabline").setup,
 }
 
 M[#M + 1] = {
@@ -75,9 +75,9 @@ M[#M + 1] = {
 	event = "VeryLazy",
 	config = function()
 		require("heirline").setup({
-			statusline = require("kobra.config.ui.lines.statusline").statusline(),
-			winbar = require("kobra.config.ui.lines.winbar").winbar(),
-			-- tabline = require('kobra.config.ui.lines.tabline').tabline(),
+			statusline = require("kobra.core.config.ui.lines.statusline").statusline(),
+			winbar = require("kobra.core.config.ui.lines.winbar").winbar(),
+			-- tabline = require('kobra.core.config.ui.lines.tabline').tabline(),
 			opts = {
 				disable_winbar_cb = function(args)
 					return require("heirline.conditions").buffer_matches({
@@ -185,7 +185,7 @@ M[#M + 1] = {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
 	config = function(_, opts)
-		local options = vim.tbl_deep_extend("force", require("kobra.config.ui.start-screen").config, opts)
+		local options = vim.tbl_deep_extend("force", require("kobra.core.config.ui.start-screen").config, opts)
 
 		-- close Lazy and re-open when the dashboard is ready
 		if vim.o.filetype == "lazy" then
@@ -205,7 +205,7 @@ M[#M + 1] = {
 			callback = function()
 				local stats = require("lazy").stats()
 				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-				require("kobra.config.ui.start-screen").section.footer.val = "⚡ Neovim loaded "
+				require("kobra.core.config.ui.start-screen").section.footer.val = "⚡ Neovim loaded "
 					.. stats.count
 					.. " plugins in "
 					.. ms

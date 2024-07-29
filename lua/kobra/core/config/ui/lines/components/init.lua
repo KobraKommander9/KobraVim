@@ -1,6 +1,6 @@
 local components = {}
 
-local utils = require("kobra.config.ui.lines.components.utils")
+local utils = require("kobra.core.config.ui.lines.components.utils")
 local conditions = require("heirline.conditions")
 
 local align = { provider = "%=", hl = "UserSL" }
@@ -51,12 +51,12 @@ components.parent = function()
 end
 
 components.statusline = function()
-	local vi_mode = require("kobra.config.ui.lines.components.vi_mode")
-	local git = require("kobra.config.ui.lines.components.git")
-	local grapple = require("kobra.config.ui.lines.components.grapple")
-	local file = require("kobra.config.ui.lines.components.file")
-	local lsp = require("kobra.config.ui.lines.components.lsp")
-	local ruler = require("kobra.config.ui.lines.components.ruler")
+	local vi_mode = require("kobra.core.config.ui.lines.components.vi_mode")
+	local git = require("kobra.core.config.ui.lines.components.git")
+	local grapple = require("kobra.core.config.ui.lines.components.grapple")
+	local file = require("kobra.core.config.ui.lines.components.file")
+	local lsp = require("kobra.core.config.ui.lines.components.lsp")
+	local ruler = require("kobra.core.config.ui.lines.components.ruler")
 
 	return {
 		utils.surround_mode({ "", "" }, vi_mode),
@@ -70,11 +70,11 @@ components.statusline = function()
 end
 
 components.winbar = function()
-	return require("kobra.config.ui.lines.components.navic")
+	return require("kobra.core.config.ui.lines.components.navic")
 end
 
 components.tabline = function()
-	return require("kobra.config.ui.lines.components.tab")
+	return require("kobra.core.config.ui.lines.components.tab")
 end
 
 return components

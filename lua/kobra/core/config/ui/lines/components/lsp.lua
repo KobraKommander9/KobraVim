@@ -1,4 +1,4 @@
-local utils = require("kobra.config.ui.lines.components.utils")
+local utils = require("kobra.core.config.ui.lines.components.utils")
 local conditions = require("heirline.conditions")
 
 local get_diag = function(icon, str)

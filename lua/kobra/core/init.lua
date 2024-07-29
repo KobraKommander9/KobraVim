@@ -5,7 +5,7 @@ local M = {}
 M.lazy_version = ">=9.1.0"
 
 local defaults = {
-	colorscheme = "carbonfox",
+	colorscheme = "dracula",
 	ui = {
 		background = "transparent",
 	},
@@ -27,7 +27,7 @@ local defaults = {
 		logging = "off",
 	},
 	start_screen = {
-		header = require("kobra.config.ui.start-screen").kobra,
+		header = require("kobra.core.config.ui.start-screen").kobra,
 		buttons = {
 			["f"] = "new_file",
 			["df"] = { "Dot Files", "~/dot-files" },
@@ -136,22 +136,22 @@ function M.setup(opts)
 		error("Exiting")
 	end
 
+	local loadDefaults = function()
+		for _, def in ipairs(defaults.defaults) do
+			M.load(def)
+		end
+	end
+
 	if vim.fn.argc(-1) == 0 then
 		-- autocmds and keymaps can wait to load
 		vim.api.nvim_create_autocmd("User", {
 			group = vim.api.nvim_create_augroup("KobraVim", { clear = true }),
 			pattern = "VeryLazy",
-			callback = function()
-				M.load("autocmds")
-				M.load("commands")
-				M.load("keymaps")
-			end,
+			callback = loadDefaults,
 		})
 	else
 		-- load them now so they affect the opened buffers
-		M.load("autocmds")
-		M.load("commands")
-		M.load("keymaps")
+		loadDefaults()
 	end
 
 	require("lazy.core.util").try(function()
@@ -164,7 +164,7 @@ function M.setup(opts)
 		msg = "Could not load colorscheme",
 		on_error = function(msg)
 			require("lazy.core.util").error(msg)
-			vim.cmd.colorscheme("carbonfox")
+			vim.cmd.colorscheme(defaults.colorscheme)
 		end,
 	})
 
