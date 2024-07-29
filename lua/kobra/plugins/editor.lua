@@ -1,5 +1,6 @@
 local M = {}
 
+local layouts = require("kobra.core").layouts
 local Keys = require("kobra.core.keys")
 
 -- next key clues
@@ -101,9 +102,45 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"max397574/better-escape.nvim",
 	event = "InsertEnter",
-	opts = {
-		mapping = { "jk", "qn" },
-	},
+	opts = function(_, opts)
+		local options = {
+			default_mappings = true,
+		}
+
+		local colemak = {
+			i = {
+				q = {
+					n = "<Esc>",
+				},
+			},
+			c = {
+				q = {
+					n = "<Esc>",
+				},
+			},
+			t = {
+				q = {
+					n = "<Esc>",
+				},
+			},
+			v = {
+				q = {
+					n = "<Esc>",
+				},
+			},
+			s = {
+				q = {
+					n = "<Esc>",
+				},
+			},
+		}
+
+		if layouts.colemak then
+			options = vim.tbl_deep_extend("force", options, colemak)
+		end
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
 }
 
 -- global search and replace
