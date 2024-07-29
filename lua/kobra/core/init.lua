@@ -146,7 +146,7 @@ function M.setup(opts)
 	end
 
 	local loadDefaults = function()
-		for _, def in ipairs(defaults.defaults) do
+		for def in pairs(defaults.defaults) do
 			M.load(def)
 		end
 	end

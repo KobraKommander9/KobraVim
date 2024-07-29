@@ -121,7 +121,7 @@ end
 
 -- quit
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
-map("n", "<leader>q!", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- windows
 --[[

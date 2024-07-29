@@ -83,7 +83,7 @@ M[#M + 1] = {
 -- move text
 M[#M + 1] = {
 	"echasnovski/mini.move",
-	event = "VeryLazy",
+	event = "BufEnter",
 	opts = {
 		left = "<leader>mh",
 		right = "<leader>m" .. Keys.l,
