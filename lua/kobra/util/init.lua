@@ -4,6 +4,17 @@ local Util = require("lazy.core.util")
 
 M.root_patterns = { ".git", "lua" }
 
+function M.keymap(mode, lhs, rhs, opts)
+	local keys = require("lazy.core.handler").handlers.keys
+
+	-- do not create keymap if a lazy keys handler exists
+	if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+		opts = opts or {}
+		opts.silent = opts.silent ~= false
+		vim.keymap.set(mode, lhs, rhs, opts)
+	end
+end
+
 function M.on_attach(on_attach)
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)
