@@ -15,7 +15,7 @@ local defaults = {
 
 local keys
 function M.setup(opts)
-	local map = require("kobra.util").keymap
+	local map = vim.keymap.set
 
 	keys = vim.deepcopy(defaults)
 	if opts.colemak then
