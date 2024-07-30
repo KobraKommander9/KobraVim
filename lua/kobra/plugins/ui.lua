@@ -9,17 +9,34 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.notify",
-	opts = {
-		lsp_progress = {
-			enable = false,
+	"rcarriga/nvim-notify",
+	keys = {
+		{
+			"<leader>un",
+			function()
+				require("notify").dismiss({ silent = true, pending = true })
+			end,
+			desc = "Dismiss all notifications",
 		},
 	},
+	opts = function(_, opts)
+		local options = {
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
+		}
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
 	init = function()
 		-- when noice is not enabled, install notify on VeryLazy
 		if not KobraVim.has("noice.nvim") then
 			KobraVim.on_very_lazy(function()
-				vim.notify = require("mini.notify").make_notify()
+				vim.notify = require("notify")
 			end)
 		end
 	end,
