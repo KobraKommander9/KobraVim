@@ -18,10 +18,10 @@ end
 function M.keymap(mode, lhs, rhs, opts)
 	M.lazymap(mode, lhs, rhs, opts)
 
-	local ok, clue = pcall(require, "mini.clue")
-	if ok then
-		clue.ensure_buf_triggers()
-	end
+	-- local ok, clue = pcall(require, "mini.clue")
+	-- if ok then
+	-- 	clue.ensure_buf_triggers()
+	-- end
 end
 
 function M.on_attach(on_attach)
