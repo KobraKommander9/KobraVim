@@ -13,6 +13,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"rcarriga/nvim-notify",
+	cmd = { "Notifications" },
 	keys = {
 		{
 			"<leader>un",
@@ -20,6 +21,13 @@ M[#M + 1] = {
 				require("notify").dismiss({ silent = true, pending = true })
 			end,
 			desc = "Dismiss all Notifications",
+		},
+		{
+			"<leader>uN",
+			function()
+				require("notify").history()
+			end,
+			desc = "Notification history",
 		},
 	},
 	opts = function(_, opts)
@@ -31,6 +39,8 @@ M[#M + 1] = {
 			max_width = function()
 				return math.floor(vim.o.columns * 0.75)
 			end,
+			render = "compact",
+			stages = "slide",
 		}
 
 		if require("kobra.core").ui.background == "transparent" then
