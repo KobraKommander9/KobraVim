@@ -13,6 +13,11 @@ function M.keymap(mode, lhs, rhs, opts)
 		opts.silent = opts.silent ~= false
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
+
+	local ok, clue = pcall(require, "mini.clue")
+	if ok then
+		clue.ensure_buf_triggers()
+	end
 end
 
 function M.on_attach(on_attach)

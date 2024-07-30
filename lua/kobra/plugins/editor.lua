@@ -1,6 +1,7 @@
 local M = {}
 
 local Keys = require("kobra.core.keys")
+local Util = require("kobra.util")
 
 -- next key clues
 M[#M + 1] = {
@@ -44,6 +45,10 @@ M[#M + 1] = {
 				-- move
 				{ mode = "n", keys = "<leader>m" },
 				{ mode = "x", keys = "<leader>m" },
+
+				-- brackets
+				{ mode = "n", keys = "]" },
+				{ mode = "n", keys = "[" },
 			},
 			clues = {
 				miniclue.gen_clues.builtin_completion(),
@@ -66,6 +71,10 @@ M[#M + 1] = {
 				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
 				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
 				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+
+				-- brackets
+				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
+				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
 
 				-- clues
 				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
@@ -101,6 +110,13 @@ M[#M + 1] = {
 
 		return vim.tbl_deep_extend("force", options, opts)
 	end,
+}
+
+-- better bracket jumps
+M[#M + 1] = {
+	"echasnovski/mini.bracketed",
+	event = "BufEnter",
+	config = true,
 }
 
 -- better escape
@@ -204,7 +220,7 @@ M[#M + 1] = {
 			local gs = package.loaded.gitsigns
 
 			local function map(mode, l, r, desc)
-				vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+				Util.keymap(mode, l, r, { buffer = buffer, desc = desc })
 			end
 
 			map("n", "]h", gs.next_hunk, "Next Hunk")
