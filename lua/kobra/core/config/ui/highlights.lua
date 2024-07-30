@@ -86,6 +86,7 @@ local function generate_user_highlights()
 end
 
 function M.setup()
+	vim.notify("setting up")
 	generate_user_highlights()
 
 	vim.api.nvim_create_augroup("UserTablineHighlightGroups", { clear = true })
