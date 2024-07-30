@@ -4,7 +4,7 @@ local Util = require("lazy.core.util")
 
 M.root_patterns = { ".git", "lua" }
 
-function M.keymap(mode, lhs, rhs, opts)
+function M.lazymap(mode, lhs, rhs, opts)
 	local keys = require("lazy.core.handler").handlers.keys
 
 	-- do not create keymap if a lazy keys handler exists
@@ -13,6 +13,10 @@ function M.keymap(mode, lhs, rhs, opts)
 		opts.silent = opts.silent ~= false
 		vim.keymap.set(mode, lhs, rhs, opts)
 	end
+end
+
+function M.keymap(mode, lhs, rhs, opts)
+	M.lazymap(mode, lhs, rhs, opts)
 
 	local ok, clue = pcall(require, "mini.clue")
 	if ok then

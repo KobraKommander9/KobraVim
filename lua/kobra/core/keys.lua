@@ -1,5 +1,7 @@
 local M = {}
 
+local Util = require("kobra.util")
+
 local defaults = {
 	j = "j",
 	k = "k",
@@ -15,11 +17,10 @@ local defaults = {
 
 local keys
 function M.setup(opts)
-	local map = vim.keymap.set
+	local map = Util.lazymap
 
 	keys = vim.deepcopy(defaults)
 	if opts.colemak then
-		vim.notify("colemak")
 		keys.j = "n"
 		keys.k = "e"
 		keys.l = "i"
