@@ -30,6 +30,7 @@ M[#M + 1] = {
 			end,
 		}
 
+		vim.notify(vim.inspect(opts))
 		return vim.tbl_deep_extend("force", options, opts)
 	end,
 	init = function()
