@@ -17,7 +17,7 @@ local defaults = {
 
 local keys
 function M.setup(opts)
-	local map = Util.lazymap
+	local map = Util.keymap
 
 	keys = vim.deepcopy(defaults)
 	if opts.colemak then
