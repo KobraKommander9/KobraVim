@@ -40,6 +40,10 @@ M[#M + 1] = {
 				-- `z` key
 				{ mode = "n", keys = "z" },
 				{ mode = "x", keys = "z" },
+
+				-- move
+				{ mode = "n", keys = "<leader>m" },
+				{ mode = "x", keys = "<leader>m" },
 			},
 			clues = {
 				miniclue.gen_clues.builtin_completion(),
@@ -53,6 +57,25 @@ M[#M + 1] = {
 				}),
 				miniclue.gen_clues.z(),
 
+				-- move
+				-- { mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				-- { mode = "n", keys = "<leader>ml", postkeys = "<leader>m", desc = "Move right" },
+				-- { mode = "n", keys = "<leader>mj", postkeys = "<leader>m", desc = "Move down" },
+				-- { mode = "n", keys = "<leader>mk", postkeys = "<leader>m", desc = "Move up" },
+				-- { mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				-- { mode = "x", keys = "<leader>ml", postkeys = "<leader>m", desc = "Move right" },
+				-- { mode = "x", keys = "<leader>mj", postkeys = "<leader>m", desc = "Move down" },
+				-- { mode = "x", keys = "<leader>mk", postkeys = "<leader>m", desc = "Move up" },
+
+				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+
 				-- clues
 				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
 				{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
@@ -62,8 +85,29 @@ M[#M + 1] = {
 			},
 		}
 
+		vim.notify(vim.inspect(Keys))
+
 		return vim.tbl_extend("force", options, opts)
 	end,
+}
+
+-- move text
+M[#M + 1] = {
+	"echasnovski/mini.move",
+	event = "BufEnter",
+	opts = {
+		mappings = {
+			left = "<leader>mh",
+			right = "<leader>m" .. Keys.l,
+			down = "<leader>m" .. Keys.j,
+			up = "<leader>m" .. Keys.k,
+
+			line_left = "<leader>mh",
+			line_right = "<leader>m" .. Keys.l,
+			line_down = "<leader>m" .. Keys.j,
+			line_up = "<leader>m" .. Keys.k,
+		},
+	},
 }
 
 -- better escape
