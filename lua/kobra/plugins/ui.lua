@@ -28,9 +28,10 @@ M[#M + 1] = {
 			max_width = function()
 				return math.floor(vim.o.columns * 0.75)
 			end,
+			render = "compact",
+			stages = "slide",
 		}
 
-		vim.notify(vim.inspect(opts))
 		return vim.tbl_deep_extend("force", options, opts)
 	end,
 	init = function()
