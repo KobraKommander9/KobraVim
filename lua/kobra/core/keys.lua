@@ -51,7 +51,7 @@ function M.setup(opts)
 		map("", "L", "I", key_opts)
 	end
 
-	vim.notify(keys)
+	vim.notify(vim.inspect(keys))
 end
 
 setmetatable(M, {
