@@ -24,6 +24,7 @@ function M.setup(opts)
 
 	keys = vim.deepcopy(defaults)
 	if opts.colemak then
+		vim.notify("colemak")
 		-- keys.j = "n"
 		-- keys.k = "e"
 		-- keys.l = "i"
