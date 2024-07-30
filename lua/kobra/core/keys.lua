@@ -63,6 +63,7 @@ end
 setmetatable(M, {
 	__index = function(_, key)
 		if keys == nil then
+			vim.notify("keys not setup")
 			return vim.deepcopy(defaults)[key]
 		end
 		return keys[key]
