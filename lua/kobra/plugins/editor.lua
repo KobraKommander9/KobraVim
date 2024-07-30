@@ -14,24 +14,24 @@ M[#M + 1] = {
 			triggers = {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },
-				{ mode = "x", keys = "<Leader>" },
+				{ mode = "v", keys = "<Leader>" },
 
 				-- Built-in completion
 				{ mode = "i", keys = "<C-x>" },
 
 				-- g key
 				{ mode = "n", keys = "g" },
-				{ mode = "x", keys = "g" },
+				{ mode = "v", keys = "g" },
 
 				-- marks
 				{ mode = "n", keys = "'" },
 				{ mode = "n", keys = "`" },
-				{ mode = "x", keys = "'" },
-				{ mode = "x", keys = "`" },
+				{ mode = "v", keys = "'" },
+				{ mode = "v", keys = "`" },
 
 				-- registers
 				{ mode = "n", keys = '"' },
-				{ mode = "x", keys = '"' },
+				{ mode = "v", keys = '"' },
 				{ mode = "i", keys = "<C-r>" },
 				{ mode = "c", keys = "<C-r>" },
 
@@ -40,11 +40,11 @@ M[#M + 1] = {
 
 				-- `z` key
 				{ mode = "n", keys = "z" },
-				{ mode = "x", keys = "z" },
+				{ mode = "v", keys = "z" },
 
 				-- move
 				{ mode = "n", keys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" },
+				{ mode = "v", keys = "<leader>m" },
 
 				-- brackets
 				{ mode = "n", keys = "]" },
@@ -67,10 +67,10 @@ M[#M + 1] = {
 				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
 				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
 				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "v", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "v", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "v", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "v", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
 				-- brackets
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
