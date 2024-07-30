@@ -1,7 +1,6 @@
 local M = {}
 
 local Keys = require("kobra.core.keys")
-local Util = require("kobra.util")
 
 -- next key clues
 M[#M + 1] = {
@@ -14,24 +13,24 @@ M[#M + 1] = {
 			triggers = {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },
-				{ mode = "v", keys = "<Leader>" },
+				{ mode = "x", keys = "<Leader>" },
 
 				-- Built-in completion
 				{ mode = "i", keys = "<C-x>" },
 
 				-- g key
 				{ mode = "n", keys = "g" },
-				{ mode = "v", keys = "g" },
+				{ mode = "x", keys = "g" },
 
 				-- marks
 				{ mode = "n", keys = "'" },
 				{ mode = "n", keys = "`" },
-				{ mode = "v", keys = "'" },
-				{ mode = "v", keys = "`" },
+				{ mode = "x", keys = "'" },
+				{ mode = "x", keys = "`" },
 
 				-- registers
 				{ mode = "n", keys = '"' },
-				{ mode = "v", keys = '"' },
+				{ mode = "x", keys = '"' },
 				{ mode = "i", keys = "<C-r>" },
 				{ mode = "c", keys = "<C-r>" },
 
@@ -40,11 +39,11 @@ M[#M + 1] = {
 
 				-- `z` key
 				{ mode = "n", keys = "z" },
-				{ mode = "v", keys = "z" },
+				{ mode = "x", keys = "z" },
 
 				-- move
 				{ mode = "n", keys = "<leader>m" },
-				{ mode = "v", keys = "<leader>m" },
+				{ mode = "x", keys = "<leader>m" },
 
 				-- brackets
 				{ mode = "n", keys = "]" },
@@ -67,10 +66,10 @@ M[#M + 1] = {
 				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
 				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
 				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				{ mode = "v", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "v", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "v", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "v", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
 				-- brackets
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
@@ -127,27 +126,27 @@ M[#M + 1] = {
 		mappings = {
 			i = {
 				q = {
-					o = "<Esc>",
+					n = "<Esc>",
 				},
 			},
 			c = {
 				q = {
-					o = "<Esc>",
+					n = "<Esc>",
 				},
 			},
 			t = {
 				q = {
-					o = "<Esc>",
+					n = "<Esc>",
 				},
 			},
 			v = {
 				q = {
-					o = "<Esc>",
+					n = "<Esc>",
 				},
 			},
 			s = {
 				q = {
-					o = "<Esc>",
+					n = "<Esc>",
 				},
 			},
 		},

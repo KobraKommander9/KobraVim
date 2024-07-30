@@ -1,5 +1,34 @@
+local layouts = require("kobra.core").layouts
+
 local Keys = require("kobra.core.keys")
 local Util = require("kobra.util")
+
+if layouts.colemak then
+	-- N goes to the next match (replaces n)
+	-- E goes to previous match (replaces N)
+	-- I moves cursor to bottom of screen
+
+	-- l to insert mode
+	-- L to insert at beginning of line
+
+	-- K/k replaces E/e
+	-- previous word (B) and end of word (K) are next to each other
+
+	-- Help is on lower case j
+
+	local key_opts = { silent = true, noremap = true }
+	Util.keymap("", "n", "j", key_opts)
+	Util.keymap("", "N", "n", key_opts)
+	Util.keymap("", "e", "k", key_opts)
+	Util.keymap("", "E", "N", key_opts)
+	Util.keymap("", "i", "l", key_opts)
+	Util.keymap("", "I", "L", key_opts)
+	Util.keymap("", "j", "K", key_opts)
+	Util.keymap("", "k", "e", key_opts)
+	Util.keymap("", "K", "E", key_opts)
+	Util.keymap("", "l", "i", key_opts)
+	Util.keymap("", "L", "I", key_opts)
+end
 
 -- better paste
 Util.keymap("v", "p", '"_dP', { silent = true })

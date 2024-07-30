@@ -1,7 +1,5 @@
 local M = {}
 
-local Util = require("kobra.util")
-
 local defaults = {
 	j = "j",
 	k = "k",
@@ -17,8 +15,6 @@ local defaults = {
 
 local keys
 function M.setup(opts)
-	local map = Util.keymap
-
 	keys = vim.deepcopy(defaults)
 	if opts.colemak then
 		keys.j = "n"
@@ -31,31 +27,6 @@ function M.setup(opts)
 
 		keys.nextMatch = "N"
 		keys.prevMatch = "E"
-
-		-- N goes to the next match (replaces n)
-		-- E goes to previous match (replaces N)
-		-- I moves cursor to bottom of screen
-
-		-- l to insert mode
-		-- L to insert at beginning of line
-
-		-- K/k replaces E/e
-		-- previous word (B) and end of word (K) are next to each other
-
-		-- Help is on lower case j
-
-		local key_opts = { silent = true, noremap = true }
-		map("", "n", "j", key_opts)
-		map("", "N", "n", key_opts)
-		map("", "e", "k", key_opts)
-		map("", "E", "N", key_opts)
-		map("", "i", "l", key_opts)
-		map("", "I", "L", key_opts)
-		map("", "j", "K", key_opts)
-		map("", "k", "e", key_opts)
-		map("", "K", "E", key_opts)
-		map("", "l", "i", key_opts)
-		map("", "L", "I", key_opts)
 	end
 end
 
