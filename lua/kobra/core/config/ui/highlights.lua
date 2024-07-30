@@ -53,7 +53,7 @@ local function generate_pallet_from_colorscheme()
 	return pallet
 end
 
-local function generate_user_highlights()
+function M.generate_user_tabline_highlights()
 	local pal = generate_pallet_from_colorscheme()
 
 	local sl_colors = {
@@ -85,14 +85,11 @@ local function generate_user_highlights()
 	set_highlights(vim.tbl_extend("force", colors, groups))
 end
 
-function M.setup()
-	vim.notify("setting up")
-	generate_user_highlights()
+M.generate_user_tabline_highlights()
 
-	vim.api.nvim_create_augroup("UserTablineHighlightGroups", { clear = true })
-	vim.api.nvim_create_autocmd({ "SessionLoadPost", "ColorScheme" }, {
-		callback = generate_user_highlights,
-	})
-end
+vim.api.nvim_create_augroup("UserTablineHighlightGroups", { clear = true })
+vim.api.nvim_create_autocmd({ "SessionLoadPost", "ColorScheme" }, {
+	callback = M.generate_user_tabline_highlights,
+})
 
 return M

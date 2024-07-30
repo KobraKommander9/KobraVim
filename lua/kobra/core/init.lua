@@ -146,7 +146,7 @@ function M.setup(opts)
 	end
 
 	require("kobra.core.keys").setup(options.layouts)
-	require("kobra.core.config.ui.highlights").setup()
+	require("kobra.core.config.ui.highlights")
 
 	local loadDefaults = function()
 		for def in pairs(defaults.defaults) do
