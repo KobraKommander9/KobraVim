@@ -76,8 +76,6 @@ M[#M + 1] = {
 			},
 		}
 
-		vim.notify(vim.inspect(Keys))
-
 		return vim.tbl_extend("force", options, opts)
 	end,
 }
@@ -86,19 +84,23 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.move",
 	event = "BufEnter",
-	opts = {
-		mappings = {
-			left = "<leader>mh",
-			right = "<leader>m" .. Keys.l,
-			down = "<leader>m" .. Keys.j,
-			up = "<leader>m" .. Keys.k,
+	opts = function(_, opts)
+		local options = {
+			mappings = {
+				left = "<leader>mh",
+				right = "<leader>m" .. Keys.l,
+				down = "<leader>m" .. Keys.j,
+				up = "<leader>m" .. Keys.k,
 
-			line_left = "<leader>mh",
-			line_right = "<leader>m" .. Keys.l,
-			line_down = "<leader>m" .. Keys.j,
-			line_up = "<leader>m" .. Keys.k,
-		},
-	},
+				line_left = "<leader>mh",
+				line_right = "<leader>m" .. Keys.l,
+				line_down = "<leader>m" .. Keys.j,
+				line_up = "<leader>m" .. Keys.k,
+			},
+		}
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
 }
 
 -- better escape

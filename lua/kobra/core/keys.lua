@@ -56,14 +56,11 @@ function M.setup(opts)
 		map("", "l", "i", key_opts)
 		map("", "L", "I", key_opts)
 	end
-
-	vim.notify(vim.inspect(keys))
 end
 
 setmetatable(M, {
 	__index = function(_, key)
 		if keys == nil then
-			vim.notify("keys not setup")
 			return vim.deepcopy(defaults)[key]
 		end
 		return keys[key]
