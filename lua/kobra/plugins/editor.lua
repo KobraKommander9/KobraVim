@@ -248,8 +248,6 @@ M[#M + 1] = {
 			end, "Diff This ~")
 			map("n", "<leader>htd", gs.toggle_deleted, "Toggle Deleted")
 			map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-
-			Util.ensure_keys()
 		end,
 	},
 }
