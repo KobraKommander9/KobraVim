@@ -38,22 +38,18 @@ Util.keymap("n", Keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = tr
 Util.keymap("n", Keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
 
 -- move to window using the <ctrl> hjkl keys
---[[
 Util.keymap("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 Util.keymap("n", "<C-" .. Keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
 Util.keymap("n", "<C-" .. Keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
 Util.keymap("n", "<C-" .. Keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
---]]
 
 -- move lines
---[[
 Util.keymap("n", "<A-" .. Keys.j .. ">", "<cmd>m .+1<cr>==", { desc = "Move down" })
 Util.keymap("n", "<A-" .. Keys.k .. ">", "<cmd>m .-2<cr>==", { desc = "Move up" })
 Util.keymap("i", "<A-" .. Keys.j .. ">", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 Util.keymap("i", "<A-" .. Keys.k .. ">", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 Util.keymap("v", "<A-" .. Keys.j .. ">", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 Util.keymap("v", "<A-" .. Keys.k .. ">", ":m '<-2<cr>gv=gv", { desc = "Move up" })
---]]
 
 -- clear search with <esc>
 Util.keymap({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
