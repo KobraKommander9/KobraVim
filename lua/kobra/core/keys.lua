@@ -8,6 +8,9 @@ local defaults = {
 	n = "n",
 	e = "e",
 	i = "i",
+
+	nextMatch = "n",
+	prevMatch = "N",
 }
 
 local keys
@@ -24,6 +27,9 @@ function M.setup(opts)
 		keys.n = "j"
 		keys.e = "k"
 		keys.i = "l"
+
+		keys.nextMatch = "N"
+		keys.prevMatch = "E"
 
 		-- N goes to the next match (replaces n)
 		-- E goes to previous match (replaces N)
