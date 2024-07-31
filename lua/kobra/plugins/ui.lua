@@ -7,14 +7,19 @@ M[#M + 1] = {
 	event = "VimEnter",
 	opts = {
 		enable = require("kobra.core").ui.background == "transparent",
-		-- exclude = {
-		-- 	"KobraTLHead",
-		-- 	"KobraTLHeadSep",
-		-- 	"KobraTLActive",
-		-- 	"KobraTLActiveSep",
-		-- 	"KobraTLBoldLine",
-		-- 	"KobraTLLineSep",
-		-- },
+		exclude = {
+			"terminal_color_6",
+			"StatusLine",
+			"TabLine",
+			"TabLineSel",
+			"TabLineFill",
+			"KobraTLHead",
+			"KobraTLHeadSep",
+			"KobraTLActive",
+			"KobraTLActiveSep",
+			"KobraTLBoldLine",
+			"KobraTLLineSep",
+		},
 	},
 }
 
