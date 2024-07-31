@@ -8,11 +8,6 @@ M[#M + 1] = {
 	opts = {
 		enable = require("kobra.core").ui.background == "transparent",
 		exclude = {
-			"terminal_color_6",
-			"StatusLine",
-			"TabLine",
-			"TabLineSel",
-			"TabLineFill",
 			"KobraTLHead",
 			"KobraTLHeadSep",
 			"KobraTLActive",
