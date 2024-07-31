@@ -25,6 +25,16 @@ local defaults = {
 	ui = {
 		background = "transparent",
 		colorscheme = "dracula",
+		colors = {
+			black = "#393b44",
+			red = "#c94f6d",
+			green = "#81b29a",
+			yellow = "#dbc074",
+			blue = "#719cd6",
+			magenta = "#9d79d6",
+			cyan = "#63cdcf",
+			white = "#dfdfe0",
+		},
 		start_screen = {
 			header = {
 				[[ █████  ████     ████             █████                              ]],
@@ -146,7 +156,7 @@ function M.setup(opts)
 	end
 
 	require("kobra.core.keys").setup(options.layouts)
-	require("kobra.core.config.ui.highlights").setup()
+	require("kobra.core.highlights").setup(options.ui.colors)
 
 	local loadDefaults = function()
 		for def in pairs(defaults.defaults) do

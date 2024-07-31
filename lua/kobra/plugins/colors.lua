@@ -23,7 +23,8 @@ M[#M + 1] = {
 	"Mofiqul/dracula.nvim",
 	lazy = true,
 	opts = {
-		transparent_bg = vim.g.transparent_enabled,
+		transparent_bg = false,
+		-- transparent_bg = vim.g.transparent_enabled,
 	},
 }
 

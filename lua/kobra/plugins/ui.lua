@@ -159,28 +159,28 @@ M[#M + 1] = {
 			hl = "TabLineFill",
 			layout = "active_wins_at_tail",
 			head = {
-				{ cwd, hl = "UserTLHead" },
-				{ "", hl = "UserTLHeadSep" },
+				{ cwd, hl = "KobraTLHead" },
+				{ "", hl = "KobraTLHeadSep" },
 			},
 			active_tab = {
 				label = function(tabid)
 					return {
 						"  " .. tabid .. " ",
-						hl = "UserTLActive",
+						hl = "KobraTLActive",
 					}
 				end,
-				left_sep = { "", hl = "UserTLActiveSep" },
-				right_sep = { "", hl = "UserTLActiveSep" },
+				left_sep = { "", hl = "KobraTLActiveSep" },
+				right_sep = { "", hl = "KobraTLActiveSep" },
 			},
 			inactive_tab = {
 				label = function(tabid)
 					return {
 						"  " .. tabid .. " ",
-						hl = "UserTLBoldLine",
+						hl = "KobraTLBoldLine",
 					}
 				end,
-				left_sep = { "", hl = "UserTLLineSep" },
-				right_sep = { "", hl = "UserTLLineSep" },
+				left_sep = { "", hl = "KobraTLLineSep" },
+				right_sep = { "", hl = "KobraTLLineSep" },
 			},
 			top_win = {
 				label = function(winid)
@@ -189,8 +189,8 @@ M[#M + 1] = {
 						hl = "TabLine",
 					}
 				end,
-				left_sep = { "", hl = "UserTLLineSep" },
-				right_sep = { "", hl = "UserTLLineSep" },
+				left_sep = { "", hl = "KobraTLLineSep" },
+				right_sep = { "", hl = "KobraTLLineSep" },
 			},
 			win = {
 				label = function(winid)
@@ -199,12 +199,12 @@ M[#M + 1] = {
 						hl = "TabLine",
 					}
 				end,
-				left_sep = { "", hl = "UserTLLineSep" },
-				right_sep = { "", hl = "UserTLLineSep" },
+				left_sep = { "", hl = "KobraTLLineSep" },
+				right_sep = { "", hl = "KobraTLLineSep" },
 			},
 			tail = {
-				{ "", hl = "UserTLHeadSep" },
-				{ "  ", hl = "UserTLHead" },
+				{ "", hl = "KobraTLHeadSep" },
+				{ "  ", hl = "KobraTLHead" },
 			},
 		}
 
