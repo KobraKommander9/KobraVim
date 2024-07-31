@@ -3,7 +3,7 @@ local M = {}
 local Util = require("kobra.util")
 
 M[#M + 1] = {
-	"Leviathenn/transparent.nvim",
+	"Leviathenn/transparent",
 	event = "VimEnter",
 	opts = {
 		enable = require("kobra.core").ui.background == "transparent",
