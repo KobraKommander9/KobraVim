@@ -3,9 +3,19 @@ local M = {}
 local Util = require("kobra.util")
 
 M[#M + 1] = {
-	"xiyaowong/transparent.nvim",
-	lazy = false,
-	cond = require("kobra.core").ui.background == "transparent",
+	"Leviathenn/transparent.nvim",
+	event = "VimEnter",
+	opts = {
+		enable = require("kobra.core").ui.background == "transparent",
+		exclude = {
+			"KobraTLHead",
+			"KobraTLHeadSep",
+			"KobraTLActive",
+			"KobraTLActiveSep",
+			"KobraTLBoldLine",
+			"KobraTLLineSep",
+		},
+	},
 }
 
 M[#M + 1] = {
