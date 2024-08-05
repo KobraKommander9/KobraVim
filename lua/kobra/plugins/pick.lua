@@ -65,7 +65,7 @@ M[#M + 1] = {
 			mappings = {
 				delete_left = "<C-l>",
 
-				mark = "<C-m>",
+				mark = "<C-o>",
 
 				move_up = "<C-e>",
 
