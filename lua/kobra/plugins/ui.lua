@@ -151,6 +151,12 @@ M[#M + 1] = {
 	},
 }
 
+M[#M + 1] = {
+	"echasnovski/mini.icons",
+	lazy = true,
+	config = true,
+}
+
 M[#M + 1] = { "nvim-tree/nvim-web-devicons", lazy = true }
 
 M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
