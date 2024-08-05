@@ -6,6 +6,7 @@ M[#M + 1] = {
 	"echasnovski/mini.pick",
 	cmd = { "Pick" },
 	keys = {
+		-- Buffers
 		{
 			"<leader>pb",
 			function()
@@ -22,6 +23,8 @@ M[#M + 1] = {
 			end,
 			desc = "Pick buffers",
 		},
+
+		-- Files
 		{
 			"<leader>pf",
 			function()
@@ -43,6 +46,8 @@ M[#M + 1] = {
 			end,
 			desc = "Pick files (grep)",
 		},
+
+		-- Help
 		{
 			"<leader>ph",
 			function()
@@ -50,6 +55,8 @@ M[#M + 1] = {
 			end,
 			desc = "Pick help tags",
 		},
+
+		-- Resume
 		{
 			"<leader>pr",
 			function()
@@ -86,6 +93,164 @@ M[#M + 1] = {
 	build = function()
 		vim.ui.select = require("mini.pick").ui_select
 	end,
+}
+
+M[#M + 1] = {
+	"echasnovski/mini.extra",
+	dependencies = {
+		{ "echasnovski/mini.fuzzy", version = false, config = true },
+		"echasnovski/mini.pick",
+	},
+	cmd = { "Pick" },
+	keys = {
+		-- Buffers
+		{
+			"<leader>pbl",
+			function()
+				require("mini.extra").pickers.buf_lines()
+			end,
+			desc = "Pick buffer lines",
+		},
+
+		-- Commands
+		{
+			"<leader>pc",
+			function()
+				require("mini.extra").pickers.history({ scope = "/" })
+			end,
+			desc = "Pick search history",
+		},
+		{
+			"<leader>pC",
+			function()
+				require("mini.extra").pickers.history({ scope = ":" })
+			end,
+			desc = "Pick command history",
+		},
+
+		-- Diagnostics
+		{
+			"<leader>pd",
+			function()
+				require("mini.extra").pickers.diagnostic({ scope = "current" })
+			end,
+			desc = "Pick diagnostics",
+		},
+		{
+			"<leader>pD",
+			function()
+				require("mini.extra").pickers.diagnostic()
+			end,
+			desc = "Pick diagnostics (all)",
+		},
+
+		-- Files
+		{
+			"<leader>pF",
+			function()
+				require("mini.extra").pickers.explorer({ cwd = vim.fn.expand("%:p:h") })
+			end,
+			desc = "Pick files (explorer)",
+		},
+		{
+			"<leader>pfr",
+			function()
+				require("mini.extra").pickers.oldfiles()
+			end,
+			desc = "Pick old files",
+		},
+
+		-- Git
+		{
+			"<leader>pgb",
+			function()
+				require("mini.extra").pickers.git_branches()
+			end,
+			desc = "Pick git branches",
+		},
+		{
+			"<leader>pgc",
+			function()
+				require("mini.extra").pickers.git_commits()
+			end,
+			desc = "Pick git branches",
+		},
+		{
+			"<leader>pgf",
+			function()
+				require("mini.extra").pickers.git_files()
+			end,
+			desc = "Pick git branches",
+		},
+		{
+			"<leader>pgh",
+			function()
+				require("mini.extra").pickers.git_hunks()
+			end,
+			desc = "Pick git hunks",
+		},
+
+		-- Marks
+		{
+			"<leader>pm",
+			function()
+				require("mini.extra").pickers.marsk()
+			end,
+			desc = "Pick marks",
+		},
+
+		-- LSP
+		{
+			"<leader>lgd",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "declaration" })
+			end,
+			desc = "Goto LSP declarations",
+		},
+		{
+			"<leader>lgD",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "definition" })
+			end,
+			desc = "Goto LSP definitions",
+		},
+		{
+			"<leader>lgi",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "implementation" })
+			end,
+			desc = "Goto LSP implementations",
+		},
+		{
+			"<leader>lgr",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "references" })
+			end,
+			desc = "Goto LSP references",
+		},
+		{
+			"<leader>lgs",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+			end,
+			desc = "Goto LSP symbols",
+		},
+		{
+			"<leader>lgt",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "type_definition" })
+			end,
+			desc = "Goto LSP types",
+		},
+		{
+			"<leader>lgw",
+			function()
+				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
+			end,
+			desc = "Goto LSP workspace symbols",
+		},
+	},
+	config = true,
 }
 
 return M

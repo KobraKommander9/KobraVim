@@ -122,6 +122,13 @@ M[#M + 1] = {
 				-- brackets
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
 				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
+
+				-- clues
+				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
+				{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
+				{ mode = "n", keys = "<leader>p", desc = "+Pick" },
+				{ mode = "n", keys = "<leader>u", desc = "+UI" },
+				{ mode = "n", keys = "<leader>q", desc = "+Quit" },
 			},
 		}
 
