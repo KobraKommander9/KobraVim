@@ -143,9 +143,9 @@ M[#M + 1] = {
 	},
 	cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
 	keys = {
-		{ "<leader>k", "Hawtkeys", desc = "Show key mappings" },
-		{ "<leader>K", "HawtkeysAll", desc = "Show all key mappings" },
-		{ "<leader>kd", "HawtkeysDupes", desc = "Show duplicate key mappings" },
+		{ "<leader>k", "<cmd>Hawtkeys<cr>", desc = "Show key mappings" },
+		{ "<leader>K", "<cmd>HawtkeysAll<cr>", desc = "Show all key mappings" },
+		{ "<leader>kd", "<cmd>HawtkeysDupes<cr>", desc = "Show duplicate key mappings" },
 	},
 	opts = function(_, opts)
 		local options = {
