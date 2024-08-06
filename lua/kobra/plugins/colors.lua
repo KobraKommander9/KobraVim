@@ -41,4 +41,10 @@ M[#M + 1] = {
 	dependencies = { "rktjmp/lush.nvim" },
 }
 
+M[#M + 1] = {
+	"cpea2506/one_monokai.nvim",
+	lazy = true,
+	config = true,
+}
+
 return M
