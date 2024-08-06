@@ -30,9 +30,16 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"navarasu/onedark.nvim",
+	lazy = true,
 	opts = {
 		style = "darker",
 	},
+}
+
+M[#M + 1] = {
+	"olimorris/onedarkpro.nvim",
+	lazy = true,
+	config = true,
 }
 
 return M
