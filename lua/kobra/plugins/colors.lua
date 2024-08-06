@@ -29,17 +29,16 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"navarasu/onedark.nvim",
-	lazy = true,
-	opts = {
-		style = "darker",
-	},
-}
-
-M[#M + 1] = {
 	"olimorris/onedarkpro.nvim",
 	lazy = true,
 	config = true,
+}
+
+M[#M + 1] = {
+	"rockyzhang24/arctic.nvim",
+	lazy = true,
+	branch = "v2",
+	dependencies = { "rktjmp/lush.nvim" },
 }
 
 return M
