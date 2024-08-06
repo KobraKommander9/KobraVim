@@ -28,4 +28,11 @@ M[#M + 1] = {
 	},
 }
 
+M[#M + 1] = {
+	"navarasu/onedark.nvim",
+	opts = {
+		style = "darker",
+	},
+}
+
 return M
