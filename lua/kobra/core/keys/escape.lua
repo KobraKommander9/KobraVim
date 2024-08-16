@@ -89,6 +89,8 @@ local function get_keys(keys)
 				end
 			end
 		end
+
+		mappings = vim.tbl_deep_extend("force", mappings, modes)
 	end
 
 	return mappings
@@ -126,7 +128,6 @@ local function record_key(key)
 	recorded_mode = api.nvim_get_mode().mode
 	has_recorded = true
 	bufmodified = vim.bo.modified
-	vim.notify("recorded_key: " .. recorded_key)
 
 	timeout_timer:start(settings.timeout, 0, function()
 		waiting = false
@@ -167,13 +168,11 @@ local function check_key(key)
 			if key == second_key then
 				waiting = false
 				execute(recorded_mode, action)
-				vim.notify("executed_key: " .. key)
 				return
 			end
 		end
 	end
 
-	vim.notify("mappings: " .. vim.inspect(settings.mappings[mode]))
 	for first_key in pairs(settings.mappings[mode]) do
 		if key == first_key then
 			record_key(key)
