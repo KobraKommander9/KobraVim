@@ -15,8 +15,14 @@ local defaults = {
 
 local keys
 function M.setup(opts)
+	local default = opts.default or {}
+
 	keys = vim.deepcopy(defaults)
+	keys = vim.tbl_deep_extend("force", keys, default)
+
 	if opts.colemak then
+		keys.escape = vim.tbl_deep_extend("force", keys.escape or {}, opts.colemak.escape)
+
 		keys.j = "n"
 		keys.k = "e"
 		keys.l = "i"
@@ -28,6 +34,8 @@ function M.setup(opts)
 		keys.nextMatch = "N"
 		keys.prevMatch = "E"
 	end
+
+	require("kobra.core.keys.escape").setup(keys.escape)
 end
 
 setmetatable(M, {

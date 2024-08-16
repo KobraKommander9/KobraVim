@@ -24,7 +24,6 @@ M[#M + 1] = {
 	lazy = true,
 	opts = {
 		transparent_bg = false,
-		-- transparent_bg = vim.g.transparent_enabled,
 	},
 }
 

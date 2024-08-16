@@ -17,7 +17,18 @@ local defaults = {
 		cache = vim.fn.stdpath("cache"),
 	},
 	layouts = {
-		colemak = false,
+		default = {
+			escape = {
+				keys = { "jk" },
+				timeout = vim.o.timeoutlen,
+			},
+		},
+		colemak = {
+			escape = {
+				keys = { "qn" },
+				timeout = vim.o.timeoutlen,
+			},
+		},
 	},
 	lsp = {
 		logging = "off",
