@@ -42,7 +42,6 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"cpea2506/one_monokai.nvim",
-	lazy = true,
 	config = true,
 }
 
