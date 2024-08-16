@@ -144,7 +144,7 @@ local undo_keys = {
 local function execute(mode, action)
 	local keys = ""
 	keys = keys
-		.. termcodes((undo_keys[mode] or "") .. ("<cmd>setlocal %smodified<cr>"):format(bufmodified and "" or "no"))
+		.. termcodes((undo_keys[mode] or "") .. (("<cmd>setlocal %smodified<cr>"):format(bufmodified and "" or "no")))
 
 	if type(action) == "string" then
 		keys = keys .. termcodes(action)
