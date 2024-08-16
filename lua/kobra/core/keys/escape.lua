@@ -173,7 +173,8 @@ local function check_key(key)
 		end
 	end
 
-	for first_key in pairs(settings.mappings[mode] or {}) do
+	vim.notify("mode: " .. mode)
+	for first_key in pairs(settings.mappings[mode]) do
 		if key == first_key then
 			record_key(key)
 			return
