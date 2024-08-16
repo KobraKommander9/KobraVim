@@ -36,7 +36,7 @@ local defaults = {
 	},
 	ui = {
 		background = "transparent",
-		colorscheme = "dracula",
+		colorscheme = "one_monokai",
 		colors = {
 			black = "#393b44",
 			red = "#c94f6d",
