@@ -155,6 +155,10 @@ local options
 
 function M.setup(opts)
 	options = vim.tbl_deep_extend("force", defaults, opts or {})
+	if options.layouts.colemak == true then
+		options.layouts.colemak = defaults.layouts.colemak
+	end
+
 	if not M.has() then
 		require("lazy.core.util").error(
 			"**KobraVim** needs **lazy.nvim** version "
