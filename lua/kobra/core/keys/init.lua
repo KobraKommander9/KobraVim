@@ -1,6 +1,11 @@
 local M = {}
 
 local defaults = {
+	escape = {
+		keys = { "jk" },
+		timeout = vim.o.timeoutlen,
+	},
+
 	j = "j",
 	k = "k",
 	l = "l",
@@ -14,15 +19,13 @@ local defaults = {
 }
 
 local keys
-function M.setup(opts)
-	local default = opts.default or {}
+function M.setup(name, opts)
+	local options = opts[name] or {}
 
 	keys = vim.deepcopy(defaults)
-	keys = vim.tbl_deep_extend("force", keys, default)
+	keys = vim.tbl_deep_extend("force", keys, options)
 
-	if opts.colemak then
-		keys.escape = vim.tbl_deep_extend("force", keys.escape or {}, opts.colemak.escape)
-
+	if name == "colemak" then
 		keys.j = "n"
 		keys.k = "e"
 		keys.l = "i"

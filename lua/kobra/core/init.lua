@@ -17,6 +17,7 @@ local defaults = {
 		cache = vim.fn.stdpath("cache"),
 	},
 	layouts = {
+		layout = "default",
 		default = {
 			escape = {
 				keys = { "jk" },
@@ -155,6 +156,9 @@ local options
 
 function M.setup(opts)
 	options = vim.tbl_deep_extend("force", defaults, opts or {})
+	if options.layouts.default == true then
+		options.layouts.default = defaults.layouts.default
+	end
 	if options.layouts.colemak == true then
 		options.layouts.colemak = defaults.layouts.colemak
 	end
@@ -170,7 +174,7 @@ function M.setup(opts)
 		error("Exiting")
 	end
 
-	require("kobra.core.keys").setup(options.layouts)
+	require("kobra.core.keys").setup(options.layouts.layout, options.layouts)
 	require("kobra.core.highlights").setup(options.ui.colors)
 
 	local loadDefaults = function()
