@@ -136,9 +136,9 @@ local function record_key(key)
 end
 
 local undo_keys = {
-	i = "<bs>",
-	c = "<bs>",
-	t = "<bs>",
+	i = "<bs><bs>",
+	c = "<bs><bs>",
+	t = "<bs><bs>",
 }
 
 local function execute(mode, action)
