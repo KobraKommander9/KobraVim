@@ -4,7 +4,7 @@ local api = vim.api
 local uv = vim.uv or vim.loop
 
 local termcodes = function(str)
-	api.nvim_replace_termcodes(str, true, true, true)
+	return api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local defaults = {
