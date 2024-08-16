@@ -156,11 +156,15 @@ local options
 
 function M.setup(opts)
 	options = vim.tbl_deep_extend("force", defaults, opts or {})
+
 	if options.layouts.default == true then
 		options.layouts.default = defaults.layouts.default
+		options.layouts.layout = "default"
 	end
+
 	if options.layouts.colemak == true then
 		options.layouts.colemak = defaults.layouts.colemak
+		options.layouts.layout = "colemak"
 	end
 
 	if not M.has() then
