@@ -38,6 +38,7 @@ end
 
 local function get_keys(keys)
 	local mappings = {
+		n = {},
 		i = {},
 		c = {},
 		t = {},
@@ -56,6 +57,9 @@ local function get_keys(keys)
 		end
 
 		local modes = {
+			n = {
+				[first_key] = { [second_key] = "<Esc>" },
+			},
 			i = {
 				[first_key] = { [second_key] = "<Esc>" },
 			},
