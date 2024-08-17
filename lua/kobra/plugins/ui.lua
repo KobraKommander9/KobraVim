@@ -57,26 +57,26 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"folke/noice.nvim",
 	event = "VeryLazy",
-	dependencies = {
-		-- mini clue integration
-		{
-			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				vim.notify(vim.inspect(opts))
-				local options = {
-					clues = {
-						{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-					},
-				}
-
-				if Util.has("noice.nvim") then
-					return vim.tbl_deep_extend("force", opts, options)
-				end
-
-				return opts
-			end,
-		},
-	},
+	-- dependencies = {
+	-- 	-- mini clue integration
+	-- 	{
+	-- 		"echasnovski/mini.clue",
+	-- 		opts = function(_, opts)
+	-- 			vim.notify(vim.inspect(opts))
+	-- 			local options = {
+	-- 				clues = {
+	-- 					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
+	-- 				},
+	-- 			}
+	--
+	-- 			if Util.has("noice.nvim") then
+	-- 				return vim.tbl_deep_extend("force", opts, options)
+	-- 			end
+	--
+	-- 			return opts
+	-- 		end,
+	-- 	},
+	-- },
 	opts = {
 		lsp = {
 			override = {
