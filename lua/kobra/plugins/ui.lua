@@ -62,6 +62,7 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
+				vim.notify(vim.inspect(opts))
 				local options = {
 					clues = {
 						{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
