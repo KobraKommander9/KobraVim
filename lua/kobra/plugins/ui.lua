@@ -61,11 +61,9 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = {
-				clues = {
-					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-				},
-			},
+			opts = function(_, opts)
+				table.insert(opts.clues, { mode = "n", keys = "<leader>sn", desc = "+Noice" })
+			end,
 		},
 	},
 	opts = {
