@@ -6,6 +6,28 @@ local Keys = require("kobra.core.keys")
 M[#M + 1] = {
 	"echasnovski/mini.move",
 	event = "BufEnter",
+	dependencies = {
+		-- mini clue integration
+		{
+			"echasnovski/mini.clue",
+			opts = function(_, opts)
+				local clues = {
+					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				}
+
+				for _, clue in ipairs(clues) do
+					table.insert(opts.clues, clue)
+				end
+			end,
+		},
+	},
 	opts = function(_, opts)
 		local options = {
 			mappings = {
@@ -29,6 +51,22 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.bracketed",
 	event = "BufEnter",
+	dependencies = {
+		-- mini clue integration
+		{
+			"echasnovski/mini.clue",
+			opts = function(_, opts)
+				local clues = {
+					{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
+					{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
+				}
+
+				for _, clue in ipairs(clues) do
+					table.insert(opts.clues, clue)
+				end
+			end,
+		},
+	},
 	config = true,
 }
 
