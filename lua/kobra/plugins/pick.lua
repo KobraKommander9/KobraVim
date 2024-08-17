@@ -8,7 +8,7 @@ M[#M + 1] = {
 	keys = {
 		-- Buffers
 		{
-			"<leader>pb",
+			"<leader>bb",
 			function()
 				local MiniPick = require("mini.pick")
 
@@ -26,28 +26,28 @@ M[#M + 1] = {
 
 		-- Files
 		{
-			"<leader>pf",
+			"<leader>ff",
 			function()
 				require("mini.pick").builtin.files()
 			end,
 			desc = "Pick files",
 		},
 		{
-			"<leader>pfg",
+			"<leader>fg",
 			function()
 				require("mini.pick").builtin.grep_live()
 			end,
 			desc = "Pick files (grep live)",
 		},
 		{
-			"<leader>pfG",
+			"<leader>fG",
 			function()
 				require("mini.pick").builtin.grep()
 			end,
 			desc = "Pick files (grep)",
 		},
 
-		-- Help
+		-- Pickers
 		{
 			"<leader>ph",
 			function()
@@ -55,8 +55,6 @@ M[#M + 1] = {
 			end,
 			desc = "Pick help tags",
 		},
-
-		-- Resume
 		{
 			"<leader>pr",
 			function()
@@ -105,7 +103,7 @@ M[#M + 1] = {
 	keys = {
 		-- Buffers
 		{
-			"<leader>pbl",
+			"<leader>bl",
 			function()
 				require("mini.extra").pickers.buf_lines()
 			end,
@@ -146,14 +144,14 @@ M[#M + 1] = {
 
 		-- Files
 		{
-			"<leader>pF",
+			"<leader>fF",
 			function()
 				require("mini.extra").pickers.explorer({ cwd = vim.fn.expand("%:p:h") })
 			end,
 			desc = "Pick files (explorer)",
 		},
 		{
-			"<leader>pfr",
+			"<leader>fr",
 			function()
 				require("mini.extra").pickers.oldfiles()
 			end,
@@ -162,28 +160,28 @@ M[#M + 1] = {
 
 		-- Git
 		{
-			"<leader>pgb",
+			"<leader>gb",
 			function()
 				require("mini.extra").pickers.git_branches()
 			end,
 			desc = "Pick git branches",
 		},
 		{
-			"<leader>pgc",
+			"<leader>gc",
 			function()
 				require("mini.extra").pickers.git_commits()
 			end,
 			desc = "Pick git branches",
 		},
 		{
-			"<leader>pgf",
+			"<leader>gf",
 			function()
 				require("mini.extra").pickers.git_files()
 			end,
 			desc = "Pick git branches",
 		},
 		{
-			"<leader>pgh",
+			"<leader>gh",
 			function()
 				require("mini.extra").pickers.git_hunks()
 			end,
@@ -201,49 +199,49 @@ M[#M + 1] = {
 
 		-- LSP
 		{
-			"<leader>lgd",
+			"<leader>ld",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "declaration" })
 			end,
 			desc = "Goto LSP declarations",
 		},
 		{
-			"<leader>lgD",
+			"<leader>lD",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "definition" })
 			end,
 			desc = "Goto LSP definitions",
 		},
 		{
-			"<leader>lgi",
+			"<leader>li",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "implementation" })
 			end,
 			desc = "Goto LSP implementations",
 		},
 		{
-			"<leader>lgr",
+			"<leader>lr",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "references" })
 			end,
 			desc = "Goto LSP references",
 		},
 		{
-			"<leader>lgs",
+			"<leader>ls",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 			end,
 			desc = "Goto LSP symbols",
 		},
 		{
-			"<leader>lgt",
+			"<leader>lt",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "type_definition" })
 			end,
 			desc = "Goto LSP types",
 		},
 		{
-			"<leader>lgw",
+			"<leader>lw",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
 			end,

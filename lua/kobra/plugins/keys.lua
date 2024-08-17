@@ -3,53 +3,6 @@ local M = {}
 local Core = require("kobra.core")
 local Keys = require("kobra.core.keys")
 
--- better escape
--- M[#M + 1] = {
--- 	"max397574/better-escape.nvim",
--- 	event = "InsertEnter",
--- 	opts = function(_, opts)
--- 		local options = {
--- 			default_mappings = true,
--- 		}
---
--- 		local colemak = {
--- 			mappings = {
--- 				i = {
--- 					q = {
--- 						n = "<Esc>",
--- 					},
--- 				},
--- 				c = {
--- 					q = {
--- 						n = "<Esc>",
--- 					},
--- 				},
--- 				t = {
--- 					q = {
--- 						n = "<Esc>",
--- 					},
--- 				},
--- 				v = {
--- 					q = {
--- 						n = "<Esc>",
--- 					},
--- 				},
--- 				s = {
--- 					q = {
--- 						n = "<Esc>",
--- 					},
--- 				},
--- 			},
--- 		}
---
--- 		if Core.layouts.colemak then
--- 			options = vim.tbl_deep_extend("force", options, colemak)
--- 		end
---
--- 		return vim.tbl_deep_extend("force", options, opts)
--- 	end,
--- }
-
 -- next key clues
 M[#M + 1] = {
 	"echasnovski/mini.clue",
@@ -93,6 +46,9 @@ M[#M + 1] = {
 				{ mode = "n", keys = "<leader>m" },
 				{ mode = "x", keys = "<leader>m" },
 
+				-- tabs
+				{ mode = "n", keys = "<leader>am" },
+
 				-- brackets
 				{ mode = "n", keys = "]" },
 				{ mode = "n", keys = "[" },
@@ -119,16 +75,25 @@ M[#M + 1] = {
 				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
 				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
+				-- tabs
+				{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
+				{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
+
 				-- brackets
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
 				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
 
 				-- clues
 				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
+				{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
 				{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
+				{ mode = "n", keys = "<leader>f", desc = "+Files" },
+				{ mode = "n", keys = "<leader>g", desc = "+Git" },
+				{ mode = "n", keys = "<leader>k", desc = "+Keys" },
 				{ mode = "n", keys = "<leader>p", desc = "+Pick" },
 				{ mode = "n", keys = "<leader>u", desc = "+UI" },
 				{ mode = "n", keys = "<leader>q", desc = "+Quit" },
+				{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 			},
 		}
 
@@ -144,8 +109,8 @@ M[#M + 1] = {
 	},
 	cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
 	keys = {
-		{ "<leader>k", "<cmd>Hawtkeys<cr>", desc = "Show key mappings" },
-		{ "<leader>K", "<cmd>HawtkeysAll<cr>", desc = "Show all key mappings" },
+		{ "<leader>kk", "<cmd>Hawtkeys<cr>", desc = "Show key mappings" },
+		{ "<leader>kK", "<cmd>HawtkeysAll<cr>", desc = "Show all key mappings" },
 		{ "<leader>kd", "<cmd>HawtkeysDupes<cr>", desc = "Show duplicate key mappings" },
 	},
 	opts = function(_, opts)

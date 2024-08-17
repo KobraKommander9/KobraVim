@@ -5,6 +5,7 @@ M[#M + 1] = {
 	version = false,
 	build = ":TSUpdate",
 	event = { "BufReadPost", "BufNewFile" },
+	cmd = { "TSInstall", "TSUpdate" },
 	dependencies = {
 		{
 			"nvim-treesitter/nvim-treesitter-textobjects",
