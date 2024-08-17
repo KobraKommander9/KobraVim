@@ -13,8 +13,10 @@ M[#M + 1] = {
 		local options = {
 			triggers = {
 				-- Leader triggers
-				{ mode = "n", keys = "<Leader>" },
-				{ mode = "x", keys = "<Leader>" },
+				-- { mode = "n", keys = "<Leader>" },
+				-- { mode = "x", keys = "<Leader>" },
+				{ mode = "n", keys = "<Leader>m" },
+				{ mode = "v", keys = "<Leader>m" },
 
 				-- Built-in completion
 				{ mode = "i", keys = "<C-x>" },
@@ -41,13 +43,6 @@ M[#M + 1] = {
 				-- `z` key
 				{ mode = "n", keys = "z" },
 				{ mode = "x", keys = "z" },
-
-				-- move
-				-- { mode = "n", keys = "<leader>m" },
-				-- { mode = "x", keys = "<leader>m" },
-				--
-				-- -- tabs
-				-- { mode = "n", keys = "<leader>am" },
 
 				-- brackets
 				{ mode = "n", keys = "]" },
