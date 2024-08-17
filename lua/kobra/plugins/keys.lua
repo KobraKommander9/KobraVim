@@ -43,11 +43,11 @@ M[#M + 1] = {
 				{ mode = "x", keys = "z" },
 
 				-- move
-				{ mode = "n", keys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" },
-
-				-- tabs
-				{ mode = "n", keys = "<leader>am" },
+				-- { mode = "n", keys = "<leader>m" },
+				-- { mode = "x", keys = "<leader>m" },
+				--
+				-- -- tabs
+				-- { mode = "n", keys = "<leader>am" },
 
 				-- brackets
 				{ mode = "n", keys = "]" },
@@ -66,22 +66,22 @@ M[#M + 1] = {
 				miniclue.gen_clues.z(),
 
 				-- move
-				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m" },
-				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m" },
+				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
 				-- tabs
-				{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am" },
-				{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am" },
+				{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
+				{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
 
 				-- brackets
-				{ mode = "n", keys = "]b", postkeys = "]" },
-				{ mode = "n", keys = "[b", postkeys = "[" },
+				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
+				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
 
 				-- clues
 				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
@@ -93,7 +93,6 @@ M[#M + 1] = {
 				{ mode = "n", keys = "<leader>p", desc = "+Pick" },
 				{ mode = "n", keys = "<leader>u", desc = "+UI" },
 				{ mode = "n", keys = "<leader>q", desc = "+Quit" },
-				{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 			},
 		}
 

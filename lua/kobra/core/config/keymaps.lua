@@ -123,12 +123,6 @@ end
 Util.keymap("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 Util.keymap("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit All" })
 
--- windows
-Util.keymap("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
-Util.keymap("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
-Util.keymap("n", "<leader>wb", "<C-W>s", { desc = "Split window below" })
-Util.keymap("n", "<leader>wr", "<C-W>v", { desc = "Split window right" })
-
 -- tabs
 Util.keymap("n", "<leader>al", "<cmd>tablast<cr>", { desc = "Last Tab" })
 Util.keymap("n", "<leader>af", "<cmd>tabfirst<cr>", { desc = "First Tab" })

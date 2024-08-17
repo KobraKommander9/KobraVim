@@ -118,14 +118,14 @@ local recorded_mode = nil
 local has_recorded = false
 local bufmodified = nil
 local timeout_timer = uv.new_timer()
-local function record_key(key)
+local function record_key(mode, key)
 	if timeout_timer:is_active() then
 		timeout_timer:stop()
 	end
 
 	waiting = true
 	recorded_key = key
-	recorded_mode = api.nvim_get_mode().mode
+	recorded_mode = mode
 	has_recorded = true
 	bufmodified = vim.bo.modified
 
@@ -175,7 +175,7 @@ local function check_key(key)
 
 	for first_key in pairs(settings.mappings[mode] or {}) do
 		if key == first_key then
-			record_key(key)
+			record_key(mode, key)
 			return
 		end
 	end
