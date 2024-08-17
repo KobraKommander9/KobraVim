@@ -51,12 +51,17 @@ M[#M + 1] = {
 				miniclue.gen_clues.g(),
 				miniclue.gen_clues.marks(),
 				miniclue.gen_clues.registers(),
-				miniclue.gen_clues.windows({
-					submode_move = true,
-					submode_navigate = true,
-					submode_resize = true,
-				}),
+				-- miniclue.gen_clues.windows({
+				-- 	submode_move = true,
+				-- 	submode_navigate = true,
+				-- 	submode_resize = true,
+				-- }),
 				miniclue.gen_clues.z(),
+
+				{ mode = "n", keys = "<C-w><C-h>", postkeys = "<C-w>" },
+				{ mode = "n", keys = "<C-w><C-j>", postkeys = "<C-w>" },
+				{ mode = "n", keys = "<C-w><C-k>", postkeys = "<C-w>" },
+				{ mode = "n", keys = "<C-w><C-l>", postkeys = "<C-w>" },
 
 				-- move
 				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
@@ -69,8 +74,8 @@ M[#M + 1] = {
 				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 
 				-- tabs
-				{ mode = "n", keys = "<leader>amn", postkeys = "<leader>am", desc = "Move tab right" },
-				{ mode = "n", keys = "<leader>amp", postkeys = "<leader>am", desc = "Move tab left" },
+				{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
+				{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
 
 				-- brackets
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
