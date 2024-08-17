@@ -130,8 +130,8 @@ Util.keymap("n", "<leader>aa", "<cmd>tabnew<cr>", { desc = "New Tab" })
 Util.keymap("n", "<leader>an", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 Util.keymap("n", "<leader>ac", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 Util.keymap("n", "<leader>ap", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-Util.keymap("n", "<leader>am" .. Keys.j, "<cmd>+tabmove<cr>", { desc = "Move Current Tab to Next" })
-Util.keymap("n", "<leader>am" .. Keys.k, "<cmd>-tabmove<cr>", { desc = "Move Current Tab to Previous" })
+Util.keymap("n", "<leader>amn", "<cmd>+tabmove<cr>", { desc = "Move Current Tab to Next" })
+Util.keymap("n", "<leader>amp", "<cmd>-tabmove<cr>", { desc = "Move Current Tab to Previous" })
 
 -- diagnostics
 Util.keymap("n", "<leader>dh", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Hover Diagnostic" })
