@@ -22,6 +22,10 @@ M[#M + 1] = {
 					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 				}
 
+				if opts.clues == nil then
+					opts.clues = {}
+				end
+
 				for _, clue in ipairs(clues) do
 					table.insert(opts.clues, clue)
 				end
