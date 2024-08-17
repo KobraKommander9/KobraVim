@@ -250,7 +250,6 @@ end
 
 M.did_init = false
 function M.init()
-	vim.notify("initializing...")
 	if not M.did_init then
 		M.did_init = true
 		KobraVim.lazy_notify()
