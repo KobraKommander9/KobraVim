@@ -56,14 +56,14 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
-				local clues = {
-					{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
-					{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
+				local options = {
+					clues = {
+						{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
+						{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
+					},
 				}
 
-				for _, clue in ipairs(clues) do
-					table.insert(opts.clues, clue)
-				end
+				return vim.tbl_deep_extend("force", options, opts)
 			end,
 		},
 	},
