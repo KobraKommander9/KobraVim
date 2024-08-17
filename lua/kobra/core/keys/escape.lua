@@ -164,7 +164,7 @@ local function check_key(key)
 	end
 
 	if waiting then
-		for second_key, action in pairs(settings.mappings[recorded_mode][recorded_key]) do
+		for second_key, action in pairs(settings.mappings[recorded_mode][recorded_key] or {}) do
 			if key == second_key then
 				waiting = false
 				execute(recorded_mode, action)
