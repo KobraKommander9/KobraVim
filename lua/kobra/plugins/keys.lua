@@ -94,68 +94,68 @@ M[#M + 1] = {
 }
 
 -- track key mappings
--- M[#M + 1] = {
--- 	"tris203/hawtkeys.nvim",
--- 	dependencies = {
--- 		"nvim-lua/plenary.nvim",
--- 	},
--- 	cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
--- 	keys = {
--- 		{ "<leader>kk", "<cmd>Hawtkeys<cr>", desc = "Show key mappings" },
--- 		{ "<leader>kK", "<cmd>HawtkeysAll<cr>", desc = "Show all key mappings" },
--- 		{ "<leader>kd", "<cmd>HawtkeysDupes<cr>", desc = "Show duplicate key mappings" },
--- 	},
--- 	opts = function(_, opts)
--- 		local options = {
--- 			customMaps = {
--- 				["lazy"] = {
--- 					method = "lazy",
--- 				},
--- 			},
--- 		}
---
--- 		local colemak = {
--- 			keyboardLayout = "colemak",
--- 		}
---
--- 		if Core.layouts.colemak then
--- 			options = vim.tbl_deep_extend("force", options, colemak)
--- 		end
---
--- 		return vim.tbl_deep_extend("force", options, opts)
--- 	end,
--- }
+M[#M + 1] = {
+	"tris203/hawtkeys.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
+	keys = {
+		{ "<leader>kk", "<cmd>Hawtkeys<cr>", desc = "Show key mappings" },
+		{ "<leader>kK", "<cmd>HawtkeysAll<cr>", desc = "Show all key mappings" },
+		{ "<leader>kd", "<cmd>HawtkeysDupes<cr>", desc = "Show duplicate key mappings" },
+	},
+	opts = function(_, opts)
+		local options = {
+			customMaps = {
+				["lazy"] = {
+					method = "lazy",
+				},
+			},
+		}
+
+		local colemak = {
+			keyboardLayout = "colemak",
+		}
+
+		if Core.layouts.colemak then
+			options = vim.tbl_deep_extend("force", options, colemak)
+		end
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
+}
 
 -- easily jump to any location and enhanced f/t motions for leap
--- M[#M + 1] = {
--- 	"ggandor/flit.nvim",
--- 	keys = function()
--- 		local ret = {}
--- 		for _, key in ipairs({ "f", "F", "t", "T" }) do
--- 			ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
--- 		end
--- 		return ret
--- 	end,
--- 	opts = { labeled_modes = "nx" },
--- }
---
--- M[#M + 1] = {
--- 	"ggandor/leap.nvim",
--- 	keys = {
--- 		{ "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
--- 		{ "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
--- 		{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
--- 	},
--- 	config = function(_, opts)
--- 		local leap = require("leap")
--- 		for k, v in pairs(opts) do
--- 			leap.opts[k] = v
--- 		end
---
--- 		leap.add_default_mappings(true)
--- 		vim.keymap.del({ "x", "o" }, "x")
--- 		vim.keymap.del({ "x", "o" }, "X")
--- 	end,
--- }
+M[#M + 1] = {
+	"ggandor/flit.nvim",
+	keys = function()
+		local ret = {}
+		for _, key in ipairs({ "f", "F", "t", "T" }) do
+			ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
+		end
+		return ret
+	end,
+	opts = { labeled_modes = "nx" },
+}
+
+M[#M + 1] = {
+	"ggandor/leap.nvim",
+	keys = {
+		{ "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
+		{ "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+		{ "gs", mode = { "n", "x", "o" }, desc = "Leap from windows" },
+	},
+	config = function(_, opts)
+		local leap = require("leap")
+		for k, v in pairs(opts) do
+			leap.opts[k] = v
+		end
+
+		leap.add_default_mappings(true)
+		vim.keymap.del({ "x", "o" }, "x")
+		vim.keymap.del({ "x", "o" }, "X")
+	end,
+}
 
 return M
