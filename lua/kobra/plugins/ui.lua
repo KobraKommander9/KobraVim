@@ -2,58 +2,58 @@ local M = {}
 
 local Util = require("kobra.util")
 
--- M[#M + 1] = {
--- 	"Leviathenn/nvim-transparent",
--- 	event = "VimEnter",
--- 	opts = {
--- 		enable = require("kobra.core").ui.background == "transparent",
--- 		exclude = {
--- 			"KobraTLHead",
--- 			"KobraTLHeadSep",
--- 			"KobraTLActive",
--- 			"KobraTLActiveSep",
--- 			"KobraTLBoldLine",
--- 			"KobraTLLineSep",
--- 		},
--- 	},
--- }
---
--- M[#M + 1] = {
--- 	"rcarriga/nvim-notify",
--- 	keys = {
--- 		{
--- 			"<leader>un",
--- 			function()
--- 				require("notify").dismiss({ silent = true, pending = true })
--- 			end,
--- 			desc = "Dismiss all notifications",
--- 		},
--- 	},
--- 	opts = function(_, opts)
--- 		local options = {
--- 			timeout = 3000,
--- 			max_height = function()
--- 				return math.floor(vim.o.lines * 0.75)
--- 			end,
--- 			max_width = function()
--- 				return math.floor(vim.o.columns * 0.75)
--- 			end,
--- 			render = "compact",
--- 			stages = "slide",
--- 		}
---
--- 		return vim.tbl_deep_extend("force", options, opts)
--- 	end,
--- 	init = function()
--- 		-- when noice is not enabled, install notify on VeryLazy
--- 		if not KobraVim.has("noice.nvim") then
--- 			KobraVim.on_very_lazy(function()
--- 				vim.notify = require("notify")
--- 			end)
--- 		end
--- 	end,
--- }
---
+M[#M + 1] = {
+	"Leviathenn/nvim-transparent",
+	event = "VimEnter",
+	opts = {
+		enable = require("kobra.core").ui.background == "transparent",
+		exclude = {
+			"KobraTLHead",
+			"KobraTLHeadSep",
+			"KobraTLActive",
+			"KobraTLActiveSep",
+			"KobraTLBoldLine",
+			"KobraTLLineSep",
+		},
+	},
+}
+
+M[#M + 1] = {
+	"rcarriga/nvim-notify",
+	keys = {
+		{
+			"<leader>un",
+			function()
+				require("notify").dismiss({ silent = true, pending = true })
+			end,
+			desc = "Dismiss all notifications",
+		},
+	},
+	opts = function(_, opts)
+		local options = {
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
+			render = "compact",
+			stages = "slide",
+		}
+
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
+	init = function()
+		-- when noice is not enabled, install notify on VeryLazy
+		if not KobraVim.has("noice.nvim") then
+			KobraVim.on_very_lazy(function()
+				vim.notify = require("notify")
+			end)
+		end
+	end,
+}
+
 -- M[#M + 1] = {
 -- 	"folke/noice.nvim",
 -- 	event = "VeryLazy",
