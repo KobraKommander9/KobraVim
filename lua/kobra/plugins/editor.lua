@@ -2,6 +2,17 @@ local M = {}
 
 local Keys = require("kobra.core.keys")
 
+-- completion
+M[#M + 1] = {
+	"echasnovski/mini.clue",
+	opts = {
+		-- lsp_completion = {
+		-- 	source_func = "omnifunc",
+		-- 	auto_setup = false,
+		-- },
+	},
+}
+
 -- move text
 M[#M + 1] = {
 	"echasnovski/mini.move",
