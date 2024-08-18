@@ -88,7 +88,7 @@ M[#M + 1] = {
 			options = vim.tbl_deep_extend("force", options, colemak)
 		end
 
-		opts = vim.tbl_deep_extend("force", opts or {}, options)
+		return vim.tbl_deep_extend("force", options, opts)
 	end,
 	build = function()
 		vim.ui.select = require("mini.pick").ui_select

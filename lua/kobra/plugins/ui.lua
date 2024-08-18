@@ -27,20 +27,18 @@ M[#M + 1] = {
 			desc = "Dismiss all notifications",
 		},
 	},
-	opts = function(_, opts)
-		opts = vim.tbl_deep_extend("force", opts or {}, {
-			timeout = 3000,
-			max_height = function()
-				return math.floor(vim.o.lines * 0.75)
-			end,
-			max_width = function()
-				return math.floor(vim.o.columns * 0.75)
-			end,
-			render = "compact",
-			stages = "slide",
-			background_colour = "#000000",
-		})
-	end,
+	opts = {
+		timeout = 3000,
+		max_height = function()
+			return math.floor(vim.o.lines * 0.75)
+		end,
+		max_width = function()
+			return math.floor(vim.o.columns * 0.75)
+		end,
+		render = "compact",
+		stages = "slide",
+		background_colour = "#000000",
+	},
 	init = function()
 		-- when noice is not enabled, install notify on VeryLazy
 		if not KobraVim.has("noice.nvim") then
@@ -58,12 +56,11 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				opts = opts or {}
-				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+			opts = {
+				clues = {
 					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-				})
-			end,
+				},
+			},
 		},
 		{
 			"rcarriga/nvim-notify",
@@ -222,7 +219,7 @@ M[#M + 1] = {
 			},
 		}
 
-		opts = vim.tbl_deep_extend("force", opts or {}, options)
+		return vim.tbl_deep_extend("force", options, opts)
 	end,
 }
 
@@ -237,14 +234,12 @@ M[#M + 1] = {
 			end
 		end)
 	end,
-	opts = function(_, opts)
-		opts = vim.tbl_deep_extend("force", opts or {}, {
-			separator = " ",
-			highlight = true,
-			depth_limit = 5,
-			icons = require("kobra.core").ui.icons.kinds,
-		})
-	end,
+	opts = {
+		separator = " ",
+		highlight = true,
+		depth_limit = 5,
+		icons = require("kobra.core").ui.icons.kinds,
+	},
 }
 
 return M

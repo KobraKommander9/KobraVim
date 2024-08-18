@@ -30,12 +30,11 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				opts = opts or {}
-				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+			opts = {
+				clues = {
 					{ mode = "n", keys = "<leader>v", desc = "+Visits" },
-				})
-			end,
+				},
+			},
 		},
 	},
 	keys = {
@@ -53,9 +52,8 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				opts = opts or {}
-				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+			opts = {
+				clues = {
 					{ mode = "n", keys = "<leader>m", desc = "+Move" },
 					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
 					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
@@ -65,26 +63,21 @@ M[#M + 1] = {
 					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
 					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
 					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				})
-				vim.notify(vim.inspect(opts.clues))
-				return opts
-			end,
+				},
+			},
 		},
 	},
-	opts = function(_, opts)
-		opts = opts or {}
-		opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, {
-			left = "<leader>mh",
-			right = "<leader>m" .. Keys.l,
-			down = "<leader>m" .. Keys.j,
-			up = "<leader>m" .. Keys.k,
+	opts = {
+		left = "<leader>mh",
+		right = "<leader>m" .. Keys.l,
+		down = "<leader>m" .. Keys.j,
+		up = "<leader>m" .. Keys.k,
 
-			line_left = "<leader>mh",
-			line_right = "<leader>m" .. Keys.l,
-			line_down = "<leader>m" .. Keys.j,
-			line_up = "<leader>m" .. Keys.k,
-		})
-	end,
+		line_left = "<leader>mh",
+		line_right = "<leader>m" .. Keys.l,
+		line_down = "<leader>m" .. Keys.j,
+		line_up = "<leader>m" .. Keys.k,
+	},
 }
 
 -- better bracket jumps
@@ -95,13 +88,12 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				opts = opts or {}
-				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+			opts = {
+				clues = {
 					{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
 					{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
-				})
-			end,
+				},
+			},
 		},
 	},
 	config = true,
