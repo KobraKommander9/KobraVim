@@ -4,12 +4,19 @@ local M = {}
 M[#M + 1] = {
 	"echasnovski/mini.completion",
 	event = "VeryLazy",
-	opts = {
-		-- lsp_completion = {
-		-- 	source_func = "omnifunc",
-		-- 	auto_setup = false,
-		-- },
+	dependencies = {
+		{
+			"echasnovski/mini.fuzzy",
+			config = true,
+		},
 	},
+	opts = function(_, opts)
+		opts = vim.tbl_deep_extend("force", opts or {}, {
+			lsp_completion = {
+				process_items = require("mini.fuzzy").process_lsp_items,
+			},
+		})
+	end,
 }
 
 return M
