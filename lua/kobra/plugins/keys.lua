@@ -10,72 +10,71 @@ M[#M + 1] = {
 	opts = function(_, opts)
 		local miniclue = require("mini.clue")
 
-		local options = {
-			triggers = {
-				-- Leader triggers
-				{ mode = "n", keys = "<Leader>" },
-				{ mode = "x", keys = "<Leader>" },
+		opts.clues = opts.clues or {}
+		opts.triggers = opts.triggers or {}
 
-				-- Built-in completion
-				{ mode = "i", keys = "<C-x>" },
+		opts.triggers = vim.tbl_deep_extend("force", opts.triggers or {}, {
+			-- Leader triggers
+			{ mode = "n", keys = "<Leader>" },
+			{ mode = "x", keys = "<Leader>" },
 
-				-- g key
-				{ mode = "n", keys = "g" },
-				{ mode = "x", keys = "g" },
+			-- Built-in completion
+			{ mode = "i", keys = "<C-x>" },
 
-				-- marks
-				{ mode = "n", keys = "'" },
-				{ mode = "n", keys = "`" },
-				{ mode = "x", keys = "'" },
-				{ mode = "x", keys = "`" },
+			-- g key
+			{ mode = "n", keys = "g" },
+			{ mode = "x", keys = "g" },
 
-				-- registers
-				{ mode = "n", keys = '"' },
-				{ mode = "x", keys = '"' },
-				{ mode = "i", keys = "<C-r>" },
-				{ mode = "c", keys = "<C-r>" },
+			-- marks
+			{ mode = "n", keys = "'" },
+			{ mode = "n", keys = "`" },
+			{ mode = "x", keys = "'" },
+			{ mode = "x", keys = "`" },
 
-				-- window commands
-				{ mode = "n", keys = "<C-w>" },
+			-- registers
+			{ mode = "n", keys = '"' },
+			{ mode = "x", keys = '"' },
+			{ mode = "i", keys = "<C-r>" },
+			{ mode = "c", keys = "<C-r>" },
 
-				-- `z` key
-				{ mode = "n", keys = "z" },
-				{ mode = "x", keys = "z" },
+			-- window commands
+			{ mode = "n", keys = "<C-w>" },
 
-				-- brackets
-				{ mode = "n", keys = "]" },
-				{ mode = "n", keys = "[" },
-			},
-			clues = {
-				miniclue.gen_clues.builtin_completion(),
-				miniclue.gen_clues.g(),
-				miniclue.gen_clues.marks(),
-				miniclue.gen_clues.registers(),
-				miniclue.gen_clues.windows({
-					submode_move = true,
-					submode_navigate = true,
-					submode_resize = true,
-				}),
-				miniclue.gen_clues.z(),
+			-- `z` key
+			{ mode = "n", keys = "z" },
+			{ mode = "x", keys = "z" },
 
-				-- tabs
-				{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
-				{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
+			-- brackets
+			{ mode = "n", keys = "]" },
+			{ mode = "n", keys = "[" },
+		})
+		opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+			miniclue.gen_clues.builtin_completion(),
+			miniclue.gen_clues.g(),
+			miniclue.gen_clues.marks(),
+			miniclue.gen_clues.registers(),
+			miniclue.gen_clues.windows({
+				submode_move = true,
+				submode_navigate = true,
+				submode_resize = true,
+			}),
+			miniclue.gen_clues.z(),
 
-				-- clues
-				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
-				{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
-				{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
-				{ mode = "n", keys = "<leader>f", desc = "+Files" },
-				{ mode = "n", keys = "<leader>g", desc = "+Git" },
-				{ mode = "n", keys = "<leader>k", desc = "+Keys" },
-				{ mode = "n", keys = "<leader>p", desc = "+Pick" },
-				{ mode = "n", keys = "<leader>u", desc = "+UI" },
-				{ mode = "n", keys = "<leader>q", desc = "+Quit" },
-			},
-		}
+			-- tabs
+			{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
+			{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
 
-		return vim.tbl_deep_extend("force", options, opts)
+			-- clues
+			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
+			{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
+			{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
+			{ mode = "n", keys = "<leader>f", desc = "+Files" },
+			{ mode = "n", keys = "<leader>g", desc = "+Git" },
+			{ mode = "n", keys = "<leader>k", desc = "+Keys" },
+			{ mode = "n", keys = "<leader>p", desc = "+Pick" },
+			{ mode = "n", keys = "<leader>u", desc = "+UI" },
+			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
+		})
 	end,
 }
 
