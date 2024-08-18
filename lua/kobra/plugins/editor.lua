@@ -5,6 +5,7 @@ local Keys = require("kobra.core.keys")
 -- completion
 M[#M + 1] = {
 	"echasnovski/mini.completion",
+	event = "VeryLazy",
 	opts = {
 		-- lsp_completion = {
 		-- 	source_func = "omnifunc",
