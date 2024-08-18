@@ -70,6 +70,33 @@ M[#M + 1] = {
 				node_decremental = "<bs>",
 			},
 		},
+		textobjects = {
+			move = {
+				enable = true,
+				-- avoid conflict with mini.bracketed
+				-- M: method, E: entity, A: parameter
+				goto_next_start = {
+					["]m"] = "@function.outer",
+					["]e"] = "@class.outer",
+					["]a"] = "@parameter.inner",
+				},
+				goto_next_end = {
+					["]M"] = "@function.outer",
+					["]E"] = "@class.outer",
+					["]A"] = "@parameter.inner",
+				},
+				goto_previous_start = {
+					["[m"] = "@function.outer",
+					["[e"] = "@class.outer",
+					["[a"] = "@parameter.inner",
+				},
+				goto_previous_end = {
+					["[M"] = "@function.outer",
+					["[E"] = "@class.outer",
+					["[A"] = "@parameter.inner",
+				},
+			},
+		},
 	},
 	config = function(_, opts)
 		if type(opts.ensure_installed) == "table" then
