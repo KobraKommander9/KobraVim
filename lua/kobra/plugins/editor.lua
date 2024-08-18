@@ -49,21 +49,18 @@ M[#M + 1] = {
 		},
 	},
 	opts = function(_, opts)
-		local options = {
-			mappings = {
-				left = "<leader>mh",
-				right = "<leader>m" .. Keys.l,
-				down = "<leader>m" .. Keys.j,
-				up = "<leader>m" .. Keys.k,
+		opts = opts or {}
+		opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, {
+			left = "<leader>mh",
+			right = "<leader>m" .. Keys.l,
+			down = "<leader>m" .. Keys.j,
+			up = "<leader>m" .. Keys.k,
 
-				line_left = "<leader>mh",
-				line_right = "<leader>m" .. Keys.l,
-				line_down = "<leader>m" .. Keys.j,
-				line_up = "<leader>m" .. Keys.k,
-			},
-		}
-
-		return vim.tbl_deep_extend("force", options, opts)
+			line_left = "<leader>mh",
+			line_right = "<leader>m" .. Keys.l,
+			line_down = "<leader>m" .. Keys.j,
+			line_up = "<leader>m" .. Keys.k,
+		})
 	end,
 }
 

@@ -28,7 +28,7 @@ M[#M + 1] = {
 		},
 	},
 	opts = function(_, opts)
-		local options = {
+		opts = vim.tbl_deep_extend("force", opts or {}, {
 			timeout = 3000,
 			max_height = function()
 				return math.floor(vim.o.lines * 0.75)
@@ -38,9 +38,7 @@ M[#M + 1] = {
 			end,
 			render = "compact",
 			stages = "slide",
-		}
-
-		return vim.tbl_deep_extend("force", options, opts)
+		})
 	end,
 	init = function()
 		-- when noice is not enabled, install notify on VeryLazy
@@ -214,7 +212,7 @@ M[#M + 1] = {
 			},
 		}
 
-		return vim.tbl_deep_extend("force", options, opts)
+		opts = vim.tbl_deep_extend("force", opts or {}, options)
 	end,
 }
 
@@ -229,13 +227,13 @@ M[#M + 1] = {
 			end
 		end)
 	end,
-	opts = function()
-		return {
+	opts = function(_, opts)
+		opts = vim.tbl_deep_extend("force", opts or {}, {
 			separator = " ",
 			highlight = true,
 			depth_limit = 5,
 			icons = require("kobra.core").ui.icons.kinds,
-		}
+		})
 	end,
 }
 
