@@ -98,7 +98,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.extra",
 	dependencies = {
-		{ "echasnovski/mini.fuzzy", version = false, config = true },
+		{ "echasnovski/mini.fuzzy", config = true },
 		"echasnovski/mini.pick",
 	},
 	cmd = { "Pick" },
