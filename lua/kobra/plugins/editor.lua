@@ -11,40 +11,18 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
-				opts.clues = opts.clues or {}
-
-				table.insert(
-					opts.clues,
-					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" }
-				)
-				table.insert(
-					opts.clues,
-					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" }
-				)
+				opts = opts or {}
+				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+					{ mode = "n", keys = "<leader>m", desc = "+Move" },
+					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				})
 			end,
 		},
 	},
@@ -73,8 +51,11 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
-				table.insert(opts.clues, { mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" })
-				table.insert(opts.clues, { mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" })
+				opts = opts or {}
+				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+					{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
+					{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
+				})
 			end,
 		},
 	},

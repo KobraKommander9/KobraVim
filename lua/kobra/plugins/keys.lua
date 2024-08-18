@@ -76,6 +76,7 @@ M[#M + 1] = {
 			{ mode = "n", keys = "<leader>u", desc = "+UI" },
 			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
 			{ mode = "n", keys = "<leader>s", desc = "+Search" },
+			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 		})
 	end,
 }
