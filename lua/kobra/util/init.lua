@@ -15,14 +15,6 @@ function M.keymap(mode, lhs, rhs, opts)
 	end
 end
 
-function M.ensure_keys()
-	local ok, clue = pcall(require, "mini.clue")
-	if not ok then
-		return
-	end
-	clue.ensure_buf_triggers()
-end
-
 function M.on_attach(on_attach)
 	vim.api.nvim_create_autocmd("LspAttach", {
 		callback = function(args)

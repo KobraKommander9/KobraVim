@@ -28,20 +28,22 @@ M[#M + 1] = {
 			},
 		},
 		-- mini clue integration
-		"echasnovski/mini.clue",
+		{
+			"echasnovski/mini.clue",
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("keep", {
+					clues = {
+						{ mode = "n", keys = "<leader>v", desc = "+Visits" },
+					},
+				}, opts)
+			end,
+		},
 	},
 	keys = {
 		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
 		{ "<leader>vV", "<cmd>lua MiniVisits.remove_label()<cr>", desc = "Remove label" },
 	},
-	config = function(_, opts)
-		require("mini.visits").setup(opts)
-		require("mini.clue").setup({
-			clues = {
-				{ mode = "n", keys = "<leader>v", desc = "+Visits" },
-			},
-		})
-	end,
+	config = true,
 }
 
 -- move text
@@ -52,19 +54,21 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = {
-				clues = {
-					{ mode = "n", keys = "<leader>m", desc = "+Move" },
-					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				},
-			},
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("keep", {
+					clues = {
+						{ mode = "n", keys = "<leader>m", desc = "+Move" },
+						{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+						{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+						{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+						{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+						{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+						{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+						{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+						{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+					},
+				}, opts)
+			end,
 		},
 	},
 	opts = {
@@ -88,12 +92,14 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = {
-				clues = {
-					{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
-					{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
-				},
-			},
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("keep", {
+					clues = {
+						{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
+						{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
+					},
+				}, opts)
+			end,
 		},
 	},
 	config = true,

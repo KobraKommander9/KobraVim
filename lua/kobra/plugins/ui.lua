@@ -56,11 +56,13 @@ M[#M + 1] = {
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
-			opts = {
-				clues = {
-					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-				},
-			},
+			opts = function(_, opts)
+				return vim.tbl_deep_extend("keep", {
+					clues = {
+						{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
+					},
+				}, opts)
+			end,
 		},
 		{
 			"rcarriga/nvim-notify",
