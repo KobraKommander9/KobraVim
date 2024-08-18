@@ -2,16 +2,47 @@ local M = {}
 
 local Keys = require("kobra.core.keys")
 
--- completion
+-- buffer management
 M[#M + 1] = {
-	"echasnovski/mini.completion",
-	event = "VeryLazy",
-	opts = {
-		-- lsp_completion = {
-		-- 	source_func = "omnifunc",
-		-- 	auto_setup = false,
-		-- },
+	"echasnovski/mini.visits",
+	event = "BufReadPre",
+	dependencies = {
+		-- mini pick integration
+		{
+			"echasnovski/mini.extra",
+			keys = {
+				{
+					"<leader>fv",
+					function()
+						require("mini.extra").pickers.visit_paths()
+					end,
+					desc = "Search visited files",
+				},
+				{
+					"<leader>fl",
+					function()
+						require("mini.extra").pickers.visit_labels()
+					end,
+					desc = "Search visited labels",
+				},
+			},
+		},
+		-- mini clue integration
+		{
+			"echasnovski/mini.clue",
+			opts = function(_, opts)
+				opts = opts or {}
+				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+					{ mode = "n", keys = "<leader>v", desc = "+Visits" },
+				})
+			end,
+		},
 	},
+	keys = {
+		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
+		{ "<leader>vV", "<cmd>lua MiniVisits.remove_label()<cr>", desc = "Remove label" },
+	},
+	config = true,
 }
 
 -- move text
