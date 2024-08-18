@@ -28,20 +28,20 @@ M[#M + 1] = {
 			},
 		},
 		-- mini clue integration
-		{
-			"echasnovski/mini.clue",
-			opts = {
-				clues = {
-					{ mode = "n", keys = "<leader>v", desc = "+Visits" },
-				},
-			},
-		},
+		"echasnovski/mini.clue",
 	},
 	keys = {
 		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
 		{ "<leader>vV", "<cmd>lua MiniVisits.remove_label()<cr>", desc = "Remove label" },
 	},
-	config = true,
+	config = function(_, opts)
+		require("mini.visits").setup(opts)
+		require("mini.clue").setup({
+			clues = {
+				{ mode = "n", keys = "<leader>v", desc = "+Visits" },
+			},
+		})
+	end,
 }
 
 -- move text
