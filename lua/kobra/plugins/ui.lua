@@ -38,6 +38,7 @@ M[#M + 1] = {
 			end,
 			render = "compact",
 			stages = "slide",
+			background_colour = "#000000",
 		})
 	end,
 	init = function()
