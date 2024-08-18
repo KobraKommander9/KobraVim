@@ -141,23 +141,6 @@ M[#M + 1] = {
 	end,
 }
 
-M[#M + 1] = { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true }
-
-M[#M + 1] = {
-	"echasnovski/mini.comment",
-	event = "VeryLazy",
-	opts = {
-		hooks = {
-			pre = function()
-				require("ts_context_commentstring.internal").update_commentstring({})
-			end,
-		},
-	},
-	config = function(_, opts)
-		require("mini.comment").setup(opts)
-	end,
-}
-
 M[#M + 1] = {
 	"echasnovski/mini.ai",
 	event = "VeryLazy",

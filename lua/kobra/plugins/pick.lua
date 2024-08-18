@@ -21,7 +21,7 @@ M[#M + 1] = {
 
 				require("mini.pick").builtin.buffers({}, { mappings = buffer_mappings })
 			end,
-			desc = "Pick buffers",
+			desc = "Search buffers",
 		},
 
 		-- Files
@@ -30,37 +30,39 @@ M[#M + 1] = {
 			function()
 				require("mini.pick").builtin.files()
 			end,
-			desc = "Pick files",
+			desc = "Search files",
 		},
+
+		-- Search
 		{
-			"<leader>fg",
+			"<leader>sg",
 			function()
 				require("mini.pick").builtin.grep_live()
 			end,
-			desc = "Pick files (grep live)",
+			desc = "Search files (grep live)",
 		},
 		{
-			"<leader>fG",
+			"<leader>sG",
 			function()
 				require("mini.pick").builtin.grep()
 			end,
-			desc = "Pick files (grep)",
+			desc = "Search files (grep)",
 		},
 
 		-- Pickers
 		{
-			"<leader>ph",
+			"<leader>sH",
 			function()
 				require("mini.pick").builtin.help()
 			end,
-			desc = "Pick help tags",
+			desc = "Search help tags",
 		},
 		{
-			"<leader>pr",
+			"<leader>sr",
 			function()
 				require("mini.pick").builtin.resume()
 			end,
-			desc = "Resume picker",
+			desc = "Resume search",
 		},
 	},
 	opts = function(_, opts)
@@ -101,45 +103,84 @@ M[#M + 1] = {
 	},
 	cmd = { "Pick" },
 	keys = {
+		{
+			"<leader>sc",
+			function()
+				require("mini.extra").pickers.history({ scope = "/" })
+			end,
+			desc = "Search history",
+		},
+		{
+			"<leader>sC",
+			function()
+				require("mini.extra").pickers.history({ scope = ":" })
+			end,
+			desc = "Search command history",
+		},
+		{
+			"<leader>sd",
+			function()
+				require("mini.extra").pickers.diagnostic({ scope = "current" })
+			end,
+			desc = "Search diagnostics",
+		},
+		{
+			"<leader>sD",
+			function()
+				require("mini.extra").pickers.diagnostic()
+			end,
+			desc = "Search diagnostics (all)",
+		},
+		{
+			"<leader>sm",
+			function()
+				require("mini.extra").pickers.list({ scope = "changelist" })
+			end,
+			desc = "Search changelist",
+		},
+		{
+			"<leader>sM",
+			function()
+				require("mini.extra").pickers.marsk()
+			end,
+			desc = "Search marks",
+		},
+		{
+			"<leader>so",
+			function()
+				require("mini.extra").pickers.options()
+			end,
+			desc = "Search options",
+		},
+		{
+			"<leader>sq",
+			function()
+				require("mini.extra").pickers.list({ scope = "quickfix" })
+			end,
+			desc = "Search quickfix",
+		},
+		{
+			"<leader>sT",
+			function()
+				require("mini.extra").pickers.treesitter()
+			end,
+			desc = "Search treesitter",
+		},
+		{
+			"<leader>sz",
+			function()
+				require("mini.extra").pickers.spellsuggest()
+			end,
+			desc = "Search spelling suggestions",
+		},
+
 		-- Buffers
 		{
 			"<leader>bl",
 			function()
 				require("mini.extra").pickers.buf_lines()
 			end,
-			desc = "Pick buffer lines",
-		},
-
-		-- Commands
-		{
-			"<leader>pc",
-			function()
-				require("mini.extra").pickers.history({ scope = "/" })
-			end,
-			desc = "Pick search history",
-		},
-		{
-			"<leader>pC",
-			function()
-				require("mini.extra").pickers.history({ scope = ":" })
-			end,
-			desc = "Pick command history",
-		},
-
-		-- Diagnostics
-		{
-			"<leader>pd",
-			function()
-				require("mini.extra").pickers.diagnostic({ scope = "current" })
-			end,
-			desc = "Pick diagnostics",
-		},
-		{
-			"<leader>pD",
-			function()
-				require("mini.extra").pickers.diagnostic()
-			end,
-			desc = "Pick diagnostics (all)",
+			desc = "Search buffer lines",
 		},
 
 		-- Files
@@ -148,14 +189,14 @@ M[#M + 1] = {
 			function()
 				require("mini.extra").pickers.explorer({ cwd = vim.fn.expand("%:p:h") })
 			end,
-			desc = "Pick files (explorer)",
+			desc = "Search files (explorer)",
 		},
 		{
 			"<leader>fr",
 			function()
 				require("mini.extra").pickers.oldfiles()
 			end,
-			desc = "Pick old files",
+			desc = "Search old files",
 		},
 
 		-- Git
@@ -164,37 +205,28 @@ M[#M + 1] = {
 			function()
 				require("mini.extra").pickers.git_branches()
 			end,
-			desc = "Pick git branches",
+			desc = "Search git branches",
 		},
 		{
 			"<leader>gc",
 			function()
 				require("mini.extra").pickers.git_commits()
 			end,
-			desc = "Pick git branches",
+			desc = "Search git commits",
 		},
 		{
 			"<leader>gf",
 			function()
 				require("mini.extra").pickers.git_files()
 			end,
-			desc = "Pick git branches",
+			desc = "Search git files",
 		},
 		{
 			"<leader>gh",
 			function()
 				require("mini.extra").pickers.git_hunks()
 			end,
-			desc = "Pick git hunks",
-		},
-
-		-- Marks
-		{
-			"<leader>pm",
-			function()
-				require("mini.extra").pickers.marsk()
-			end,
-			desc = "Pick marks",
+			desc = "Search git hunks",
 		},
 
 		-- LSP
@@ -203,49 +235,49 @@ M[#M + 1] = {
 			function()
 				require("mini.extra").pickers.lsp({ scope = "declaration" })
 			end,
-			desc = "Goto LSP declarations",
+			desc = "LSP declarations",
 		},
 		{
 			"<leader>lD",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "definition" })
 			end,
-			desc = "Goto LSP definitions",
+			desc = "LSP definitions",
 		},
 		{
 			"<leader>li",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "implementation" })
 			end,
-			desc = "Goto LSP implementations",
+			desc = "LSP implementations",
 		},
 		{
 			"<leader>lr",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "references" })
 			end,
-			desc = "Goto LSP references",
+			desc = "LSP references",
 		},
 		{
 			"<leader>ls",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 			end,
-			desc = "Goto LSP symbols",
+			desc = "LSP symbols",
 		},
 		{
 			"<leader>lt",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "type_definition" })
 			end,
-			desc = "Goto LSP types",
+			desc = "LSP types",
 		},
 		{
 			"<leader>lw",
 			function()
 				require("mini.extra").pickers.lsp({ scope = "workspace_symbol" })
 			end,
-			desc = "Goto LSP workspace symbols",
+			desc = "LSP workspace symbols",
 		},
 	},
 	config = true,
