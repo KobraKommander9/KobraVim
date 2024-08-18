@@ -11,20 +11,38 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
-				local options = {
-					clues = {
-						{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-						{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-						{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-						{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-						{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-						{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-						{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-						{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-					},
-				}
-
-				return vim.tbl_deep_extend("force", options, opts)
+				table.insert(
+					opts.clues,
+					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" }
+				)
+				table.insert(
+					opts.clues,
+					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" }
+				)
 			end,
 		},
 	},
@@ -56,14 +74,8 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
-				local options = {
-					clues = {
-						{ mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" },
-						{ mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" },
-					},
-				}
-
-				return vim.tbl_deep_extend("force", options, opts)
+				table.insert(opts.clues, { mode = "n", keys = "]b", postkeys = "]", desc = "next buffer" })
+				table.insert(opts.clues, { mode = "n", keys = "[b", postkeys = "[", desc = "previous buffer" })
 			end,
 		},
 	},
