@@ -9,71 +9,74 @@ M[#M + 1] = {
 	event = "VeryLazy",
 	opts = function(_, opts)
 		local miniclue = require("mini.clue")
+		local options = {
+			triggers = {
+				-- Leader triggers
+				{ mode = "n", keys = "<Leader>" },
+				{ mode = "x", keys = "<Leader>" },
 
-		opts.triggers = vim.tbl_deep_extend("force", opts.triggers or {}, {
-			-- Leader triggers
-			{ mode = "n", keys = "<Leader>" },
-			{ mode = "x", keys = "<Leader>" },
+				-- Built-in completion
+				{ mode = "i", keys = "<C-x>" },
 
-			-- Built-in completion
-			{ mode = "i", keys = "<C-x>" },
+				-- g key
+				{ mode = "n", keys = "g" },
+				{ mode = "x", keys = "g" },
 
-			-- g key
-			{ mode = "n", keys = "g" },
-			{ mode = "x", keys = "g" },
+				-- marks
+				{ mode = "n", keys = "'" },
+				{ mode = "n", keys = "`" },
+				{ mode = "x", keys = "'" },
+				{ mode = "x", keys = "`" },
 
-			-- marks
-			{ mode = "n", keys = "'" },
-			{ mode = "n", keys = "`" },
-			{ mode = "x", keys = "'" },
-			{ mode = "x", keys = "`" },
+				-- registers
+				{ mode = "n", keys = '"' },
+				{ mode = "x", keys = '"' },
+				{ mode = "i", keys = "<C-r>" },
+				{ mode = "c", keys = "<C-r>" },
 
-			-- registers
-			{ mode = "n", keys = '"' },
-			{ mode = "x", keys = '"' },
-			{ mode = "i", keys = "<C-r>" },
-			{ mode = "c", keys = "<C-r>" },
+				-- window commands
+				{ mode = "n", keys = "<C-w>" },
 
-			-- window commands
-			{ mode = "n", keys = "<C-w>" },
+				-- `z` key
+				{ mode = "n", keys = "z" },
+				{ mode = "x", keys = "z" },
 
-			-- `z` key
-			{ mode = "n", keys = "z" },
-			{ mode = "x", keys = "z" },
+				-- brackets
+				{ mode = "n", keys = "]" },
+				{ mode = "n", keys = "[" },
+			},
+			clues = {
+				miniclue.gen_clues.builtin_completion(),
+				miniclue.gen_clues.g(),
+				miniclue.gen_clues.marks(),
+				miniclue.gen_clues.registers(),
+				miniclue.gen_clues.windows({
+					submode_move = true,
+					submode_navigate = true,
+					submode_resize = true,
+				}),
+				miniclue.gen_clues.z(),
 
-			-- brackets
-			{ mode = "n", keys = "]" },
-			{ mode = "n", keys = "[" },
-		})
-		opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
-			miniclue.gen_clues.builtin_completion(),
-			miniclue.gen_clues.g(),
-			miniclue.gen_clues.marks(),
-			miniclue.gen_clues.registers(),
-			miniclue.gen_clues.windows({
-				submode_move = true,
-				submode_navigate = true,
-				submode_resize = true,
-			}),
-			miniclue.gen_clues.z(),
+				-- tabs
+				{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
+				{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
 
-			-- tabs
-			{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
-			{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
+				-- clues
+				{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
+				{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
+				{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
+				{ mode = "n", keys = "<leader>f", desc = "+Files" },
+				{ mode = "n", keys = "<leader>g", desc = "+Git" },
+				{ mode = "n", keys = "<leader>k", desc = "+Keys" },
+				{ mode = "n", keys = "<leader>l", desc = "+LSP" },
+				{ mode = "n", keys = "<leader>u", desc = "+UI" },
+				{ mode = "n", keys = "<leader>q", desc = "+Quit" },
+				{ mode = "n", keys = "<leader>s", desc = "+Search" },
+				{ mode = "n", keys = "<leader>w", desc = "+Windows" },
+			},
+		}
 
-			-- clues
-			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
-			{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
-			{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
-			{ mode = "n", keys = "<leader>f", desc = "+Files" },
-			{ mode = "n", keys = "<leader>g", desc = "+Git" },
-			{ mode = "n", keys = "<leader>k", desc = "+Keys" },
-			{ mode = "n", keys = "<leader>l", desc = "+LSP" },
-			{ mode = "n", keys = "<leader>u", desc = "+UI" },
-			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
-			{ mode = "n", keys = "<leader>s", desc = "+Search" },
-			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
-		})
+		return vim.tbl_deep_extend("force", options, opts)
 	end,
 }
 

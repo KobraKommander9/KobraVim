@@ -26,7 +26,7 @@ M[#M + 1] = {
 
 		-- Files
 		{
-			"<leader>ff",
+			"<leader>fs",
 			function()
 				require("mini.pick").builtin.files()
 			end,
@@ -185,14 +185,14 @@ M[#M + 1] = {
 
 		-- Files
 		{
-			"<leader>fF",
+			"<leader>fS",
 			function()
 				require("mini.extra").pickers.explorer({ cwd = vim.fn.expand("%:p:h") })
 			end,
 			desc = "Search files (explorer)",
 		},
 		{
-			"<leader>fr",
+			"<leader>fo",
 			function()
 				require("mini.extra").pickers.oldfiles()
 			end,
