@@ -71,6 +71,7 @@ M[#M + 1] = {
 			{ mode = "n", keys = "<leader>f", desc = "+Files" },
 			{ mode = "n", keys = "<leader>g", desc = "+Git" },
 			{ mode = "n", keys = "<leader>k", desc = "+Keys" },
+			{ mode = "n", keys = "<leader>l", desc = "+LSP" },
 			{ mode = "n", keys = "<leader>p", desc = "+Pick" },
 			{ mode = "n", keys = "<leader>u", desc = "+UI" },
 			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
