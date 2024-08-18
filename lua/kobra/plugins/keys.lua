@@ -10,9 +10,6 @@ M[#M + 1] = {
 	opts = function(_, opts)
 		local miniclue = require("mini.clue")
 
-		opts.clues = opts.clues or {}
-		opts.triggers = opts.triggers or {}
-
 		opts.triggers = vim.tbl_deep_extend("force", opts.triggers or {}, {
 			-- Leader triggers
 			{ mode = "n", keys = "<Leader>" },
