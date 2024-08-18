@@ -66,6 +66,7 @@ M[#M + 1] = {
 					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
 					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
 				})
+				vim.notify(vim.inspect(opts.clues))
 				return opts
 			end,
 		},
