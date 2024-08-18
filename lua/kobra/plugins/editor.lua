@@ -11,6 +11,8 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
+				opts.clues = opts.clues or {}
+
 				table.insert(
 					opts.clues,
 					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" }
