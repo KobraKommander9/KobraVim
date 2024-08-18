@@ -6,7 +6,6 @@ M[#M + 1] = {
 	opts = {
 		enable = require("kobra.core").ui.background == "transparent",
 		exclude = {
-			"NotifyBackground",
 			"KobraTLHead",
 			"KobraTLHeadSep",
 			"KobraTLActive",
@@ -65,6 +64,12 @@ M[#M + 1] = {
 					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
 				})
 			end,
+		},
+		{
+			"rcarriga/nvim-notify",
+			opts = {
+				background_colour = "#000000",
+			},
 		},
 	},
 	opts = {
