@@ -74,10 +74,12 @@ M[#M + 1] = {
 			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 		}
 
+		opts.triggers = opts.triggers or {}
 		for _, trigger in ipairs(triggers) do
 			table.insert(opts.triggers, trigger)
 		end
 
+		opts.clues = opts.clues or {}
 		for _, clue in ipairs(clues) do
 			table.insert(opts.clues, clue)
 		end
