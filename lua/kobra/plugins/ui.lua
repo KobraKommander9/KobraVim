@@ -59,7 +59,10 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = function(_, opts)
-				table.insert(opts.clues, { mode = "n", keys = "<leader>sn", desc = "+Noice" })
+				opts = opts or {}
+				opts.clues = vim.tbl_deep_extend("force", opts.clues or {}, {
+					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
+				})
 			end,
 		},
 	},
