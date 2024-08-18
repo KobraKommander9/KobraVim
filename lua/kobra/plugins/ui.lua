@@ -6,6 +6,7 @@ M[#M + 1] = {
 	opts = {
 		enable = require("kobra.core").ui.background == "transparent",
 		exclude = {
+			"NotifyBackground",
 			"KobraTLHead",
 			"KobraTLHeadSep",
 			"KobraTLActive",
