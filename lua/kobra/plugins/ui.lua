@@ -55,11 +55,9 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = {
-				clues = {
-					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-				},
-			},
+			opts = KobraVim.clue.options({
+				{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
+			}),
 		},
 		{
 			"rcarriga/nvim-notify",
