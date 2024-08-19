@@ -43,7 +43,25 @@ M[#M + 1] = {
 	"echasnovski/mini.move",
 	event = "BufEnter",
 	dependencies = {
-		"echasnovski/mini.clue",
+		{
+			"echasnovski/mini.clue",
+			config = function(_, opts)
+				opts = vim.tbl_deep_extend("force", opts or {}, {
+					clues = {
+						{ mode = "n", keys = "<leader>m", desc = "+Move" },
+						{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+						{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+						{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+						{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+						{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+						{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+						{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+						{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+					},
+				})
+				require("mini.clue").setup(opts)
+			end,
+		},
 	},
 	opts = {
 		left = "<leader>mh",
