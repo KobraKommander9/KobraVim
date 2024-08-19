@@ -7,44 +7,9 @@ local Keys = require("kobra.core.keys")
 M[#M + 1] = {
 	"echasnovski/mini.clue",
 	event = "VeryLazy",
-	opts = function(_, opts)
+	opts = KobraVim.clue.options(function()
 		local miniclue = require("mini.clue")
-		local triggers = {
-			-- Leader triggers
-			{ mode = "n", keys = "<Leader>" },
-			{ mode = "x", keys = "<Leader>" },
-
-			-- Built-in completion
-			{ mode = "i", keys = "<C-x>" },
-
-			-- g key
-			{ mode = "n", keys = "g" },
-			{ mode = "x", keys = "g" },
-
-			-- marks
-			{ mode = "n", keys = "'" },
-			{ mode = "n", keys = "`" },
-			{ mode = "x", keys = "'" },
-			{ mode = "x", keys = "`" },
-
-			-- registers
-			{ mode = "n", keys = '"' },
-			{ mode = "x", keys = '"' },
-			{ mode = "i", keys = "<C-r>" },
-			{ mode = "c", keys = "<C-r>" },
-
-			-- window commands
-			{ mode = "n", keys = "<C-w>" },
-
-			-- `z` key
-			{ mode = "n", keys = "z" },
-			{ mode = "x", keys = "z" },
-
-			-- brackets
-			{ mode = "n", keys = "]" },
-			{ mode = "n", keys = "[" },
-		}
-		local clues = {
+		return {
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
 			miniclue.gen_clues.marks(),
@@ -73,13 +38,41 @@ M[#M + 1] = {
 			{ mode = "n", keys = "<leader>s", desc = "+Search" },
 			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 		}
+	end, {
+		-- Leader triggers
+		{ mode = "n", keys = "<Leader>" },
+		{ mode = "x", keys = "<Leader>" },
 
-		opts = opts or {}
-		opts.triggers = vim.tbl_deep_extend("force", triggers, opts.triggers or {})
-		opts.clues = vim.tbl_deep_extend("force", clues, opts.clues or {})
+		-- Built-in completion
+		{ mode = "i", keys = "<C-x>" },
 
-		return opts
-	end,
+		-- g key
+		{ mode = "n", keys = "g" },
+		{ mode = "x", keys = "g" },
+
+		-- marks
+		{ mode = "n", keys = "'" },
+		{ mode = "n", keys = "`" },
+		{ mode = "x", keys = "'" },
+		{ mode = "x", keys = "`" },
+
+		-- registers
+		{ mode = "n", keys = '"' },
+		{ mode = "x", keys = '"' },
+		{ mode = "i", keys = "<C-r>" },
+		{ mode = "c", keys = "<C-r>" },
+
+		-- window commands
+		{ mode = "n", keys = "<C-w>" },
+
+		-- `z` key
+		{ mode = "n", keys = "z" },
+		{ mode = "x", keys = "z" },
+
+		-- brackets
+		{ mode = "n", keys = "]" },
+		{ mode = "n", keys = "[" },
+	}),
 }
 
 -- track key mappings

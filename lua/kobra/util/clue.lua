@@ -2,6 +2,14 @@ local M = {}
 
 function M.options(clues, triggers)
 	return function(_, opts)
+		if type(clues) == "function" then
+			clues = clues()
+		end
+
+		if type(triggers) == "function" then
+			triggers = triggers()
+		end
+
 		opts = opts or {}
 
 		opts.triggers = opts.triggers or {}
