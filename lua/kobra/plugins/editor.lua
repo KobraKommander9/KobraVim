@@ -44,7 +44,7 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = KobraVim.clue.options({
-				{ mode = "n", keys = "<leader>m", desc = "+Move" },
+				{ mode = "n", keys = "<leader>m", desc = "+move" },
 				{ mode = "x", keys = "<leader>m", desc = "+Move" },
 				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
 				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
