@@ -153,7 +153,7 @@ local function execute(mode, action)
 end
 
 local function check_key(key)
-	vim.notify("checking...", key)
+	vim.notify("checking: '" .. key .. "'")
 	local mode = vim.api.nvim_get_mode().mode
 	if mode ~= recorded_mode then
 		waiting = false
