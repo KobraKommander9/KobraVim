@@ -37,6 +37,7 @@ M[#M + 1] = {
 			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
 			{ mode = "n", keys = "<leader>s", desc = "+Search" },
 			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
+			{ mode = "n", keys = "<leader>x", desc = "+Lists" },
 		}
 	end, {
 		-- Leader triggers
