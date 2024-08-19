@@ -155,11 +155,16 @@ end
 
 local function check_key(key)
 	local mode = vim.api.nvim_get_mode().mode
+	if #mode > 1 then
+		mode = mode:sub(1, 1)
+	end
+
 	if mode ~= recorded_mode then
 		waiting = false
 		recorded_key = nil
 		recorded_mode = nil
 	end
+
 	local msg = "(" .. key .. ", " .. mode .. "): "
 
 	if waiting then
