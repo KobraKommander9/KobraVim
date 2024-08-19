@@ -139,7 +139,6 @@ local undo_keys = {
 }
 
 local function execute(mode, action)
-	vim.notify("executing: " .. mode .. " with " .. action)
 	local keys = ""
 	keys = keys
 		.. termcodes((undo_keys[mode] or "") .. (("<cmd>setlocal %smodified<cr>"):format(bufmodified and "" or "no")))
