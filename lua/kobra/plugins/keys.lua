@@ -8,6 +8,7 @@ M[#M + 1] = {
 	"echasnovski/mini.clue",
 	event = "VeryLazy",
 	opts = function(_, opts)
+		vim.notify(vim.inspect(opts))
 		local miniclue = require("mini.clue")
 		local options = {
 			triggers = {
