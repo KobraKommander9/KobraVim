@@ -42,27 +42,27 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.move",
 	event = "BufEnter",
-	dependencies = {
-		{
-			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				local clues = {
-					{ mode = "n", keys = "<leader>m", desc = "+Move" },
-					{ mode = "x", keys = "<leader>m", desc = "+Move" },
-					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				}
-				opts = opts or {}
-				opts.clues = vim.tbl_deep_extend("force", clues, opts.clues or {})
-			end,
-		},
-	},
+	-- dependencies = {
+	-- 	{
+	-- 		"echasnovski/mini.clue",
+	-- 		opts = function(_, opts)
+	-- 			local clues = {
+	-- 				{ mode = "n", keys = "<leader>m", desc = "+Move" },
+	-- 				{ mode = "x", keys = "<leader>m", desc = "+Move" },
+	-- 				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+	-- 				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+	-- 				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+	-- 				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+	-- 				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+	-- 				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+	-- 				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+	-- 				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+	-- 			}
+	-- 			opts = opts or {}
+	-- 			opts.clues = vim.tbl_deep_extend("force", clues, opts.clues or {})
+	-- 		end,
+	-- 	},
+	-- },
 	opts = function(_, opts)
 		local options = {
 			left = "<leader>mh",
