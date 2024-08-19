@@ -53,7 +53,14 @@ M[#M + 1] = {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		"echasnovski/mini.clue",
+		{
+			"echasnovski/mini.clue",
+			opts = {
+				clues = {
+					{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
+				},
+			},
+		},
 		{
 			"rcarriga/nvim-notify",
 			opts = {
@@ -136,14 +143,6 @@ M[#M + 1] = {
 			inc_rename = true,
 		},
 	},
-	config = function(_, opts)
-		require("noice").setup(opts)
-		-- KobraVim.clue({
-		-- 	clues = {
-		-- 		{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-		-- 	},
-		-- })
-	end,
 }
 
 M[#M + 1] = {

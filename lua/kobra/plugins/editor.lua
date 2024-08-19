@@ -8,7 +8,14 @@ M[#M + 1] = {
 	event = "BufReadPre",
 	dependencies = {
 		"echasnovski/mini.extra",
-		"echasnovski/mini.clue",
+		{
+			"echasnovski/mini.clue",
+			opts = {
+				clues = {
+					{ mode = "n", keys = "<leader>v", desc = "+Visits" },
+				},
+			},
+		},
 	},
 	keys = {
 		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
@@ -28,14 +35,7 @@ M[#M + 1] = {
 			desc = "Search visited labels",
 		},
 	},
-	config = function(_, opts)
-		require("mini.visits").setup(opts)
-		-- KobraVim.clue({
-		-- 	clues = {
-		-- 		{ mode = "n", keys = "<leader>v", desc = "+Visits" },
-		-- 	},
-		-- })
-	end,
+	config = true,
 }
 
 -- move text
@@ -86,17 +86,17 @@ M[#M + 1] = {
 	"echasnovski/mini.bracketed",
 	event = "BufEnter",
 	dependencies = {
-		"echasnovski/mini.clue",
+		{
+			"echasnovski/mini.clue",
+			opts = {
+				clues = {
+					{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
+					{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
+				},
+			},
+		},
 	},
-	config = function(_, opts)
-		require("mini.bracketed").setup(opts)
-		-- KobraVim.clue({
-		-- 	clues = {
-		-- 		{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
-		-- 		{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
-		-- 	},
-		-- })
-	end,
+	config = true,
 }
 
 -- global search and replace
