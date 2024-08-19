@@ -160,11 +160,14 @@ local function check_key(key)
 		recorded_key = nil
 		recorded_mode = nil
 	end
+	local msg = "(" .. key .. ", " .. mode .. "): "
 
 	if waiting then
+		msg = msg .. "waiting "
 		for second_key, action in pairs(settings.mappings[recorded_mode][recorded_key] or {}) do
 			if key == second_key then
 				waiting = false
+				vim.notify(msg .. "executing")
 				execute(recorded_mode, action)
 				return
 			end
@@ -173,10 +176,13 @@ local function check_key(key)
 
 	for first_key in pairs(settings.mappings[mode] or {}) do
 		if key == first_key then
+			vim.notify(msg .. "recording")
 			record_key(mode, key)
 			return
 		end
 	end
+
+	vim.notify(msg .. "not found")
 end
 
 vim.on_key(function(_, typed)
