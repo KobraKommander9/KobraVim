@@ -1,5 +1,9 @@
 local M = {}
 
+vim.uv = vim.uv or vim.loop
+
+_G.KobraVim = require("kobra.util")
+
 M.lazy_version = ">=9.1.0"
 
 local defaults = {
