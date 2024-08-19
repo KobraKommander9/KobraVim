@@ -43,18 +43,20 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = KobraVim.clue.options({
-				{ mode = "n", keys = "<leader>m", desc = "+Move" },
-				{ mode = "x", keys = "<leader>m", desc = "+Move" },
-				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-			}),
+			opts = KobraVim.clue.options(function()
+				return {
+					{ mode = "n", keys = "<leader>m", desc = "+Move" },
+					{ mode = "x", keys = "<leader>m", desc = "+Move" },
+					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+					{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+				}
+			end),
 		},
 	},
 	opts = function(_, opts)
