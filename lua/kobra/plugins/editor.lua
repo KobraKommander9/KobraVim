@@ -7,26 +7,7 @@ M[#M + 1] = {
 	"echasnovski/mini.visits",
 	event = "BufReadPre",
 	dependencies = {
-		-- mini pick integration
-		{
-			"echasnovski/mini.extra",
-			keys = {
-				{
-					"<leader>fv",
-					function()
-						require("mini.extra").pickers.visit_paths()
-					end,
-					desc = "Search visited files",
-				},
-				{
-					"<leader>fl",
-					function()
-						require("mini.extra").pickers.visit_labels()
-					end,
-					desc = "Search visited labels",
-				},
-			},
-		},
+		"echasnovski/mini.extra",
 		-- mini clue integration
 		{
 			"echasnovski/mini.clue",
@@ -42,6 +23,20 @@ M[#M + 1] = {
 	keys = {
 		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
 		{ "<leader>vV", "<cmd>lua MiniVisits.remove_label()<cr>", desc = "Remove label" },
+		{
+			"<leader>fv",
+			function()
+				require("mini.extra").pickers.visit_paths()
+			end,
+			desc = "Search visited files",
+		},
+		{
+			"<leader>fl",
+			function()
+				require("mini.extra").pickers.visit_labels()
+			end,
+			desc = "Search visited labels",
+		},
 	},
 	config = true,
 }

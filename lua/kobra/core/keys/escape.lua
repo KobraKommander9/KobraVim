@@ -1,7 +1,7 @@
 local M = {}
 
 local api = vim.api
-local uv = vim.uv or vim.loop
+local uv = vim.uv
 
 local termcodes = function(str)
 	return api.nvim_replace_termcodes(str, true, true, true)
