@@ -134,7 +134,7 @@ M[#M + 1] = {
 		{
 			"<leader>sm",
 			function()
-				require("mini.extra").pickers.list({ scope = "changelist" })
+				require("mini.extra").pickers.list({ scope = "change" })
 			end,
 			desc = "Search changelist",
 		},
