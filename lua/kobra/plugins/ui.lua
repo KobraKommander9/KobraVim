@@ -53,35 +53,12 @@ M[#M + 1] = {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		-- mini clue integration
-		{
-			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				return vim.tbl_deep_extend("keep", {
-					clues = {
-						{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
-					},
-				}, opts)
-			end,
-		},
+		"echasnovski/mini.clue",
 		{
 			"rcarriga/nvim-notify",
 			opts = {
 				background_colour = "#000000",
 			},
-		},
-	},
-	opts = {
-		lsp = {
-			override = {
-				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-				["vim.lsp.util.stylize_markdown"] = true,
-			},
-		},
-		presets = {
-			command_palette = true,
-			long_message_to_split = true,
-			inc_rename = true,
 		},
 	},
 	keys = {
@@ -146,6 +123,27 @@ M[#M + 1] = {
 			mode = { "i", "n", "s" },
 		},
 	},
+	opts = {
+		lsp = {
+			override = {
+				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+				["vim.lsp.util.stylize_markdown"] = true,
+			},
+		},
+		presets = {
+			command_palette = true,
+			long_message_to_split = true,
+			inc_rename = true,
+		},
+	},
+	config = function(_, opts)
+		require("noice.nvim").setup(opts)
+		KobraVim.clue({
+			clues = {
+				{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
+			},
+		})
+	end,
 }
 
 M[#M + 1] = {
