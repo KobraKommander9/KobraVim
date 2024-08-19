@@ -137,7 +137,7 @@ M[#M + 1] = {
 		},
 	},
 	config = function(_, opts)
-		require("noice.nvim").setup(opts)
+		require("noice").setup(opts)
 		KobraVim.clue({
 			clues = {
 				{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
