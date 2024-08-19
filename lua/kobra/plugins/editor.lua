@@ -63,17 +63,20 @@ M[#M + 1] = {
 			end,
 		},
 	},
-	opts = {
-		left = "<leader>mh",
-		right = "<leader>m" .. Keys.l,
-		down = "<leader>m" .. Keys.j,
-		up = "<leader>m" .. Keys.k,
+	opts = function(_, opts)
+		local options = {
+			left = "<leader>mh",
+			right = "<leader>m" .. Keys.l,
+			down = "<leader>m" .. Keys.j,
+			up = "<leader>m" .. Keys.k,
 
-		line_left = "<leader>mh",
-		line_right = "<leader>m" .. Keys.l,
-		line_down = "<leader>m" .. Keys.j,
-		line_up = "<leader>m" .. Keys.k,
-	},
+			line_left = "<leader>mh",
+			line_right = "<leader>m" .. Keys.l,
+			line_down = "<leader>m" .. Keys.j,
+			line_up = "<leader>m" .. Keys.k,
+		}
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
 	-- config = function(_, opts)
 	-- 	require("mini.move").setup(opts)
 	-- 	-- KobraVim.clue({
