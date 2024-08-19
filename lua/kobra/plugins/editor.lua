@@ -8,17 +8,7 @@ M[#M + 1] = {
 	event = "BufReadPre",
 	dependencies = {
 		"echasnovski/mini.extra",
-		-- mini clue integration
-		{
-			"echasnovski/mini.clue",
-			opts = function(_, opts)
-				return vim.tbl_deep_extend("keep", {
-					clues = {
-						{ mode = "n", keys = "<leader>v", desc = "+Visits" },
-					},
-				}, opts)
-			end,
-		},
+		"echasnovski/mini.clue",
 	},
 	keys = {
 		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
@@ -38,7 +28,18 @@ M[#M + 1] = {
 			desc = "Search visited labels",
 		},
 	},
-	config = true,
+	config = function(_, opts)
+		require("mini.visits").setup(opts)
+		KobraVim.on_load("mini.clue", function()
+			local MiniClue = require("mini.clue")
+			local config = vim.tbl_deep_extend("force", MiniClue.config or {}, {
+				clues = {
+					{ mode = "n", keys = "<leader>v", desc = "+Visits" },
+				},
+			})
+			MiniClue.apply_config(config)
+		end)
+	end,
 }
 
 -- move text
