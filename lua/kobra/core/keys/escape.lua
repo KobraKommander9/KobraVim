@@ -1,10 +1,7 @@
 local M = {}
 
-local api = vim.api
-local uv = vim.uv
-
 local termcodes = function(str)
-	return api.nvim_replace_termcodes(str, true, true, true)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local defaults = {
@@ -117,7 +114,7 @@ local recorded_key = nil
 local recorded_mode = nil
 local has_recorded = false
 local bufmodified = nil
-local timeout_timer = uv.new_timer()
+local timeout_timer = vim.uv.new_timer()
 local function record_key(mode, key)
 	if timeout_timer:is_active() then
 		timeout_timer:stop()
@@ -152,11 +149,12 @@ local function execute(mode, action)
 		keys = keys .. termcodes(action() or "")
 	end
 
-	api.nvim_feedkeys(keys, "in", false)
+	vim.api.nvim_feedkeys(keys, "in", false)
 end
 
 local function check_key(key)
-	local mode = api.nvim_get_mode().mode
+	vim.notify("checking...", key)
+	local mode = vim.api.nvim_get_mode().mode
 	if mode ~= recorded_mode then
 		waiting = false
 		recorded_key = nil
