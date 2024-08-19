@@ -30,11 +30,11 @@ M[#M + 1] = {
 	},
 	config = function(_, opts)
 		require("mini.visits").setup(opts)
-		KobraVim.clue({
-			clues = {
-				{ mode = "n", keys = "<leader>v", desc = "+Visits" },
-			},
-		})
+		-- KobraVim.clue({
+		-- 	clues = {
+		-- 		{ mode = "n", keys = "<leader>v", desc = "+Visits" },
+		-- 	},
+		-- })
 	end,
 }
 
@@ -58,19 +58,19 @@ M[#M + 1] = {
 	},
 	config = function(_, opts)
 		require("mini.move").setup(opts)
-		KobraVim.clue({
-			clues = {
-				{ mode = "n", keys = "<leader>m", desc = "+Move" },
-				{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-				{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-				{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-				{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-				{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-			},
-		})
+		-- KobraVim.clue({
+		-- 	clues = {
+		-- 		{ mode = "n", keys = "<leader>m", desc = "+Move" },
+		-- 		{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+		-- 		{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+		-- 		{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+		-- 		{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+		-- 		{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+		-- 		{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+		-- 		{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+		-- 		{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+		-- 	},
+		-- })
 	end,
 }
 
@@ -83,12 +83,12 @@ M[#M + 1] = {
 	},
 	config = function(_, opts)
 		require("mini.bracketed").setup(opts)
-		KobraVim.clue({
-			clues = {
-				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
-				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
-			},
-		})
+		-- KobraVim.clue({
+		-- 	clues = {
+		-- 		{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
+		-- 		{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
+		-- 	},
+		-- })
 	end,
 }
 
