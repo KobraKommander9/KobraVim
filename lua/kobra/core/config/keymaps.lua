@@ -80,31 +80,16 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 -- toggle options
--- map("n", "<leader>uf", require("kobra.plugins.lsp.format").toggle, { desc = "Toggle format on Save" })
-
-map("n", "<leader>us", function()
-	KobraVim.toggle("spell")
-end, { desc = "Toggle Spelling" })
-
-map("n", "<leader>uw", function()
-	KobraVim.toggle("wrap")
-end, { desc = "Toggle Word Wrap" })
-
-map("n", "<leader>ul", function()
-	KobraVim.toggle("relativenumber", true)
-	KobraVim.toggle("number")
-end, { desc = "Toggle Line Numbers" })
-
-map("n", "<leader>ud", KobraVim.toggle_diagnostics, { desc = "Toggle Diagnostics" })
-
-local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-map("n", "<leader>uc", function()
-	KobraVim.toggle("conceallevel", false, { 0, conceallevel })
-end, { desc = "Toggle Conceal" })
-
-map("n", "<leader>ua", function()
-	KobraVim.toggle("autochdir")
-end, { desc = "Toggle Autochdir" })
+KobraVim.toggle.map("<leader>ua", KobraVim.toggle("autochdir", { name = "Auto Change Dir" }))
+KobraVim.toggle.map(
+	"<leader>uc",
+	KobraVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } })
+)
+KobraVim.toggle.map("<leader>ud", KobraVim.toggle.diagnostics)
+KobraVim.toggle.map("<leader>ul", KobraVim.toggle.number)
+KobraVim.toggle.map("<leader>uL", KobraVim.toggle("relativenumber", { name = "Relative Number" }))
+KobraVim.toggle.map("<leader>us", KobraVim.toggle("spell", { name = "Spelling" }))
+KobraVim.toggle.map("<leader>uw", KobraVim.toggle("wrap", { name = "Wrap" }))
 
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
