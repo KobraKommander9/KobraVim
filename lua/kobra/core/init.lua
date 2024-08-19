@@ -3,6 +3,7 @@ local M = {}
 require("kobra.core.types")
 
 M.lazy_version = ">=9.1.0"
+KobraVim.config = M
 
 local defaults = {
 	defaults = {
@@ -148,14 +149,9 @@ local defaults = {
 	},
 }
 
-M.renames = {
-	["windwp/nvim-spectre"] = "nvim-pack/nvim-spectre",
-}
-
 local options
-
 function M.setup(opts)
-	options = vim.tbl_deep_extend("force", defaults, opts or {})
+	options = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
 
 	if options.layouts.default == true then
 		options.layouts.default = defaults.layouts.default
