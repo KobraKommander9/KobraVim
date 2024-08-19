@@ -71,22 +71,22 @@ M[#M + 1] = {
 		line_down = "<leader>m" .. Keys.j,
 		line_up = "<leader>m" .. Keys.k,
 	},
-	config = function(_, opts)
-		require("mini.move").setup(opts)
-		-- KobraVim.clue({
-		-- 	clues = {
-		-- 		{ mode = "n", keys = "<leader>m", desc = "+Move" },
-		-- 		{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-		-- 		{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-		-- 		{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-		-- 		{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-		-- 		{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-		-- 		{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
-		-- 		{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
-		-- 		{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
-		-- 	},
-		-- })
-	end,
+	-- config = function(_, opts)
+	-- 	require("mini.move").setup(opts)
+	-- 	-- KobraVim.clue({
+	-- 	-- 	clues = {
+	-- 	-- 		{ mode = "n", keys = "<leader>m", desc = "+Move" },
+	-- 	-- 		{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+	-- 	-- 		{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+	-- 	-- 		{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+	-- 	-- 		{ mode = "n", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+	-- 	-- 		{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
+	-- 	-- 		{ mode = "x", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
+	-- 	-- 		{ mode = "x", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
+	-- 	-- 		{ mode = "x", keys = "<leader>m" .. Keys.k, postkeys = "<leader>m", desc = "Move up" },
+	-- 	-- 	},
+	-- 	-- })
+	-- end,
 }
 
 -- better bracket jumps
