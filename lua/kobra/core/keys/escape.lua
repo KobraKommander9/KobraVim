@@ -139,6 +139,7 @@ local undo_keys = {
 }
 
 local function execute(mode, action)
+	vim.notify("executing: " .. mode .. " with " .. action)
 	local keys = ""
 	keys = keys
 		.. termcodes((undo_keys[mode] or "") .. (("<cmd>setlocal %smodified<cr>"):format(bufmodified and "" or "no")))
@@ -159,8 +160,6 @@ local function check_key(key)
 		recorded_key = nil
 		recorded_mode = nil
 	end
-
-	vim.notify(vim.inspect(settings))
 
 	if waiting then
 		for second_key, action in pairs(settings.mappings[recorded_mode][recorded_key] or {}) do
