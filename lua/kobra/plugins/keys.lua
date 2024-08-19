@@ -7,9 +7,9 @@ local Keys = require("kobra.core.keys")
 M[#M + 1] = {
 	"echasnovski/mini.clue",
 	event = "VeryLazy",
-	opts = function(_, opts)
+	opts = function()
 		local miniclue = require("mini.clue")
-		local options = {
+		return {
 			triggers = {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },
@@ -75,8 +75,6 @@ M[#M + 1] = {
 				{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 			},
 		}
-
-		return vim.tbl_deep_extend("keep", options, opts)
 	end,
 }
 
