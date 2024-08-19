@@ -1,8 +1,6 @@
 local M = {}
 
-vim.uv = vim.uv or vim.loop
-
-_G.KobraVim = require("kobra.util")
+require("kobra.core.types")
 
 M.lazy_version = ">=9.1.0"
 
