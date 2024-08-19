@@ -48,6 +48,7 @@ M[#M + 1] = {
 			opts = {
 				clues = {
 					{ mode = "n", keys = "<leader>m", desc = "+Move" },
+					{ mode = "x", keys = "<leader>m", desc = "+Move" },
 					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
 					{ mode = "n", keys = "<leader>m" .. Keys.l, postkeys = "<leader>m", desc = "Move right" },
 					{ mode = "n", keys = "<leader>m" .. Keys.j, postkeys = "<leader>m", desc = "Move down" },
