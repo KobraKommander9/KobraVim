@@ -34,7 +34,7 @@ end
 -- Key mappings module
 local X = {}
 
-KobraVim.keys.mappings = X
+M.mappings = X
 
 local defaults = {
 	escape = {
