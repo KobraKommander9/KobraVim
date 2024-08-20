@@ -21,16 +21,6 @@ function M.safe_map(mode, lhs, rhs, opts)
 	end
 end
 
-function M.leader(keys)
-	return "<leader>" .. M.get_keys(keys)
-end
-
-function M.get_keys(keys)
-	return keys:gsub(keys, "[jklnei]", function(char)
-		return M.mappings[char]
-	end)
-end
-
 -- Key mappings module
 local X = {}
 

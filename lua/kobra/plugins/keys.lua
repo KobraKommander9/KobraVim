@@ -6,6 +6,8 @@ M[#M + 1] = {
 	event = "VeryLazy",
 	opts = KobraVim.clue.options(function()
 		local miniclue = require("mini.clue")
+		local keys = KobraVim.keys.mappings
+
 		return {
 			miniclue.gen_clues.builtin_completion(),
 			miniclue.gen_clues.g(),
@@ -19,8 +21,8 @@ M[#M + 1] = {
 			miniclue.gen_clues.z(),
 
 			-- tabs
-			{ mode = "n", keys = KobraVim.keys.leader("amj"), postkeys = "<leader>am", desc = "Move tab down" },
-			{ mode = "n", keys = KobraVim.keys.leader("amk"), postkeys = "<leader>am", desc = "Move tab up" },
+			{ mode = "n", keys = "<leader>am" .. keys.j, postkeys = "<leader>am", desc = "Move tab down" },
+			{ mode = "n", keys = "<leader>am" .. keys.k, postkeys = "<leader>am", desc = "Move tab up" },
 
 			-- clues
 			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },

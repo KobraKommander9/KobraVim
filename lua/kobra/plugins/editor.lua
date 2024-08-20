@@ -42,35 +42,40 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = KobraVim.clue.options(function()
+				local keys = KobraVim.keys.mappings
+
 				return {
 					{ mode = "n", keys = "<leader>m", desc = "+Move" },
 					{ mode = "x", keys = "<leader>m", desc = "+Move" },
 					{ mode = "n", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-					{ mode = "n", keys = KobraVim.keys.leader("ml"), postkeys = "<leader>m", desc = "Move right" },
-					{ mode = "n", keys = KobraVim.keys.leader("mj"), postkeys = "<leader>m", desc = "Move down" },
-					{ mode = "n", keys = KobraVim.keys.leader("mk"), postkeys = "<leader>m", desc = "Move up" },
+					{ mode = "n", keys = "<leader>m" .. keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "n", keys = "<leader>m" .. keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "n", keys = "<leader>m" .. keys.k, postkeys = "<leader>m", desc = "Move up" },
 					{ mode = "x", keys = "<leader>mh", postkeys = "<leader>m", desc = "Move left" },
-					{ mode = "x", keys = KobraVim.keys.leader("ml"), postkeys = "<leader>m", desc = "Move right" },
-					{ mode = "x", keys = KobraVim.keys.leader("mj"), postkeys = "<leader>m", desc = "Move down" },
-					{ mode = "x", keys = KobraVim.keys.leader("mk"), postkeys = "<leader>m", desc = "Move up" },
+					{ mode = "x", keys = "<leader>m" .. keys.l, postkeys = "<leader>m", desc = "Move right" },
+					{ mode = "x", keys = "<leader>m" .. keys.j, postkeys = "<leader>m", desc = "Move down" },
+					{ mode = "x", keys = "<leader>m" .. keys.k, postkeys = "<leader>m", desc = "Move up" },
 				}
 			end),
 		},
 	},
 	opts = function(_, opts)
+		local keys = KobraVim.keys.mappings
+
 		local options = {
 			mappings = {
 				left = "<leader>mh",
-				right = KobraVim.keys.leader("ml"),
-				down = KobraVim.keys.leader("mj"),
-				up = KobraVim.keys.leader("mk"),
+				right = "<leader>m" .. keys.l,
+				down = "<leader>m" .. keys.j,
+				up = "<leader>m" .. keys.k,
 
 				line_left = "<leader>mh",
-				line_right = KobraVim.keys.leader("ml"),
-				line_down = KobraVim.keys.leader("mj"),
-				line_up = KobraVim.keys.leader("mk"),
+				line_right = "<leader>m" .. keys.l,
+				line_down = "<leader>m" .. keys.j,
+				line_up = "<leader>m" .. keys.k,
 			},
 		}
+
 		return vim.tbl_deep_extend("force", options, opts)
 	end,
 }
