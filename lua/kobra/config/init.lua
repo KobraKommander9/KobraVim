@@ -30,99 +30,74 @@ local defaults = {
 		transparent = true,
 		colorscheme = "one_monokai",
 	},
-	icons = {
-		misc = {
-			dots = "󰇘",
-		},
-		ft = {
-			octo = "",
-		},
-		dap = {
-			Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-			Breakpoint = " ",
-			BreakpointCondition = " ",
-			BreakpointRejected = { " ", "DiagnosticError" },
-			LogPoint = ".>",
-		},
-		diagnostics = {
-			Error = " ",
-			Warn = " ",
-			Hint = " ",
-			Info = " ",
-		},
-		git = {
-			added = " ",
-			modified = " ",
-			removed = " ",
-		},
-		kinds = {
-			Array = " ",
-			Boolean = "󰨙 ",
-			Class = " ",
-			Codeium = "󰘦 ",
-			Color = " ",
-			Control = " ",
-			Collapsed = " ",
-			Constant = "󰏿 ",
-			Constructor = " ",
-			Copilot = " ",
-			Enum = " ",
-			EnumMember = " ",
-			Event = " ",
-			Field = " ",
-			File = " ",
-			Folder = " ",
-			Function = "󰊕 ",
-			Interface = " ",
-			Key = " ",
-			Keyword = " ",
-			Method = "󰊕 ",
-			Module = " ",
-			Namespace = "󰦮 ",
-			Null = " ",
-			Number = "󰎠 ",
-			Object = " ",
-			Operator = " ",
-			Package = " ",
-			Property = " ",
-			Reference = " ",
-			Snippet = " ",
-			String = " ",
-			Struct = "󰆼 ",
-			TabNine = "󰏚 ",
-			Text = " ",
-			TypeParameter = " ",
-			Unit = " ",
-			Value = " ",
-			Variable = "󰀫 ",
-		},
-	},
+	-- icons = {
+	-- 	misc = {
+	-- 		dots = "󰇘",
+	-- 	},
+	-- 	ft = {
+	-- 		octo = "",
+	-- 	},
+	-- 	dap = {
+	-- 		Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+	-- 		Breakpoint = " ",
+	-- 		BreakpointCondition = " ",
+	-- 		BreakpointRejected = { " ", "DiagnosticError" },
+	-- 		LogPoint = ".>",
+	-- 	},
+	-- 	diagnostics = {
+	-- 		Error = " ",
+	-- 		Warn = " ",
+	-- 		Hint = " ",
+	-- 		Info = " ",
+	-- 	},
+	-- 	git = {
+	-- 		added = " ",
+	-- 		modified = " ",
+	-- 		removed = " ",
+	-- 	},
+	-- 	kinds = {
+	-- 		Array = " ",
+	-- 		Boolean = "󰨙 ",
+	-- 		Class = " ",
+	-- 		Codeium = "󰘦 ",
+	-- 		Color = " ",
+	-- 		Control = " ",
+	-- 		Collapsed = " ",
+	-- 		Constant = "󰏿 ",
+	-- 		Constructor = " ",
+	-- 		Copilot = " ",
+	-- 		Enum = " ",
+	-- 		EnumMember = " ",
+	-- 		Event = " ",
+	-- 		Field = " ",
+	-- 		File = " ",
+	-- 		Folder = " ",
+	-- 		Function = "󰊕 ",
+	-- 		Interface = " ",
+	-- 		Key = " ",
+	-- 		Keyword = " ",
+	-- 		Method = "󰊕 ",
+	-- 		Module = " ",
+	-- 		Namespace = "󰦮 ",
+	-- 		Null = " ",
+	-- 		Number = "󰎠 ",
+	-- 		Object = " ",
+	-- 		Operator = " ",
+	-- 		Package = " ",
+	-- 		Property = " ",
+	-- 		Reference = " ",
+	-- 		Snippet = " ",
+	-- 		String = " ",
+	-- 		Struct = "󰆼 ",
+	-- 		TabNine = "󰏚 ",
+	-- 		Text = " ",
+	-- 		TypeParameter = " ",
+	-- 		Unit = " ",
+	-- 		Value = " ",
+	-- 		Variable = "󰀫 ",
+	-- 	},
+	-- },
 }
-
-M.json = {
-	version = 1,
-	path = vim.g.lazyvim_json or vim.fn.stdpath("config") .. "/kobravim.json",
-	data = {
-		version = nil,
-		news = {},
-		extras = {},
-	},
-}
-
-function M.json.load()
-	local f = io.open(M.json.path, "r")
-	if f then
-		local data = f:read("*a")
-		f:close()
-		local ok, json = pcall(vim.json.decode, data, { luanil = { object = true, array = true } })
-		if ok then
-			M.json.data = vim.tbl_deep_extend("force", M.json.data, json or {})
-			if M.json.data.version ~= M.json.version then
-				KobraVim.json.migrate()
-			end
-		end
-	end
-end
 
 local options
 local lazy_clipboard
@@ -150,15 +125,6 @@ function M.setup(opts)
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
 			end
-
-			vim.api.nvim_create_user_command("KobraExtras", function()
-				KobraVim.extras.show()
-			end, { desc = "Manage KobraVim extras" })
-
-			vim.api.nvim_create_user_command("KobraHealth", function()
-				vim.cmd([[Lazy! load all]])
-				vim.cmd([[checkhealth]])
-			end, { desc = "Load all plugins and run :checkhealth" })
 		end,
 	})
 
@@ -228,7 +194,6 @@ function M.init()
 	vim.opt.clipboard = ""
 
 	KobraVim.plugin.setup()
-	M.json.load()
 end
 
 setmetatable(M, {

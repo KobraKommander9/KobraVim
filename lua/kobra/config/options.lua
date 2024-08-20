@@ -66,15 +66,5 @@ opt.backup = false
 vim.cmd([[set whichwrap+=<,>,[,],h,l]])
 vim.cmd([[set iskeyword+=1]])
 
-if vim.fn.has("nvim-0.10") == 1 then
-	opt.smoothscroll = true
-	opt.foldexpr = "v:lua.require'kobra.util'.ui.foldexpr()"
-	opt.foldmethod = "expr"
-	opt.foldtext = ""
-else
-	opt.foldmethod = "indent"
-	opt.foldtext = "v:lua.require'kobra.util'.ui.foldtext()"
-end
-
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
