@@ -3,17 +3,19 @@ local M = {}
 M[#M + 1] = {
 	"Leviathenn/nvim-transparent",
 	event = "VimEnter",
-	opts = {
-		enable = require("kobra.core").ui.background == "transparent",
-		exclude = {
-			"KobraTLHead",
-			"KobraTLHeadSep",
-			"KobraTLActive",
-			"KobraTLActiveSep",
-			"KobraTLBoldLine",
-			"KobraTLLineSep",
-		},
-	},
+	opts = function()
+		return {
+			enable = KobraVim.config.ui.transparent,
+			exclude = {
+				"KobraTLHead",
+				"KobraTLHeadSep",
+				"KobraTLActive",
+				"KobraTLActiveSep",
+				"KobraTLBoldLine",
+				"KobraTLLineSep",
+			},
+		}
+	end,
 }
 
 M[#M + 1] = {
@@ -231,12 +233,14 @@ M[#M + 1] = {
 			end
 		end)
 	end,
-	opts = {
-		separator = " ",
-		highlight = true,
-		depth_limit = 5,
-		icons = require("kobra.core").ui.icons.kinds,
-	},
+	opts = function()
+		return {
+			separator = " ",
+			highlight = true,
+			depth_limit = 5,
+			icons = KobraVim.config.ui.icons.kinds,
+		}
+	end,
 }
 
 return M
