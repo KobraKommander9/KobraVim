@@ -38,14 +38,14 @@ M[#M + 1] = {
 			function()
 				require("mini.pick").builtin.grep_live()
 			end,
-			desc = "Search files (grep live)",
+			desc = "Search (grep live)",
 		},
 		{
 			"<leader>sG",
 			function()
 				require("mini.pick").builtin.grep()
 			end,
-			desc = "Search files (grep)",
+			desc = "Search (grep)",
 		},
 
 		-- Pickers
