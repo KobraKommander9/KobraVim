@@ -2,7 +2,7 @@ local M = {}
 
 function M.map(lhs, toggle)
 	local t = M.wrap(toggle)
-	KobraVim.keymap("n", lhs, function()
+	KobraVim.keys.safe_map("n", lhs, function()
 		t()
 	end, { desc = "Toggle " .. toggle.name })
 end
@@ -63,6 +63,35 @@ M.number = M.wrap({
 		end
 	end,
 })
+
+M.treesitter = M.wrap({
+	name = "Treesitter Highlight",
+	get = function()
+		return vim.b.ts_highlight
+	end,
+	set = function(state)
+		if state then
+			vim.treesitter.start()
+		else
+			vim.treesitter.stop()
+		end
+	end,
+})
+
+function M.format(buf)
+	return M.wrap({
+		name = "Auto Format (" .. (buf and "Buffer" or "Global") .. ")",
+		get = function()
+			if not buf then
+				return vim.g.autoformat == nil or vim.g.autoformat
+			end
+			return KobraVim.format.enabled()
+		end,
+		set = function(state)
+			KobraVim.format.enable(state, buf)
+		end,
+	})
+end
 
 setmetatable(M, {
 	__call = function(m, ...)

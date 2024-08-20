@@ -30,73 +30,73 @@ local defaults = {
 		transparent = true,
 		colorscheme = "one_monokai",
 	},
-	-- icons = {
-	-- 	misc = {
-	-- 		dots = "󰇘",
-	-- 	},
-	-- 	ft = {
-	-- 		octo = "",
-	-- 	},
-	-- 	dap = {
-	-- 		Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-	-- 		Breakpoint = " ",
-	-- 		BreakpointCondition = " ",
-	-- 		BreakpointRejected = { " ", "DiagnosticError" },
-	-- 		LogPoint = ".>",
-	-- 	},
-	-- 	diagnostics = {
-	-- 		Error = " ",
-	-- 		Warn = " ",
-	-- 		Hint = " ",
-	-- 		Info = " ",
-	-- 	},
-	-- 	git = {
-	-- 		added = " ",
-	-- 		modified = " ",
-	-- 		removed = " ",
-	-- 	},
-	-- 	kinds = {
-	-- 		Array = " ",
-	-- 		Boolean = "󰨙 ",
-	-- 		Class = " ",
-	-- 		Codeium = "󰘦 ",
-	-- 		Color = " ",
-	-- 		Control = " ",
-	-- 		Collapsed = " ",
-	-- 		Constant = "󰏿 ",
-	-- 		Constructor = " ",
-	-- 		Copilot = " ",
-	-- 		Enum = " ",
-	-- 		EnumMember = " ",
-	-- 		Event = " ",
-	-- 		Field = " ",
-	-- 		File = " ",
-	-- 		Folder = " ",
-	-- 		Function = "󰊕 ",
-	-- 		Interface = " ",
-	-- 		Key = " ",
-	-- 		Keyword = " ",
-	-- 		Method = "󰊕 ",
-	-- 		Module = " ",
-	-- 		Namespace = "󰦮 ",
-	-- 		Null = " ",
-	-- 		Number = "󰎠 ",
-	-- 		Object = " ",
-	-- 		Operator = " ",
-	-- 		Package = " ",
-	-- 		Property = " ",
-	-- 		Reference = " ",
-	-- 		Snippet = " ",
-	-- 		String = " ",
-	-- 		Struct = "󰆼 ",
-	-- 		TabNine = "󰏚 ",
-	-- 		Text = " ",
-	-- 		TypeParameter = " ",
-	-- 		Unit = " ",
-	-- 		Value = " ",
-	-- 		Variable = "󰀫 ",
-	-- 	},
-	-- },
+	icons = {
+		misc = {
+			dots = "󰇘",
+		},
+		-- 	ft = {
+		-- 		octo = "",
+		-- 	},
+		-- 	dap = {
+		-- 		Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+		-- 		Breakpoint = " ",
+		-- 		BreakpointCondition = " ",
+		-- 		BreakpointRejected = { " ", "DiagnosticError" },
+		-- 		LogPoint = ".>",
+		-- 	},
+		-- 	diagnostics = {
+		-- 		Error = " ",
+		-- 		Warn = " ",
+		-- 		Hint = " ",
+		-- 		Info = " ",
+		-- 	},
+		-- 	git = {
+		-- 		added = " ",
+		-- 		modified = " ",
+		-- 		removed = " ",
+		-- 	},
+		-- 	kinds = {
+		-- 		Array = " ",
+		-- 		Boolean = "󰨙 ",
+		-- 		Class = " ",
+		-- 		Codeium = "󰘦 ",
+		-- 		Color = " ",
+		-- 		Control = " ",
+		-- 		Collapsed = " ",
+		-- 		Constant = "󰏿 ",
+		-- 		Constructor = " ",
+		-- 		Copilot = " ",
+		-- 		Enum = " ",
+		-- 		EnumMember = " ",
+		-- 		Event = " ",
+		-- 		Field = " ",
+		-- 		File = " ",
+		-- 		Folder = " ",
+		-- 		Function = "󰊕 ",
+		-- 		Interface = " ",
+		-- 		Key = " ",
+		-- 		Keyword = " ",
+		-- 		Method = "󰊕 ",
+		-- 		Module = " ",
+		-- 		Namespace = "󰦮 ",
+		-- 		Null = " ",
+		-- 		Number = "󰎠 ",
+		-- 		Object = " ",
+		-- 		Operator = " ",
+		-- 		Package = " ",
+		-- 		Property = " ",
+		-- 		Reference = " ",
+		-- 		Snippet = " ",
+		-- 		String = " ",
+		-- 		Struct = "󰆼 ",
+		-- 		TabNine = "󰏚 ",
+		-- 		Text = " ",
+		-- 		TypeParameter = " ",
+		-- 		Unit = " ",
+		-- 		Value = " ",
+		-- 		Variable = "󰀫 ",
+		-- 	},
+	},
 }
 
 local options
@@ -119,8 +119,13 @@ function M.setup(opts)
 			if lazy_autocmds then
 				M.load("autocmds")
 			end
+
+			KobraVim.keys.setup()
+
 			M.load("commands")
 			M.load("keymaps")
+
+			KobraVim.format.setup()
 
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
