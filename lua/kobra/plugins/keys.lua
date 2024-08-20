@@ -6,7 +6,7 @@ M[#M + 1] = {
 	event = "VeryLazy",
 	opts = KobraVim.clue.options(function()
 		local miniclue = require("mini.clue")
-		local keys = KobraVim.keys.mappings
+		local keys = KobraVim.keys
 
 		return {
 			miniclue.gen_clues.builtin_completion(),

@@ -85,4 +85,25 @@ function M.on_load(name, fn)
 	end
 end
 
+function M.safe_map(mode, lhs, rhs, opts)
+	local ks = require("lazy.core.handler").handlers.keys
+	local modes = type(mode) == "string" and { mode } or mode
+
+	modes = vim.tbl_filter(function(m)
+		return not (ks.have and ks:have(lhs, m))
+	end, modes)
+
+	-- do not create the keymap if a lazy keys handler exists
+	if #modes > 0 then
+		opts = opts or {}
+		opts.silent = opts.silent ~= false
+
+		if opts.remap and not vim.g.vscode then
+			opts.remap = nil
+		end
+
+		vim.keymap.set(modes, lhs, rhs, opts)
+	end
+end
+
 return M

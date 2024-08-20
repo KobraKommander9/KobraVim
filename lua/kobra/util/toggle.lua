@@ -2,7 +2,7 @@ local M = {}
 
 function M.map(lhs, toggle)
 	local t = M.wrap(toggle)
-	KobraVim.keys.safe_map("n", lhs, function()
+	KobraVim.safe_map("n", lhs, function()
 		t()
 	end, { desc = "Toggle " .. toggle.name })
 end

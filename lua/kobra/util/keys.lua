@@ -1,31 +1,5 @@
 local M = {}
 
-function M.safe_map(mode, lhs, rhs, opts)
-	local ks = require("lazy.core.handler").handlers.keys
-	local modes = type(mode) == "string" and { mode } or mode
-
-	modes = vim.tbl_filter(function(m)
-		return not (ks.have and ks:have(lhs, m))
-	end, modes)
-
-	-- do not create the keymap if a lazy keys handler exists
-	if #modes > 0 then
-		opts = opts or {}
-		opts.silent = opts.silent ~= false
-
-		if opts.remap and not vim.g.vscode then
-			opts.remap = nil
-		end
-
-		vim.keymap.set(modes, lhs, rhs, opts)
-	end
-end
-
--- Key mappings module
-local X = {}
-
-M.mappings = X
-
 local defaults = {
 	escape = {
 		keys = { "jk" },
@@ -45,7 +19,7 @@ local defaults = {
 }
 
 local keys
-function X.setup()
+function M.setup()
 	KobraVim.config.layout = KobraVim.config.layout or "default"
 	local layout = KobraVim.config.layouts[KobraVim.config.layout] or {}
 
@@ -72,7 +46,7 @@ function X.setup()
 	require("kobra.util.escape").setup(keys.escape)
 end
 
-setmetatable(X, {
+setmetatable(M, {
 	__index = function(_, key)
 		if keys == nil then
 			return vim.deepcopy(defaults)[key]
@@ -80,9 +54,5 @@ setmetatable(X, {
 		return keys[key]
 	end,
 })
-
-function M.setup()
-	X.setup()
-end
 
 return M

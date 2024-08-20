@@ -42,7 +42,7 @@ M[#M + 1] = {
 		{
 			"echasnovski/mini.clue",
 			opts = KobraVim.clue.options(function()
-				local keys = KobraVim.keys.mappings
+				local keys = KobraVim.keys
 
 				return {
 					{ mode = "n", keys = "<leader>m", desc = "+Move" },
@@ -60,7 +60,7 @@ M[#M + 1] = {
 		},
 	},
 	opts = function(_, opts)
-		local keys = KobraVim.keys.mappings
+		local keys = KobraVim.keys
 
 		local options = {
 			mappings = {
