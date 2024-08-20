@@ -65,10 +65,13 @@ M[#M + 1] = {
 		},
 	},
 	opts = function(_, opts)
-		local options = {}
+		opts = opts or {}
 
-		local colemak = {
+		local mappings = {}
+
+		if KobraVim.config.layout == "colemak" then
 			mappings = {
+
 				delete_left = "<C-l>",
 
 				mark = "<C-o>",
@@ -80,14 +83,13 @@ M[#M + 1] = {
 				scroll_down = "<C-d>",
 				scroll_right = "<C-i>",
 				scroll_up = "<C-u>",
-			},
-		}
-
-		if KobraVim.config.layout == "colemak" then
-			options = vim.tbl_deep_extend("force", options, colemak)
+			}
 		end
 
-		return vim.tbl_deep_extend("force", options, opts)
+		opts.mappings = opts.mappings or {}
+		for key, value in pairs(mappings) do
+			opts.mappings[key] = value
+		end
 	end,
 	build = function()
 		vim.ui.select = require("mini.pick").ui_select
