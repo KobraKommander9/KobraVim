@@ -29,13 +29,6 @@ function M.get()
 		},
 		{ "<leader>ll", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
 		{ "<leader>lR", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
-		{
-			"<leader>lF",
-			KobraVim.lsp.rename_file,
-			desc = "Rename File",
-			mode = { "n" },
-			has = { "workspace/didRenameFiles", "workspace/willRenameFiles" },
-		},
 
 		{
 			"]]",
@@ -141,7 +134,6 @@ function M.on_attach(_, buffer)
 			opts.has = nil
 			opts.silent = opts.silent ~= false
 			opts.buffer = buffer
-			vim.notify(vim.inspect(keys))
 			vim.keymap.set(keys.mode or "n", keys.lhs, keys.rhs, opts)
 		end
 	end
