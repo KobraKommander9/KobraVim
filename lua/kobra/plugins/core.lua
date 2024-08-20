@@ -1,3 +1,4 @@
+require("kobra.types")
 require("kobra.config").init()
 
 local M = {}
