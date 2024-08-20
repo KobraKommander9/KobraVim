@@ -1,11 +1,11 @@
 local M = {}
 
 function M.safe_map(mode, lhs, rhs, opts)
-	local keys = require("lazy.core.handler").handlers.keys
+	local ks = require("lazy.core.handler").handlers.keys
 	local modes = type(mode) == "string" and { mode } or mode
 
 	modes = vim.tbl_filter(function(m)
-		return not (keys.have and keys:have(lhs, m))
+		return not (ks.have and ks:have(lhs, m))
 	end, modes)
 
 	-- do not create the keymap if a lazy keys handler exists
