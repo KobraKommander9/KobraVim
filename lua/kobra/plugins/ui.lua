@@ -238,7 +238,7 @@ M[#M + 1] = {
 			separator = " ",
 			highlight = true,
 			depth_limit = 5,
-			icons = KobraVim.config.ui.icons.kinds,
+			icons = KobraVim.config.icons.kinds,
 		}
 	end,
 }
