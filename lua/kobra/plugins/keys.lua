@@ -27,6 +27,7 @@ M[#M + 1] = {
 			-- clues
 			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
 			{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
+			{ mode = "n", keys = "<leader>c", desc = "+Commands" },
 			{ mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
 			{ mode = "n", keys = "<leader>f", desc = "+Files" },
 			{ mode = "n", keys = "<leader>g", desc = "+Git" },

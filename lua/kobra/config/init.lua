@@ -44,12 +44,12 @@ local defaults = {
 		-- 		BreakpointRejected = { " ", "DiagnosticError" },
 		-- 		LogPoint = ".>",
 		-- 	},
-		-- 	diagnostics = {
-		-- 		Error = " ",
-		-- 		Warn = " ",
-		-- 		Hint = " ",
-		-- 		Info = " ",
-		-- 	},
+		diagnostics = {
+			Error = " ",
+			Warn = " ",
+			Hint = " ",
+			Info = " ",
+		},
 		-- 	git = {
 		-- 		added = " ",
 		-- 		modified = " ",
