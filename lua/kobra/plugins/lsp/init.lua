@@ -77,6 +77,7 @@ M[#M + 1] = {
 					},
 				},
 			},
+			setup = {},
 		}
 
 		return ret
