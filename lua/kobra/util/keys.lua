@@ -19,14 +19,14 @@ local defaults = {
 }
 
 local keys
-function M.setup()
-	KobraVim.config.layout = KobraVim.config.layout or "default"
-	local layout = KobraVim.config.layouts[KobraVim.config.layout] or {}
+function M.setup(name, layouts)
+	name = name or "default"
+	local layout = layouts[name] or {}
 
 	keys = vim.deepcopy(defaults)
 	keys = vim.tbl_deep_extend("force", keys, layout)
 
-	if KobraVim.config.layout == "colemak" then
+	if name == "colemak" then
 		keys.j = "n"
 		keys.k = "e"
 		keys.l = "i"
@@ -39,7 +39,7 @@ function M.setup()
 		keys.prevMatch = "E"
 	end
 
-	if KobraVim.config.layouts[KobraVim.config.layout] == false then
+	if layouts[name] == false then
 		return
 	end
 

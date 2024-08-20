@@ -105,6 +105,8 @@ local lazy_clipboard
 function M.setup(opts)
 	options = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
 
+	KobraVim.keys.setup(options.layout, options.layouts)
+
 	-- autocmds can be lazy loaded if not opening a file
 	local lazy_autocmds = vim.fn.argc(-1) == 0
 	if not lazy_autocmds then

@@ -1,7 +1,5 @@
 local map = KobraVim.safe_map
 
-KobraVim.keys.setup()
-
 if KobraVim.config.layout == "colemak" then
 	-- N goes to the next match (replaces n)
 	-- E goes to previous match (replaces N)
