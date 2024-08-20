@@ -71,7 +71,6 @@ M[#M + 1] = {
 
 		if KobraVim.config.layout == "colemak" then
 			mappings = {
-
 				delete_left = "<C-l>",
 
 				mark = "<C-o>",
@@ -80,6 +79,7 @@ M[#M + 1] = {
 
 				paste = "<C-p>",
 
+				scroll_left = "<C-h>",
 				scroll_down = "<C-d>",
 				scroll_right = "<C-i>",
 				scroll_up = "<C-u>",
