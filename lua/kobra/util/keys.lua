@@ -21,6 +21,21 @@ function M.safe_map(mode, lhs, rhs, opts)
 	end
 end
 
+function M.leader(keys)
+	return "<leader>" .. M.get_keys(keys)
+end
+
+function M.get_keys(keys)
+	return keys:gsub(keys, "[jklnei]", function(char)
+		return M.mappings[char]
+	end)
+end
+
+-- Key mappings module
+local X = {}
+
+KobraVim.keys.mappings = X
+
 local defaults = {
 	escape = {
 		keys = { "jk" },
@@ -40,7 +55,7 @@ local defaults = {
 }
 
 local keys
-function M.setup()
+function X.setup()
 	KobraVim.config.layout = KobraVim.config.layout or "default"
 	local layout = KobraVim.config.layouts[KobraVim.config.layout] or {}
 
@@ -67,7 +82,7 @@ function M.setup()
 	require("kobra.util.escape").setup(keys.escape)
 end
 
-setmetatable(M, {
+setmetatable(X, {
 	__index = function(_, key)
 		if keys == nil then
 			return vim.deepcopy(defaults)[key]
@@ -75,5 +90,9 @@ setmetatable(M, {
 		return keys[key]
 	end,
 })
+
+function M.setup()
+	X.setup()
+end
 
 return M

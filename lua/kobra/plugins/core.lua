@@ -1,4 +1,4 @@
-require("kobra.core").init()
+require("kobra.config").init()
 
 local M = {}
 
@@ -11,14 +11,9 @@ M[#M + 1] = {
 	"KobraKommander9/KobraVim",
 	priority = 10000,
 	lazy = false,
-	config = true,
+	opts = {},
 	cond = true,
 	version = "*",
-}
-
-M[#M + 1] = {
-	"nvim-lua/plenary.nvim",
-	lazy = true,
 }
 
 return M

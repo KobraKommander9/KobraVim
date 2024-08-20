@@ -1,7 +1,5 @@
 local M = {}
 
-local Core = require("kobra.core")
-
 M[#M + 1] = {
 	"echasnovski/mini.pick",
 	cmd = { "Pick" },
@@ -16,7 +14,8 @@ M[#M + 1] = {
 					vim.api.nvim_buf_delete(MiniPick.get_picker_matches().current.bufnr, {})
 				end
 
-				local buffer_mappings = Core.layouts.colemak and { wipeout = { char = "<C-q>" }, func = wipeout_cur }
+				local buffer_mappings = KobraVim.config.layout == "colemak"
+						and { wipeout = { char = "<C-q>" }, func = wipeout_cur }
 					or { wipeout = { char = "<C-d>", func = wipeout_cur } }
 
 				require("mini.pick").builtin.buffers({}, { mappings = buffer_mappings })
@@ -84,7 +83,7 @@ M[#M + 1] = {
 			},
 		}
 
-		if Core.layouts.colemak then
+		if KobraVim.config.layout == "colemak" then
 			options = vim.tbl_deep_extend("force", options, colemak)
 		end
 

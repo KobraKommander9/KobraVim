@@ -1,8 +1,5 @@
 local M = {}
 
-local Core = require("kobra.core")
-local Keys = require("kobra.core.keys")
-
 -- next key clues
 M[#M + 1] = {
 	"echasnovski/mini.clue",
@@ -22,8 +19,8 @@ M[#M + 1] = {
 			miniclue.gen_clues.z(),
 
 			-- tabs
-			{ mode = "n", keys = "<leader>am" .. Keys.j, postkeys = "<leader>am", desc = "Move tab right" },
-			{ mode = "n", keys = "<leader>am" .. Keys.k, postkeys = "<leader>am", desc = "Move tab left" },
+			{ mode = "n", keys = KobraVim.keys.leader("amj"), postkeys = "<leader>am", desc = "Move tab down" },
+			{ mode = "n", keys = KobraVim.keys.leader("amk"), postkeys = "<leader>am", desc = "Move tab up" },
 
 			-- clues
 			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
@@ -96,7 +93,7 @@ M[#M + 1] = {
 			},
 		})
 
-		if Core.layouts.colemak then
+		if KobraVim.config.layout == "colemak" then
 			opts.keyboardLayout = "colemak"
 		end
 	end,
