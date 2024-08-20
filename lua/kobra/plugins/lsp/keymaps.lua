@@ -141,6 +141,7 @@ function M.on_attach(_, buffer)
 			opts.has = nil
 			opts.silent = opts.silent ~= false
 			opts.buffer = buffer
+			vim.notify(vim.inspect(keys))
 			vim.keymap.set(keys.mode or "n", keys.lhs, keys.rhs, opts)
 		end
 	end

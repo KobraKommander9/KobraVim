@@ -79,7 +79,6 @@ M[#M + 1] = {
 
 				paste = "<C-p>",
 
-				scroll_left = "<C-h>",
 				scroll_down = "<C-d>",
 				scroll_right = "<C-i>",
 				scroll_up = "<C-u>",
