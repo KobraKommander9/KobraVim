@@ -27,6 +27,10 @@ M[#M + 1] = {
 					},
 				},
 			},
+			inlay_hints = {
+				enabled = true,
+				exclude = { "vue" },
+			},
 			codelens = {
 				enabled = false,
 			},
