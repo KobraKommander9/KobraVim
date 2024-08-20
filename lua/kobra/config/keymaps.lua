@@ -1,5 +1,32 @@
-local keys = KobraVim.keys
 local map = KobraVim.safe_map
+
+local M = {}
+
+KobraVim.keys = M
+
+local defaults = {
+	escape = {
+		keys = { "jk" },
+		timeout = vim.o.timeoutlen,
+	},
+
+	j = "j",
+	k = "k",
+	l = "l",
+
+	n = "n",
+	e = "e",
+	i = "i",
+
+	nextMatch = "n",
+	prevMatch = "N",
+}
+
+KobraVim.config.layout = KobraVim.config.layout or "default"
+local layout = KobraVim.config.layouts[KobraVim.config.layout] or {}
+
+local keys = vim.deepcopy(defaults)
+keys = vim.tbl_deep_extend("force", keys, layout)
 
 if KobraVim.config.layout == "colemak" then
 	-- N goes to the next match (replaces n)
@@ -14,6 +41,17 @@ if KobraVim.config.layout == "colemak" then
 
 	-- Help is on lower case j
 
+	keys.j = "n"
+	keys.k = "e"
+	keys.l = "i"
+
+	keys.n = "j"
+	keys.e = "k"
+	keys.i = "l"
+
+	keys.nextMatch = "N"
+	keys.prevMatch = "E"
+
 	local key_opts = { silent = true, noremap = true }
 	map("", "n", "j", key_opts)
 	map("", "N", "n", key_opts)
@@ -26,6 +64,10 @@ if KobraVim.config.layout == "colemak" then
 	map("", "K", "E", key_opts)
 	map("", "l", "i", key_opts)
 	map("", "L", "I", key_opts)
+end
+
+if KobraVim.config.layouts[KobraVim.config.layout] ~= false then
+	KobraVim.escape.setup(keys.escape)
 end
 
 -- better paste
@@ -124,3 +166,14 @@ map("n", "<leader>dh", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Hov
 map("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next Diagnostic" })
 map("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous Diagnostic" })
 map("n", "<leader>dq", "<cmd>lua vim.diagnostic.setqflist()<cr>", { desc = "Quickfix Diagnostic" })
+
+setmetatable(M, {
+	__index = function(_, key)
+		if keys == nil then
+			return vim.deepcopy(defaults)[key]
+		end
+		return keys[key]
+	end,
+})
+
+return M

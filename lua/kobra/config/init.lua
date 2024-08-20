@@ -120,8 +120,6 @@ function M.setup(opts)
 				M.load("autocmds")
 			end
 
-			KobraVim.keys.setup()
-
 			M.load("commands")
 			M.load("keymaps")
 
