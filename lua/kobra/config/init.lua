@@ -126,6 +126,7 @@ function M.setup(opts)
 			M.load("keymaps")
 
 			-- Kobra.format.setup()
+			KobraColors.setup()
 
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
