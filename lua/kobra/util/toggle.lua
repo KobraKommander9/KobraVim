@@ -78,20 +78,20 @@ M.treesitter = M.wrap({
 	end,
 })
 
-function M.format(buf)
-	return M.wrap({
-		name = "Auto Format (" .. (buf and "Buffer" or "Global") .. ")",
-		get = function()
-			if not buf then
-				return vim.g.autoformat == nil or vim.g.autoformat
-			end
-			return KobraVim.format.enabled()
-		end,
-		set = function(state)
-			KobraVim.format.enable(state, buf)
-		end,
-	})
-end
+-- function M.format(buf)
+-- 	return M.wrap({
+-- 		name = "Auto Format (" .. (buf and "Buffer" or "Global") .. ")",
+-- 		get = function()
+-- 			if not buf then
+-- 				return vim.g.autoformat == nil or vim.g.autoformat
+-- 			end
+-- 			return KobraVim.format.enabled()
+-- 		end,
+-- 		set = function(state)
+-- 			KobraVim.format.enable(state, buf)
+-- 		end,
+-- 	})
+-- end
 
 setmetatable(M, {
 	__call = function(m, ...)

@@ -155,92 +155,119 @@ M[#M + 1] = { "nvim-tree/nvim-web-devicons", lazy = true }
 
 M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 
-M[#M + 1] = {
-	"nanozuki/tabby.nvim",
-	event = "VeryLazy",
-	opts = function(_, opts)
-		local filename = require("tabby.filename")
+-- M[#M + 1] = {
+-- 	"nanozuki/tabby.nvim",
+-- 	event = "VeryLazy",
+-- 	opts = function(_, opts)
+-- 		local filename = require("tabby.filename")
+--
+-- 		local cwd = function()
+-- 			return "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
+-- 		end
+--
+-- 		local options = {
+-- 			hl = "TabLineFill",
+-- 			layout = "active_wins_at_tail",
+-- 			head = {
+-- 				{ cwd, hl = "KobraTLHead" },
+-- 				{ "", hl = "KobraTLHeadSep" },
+-- 			},
+-- 			active_tab = {
+-- 				label = function(tabid)
+-- 					return {
+-- 						"  " .. tabid .. " ",
+-- 						hl = "KobraTLActive",
+-- 					}
+-- 				end,
+-- 				left_sep = { "", hl = "KobraTLActiveSep" },
+-- 				right_sep = { "", hl = "KobraTLActiveSep" },
+-- 			},
+-- 			inactive_tab = {
+-- 				label = function(tabid)
+-- 					return {
+-- 						"  " .. tabid .. " ",
+-- 						hl = "KobraTLBoldLine",
+-- 					}
+-- 				end,
+-- 				left_sep = { "", hl = "KobraTLLineSep" },
+-- 				right_sep = { "", hl = "KobraTLLineSep" },
+-- 			},
+-- 			top_win = {
+-- 				label = function(winid)
+-- 					return {
+-- 						"  " .. filename.unique(winid) .. " ",
+-- 						hl = "TabLine",
+-- 					}
+-- 				end,
+-- 				left_sep = { "", hl = "KobraTLLineSep" },
+-- 				right_sep = { "", hl = "KobraTLLineSep" },
+-- 			},
+-- 			win = {
+-- 				label = function(winid)
+-- 					return {
+-- 						"  " .. filename.unique(winid) .. " ",
+-- 						hl = "TabLine",
+-- 					}
+-- 				end,
+-- 				left_sep = { "", hl = "KobraTLLineSep" },
+-- 				right_sep = { "", hl = "KobraTLLineSep" },
+-- 			},
+-- 			tail = {
+-- 				{ "", hl = "KobraTLHeadSep" },
+-- 				{ "  ", hl = "KobraTLHead" },
+-- 			},
+-- 		}
+--
+-- 		return vim.tbl_deep_extend("force", options, opts)
+-- 	end,
+-- }
 
-		local cwd = function()
-			return "  " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. " "
-		end
+-- M[#M + 1] = {
+-- 	"rebelot/heirline.nvim",
+-- 	event = "VeryLazy",
+-- 	opts = function()
+-- 		return {
+-- 			statusline = KobraLines.statusline(),
+-- 			winbar = KobraLines.winbar(),
+-- 			tabline = KobraLines.tabline(),
+-- 		}
+-- 	end,
+-- 	-- config = function()
+-- 	-- 	require("heirline").setup({
+-- 	-- 		statusline = require("kobra.core.config.ui.lines.statusline").statusline(),
+-- 	-- 		winbar = require("kobra.core.config.ui.lines.winbar").winbar(),
+-- 	-- 		-- tabline = require('kobra.core.config.ui.lines.tabline').tabline(),
+-- 	-- 		opts = {
+-- 	-- 			disable_winbar_cb = function(args)
+-- 	-- 				return require("heirline.conditions").buffer_matches({
+-- 	-- 					buftype = { "nofile", "prompt", "help", "quickfix" },
+-- 	-- 					filetype = { "^git.*", "fugitive", "Trouble", "dashboard" },
+-- 	-- 				}, args.buf)
+-- 	-- 			end,
+-- 	-- 		},
+-- 	-- 	})
+-- 	-- end,
+-- }
 
-		local options = {
-			hl = "TabLineFill",
-			layout = "active_wins_at_tail",
-			head = {
-				{ cwd, hl = "KobraTLHead" },
-				{ "", hl = "KobraTLHeadSep" },
-			},
-			active_tab = {
-				label = function(tabid)
-					return {
-						"  " .. tabid .. " ",
-						hl = "KobraTLActive",
-					}
-				end,
-				left_sep = { "", hl = "KobraTLActiveSep" },
-				right_sep = { "", hl = "KobraTLActiveSep" },
-			},
-			inactive_tab = {
-				label = function(tabid)
-					return {
-						"  " .. tabid .. " ",
-						hl = "KobraTLBoldLine",
-					}
-				end,
-				left_sep = { "", hl = "KobraTLLineSep" },
-				right_sep = { "", hl = "KobraTLLineSep" },
-			},
-			top_win = {
-				label = function(winid)
-					return {
-						"  " .. filename.unique(winid) .. " ",
-						hl = "TabLine",
-					}
-				end,
-				left_sep = { "", hl = "KobraTLLineSep" },
-				right_sep = { "", hl = "KobraTLLineSep" },
-			},
-			win = {
-				label = function(winid)
-					return {
-						"  " .. filename.unique(winid) .. " ",
-						hl = "TabLine",
-					}
-				end,
-				left_sep = { "", hl = "KobraTLLineSep" },
-				right_sep = { "", hl = "KobraTLLineSep" },
-			},
-			tail = {
-				{ "", hl = "KobraTLHeadSep" },
-				{ "  ", hl = "KobraTLHead" },
-			},
-		}
-
-		return vim.tbl_deep_extend("force", options, opts)
-	end,
-}
-
-M[#M + 1] = {
-	"SmiteshP/nvim-navic",
-	lazy = true,
-	init = function()
-		vim.g.navic_silence = true
-		KobraVim.lsp.on_attach(function(client, buffer)
-			if client.server_capabilities.documentSymbolProvider then
-				require("nvim-navic").attach(client, buffer)
-			end
-		end)
-	end,
-	opts = function()
-		return {
-			separator = " ",
-			highlight = true,
-			depth_limit = 5,
-			icons = KobraVim.config.icons.kinds,
-		}
-	end,
-}
+-- M[#M + 1] = {
+-- 	"SmiteshP/nvim-navic",
+-- 	lazy = true,
+-- 	init = function()
+-- 		vim.g.navic_silence = true
+-- 		KobraVim.lsp.on_attach(function(client, buffer)
+-- 			if client.server_capabilities.documentSymbolProvider then
+-- 				require("nvim-navic").attach(client, buffer)
+-- 			end
+-- 		end)
+-- 	end,
+-- 	opts = function()
+-- 		return {
+-- 			separator = " ",
+-- 			highlight = true,
+-- 			depth_limit = 5,
+-- 			icons = KobraVim.config.icons.kinds,
+-- 		}
+-- 	end,
+-- }
 
 return M
