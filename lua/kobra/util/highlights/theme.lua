@@ -1,15 +1,3 @@
-local color_name = vim.g.colors_name
-if color_name then
-	if "base16" == color_name:sub(1, 6) then
-		color_name = "base16"
-	end
-
-	local theme = KobraColors.hl.get_theme()
-	if theme ~= nil then
-		return theme
-	end
-end
-
 -- fg and bg must have this much contrast range 0 < contrast_threshold < 0.5
 local contrast_threshold = 0.3
 -- how much brightness is changed in percentage for light and dark themes

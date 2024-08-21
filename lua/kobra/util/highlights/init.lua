@@ -24,30 +24,33 @@ local links = {
 	["@lsp.type.decorator"] = "@function",
 }
 
-function M.setup()
-	for newgroup, oldgroup in pairs(links) do
-		vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
-	end
-
+function M.create_hl_groups()
 	local theme = KobraColors.theme
 	for mode, sections in pairs(theme) do
 		for section, color in pairs(sections) do
 			vim.api.nvim_set_hl(0, table.concat({ "kobra", mode, section }, "_"), color)
 		end
 	end
-	-- KobraColors.hl.create_highlight_groups(theme)
+end
+
+function M.setup()
+	M.create_hl_groups()
+
+	for newgroup, oldgroup in pairs(links) do
+		vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
+	end
 
 	local group = vim.api.nvim_create_augroup("KobraFormat", { clear = false })
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		group = group,
 		pattern = "*",
-		callback = M.setup,
+		callback = M.create_hl_groups,
 	})
 
 	vim.api.nvim_create_autocmd("OptionSet", {
 		group = group,
 		pattern = "background",
-		callback = M.setup,
+		callback = M.create_hl_groups,
 	})
 end
 
