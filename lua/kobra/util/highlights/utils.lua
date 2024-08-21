@@ -1,27 +1,24 @@
 local M = {}
 
 function M.extract_highlight_colors(color_group, scope)
-	local color = KobraColors.hl.get_kobra_hl(color_group)
-	if not color then
-		if vim.fh.hlexists(color_group) == 0 then
-			return nil
-		end
+	if vim.fh.hlexists(color_group) == 0 then
+		return nil
+	end
 
-		color = vim.api.nvim_get_hl(0, { name = color_group })
-		if color.background ~= nil then
-			color.bg = string.format("#%06x", color.background)
-			color.background = nil
-		end
+	local color = vim.api.nvim_get_hl(0, { name = color_group })
+	if color.background ~= nil then
+		color.bg = string.format("#%06x", color.background)
+		color.background = nil
+	end
 
-		if color.foreground ~= nil then
-			color.fg = string.format("#%06x", color.foreground)
-			color.foreground = nil
-		end
+	if color.foreground ~= nil then
+		color.fg = string.format("#%06x", color.foreground)
+		color.foreground = nil
+	end
 
-		if color.special ~= nil then
-			color.sp = string.format("#%06x", color.special)
-			color.special = nil
-		end
+	if color.special ~= nil then
+		color.sp = string.format("#%06x", color.special)
+		color.special = nil
 	end
 
 	if scope then
