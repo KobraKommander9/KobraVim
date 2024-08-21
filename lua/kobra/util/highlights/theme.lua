@@ -22,9 +22,16 @@ local function rgb_num2str(num)
 	return str
 end
 
+local function get_rgb(val)
+	if type(val) == "string" then
+		return rgb_str2num(val)
+	end
+	return rgb_num2str(val)
+end
+
 -- returns brightness level of color in range 0 to 1
 local function get_color_brightness(rgb)
-	local color = rgb_str2num(rgb)
+	local color = get_rgb(rgb)
 	local brightness = (color.red * 2 + color.green * 3 + color.blue) / 6
 	return brightness / 256
 end
@@ -32,7 +39,7 @@ end
 -- returns average of colors in range 0 to 1
 -- used to determine contrast level
 local function get_color_avg(rgb)
-	local color = rgb_str2num(rgb)
+	local color = get_rgb(rgb)
 	return (color.red + color.green + color.blue) / 3 / 256
 end
 
@@ -51,20 +58,20 @@ end
 
 -- changes brightness of rgb by percentage
 local function brightness_modifier(rgb, percentage)
-	local color = rgb_str2num(rgb)
+	local color = get_rgb(rgb)
 	color.red = clamp(color.red + (color.red * percentage / 100), 0, 255)
 	color.green = clamp(color.green + (color.green * percentage / 100), 0, 255)
 	color.blue = clamp(color.blue + (color.blue * percentage / 100), 0, 255)
-	return rgb_num2str(color)
+	return get_rgb(color)
 end
 
 -- changes contrast of rgb_color by amount
 local function contrast_modifier(rgb, amount)
-	local color = rgb_str2num(rgb)
+	local color = get_rgb(rgb)
 	color.red = clamp(color.red + amount, 0, 255)
 	color.green = clamp(color.green + amount, 0, 255)
 	color.blue = clamp(color.blue + amount, 0, 255)
-	return rgb_num2str(color)
+	return get_rgb(color)
 end
 
 -- changes brightness of foreground color to achieve contrast

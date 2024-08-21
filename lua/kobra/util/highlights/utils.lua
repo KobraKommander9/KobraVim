@@ -21,7 +21,6 @@ function M.extract_highlight_colors(color_group, scope)
 		color.special = nil
 	end
 
-	vim.notify((scope or "none") .. ": " .. vim.inspect(color))
 	if scope then
 		return color[scope]
 	end
@@ -44,7 +43,6 @@ function M.extract_color_from_hllist(scope, syntaxlist, default)
 						end
 					end
 
-					vim.notify("1: " .. sc .. ": " .. vim.inspect(color[sc]))
 					if color[sc] then
 						return color[sc]
 					end
