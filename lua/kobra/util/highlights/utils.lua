@@ -1,7 +1,7 @@
 local M = {}
 
 function M.extract_highlight_colors(color_group, scope)
-	if vim.fh.hlexists(color_group) == 0 then
+	if vim.fn.hlexists(color_group) == 0 then
 		return nil
 	end
 
