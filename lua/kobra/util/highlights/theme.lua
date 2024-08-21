@@ -145,6 +145,7 @@ local M = {
 		a = { bg = colors.normal, fg = colors.back1, gui = "bold" },
 		b = { bg = colors.back1, fg = colors.normal },
 		c = { bg = colors.back2, fg = colors.fore },
+		d = { bg = colors.back2, fg = colors.red },
 	},
 	insert = {
 		a = { bg = colors.insert, fg = colors.back1, gui = "bold" },
