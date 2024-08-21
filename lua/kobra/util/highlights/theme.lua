@@ -24,15 +24,16 @@ end
 
 -- returns brightness level of color in range 0 to 1
 local function get_color_brightness(rgb)
-	local brightness = (rgb.red * 2 + rgb.green * 3 + rgb.blue) / 6
+	local color = rgb_str2num(rgb)
+	local brightness = (color.red * 2 + color.green * 3 + color.blue) / 6
 	return brightness / 256
 end
 
 -- returns average of colors in range 0 to 1
 -- used to determine contrast level
 local function get_color_avg(rgb)
-	local color = rgb_str2num(rgb)
-	return (color.red + color.green + color.blue) / 3 / 256
+	-- local color = rgb_str2num(rgb)
+	return (rgb.red + rgb.green + rgb.blue) / 3 / 256
 end
 
 -- clamps the value between left and right
