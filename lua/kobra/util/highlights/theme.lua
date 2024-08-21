@@ -161,6 +161,7 @@ M.inactive = M.normal
 
 for _, section in pairs(M) do
 	for _, hl in pairs(section) do
+		vim.notify(vim.inspect(hl))
 		apply_contrast(hl)
 	end
 end
