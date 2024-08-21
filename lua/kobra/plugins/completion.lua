@@ -15,8 +15,8 @@ local M = {}
 -- 		local defaults = require("cmp.config.default")()
 -- 		local auto_select = true
 --
--- 		local down = KobraVim.config.layout == "colemak" and "<C-n>" or "<C-j>"
--- 		local up = KobraVim.config.layout == "colemak" and "<C-e>" or "<C-k>"
+-- 		local down = Kobra.config.layout == "colemak" and "<C-n>" or "<C-j>"
+-- 		local up = Kobra.config.layout == "colemak" and "<C-e>" or "<C-k>"
 --
 -- 		return {
 -- 			auto_brackets = {}, -- configure any filetype to auto add brackets
@@ -29,9 +29,9 @@ local M = {}
 -- 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 -- 				["<C-Space>"] = cmp.mapping.complete(),
 -- 				["<C-c>"] = cmp.mapping.close(),
--- 				["<CR>"] = KobraVim.cmp.confirm({ select = auto_select }),
--- 				["<C-y>"] = KobraVim.cmp.confirm({ select = true }),
--- 				["<S-CR>"] = KobraVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
+-- 				["<CR>"] = Kobra.cmp.confirm({ select = auto_select }),
+-- 				["<C-y>"] = Kobra.cmp.confirm({ select = true }),
+-- 				["<S-CR>"] = Kobra.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
 -- 				["<C-CR>"] = function(fallback)
 -- 					cmp.abort()
 -- 					fallback()
@@ -47,7 +47,7 @@ local M = {}
 -- 			}),
 -- 			formatting = {
 -- 				format = function(_, item)
--- 					local icons = KobraVim.config.icons.kinds
+-- 					local icons = Kobra.config.icons.kinds
 -- 					if icons[item.kind] then
 -- 						item.kind = icons[item.kind] .. item.kind
 -- 					end
@@ -112,10 +112,10 @@ local M = {}
 -- 	opts = function(_, opts)
 -- 		opts.snippet = {
 -- 			expand = function(item)
--- 				return KobraVim.cmp.expand(item.body)
+-- 				return Kobra.cmp.expand(item.body)
 -- 			end,
 -- 		}
--- 		if KobraVim.has("nvim-snippets") then
+-- 		if Kobra.has("nvim-snippets") then
 -- 			table.insert(opts.sources, { name = "snippets" })
 -- 		end
 -- 	end,

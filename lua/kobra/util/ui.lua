@@ -6,7 +6,7 @@ local M = {}
 -- 	if not ret or type(ret) == "string" then
 -- 		ret = { { vim.api.nvim_buf_get_lines(0, vim.v.lnum - 1, vim.v.lnum, false)[1], {} } }
 -- 	end
--- 	table.insert(ret, { " " .. KobraVim.config.icons.misc.dots })
+-- 	table.insert(ret, { " " .. Kobra.config.icons.misc.dots })
 --
 -- 	if not vim.treesitter.foldtext then
 -- 		return table.concat(

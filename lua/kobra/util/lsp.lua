@@ -91,10 +91,10 @@ local M = {}
 -- 		primary = true,
 -- 		priority = 1,
 -- 		format = function(buf)
--- 			M.format(KobraVim.merge({}, filter, { bufnr = buf }))
+-- 			M.format(Kobra.merge({}, filter, { bufnr = buf }))
 -- 		end,
 -- 		sources = function(buf)
--- 			local clients = M.get_clients(KobraVim.merge({}, filter, { bufnr = buf }))
+-- 			local clients = M.get_clients(Kobra.merge({}, filter, { bufnr = buf }))
 --
 -- 			local ret = vim.tbl_filter(function(client)
 -- 				return client.supports_method("textDocument/formatting")
@@ -106,7 +106,7 @@ local M = {}
 -- 			end, ret)
 -- 		end,
 -- 	}
--- 	return KobraVim.merge(ret, opts)
+-- 	return Kobra.merge(ret, opts)
 -- end
 --
 -- function M.setup()
@@ -191,7 +191,7 @@ local M = {}
 -- 				if not ({ M.words.get() })[2] then
 -- 					if ev.event:find("CursorMoved") then
 -- 						vim.lsp.buf.clear_references()
--- 					elseif not KobraVim.cmp.visible() then
+-- 					elseif not Kobra.cmp.visible() then
 -- 						vim.lsp.buf.document_highlight()
 -- 					end
 -- 				end

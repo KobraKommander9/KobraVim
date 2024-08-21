@@ -43,7 +43,7 @@ M[#M + 1] = {
 			},
 		}
 
-		KobraVim.on_attach(function(client, buffer)
+		Kobra.on_attach(function(client, buffer)
 			if client.name == "gopls" then
 				vim.api.nvim_create_autocmd("BufWritePre", {
 					group = vim.api.nvim_create_augroup("GoImport." .. buffer, { clear = true }),

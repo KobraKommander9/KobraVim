@@ -5,7 +5,7 @@ M[#M + 1] = {
 	event = "VimEnter",
 	opts = function()
 		return {
-			enable = KobraVim.config.ui.transparent,
+			enable = Kobra.config.ui.transparent,
 			exclude = {
 				"KobraTLHead",
 				"KobraTLHeadSep",
@@ -43,8 +43,8 @@ M[#M + 1] = {
 	},
 	init = function()
 		-- when noice is not enabled, install notify on VeryLazy
-		if not KobraVim.has("noice.nvim") then
-			KobraVim.on_very_lazy(function()
+		if not Kobra.has("noice.nvim") then
+			Kobra.on_very_lazy(function()
 				vim.notify = require("notify")
 			end)
 		end
@@ -57,7 +57,7 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = KobraVim.clue.options({
+			opts = Kobra.clue.options({
 				{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
 			}),
 		},
@@ -254,7 +254,7 @@ M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 -- 	lazy = true,
 -- 	init = function()
 -- 		vim.g.navic_silence = true
--- 		KobraVim.lsp.on_attach(function(client, buffer)
+-- 		Kobra.lsp.on_attach(function(client, buffer)
 -- 			if client.server_capabilities.documentSymbolProvider then
 -- 				require("nvim-navic").attach(client, buffer)
 -- 			end
@@ -265,7 +265,7 @@ M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 -- 			separator = " ",
 -- 			highlight = true,
 -- 			depth_limit = 5,
--- 			icons = KobraVim.config.icons.kinds,
+-- 			icons = Kobra.config.icons.kinds,
 -- 		}
 -- 	end,
 -- }

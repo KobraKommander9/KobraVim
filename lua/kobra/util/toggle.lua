@@ -2,7 +2,7 @@ local M = {}
 
 function M.map(lhs, toggle)
 	local t = M.wrap(toggle)
-	KobraVim.safe_map("n", lhs, function()
+	Kobra.safe_map("n", lhs, function()
 		t()
 	end, { desc = "Toggle " .. toggle.name })
 end
@@ -13,9 +13,9 @@ function M.wrap(toggle)
 			toggle.set(not toggle.get())
 			local state = toggle.get()
 			if state then
-				KobraVim.info("Enabled " .. toggle.name, { title = toggle.name })
+				Kobra.info("Enabled " .. toggle.name, { title = toggle.name })
 			else
-				KobraVim.warn("Disabled " .. toggle.name, { title = toggle.name })
+				Kobra.warn("Disabled " .. toggle.name, { title = toggle.name })
 			end
 			return state
 		end,
@@ -85,10 +85,10 @@ M.treesitter = M.wrap({
 -- 			if not buf then
 -- 				return vim.g.autoformat == nil or vim.g.autoformat
 -- 			end
--- 			return KobraVim.format.enabled()
+-- 			return Kobra.format.enabled()
 -- 		end,
 -- 		set = function(state)
--- 			KobraVim.format.enable(state, buf)
+-- 			Kobra.format.enable(state, buf)
 -- 		end,
 -- 	})
 -- end

@@ -95,13 +95,13 @@ M[#M + 1] = {
 		}
 	end,
 	config = function()
-		local opts = KobraVim.opts("nvim-jdtls") or {}
+		local opts = Kobra.opts("nvim-jdtls") or {}
 
 		-- Find the extra bundles that should be passed on the jdtls command-line
 		-- if nvim-dap is enabled with java debug/test.
 		local mason_registry = require("mason-registry")
 		local bundles = {} ---@type string[]
-		if KobraVim.has("nvim-dap") and mason_registry.is_installed("java-debug-adapter") then
+		if Kobra.has("nvim-dap") and mason_registry.is_installed("java-debug-adapter") then
 			local java_dbg_pkg = mason_registry.get_package("java-debug-adapter")
 			local java_dbg_path = java_dbg_pkg:get_install_path()
 			local jar_patterns = {
@@ -133,7 +133,7 @@ M[#M + 1] = {
 					bundles = bundles,
 				},
 				-- enable CMP capabilities
-				capabilities = KobraVim.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities() or nil,
+				capabilities = Kobra.has("cmp-nvim-lsp") and require("cmp_nvim_lsp").default_capabilities() or nil,
 			}, opts.jdtls)
 
 			-- Existing server will be reused if the root_dir matches.
@@ -182,7 +182,7 @@ M[#M + 1] = {
 						},
 					}, { mode = "v", buffer = args.buf })
 
-					if opts.dap and KobraVim.has("nvim-dap") and mason_registry.is_installed("java-debug-adapter") then
+					if opts.dap and Kobra.has("nvim-dap") and mason_registry.is_installed("java-debug-adapter") then
 						-- custom init for Java debugger
 						require("jdtls").setup_dap(opts.dap)
 						require("jdtls.dap").setup_dap_main_class_configs(opts.dap_main)

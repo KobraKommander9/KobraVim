@@ -162,7 +162,7 @@ M[#M + 1] = {
 	config = function(_, opts)
 		require("mini.ai").setup(opts)
 		-- register all text objects with which-key
-		if KobraVim.has("which-key.nvim") then
+		if Kobra.has("which-key.nvim") then
 			---@type table<string, string|table>
 			local i = {
 				[" "] = "Whitespace",

@@ -1,6 +1,6 @@
-local map = KobraVim.safe_map
+local map = Kobra.safe_map
 
-if KobraVim.config.layout == "colemak" then
+if Kobra.config.layout == "colemak" then
 	-- N goes to the next match (replaces n)
 	-- E goes to previous match (replaces N)
 	-- I moves cursor to bottom of screen
@@ -31,14 +31,14 @@ end
 map("v", "p", '"_dP', { silent = true })
 
 -- better up/down
-map("n", KobraVim.keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
-map("n", KobraVim.keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
+map("n", Kobra.keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
+map("n", Kobra.keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
 
 -- move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-" .. KobraVim.keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-" .. KobraVim.keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-" .. KobraVim.keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
+map("n", "<C-" .. Kobra.keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-" .. Kobra.keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-" .. Kobra.keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
 
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -55,8 +55,8 @@ map(
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map({ "n", "x", "o" }, KobraVim.keys.nextMatch, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map({ "n", "x", "o" }, KobraVim.keys.prevMatch, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map({ "n", "x", "o" }, Kobra.keys.nextMatch, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map({ "n", "x", "o" }, Kobra.keys.prevMatch, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr>", { desc = "Save file" })
@@ -79,19 +79,19 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 -- toggle options
-KobraVim.toggle.map("<leader>ua", KobraVim.toggle("autochdir", { name = "Auto Change Dir" }))
-KobraVim.toggle.map(
+Kobra.toggle.map("<leader>ua", Kobra.toggle("autochdir", { name = "Auto Change Dir" }))
+Kobra.toggle.map(
 	"<leader>uc",
-	KobraVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } })
+	Kobra.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } })
 )
-KobraVim.toggle.map("<leader>ud", KobraVim.toggle.diagnostics)
--- KobraVim.toggle.map("<leader>uf", KobraVim.toggle.format())
--- KobraVim.toggle.map("<leader>uF", KobraVim.toggle.format(true))
-KobraVim.toggle.map("<leader>ul", KobraVim.toggle.number)
-KobraVim.toggle.map("<leader>uL", KobraVim.toggle("relativenumber", { name = "Relative Number" }))
-KobraVim.toggle.map("<leader>us", KobraVim.toggle("spell", { name = "Spelling" }))
-KobraVim.toggle.map("<leader>uT", KobraVim.toggle.treesitter)
-KobraVim.toggle.map("<leader>uw", KobraVim.toggle("wrap", { name = "Wrap" }))
+Kobra.toggle.map("<leader>ud", Kobra.toggle.diagnostics)
+-- Kobra.toggle.map("<leader>uf", Kobra.toggle.format())
+-- Kobra.toggle.map("<leader>uF", Kobra.toggle.format(true))
+Kobra.toggle.map("<leader>ul", Kobra.toggle.number)
+Kobra.toggle.map("<leader>uL", Kobra.toggle("relativenumber", { name = "Relative Number" }))
+Kobra.toggle.map("<leader>us", Kobra.toggle("spell", { name = "Spelling" }))
+Kobra.toggle.map("<leader>uT", Kobra.toggle.treesitter)
+Kobra.toggle.map("<leader>uw", Kobra.toggle("wrap", { name = "Wrap" }))
 
 -- highlights under cursor
 if vim.fn.has("nvim-0.9.0") == 1 then
@@ -115,8 +115,8 @@ map("n", "<leader>aa", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader>an", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader>ac", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader>ap", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-map("n", "<leader>am" .. KobraVim.keys.j, "<cmd>+tabmove<cr>", { desc = "Move Current Tab to Next" })
-map("n", "<leader>am" .. KobraVim.keys.k, "<cmd>-tabmove<cr>", { desc = "Move Current Tab to Previous" })
+map("n", "<leader>am" .. Kobra.keys.j, "<cmd>+tabmove<cr>", { desc = "Move Current Tab to Next" })
+map("n", "<leader>am" .. Kobra.keys.k, "<cmd>-tabmove<cr>", { desc = "Move Current Tab to Previous" })
 
 -- diagnostics
 map("n", "<leader>dh", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Hover Diagnostic" })

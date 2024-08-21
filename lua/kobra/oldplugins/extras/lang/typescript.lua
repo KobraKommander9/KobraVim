@@ -37,7 +37,7 @@ M[#M + 1] = {
 		},
 		setup = {
 			tsserver = function(_, opts)
-				KobraVim.on_attach(function(client, buffer)
+				Kobra.on_attach(function(client, buffer)
 					if client.name == "tsserver" then
 						vim.keymap.set(
 							"n",

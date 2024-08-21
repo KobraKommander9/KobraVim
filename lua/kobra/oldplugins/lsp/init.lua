@@ -45,7 +45,7 @@ M[#M + 1] = {
 	},
 	config = function(_, opts)
 		require("kobra.plugins.lsp.format").autoformat = opts.autoformat
-		KobraVim.on_attach(function(client, buffer)
+		Kobra.on_attach(function(client, buffer)
 			require("kobra.plugins.lsp.format").on_attach(client, buffer)
 			require("kobra.plugins.lsp.keymaps").on_attach(client, buffer)
 		end)
@@ -118,10 +118,10 @@ M[#M + 1] = {
 			mlsp.setup_handlers({ setup })
 		end
 
-		if KobraVim.lsp_get_config("denols") and KobraVim.lsp_get_config("tsserver") then
+		if Kobra.lsp_get_config("denols") and Kobra.lsp_get_config("tsserver") then
 			local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-			KobraVim.lsp_disable("tsserver", is_deno)
-			KobraVim.lsp_disable("denols", function(root_dir)
+			Kobra.lsp_disable("tsserver", is_deno)
+			Kobra.lsp_disable("denols", function(root_dir)
 				return not is_deno(root_dir)
 			end)
 		end

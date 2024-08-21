@@ -37,7 +37,7 @@ function M.format(opts)
 			end
 			return client.name ~= "null-ls"
 		end,
-	}, KobraVim.opts("nvim-lspconfig").format or {}))
+	}, Kobra.opts("nvim-lspconfig").format or {}))
 end
 
 function M.on_attach(client, buf)

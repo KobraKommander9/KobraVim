@@ -8,7 +8,7 @@ M[#M + 1] = {
 		"echasnovski/mini.extra",
 		{
 			"echasnovski/mini.clue",
-			opts = KobraVim.clue.options({
+			opts = Kobra.clue.options({
 				{ mode = "n", keys = "<leader>v", desc = "+Visits" },
 			}),
 		},
@@ -16,20 +16,8 @@ M[#M + 1] = {
 	keys = {
 		{ "<leader>vv", "<cmd>lua MiniVisits.add_label()<cr>", desc = "Add label" },
 		{ "<leader>vV", "<cmd>lua MiniVisits.remove_label()<cr>", desc = "Remove label" },
-		{
-			"<leader>fv",
-			function()
-				require("mini.extra").pickers.visit_paths()
-			end,
-			desc = "Search visited files",
-		},
-		{
-			"<leader>fl",
-			function()
-				require("mini.extra").pickers.visit_labels()
-			end,
-			desc = "Search visited labels",
-		},
+		{ "<leader>fv", Kobra.pick.extra("visit_paths"), desc = "Search visited files" },
+		{ "<leader>fl", Kobra.pick.extra("visit_labels"), desc = "Search visited labels" },
 	},
 	config = true,
 }
@@ -41,8 +29,8 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = KobraVim.clue.options(function()
-				local keys = KobraVim.keys
+			opts = Kobra.clue.options(function()
+				local keys = Kobra.keys
 
 				return {
 					{ mode = "n", keys = "<leader>m", desc = "+Move" },
@@ -60,7 +48,7 @@ M[#M + 1] = {
 		},
 	},
 	opts = function(_, opts)
-		local keys = KobraVim.keys
+		local keys = Kobra.keys
 
 		local options = {
 			mappings = {
@@ -87,7 +75,7 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = KobraVim.clue.options({
+			opts = Kobra.clue.options({
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
 				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
 			}),

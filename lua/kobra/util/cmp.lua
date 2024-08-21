@@ -74,7 +74,7 @@ local M = {}
 --
 -- 	return function(fallback)
 -- 		if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
--- 			KobraVim.create_undo()
+-- 			Kobra.create_undo()
 -- 			if cmp.confirm(opts) then
 -- 				return
 -- 			end
@@ -122,19 +122,19 @@ local M = {}
 -- 			return ret
 -- 		end
 --
--- 		return KobraVim.cmp.snippet_preview(input)
+-- 		return Kobra.cmp.snippet_preview(input)
 -- 	end
 --
 -- 	local cmp = require("cmp")
 -- 	cmp.setup(opts)
 -- 	cmp.event:on("confirm_done", function(event)
 -- 		if vim.tbl_contains(opts.auto_brackets or {}, vim.bo.filetype) then
--- 			KobraVim.cmp.auto_brackets(event.entry)
+-- 			Kobra.cmp.auto_brackets(event.entry)
 -- 		end
 -- 	end)
 --
 -- 	cmp.event:on("menu_opened", function(event)
--- 		KobraVim.cmp.add_missing_snippet_docs(event.window)
+-- 		Kobra.cmp.add_missing_snippet_docs(event.window)
 -- 	end)
 -- end
 

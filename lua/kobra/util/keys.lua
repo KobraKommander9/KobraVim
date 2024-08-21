@@ -43,7 +43,7 @@ function M.setup(name, layouts)
 		return
 	end
 
-	KobraVim.escape.setup(keys.escape)
+	Kobra.escape.setup(keys.escape)
 end
 
 setmetatable(M, {

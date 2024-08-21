@@ -14,10 +14,10 @@ M.renames = {
 }
 
 function M.fix_renames()
-	Plugin.Spec.add = KobraVim.inject.args(Plugin.Spec.add, function(self, plugin)
+	Plugin.Spec.add = Kobra.inject.args(Plugin.Spec.add, function(self, plugin)
 		if type(plugin) == "table" then
 			if M.renames[plugin[1]] then
-				KobraVim.warn(
+				Kobra.warn(
 					("Plugin `%s` was renamed to `%s`.\nPlease update your config for `%s`"):format(
 						plugin[1],
 						M.renames[plugin[1]],

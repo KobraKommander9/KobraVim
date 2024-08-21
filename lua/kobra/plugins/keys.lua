@@ -4,9 +4,9 @@ local M = {}
 M[#M + 1] = {
 	"echasnovski/mini.clue",
 	event = "VeryLazy",
-	opts = KobraVim.clue.options(function()
+	opts = Kobra.clue.options(function()
 		local miniclue = require("mini.clue")
-		local keys = KobraVim.keys
+		local keys = Kobra.keys
 
 		return {
 			miniclue.gen_clues.builtin_completion(),
@@ -96,7 +96,7 @@ M[#M + 1] = {
 			},
 		})
 
-		if KobraVim.config.layout == "colemak" then
+		if Kobra.config.layout == "colemak" then
 			opts.keyboardLayout = "colemak"
 		end
 	end,

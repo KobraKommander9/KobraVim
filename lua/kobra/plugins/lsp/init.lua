@@ -20,10 +20,10 @@ local M = {}
 -- 				severity_sort = true,
 -- 				signs = {
 -- 					text = {
--- 						[vim.diagnostic.severity.ERROR] = KobraVim.config.icons.diagnostics.Error,
--- 						[vim.diagnostic.severity.WARN] = KobraVim.config.icons.diagnostics.Warn,
--- 						[vim.diagnostic.severity.HINT] = KobraVim.config.icons.diagnostics.Hint,
--- 						[vim.diagnostic.severity.INFO] = KobraVim.config.icons.diagnostics.Info,
+-- 						[vim.diagnostic.severity.ERROR] = Kobra.config.icons.diagnostics.Error,
+-- 						[vim.diagnostic.severity.WARN] = Kobra.config.icons.diagnostics.Warn,
+-- 						[vim.diagnostic.severity.HINT] = Kobra.config.icons.diagnostics.Hint,
+-- 						[vim.diagnostic.severity.INFO] = Kobra.config.icons.diagnostics.Info,
 -- 					},
 -- 				},
 -- 			},
@@ -83,16 +83,16 @@ local M = {}
 -- 		return ret
 -- 	end,
 -- 	config = function(_, opts)
--- 		KobraVim.format.register(KobraVim.lsp.formatter())
+-- 		Kobra.format.register(Kobra.lsp.formatter())
 --
--- 		KobraVim.lsp.on_attach(function(client, buffer)
+-- 		Kobra.lsp.on_attach(function(client, buffer)
 -- 			require("kobra.plugins.lsp.keymaps").on_attach(client, buffer)
 -- 		end)
 --
--- 		KobraVim.lsp.setup()
--- 		KobraVim.lsp.on_dynamic_capability(require("kobra.plugins.lsp.keymaps").on_attach)
+-- 		Kobra.lsp.setup()
+-- 		Kobra.lsp.on_dynamic_capability(require("kobra.plugins.lsp.keymaps").on_attach)
 --
--- 		KobraVim.lsp.words.setup(opts.document_highlight)
+-- 		Kobra.lsp.words.setup(opts.document_highlight)
 --
 -- 		if vim.fn.has("nvim-0.10.0") == 0 then
 -- 			if type(opts.diagnostics.signs) ~= "boolean" then
@@ -107,7 +107,7 @@ local M = {}
 -- 		if vim.fn.has("nvim-0.10") == 1 then
 -- 			-- inlay hints
 -- 			if opts.inlay_hints.enabled then
--- 				KobraVim.lsp.on_supports_method("textDocument/inlayHint", function(--[[client]]_, buffer)
+-- 				Kobra.lsp.on_supports_method("textDocument/inlayHint", function(--[[client]]_, buffer)
 -- 					if
 -- 						vim.api.nvim_buf_is_valid(buffer)
 -- 						and vim.bo[buffer].buftype == ""
@@ -120,7 +120,7 @@ local M = {}
 --
 -- 			-- code lens
 -- 			if opts.codelens.enabled and vim.lsp.codelens then
--- 				KobraVim.lsp.on_supports_method("textDocument/codeLens", function(--[[client]]_, buffer)
+-- 				Kobra.lsp.on_supports_method("textDocument/codeLens", function(--[[client]]_, buffer)
 -- 					vim.lsp.codelens.refresh()
 -- 					vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
 -- 						buffer = buffer,
@@ -133,7 +133,7 @@ local M = {}
 -- 		if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
 -- 			opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
 -- 				or function(diagnostic)
--- 					local icons = KobraVim.config.icons.diagnostics
+-- 					local icons = Kobra.config.icons.diagnostics
 -- 					for d, icon in pairs(icons) do
 -- 						if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
 -- 							return icon
@@ -202,16 +202,16 @@ local M = {}
 -- 				ensure_installed = vim.tbl_deep_extend(
 -- 					"force",
 -- 					ensure_installed,
--- 					KobraVim.opts("mason-lspconfig.nvim").ensure_installed or {}
+-- 					Kobra.opts("mason-lspconfig.nvim").ensure_installed or {}
 -- 				),
 -- 				handlers = { setup },
 -- 			})
 -- 		end
 --
--- 		if KobraVim.lsp.is_enabled("denols") and KobraVim.lsp.is_enabled("vtsls") then
+-- 		if Kobra.lsp.is_enabled("denols") and Kobra.lsp.is_enabled("vtsls") then
 -- 			local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
--- 			KobraVim.lsp.disable("vtsls", is_deno)
--- 			KobraVim.lsp.disable("denols", function(root_dir, config)
+-- 			Kobra.lsp.disable("vtsls", is_deno)
+-- 			Kobra.lsp.disable("denols", function(root_dir, config)
 -- 				if not is_deno(root_dir) then
 -- 					config.settings.deno.enable = false
 -- 				end

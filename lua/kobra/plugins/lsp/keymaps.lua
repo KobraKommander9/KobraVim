@@ -18,7 +18,7 @@ function M.get()
 		{ "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
 
 		{ "<leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-		{ "<leader>lA", KobraVim.lsp.action.source, desc = "Source Action", has = "codeAction" },
+		{ "<leader>lA", Kobra.lsp.action.source, desc = "Source Action", has = "codeAction" },
 		{ "<leader>lc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
 		{
 			"<leader>lC",
@@ -33,46 +33,46 @@ function M.get()
 		{
 			"]]",
 			function()
-				KobraVim.lsp.words.jump(vim.v.count1)
+				Kobra.lsp.words.jump(vim.v.count1)
 			end,
 			has = "documentHighlight",
 			desc = "Next Reference",
 			cond = function()
-				return KobraVim.lsp.words.enabled
+				return Kobra.lsp.words.enabled
 			end,
 		},
 		{
 			"[[",
 			function()
-				KobraVim.lsp.words.jump(-vim.v.count1)
+				Kobra.lsp.words.jump(-vim.v.count1)
 			end,
 			has = "documentHighlight",
 			desc = "Prev Reference",
 			cond = function()
-				return KobraVim.lsp.words.enabled
+				return Kobra.lsp.words.enabled
 			end,
 		},
 
 		{
 			"<a-n>",
 			function()
-				KobraVim.lsp.words.jump(vim.v.count1, true)
+				Kobra.lsp.words.jump(vim.v.count1, true)
 			end,
 			has = "documentHighlight",
 			desc = "Next Reference",
 			cond = function()
-				return KobraVim.lsp.words.enabled
+				return Kobra.lsp.words.enabled
 			end,
 		},
 		{
 			"<a-p>",
 			function()
-				KobraVim.lsp.words.jump(-vim.v.count1, true)
+				Kobra.lsp.words.jump(-vim.v.count1, true)
 			end,
 			has = "documentHighlight",
 			desc = "Prev Reference",
 			cond = function()
-				return KobraVim.lsp.words.enabled
+				return Kobra.lsp.words.enabled
 			end,
 		},
 	}
@@ -91,7 +91,7 @@ function M.has(buffer, method)
 	end
 
 	method = method:find("/") and method or "textDocument/" .. method
-	local clients = KobraVim.lsp.get_clients({ bufnr = buffer })
+	local clients = Kobra.lsp.get_clients({ bufnr = buffer })
 
 	for _, client in ipairs(clients) do
 		if client.supports_method(method) then
@@ -109,8 +109,8 @@ function M.resolve(buffer)
 	end
 
 	local spec = M.get()
-	local opts = KobraVim.opts("nvim-lspconfig")
-	local clients = KobraVim.lsp.get_clients({ bufnr = buffer })
+	local opts = Kobra.opts("nvim-lspconfig")
+	local clients = Kobra.lsp.get_clients({ bufnr = buffer })
 
 	for _, client in ipairs(clients) do
 		local maps = opts.servers[client.name] and opts.servers[client.name].keys or {}

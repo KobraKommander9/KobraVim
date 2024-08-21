@@ -16,7 +16,7 @@ local M = {}
 -- end
 --
 -- function M.formatexpr()
--- 	if KobraVim.has("conform.nvim") then
+-- 	if Kobra.has("conform.nvim") then
 -- 		return require("conform").formatexpr()
 -- 	end
 -- 	return vim.lsp.formatexpr({ timeout_ms = 3000 })
@@ -103,14 +103,14 @@ local M = {}
 -- 	for _, formatter in ipairs(M.resolve(buf)) do
 -- 		if formatter.active then
 -- 			done = true
--- 			KobraVim.try(function()
+-- 			Kobra.try(function()
 -- 				return formatter.format(buf)
 -- 			end, { msg = "Formatter `" .. formatter.name .. "` failed" })
 -- 		end
 -- 	end
 --
 -- 	if not done and opts and opts.force then
--- 		KobraVim.warn("No formatter available", { title = "KobraVim" })
+-- 		Kobra.warn("No formatter available", { title = "KobraVim" })
 -- 	end
 -- end
 --
