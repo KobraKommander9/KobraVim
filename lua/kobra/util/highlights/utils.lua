@@ -44,6 +44,7 @@ function M.extract_color_from_hllist(scope, syntaxlist, default)
 						end
 					end
 
+					vim.notify("1: " .. sc .. ": " .. vim.inspect(color[sc]))
 					if color[sc] then
 						return color[sc]
 					end
