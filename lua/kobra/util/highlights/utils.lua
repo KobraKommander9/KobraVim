@@ -21,7 +21,7 @@ function M.extract_highlight_colors(color_group, scope)
 		color.special = nil
 	end
 
-	vim.notify(scope .. ": " .. vim.inspect(color))
+	vim.notify((scope or "none") .. ": " .. vim.inspect(color))
 	if scope then
 		return color[scope]
 	end
