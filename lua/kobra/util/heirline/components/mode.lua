@@ -21,7 +21,7 @@ function M.component()
 			self.mode = Kobra.mode.get_mode()
 		end,
 		hl = "kobra_normal_a",
-		M.vi_mode,
+		M.vi_mode(),
 	}
 end
 
