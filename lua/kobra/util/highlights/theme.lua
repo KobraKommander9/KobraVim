@@ -3,6 +3,11 @@ if color_name then
 	if "base16" == color_name:sub(1, 6) then
 		color_name = "base16"
 	end
+
+	local theme = KobraColors.hl.get_theme()
+	if theme ~= nil then
+		return theme
+	end
 end
 
 -- fg and bg must have this much contrast range 0 < contrast_threshold < 0.5
@@ -102,6 +107,24 @@ local colors = {
 	back1 = KobraColors.utils.extract_color_from_hllist("bg", { "Normal", "StatusLineNC" }, "#000000"),
 	fore = KobraColors.utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#000000"),
 	back2 = KobraColors.utils.extract_color_from_hllist("bg", { "StatusLine" }, "#000000"),
+
+	bright_bg = KobraColors.utils.extract_color_from_hllist("bg", { "Folded" }, "#000000"),
+	bright_fg = KobraColors.utils.extract_color_from_hllist("fg", { "Folded" }, "#000000"),
+	red = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#c94f6d"),
+	dark_red = KobraColors.utils.extract_color_from_hllist("bg", { "DiffDelete" }, "#000000"),
+	green = KobraColors.utils.extract_color_from_hllist("fg", { "String" }, "#81b29a"),
+	blue = KobraColors.utils.extract_color_from_hllist("fg", { "Function" }, "#719cd6"),
+	gray = KobraColors.utils.extract_color_from_hllist("fg", { "NonText" }, "#484848"),
+	orange = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#dbc074"),
+	purple = KobraColors.utils.extract_color_from_hllist("fg", { "Statement" }, "#9d79d6"),
+	cyan = KobraColors.utils.extract_color_from_hllist("fg", { "Special" }, "#63cdcf"),
+	diag_warn = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticWarn" }, "#000000"),
+	diag_error = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#000000"),
+	diag_hint = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticHint" }, "#000000"),
+	diag_info = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticInfo" }, "#000000"),
+	git_del = KobraColors.utils.extract_color_from_hllist("fg", { "diffDeleted" }, "#000000"),
+	git_add = KobraColors.utils.extract_color_from_hllist("fg", { "diffAdded" }, "#000000"),
+	git_change = KobraColors.utils.extract_color_from_hllist("fg", { "diffChanged" }, "#000000"),
 }
 
 -- change brightness of colors
