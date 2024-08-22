@@ -151,7 +151,7 @@ function M.get_hl_groups()
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
-			ab = { bg = colors.normal, fg = colors.normal_bright, bold = true },
+			ab = { bg = colors.normal_bright, fg = colors.normal },
 			b = { bg = colors.normal_bright, fg = colors.back1 },
 			c = { bg = colors.back1, fg = colors.normal },
 		},
@@ -181,8 +181,10 @@ function M.get_hl_groups()
 	groups.inactive = groups.normal
 
 	for _, section in pairs(groups) do
-		for _, hl in pairs(section) do
-			apply_contrast(hl)
+		for name, hl in pairs(section) do
+			if #name == 1 then
+				apply_contrast(hl)
+			end
 		end
 	end
 

@@ -32,7 +32,7 @@ function M.component()
 		},
 		{
 			provider = "",
-			hl = "kobra_normal_ab_rv",
+			hl = "kobra_normal_ab",
 		},
 		{
 			provider = "a",
