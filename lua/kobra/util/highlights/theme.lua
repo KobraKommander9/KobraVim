@@ -148,27 +148,27 @@ function M.get_hl_groups()
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
 			b = { bg = colors.back1, fg = colors.normal },
-			c = { bg = colors.back2, fg = colors.fore },
+			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		insert = {
 			a = { bg = colors.insert, fg = colors.back1, bold = true },
 			b = { bg = colors.back1, fg = colors.insert },
-			c = { bg = colors.back2, fg = colors.fore },
+			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		replace = {
 			a = { bg = colors.replace, fg = colors.back1, bold = true },
 			b = { bg = colors.back1, fg = colors.replace },
-			c = { bg = colors.back2, fg = colors.fore },
+			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		visual = {
 			a = { bg = colors.visual, fg = colors.back1, bold = true },
 			b = { bg = colors.back1, fg = colors.visual },
-			c = { bg = colors.back2, fg = colors.fore },
+			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		command = {
 			a = { bg = colors.command, fg = colors.back1, bold = true },
 			b = { bg = colors.back1, fg = colors.command },
-			c = { bg = colors.back2, fg = colors.fore },
+			c = { bg = colors.fore, fg = colors.back2 },
 		},
 	}
 
