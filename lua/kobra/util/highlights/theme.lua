@@ -134,27 +134,27 @@ end
 
 local M = {
 	normal = {
-		a = { bg = colors.normal, fg = colors.back1, gui = "bold" },
+		a = { bg = colors.normal, fg = colors.back1, bold = true },
 		b = { bg = colors.back1, fg = colors.normal },
 		c = { bg = colors.back2, fg = colors.fore },
 	},
 	insert = {
-		a = { bg = colors.insert, fg = colors.back1, gui = "bold" },
+		a = { bg = colors.insert, fg = colors.back1, bold = true },
 		b = { bg = colors.back1, fg = colors.insert },
 		c = { bg = colors.back2, fg = colors.fore },
 	},
 	replace = {
-		a = { bg = colors.replace, fg = colors.back1, gui = "bold" },
+		a = { bg = colors.replace, fg = colors.back1, bold = true },
 		b = { bg = colors.back1, fg = colors.replace },
 		c = { bg = colors.back2, fg = colors.fore },
 	},
 	visual = {
-		a = { bg = colors.visual, fg = colors.back1, gui = "bold" },
+		a = { bg = colors.visual, fg = colors.back1, bold = true },
 		b = { bg = colors.back1, fg = colors.visual },
 		c = { bg = colors.back2, fg = colors.fore },
 	},
 	command = {
-		a = { bg = colors.command, fg = colors.back1, gui = "bold" },
+		a = { bg = colors.command, fg = colors.back1, bold = true },
 		b = { bg = colors.back1, fg = colors.command },
 		c = { bg = colors.back2, fg = colors.fore },
 	},
