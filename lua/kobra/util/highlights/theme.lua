@@ -105,8 +105,8 @@ local function get_colors()
 		fore = KobraColors.utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#000000"),
 		back2 = KobraColors.utils.extract_color_from_hllist("bg", { "StatusLine" }, "#000000"),
 
-		bright_bg = KobraColors.utils.extract_color_from_hllist("bg", { "Folded" }, "#000000"),
-		bright_fg = KobraColors.utils.extract_color_from_hllist("fg", { "Folded" }, "#000000"),
+		bg = KobraColors.utils.extract_color_from_hllist("bg", { "Folded" }, "#000000"),
+		fg = KobraColors.utils.extract_color_from_hllist("fg", { "Folded" }, "#000000"),
 		red = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#c94f6d"),
 		dark_red = KobraColors.utils.extract_color_from_hllist("bg", { "DiffDelete" }, "#000000"),
 		green = KobraColors.utils.extract_color_from_hllist("fg", { "String" }, "#81b29a"),
@@ -137,50 +137,42 @@ local function get_colors()
 		end
 	end
 
+	for name, color in pairs(colors) do
+		colors[name .. "_bright"] = brightness_modifier(color, 50)
+	end
+
 	return colors
 end
 
 local M = {}
 
 function M.get_hl_groups()
-	local bases = {
-		"normal",
-		"insert",
-		"replace",
-		"visual",
-		"command",
-	}
-
 	local colors = get_colors()
-	for _, name in ipairs(bases) do
-		colors[name .. "_bright"] = brightness_modifier(colors[name], 50)
-	end
-
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
 			b = { bg = colors.normal_bright, fg = colors.back1 },
-			c = { bg = colors.fore, fg = colors.back2 },
+			c = { bg = colors.back2, fg = colors.normal },
 		},
 		insert = {
 			a = { bg = colors.insert, fg = colors.back1, bold = true },
 			b = { bg = colors.insert_bright, fg = colors.back1 },
-			c = { bg = colors.fore, fg = colors.back2 },
+			c = { bg = colors.back2, fg = colors.insert },
 		},
 		replace = {
 			a = { bg = colors.replace, fg = colors.back1, bold = true },
 			b = { bg = colors.replace_bright, fg = colors.back1 },
-			c = { bg = colors.fore, fg = colors.back2 },
+			c = { bg = colors.back2, fg = colors.replace },
 		},
 		visual = {
 			a = { bg = colors.visual, fg = colors.back1, bold = true },
 			b = { bg = colors.visual_bright, fg = colors.back1 },
-			c = { bg = colors.fore, fg = colors.back2 },
+			c = { bg = colors.back2, fg = colors.visual },
 		},
 		command = {
 			a = { bg = colors.command, fg = colors.back1, bold = true },
 			b = { bg = colors.command_bright, fg = colors.back1 },
-			c = { bg = colors.fore, fg = colors.back2 },
+			c = { bg = colors.back2, fg = colors.command },
 		},
 	}
 
