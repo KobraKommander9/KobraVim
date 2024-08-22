@@ -151,6 +151,7 @@ function M.get_hl_groups()
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
+			ab = { bg = colors.normal, fg = colors.normal_bright, bold = true },
 			b = { bg = colors.normal_bright, fg = colors.back1 },
 			c = { bg = colors.back1, fg = colors.normal },
 		},
