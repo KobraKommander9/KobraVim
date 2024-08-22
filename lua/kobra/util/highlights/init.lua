@@ -28,7 +28,6 @@ function M.create_hl_groups()
 	local theme = KobraColors.theme
 	for mode, sections in pairs(theme) do
 		for section, color in pairs(sections) do
-			vim.notify(vim.inspect(color))
 			vim.api.nvim_set_hl(0, table.concat({ "kobra", mode, section }, "_"), color)
 		end
 	end
