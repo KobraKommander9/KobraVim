@@ -61,19 +61,19 @@ function M.mode_bubble(component)
 		{
 			provider = "",
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode) .. "rv"
+				return KobraColors.hl.get_mode_color(self.mode) .. "_rv"
 			end,
 		},
 		{
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode) .. "a"
+				return KobraColors.hl.get_mode_color(self.mode)
 			end,
 			component,
 		},
 		{
 			provider = "",
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode) .. "ab"
+				return KobraColors.hl.get_mode_color(self.mode, "ab")
 			end,
 		},
 	}
@@ -84,107 +84,16 @@ function M.component()
 		init = function(self)
 			self.mode = Kobra.mode.get_mode()
 		end,
-		M.mode_bubble(M.vi_mode()),
-		-- {
-		-- 	provider = "",
-		-- 	hl = "kobra_normal_a_rv",
-		-- },
-		-- {
-		-- 	provider = "A",
-		-- 	hl = "kobra_normal_a",
-		-- },
-		-- {
-		-- 	provider = "",
-		-- 	hl = "kobra_normal_ab",
-		-- },
-		-- {
-		-- 	provider = "a",
-		-- 	hl = "kobra_normal_b",
-		-- },
-		-- {
-		-- 	provider = "",
-		-- 	hl = "kobra_normal_bc",
-		-- },
-		-- {
-		-- 	provider = "1",
-		-- 	hl = "kobra_normal_c",
-		-- },
-		-- {
-		-- 	provider = "",
-		-- 	hl = "kobra_normal_c_rv",
-		-- },
-		-- {
-		-- 	provider = " B ",
-		-- 	hl = "kobra_insert_a",
-		-- },
-		-- {
-		-- 	provider = " b ",
-		-- 	hl = "kobra_insert_b",
-		-- },
-		-- {
-		-- 	provider = " 2 ",
-		-- 	hl = "kobra_insert_c",
-		-- },
-		-- {
-		-- 	provider = " C ",
-		-- 	hl = "kobra_replace_a",
-		-- },
-		-- {
-		-- 	provider = " c ",
-		-- 	hl = "kobra_replace_b",
-		-- },
-		-- {
-		-- 	provider = " 3 ",
-		-- 	hl = "kobra_replace_c",
-		-- },
-		-- {
-		-- 	provider = " D ",
-		-- 	hl = "kobra_visual_a",
-		-- },
-		-- {
-		-- 	provider = " d ",
-		-- 	hl = "kobra_visual_b",
-		-- },
-		-- {
-		-- 	provider = " 4 ",
-		-- 	hl = "kobra_visual_c",
-		-- },
-		-- {
-		-- 	provider = " E ",
-		-- 	hl = "kobra_command_a",
-		-- },
-		-- {
-		-- 	provider = " e ",
-		-- 	hl = "kobra_command_b",
-		-- },
-		-- {
-		-- 	provider = " 5 ",
-		-- 	hl = "kobra_command_c",
-		-- },
-		-- {
-		-- 	provider = " F ",
-		-- 	hl = "kobra_terminal_a",
-		-- },
-		-- {
-		-- 	provider = " f ",
-		-- 	hl = "kobra_terminal_b",
-		-- },
-		-- {
-		-- 	provider = " 6 ",
-		-- 	hl = "kobra_terminal_c",
-		-- },
-		-- {
-		-- 	provider = " G ",
-		-- 	hl = "kobra_inactive_a",
-		-- },
-		-- {
-		-- 	provider = " g ",
-		-- 	hl = "kobra_inactive_b",
-		-- },
-		-- {
-		-- 	provider = " 7 ",
-		-- 	hl = "kobra_inactive_c",
-		-- },
+		M.mode_bubble({
+			M.macro_rec(),
+			M.vi_mode(),
+		}),
+		{
+			hl = function(self)
+				return KobraColors.hl.get_mode_color(self.mode, "b")
+			end,
+			M.search_count(),
+		},
 	}
 end
 
