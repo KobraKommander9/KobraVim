@@ -1,11 +1,9 @@
 local M = {}
 
-local utils = require("kobra.util.heirline.components.utils")
-
 function M.vi_mode()
 	return {
 		provider = function(self)
-			return self.mode
+			return "%2(" .. self.mode .. "%)"
 		end,
 		update = {
 			"ModeChanged",
