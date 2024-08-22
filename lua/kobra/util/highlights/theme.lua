@@ -32,7 +32,8 @@ end
 -- returns average of colors in range 0 to 1
 -- used to determine contrast level
 local function get_color_avg(rgb)
-	-- local color = rgb_str2num(rgb)
+	vim.notify(rgb)
+	local color = rgb_str2num(rgb)
 	return (rgb.red + rgb.green + rgb.blue) / 3 / 256
 end
 
