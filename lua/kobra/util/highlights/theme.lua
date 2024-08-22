@@ -197,6 +197,10 @@ function M.get_hl_groups()
 	for mode, section in pairs(groups) do
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
+
+		groups[mode].a_end = { bg = section.a.bg, fg = colors.back2 }
+		groups[mode].b_end = { bg = section.b.bg, fg = colors.back2 }
+		groups[mode].c_end = { bg = section.c.bg, fg = colors.back2 }
 	end
 
 	return groups
