@@ -23,12 +23,20 @@ function M.component()
 		hl = "kobra_normal_a",
 		M.vi_mode(),
 		{
-			provider = " A ",
+			provider = "",
+			hl = "kobra_normal_a_rv",
+		},
+		{
+			provider = "A ",
 			hl = "kobra_normal_a",
 		},
 		{
-			provider = " a ",
+			provider = " a",
 			hl = "kobra_normal_b",
+		},
+		{
+			provider = "",
+			hl = "kobra_normal_b_rv",
 		},
 		{
 			provider = " 1 ",

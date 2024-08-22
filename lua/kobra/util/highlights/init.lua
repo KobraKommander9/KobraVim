@@ -30,11 +30,18 @@ function M.create_hl_groups()
 	local theme = KobraColors.theme.get_hl_groups()
 	for mode, sections in pairs(theme) do
 		for section, color in pairs(sections) do
-			local name = table.concat({ "kobra", mode, section }, "_")
-			generated_colors[name] = color
-
 			color.force = true
-			vim.api.nvim_set_hl(0, name, color)
+
+			local name = table.concat({ "kobra", mode, section }, "_")
+			local name_rv = name .. "_rv"
+			generated_colors[name] = color
+			generated_colors[name_rv] = vim.tbl_extend("force", color, {
+				fg = color.bg,
+				bg = color.fg,
+			})
+
+			vim.api.nvim_set_hl(0, name, generated_colors[name])
+			vim.api.nvim_set_hl(0, name_rv, generated_colors[name_rv])
 		end
 	end
 
