@@ -4,7 +4,7 @@ local M = {}
 M[#M + 1] = {
 	"echasnovski/mini.clue",
 	event = "VeryLazy",
-	opts = Kobra.mini.clue.options(function()
+	opts = Kobra.mini.clue_options(function()
 		local miniclue = require("mini.clue")
 		local keys = Kobra.keys
 

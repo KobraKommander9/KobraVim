@@ -1,6 +1,6 @@
 local M = {}
 
-function M.ai.indent(ai_type)
+function M.ai_indent(ai_type)
 	local spaces = (" "):rep(vim.o.tabstop)
 	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 	local indents = {}
@@ -35,7 +35,7 @@ function M.ai.indent(ai_type)
 	return ret
 end
 
-function M.clue.options(clues, triggers)
+function M.clue_options(clues, triggers)
 	return function(_, opts)
 		if type(clues) == "function" then
 			clues = clues()

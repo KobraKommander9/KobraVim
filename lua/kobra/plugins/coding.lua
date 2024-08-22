@@ -14,7 +14,7 @@ M[#M + 1] = {
 					i = { "@block.inner", "@conditional.inner", "@loop.inner" },
 				}),
 				c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
-				i = Kobra.mini.ai.indent, -- indent
+				i = Kobra.mini.ai_indent, -- indent
 				u = ai.gen_spec.function_call(), -- u for "Usage"
 				U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
 			},
