@@ -195,8 +195,8 @@ function M.get_hl_groups()
 	end
 
 	for mode, section in pairs(groups) do
-		groups[mode].ab = { bg = section.b.fg, fg = section.a.bg }
-		groups[mode].bc = { bg = section.c.fg, fg = section.b.bg }
+		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
+		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
 	end
 
 	return groups
