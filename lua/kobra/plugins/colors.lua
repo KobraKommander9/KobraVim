@@ -33,6 +33,12 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"sainnhe/edge",
 	lazy = true,
+	config = function()
+		vim.g.edge_style = "aura"
+		if Kobra.config.ui.transparent == true then
+			vim.g.edge_transparent_background = 1
+		end
+	end,
 }
 
 M[#M + 1] = {
@@ -54,18 +60,6 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"sainnhe/sonokai",
 	lazy = true,
-}
-
-M[#M + 1] = {
-	"ofirgall/ofirkai.nvim",
-	lazy = true,
-	config = true,
-}
-
-M[#M + 1] = {
-	"projekt0n/caret.nvim",
-	lazy = true,
-	config = true,
 }
 
 M[#M + 1] = {
