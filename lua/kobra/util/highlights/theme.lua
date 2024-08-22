@@ -138,13 +138,13 @@ local function get_colors()
 		if get_color_brightness(normal_color) > 0.5 then
 			brightness_modifier_param = -brightness_modifier_param
 		end
-
-		for name, color in pairs(colors) do
-			colors[name] = brightness_modifier(color, brightness_modifier_param)
-		end
-	end
+  end
 
 	for name, color in pairs(colors) do
+    if normal_color ~= nil then
+		  colors[name] = brightness_modifier(color, brightness_modifier_param)
+    end
+
     for _, brightness in ipairs({ 25, 50, 75 }) do
       colors[name .. "_" .. brightness] = brightness_modifier(color, brightness)
     end
