@@ -24,27 +24,87 @@ function M.component()
 		M.vi_mode(),
 		{
 			provider = " A ",
-			hl = "kobra_insert_a",
+			hl = "kobra_normal_a",
+		},
+		{
+			provider = " a ",
+			hl = "kobra_normal_b",
+		},
+		{
+			provider = " 1 ",
+			hl = "kobra_normal_c",
 		},
 		{
 			provider = " B ",
-			hl = "kobra_replace_a",
+			hl = "kobra_insert_a",
+		},
+		{
+			provider = " b ",
+			hl = "kobra_insert_b",
+		},
+		{
+			provider = " 2 ",
+			hl = "kobra_insert_c",
 		},
 		{
 			provider = " C ",
-			hl = "kobra_visual_a",
+			hl = "kobra_replace_a",
+		},
+		{
+			provider = " c ",
+			hl = "kobra_replace_b",
+		},
+		{
+			provider = " 3 ",
+			hl = "kobra_replace_c",
 		},
 		{
 			provider = " D ",
-			hl = "kobra_command_a",
+			hl = "kobra_visual_a",
+		},
+		{
+			provider = " d ",
+			hl = "kobra_visual_b",
+		},
+		{
+			provider = " 4 ",
+			hl = "kobra_visual_c",
 		},
 		{
 			provider = " E ",
-			hl = "kobra_terminal_a",
+			hl = "kobra_command_a",
+		},
+		{
+			provider = " e ",
+			hl = "kobra_command_b",
+		},
+		{
+			provider = " 5 ",
+			hl = "kobra_command_c",
 		},
 		{
 			provider = " F ",
+			hl = "kobra_terminal_a",
+		},
+		{
+			provider = " f ",
+			hl = "kobra_terminal_b",
+		},
+		{
+			provider = " 6 ",
+			hl = "kobra_terminal_c",
+		},
+		{
+			provider = " G ",
 			hl = "kobra_inactive_a",
+		},
+		{
+			provider = " g ",
+			hl = "kobra_inactive_b",
+		},
+		{
+			provider = " 7 ",
+			hl = "kobra_inactive_c",
 		},
 	}
 end
