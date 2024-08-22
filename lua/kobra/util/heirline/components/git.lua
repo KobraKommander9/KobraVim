@@ -1,7 +1,5 @@
 local M = {}
 
-local conditions = require("heirline.conditions")
-
 local shorten = function(head)
 	if string.find(head, "/") then
 		return string.sub(head, string.find(head, "/") + 1)
@@ -62,7 +60,9 @@ end
 
 function M.component()
 	return {
-		condition = conditions.is_git_repo,
+		condition = function()
+			return vim.b.gitsigns_head or vim.b.gitsigns_status_dict
+		end,
 		init = function(self)
 			self.status_dict = vim.b.gitsigns_status_dict
 			self.has_changes = self.status_dict.added ~= 0
