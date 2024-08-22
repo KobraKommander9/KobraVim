@@ -64,11 +64,14 @@ function M.component()
 			return vim.b.minigit_summary or vim.b.minidiff_summary
 		end,
 		init = function(self)
+			local git_summary = vim.b.minigit_summary or {}
+			local diff_summary = vim.b.minidiff_summary or {}
+
 			self.status_dict = {
-				head = vim.b.minigit_summary.head_name,
-				added = vim.b.minidiff_summary.add,
-				removed = vim.b.minidiff_summary.delete,
-				changed = vim.b.minidiff_summary.change,
+				head = git_summary.head_name or "",
+				added = diff_summary.add or 0,
+				removed = diff_summary.delete or 0,
+				changed = diff_summary.change or 0,
 			}
 			self.has_changes = self.status_dict.added ~= 0
 				or self.status_dict.deleted ~= 0
