@@ -1,7 +1,7 @@
 local M = {}
 
 M[#M + 1] = {
-	"mini.colors",
+	"echasnovski/mini.colors",
 	keys = {
 		{
 			"<leader>uC",
