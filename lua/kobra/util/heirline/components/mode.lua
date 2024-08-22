@@ -43,7 +43,7 @@ function M.component()
 			hl = "kobra_normal_bc",
 		},
 		{
-			provider = " 1 ",
+			provider = "1",
 			hl = "kobra_normal_c",
 		},
 		{
