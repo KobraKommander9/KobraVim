@@ -41,8 +41,46 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"ray-x/starry.nvim",
+	"ellisonleao/gruvbox.nvim",
 	lazy = true,
+	config = true,
+}
+
+M[#M + 1] = {
+	"sainnhe/everforest",
+	lazy = true,
+}
+
+M[#M + 1] = {
+	"sainnhe/sonokai",
+	lazy = true,
+}
+
+M[#M + 1] = {
+	"ofirgall/ofirkai.nvim",
+	lazy = true,
+	config = true,
+}
+
+M[#M + 1] = {
+	"projekt0n/caret.nvim",
+	lazy = true,
+	config = true,
+}
+
+M[#M + 1] = {
+	"lmburns/kimbox",
+	lazy = true,
+	config = function(_, opts)
+		require("kimbox").setup(opts)
+		require("kimbox").load()
+	end,
+}
+
+M[#M + 1] = {
+	"justinsgithub/oh-my-monokai.nvim",
+	lazy = true,
+	config = true,
 }
 
 return M
