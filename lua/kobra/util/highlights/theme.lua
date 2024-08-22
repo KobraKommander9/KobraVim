@@ -148,6 +148,7 @@ local M = {}
 
 function M.get_hl_groups()
 	local colors = get_colors()
+	vim.notify(vim.inspect(colors))
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
