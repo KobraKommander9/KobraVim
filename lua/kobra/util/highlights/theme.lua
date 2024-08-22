@@ -99,7 +99,7 @@ local function get_colors()
 		-- 	{ "PmenuSel", "PmenuThumb", "TabLineSel" },
 		-- 	"#000000"
 		-- ),
-    normal = KobraColors.utils.extract_color_from_hlliT("fg", { "Constant" }, "#000000"),
+    normal = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#000000"),
 		insert = KobraColors.utils.extract_color_from_hllist("fg", { "String", "MoreMsg" }, "#000000"),
 		replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
 		visual = KobraColors.utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
