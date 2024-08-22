@@ -12,9 +12,11 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"olimorris/onedarkpro.nvim",
+	"navarasu/onedark.nvim",
 	lazy = true,
-	config = true,
+	opts = {
+		style = "deep",
+	},
 }
 
 M[#M + 1] = {
@@ -65,10 +67,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"lmburns/kimbox",
 	lazy = true,
-	config = function(_, opts)
-		require("kimbox").setup(opts)
-		require("kimbox").load()
-	end,
+	config = true,
 }
 
 M[#M + 1] = {
