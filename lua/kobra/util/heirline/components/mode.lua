@@ -85,7 +85,7 @@ function M.mode_bubble(component1, component2)
 		{
 			provider = "",
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode, "b_end")
+				return KobraColors.hl.get_mode_color(self.mode, "b_end_rv")
 			end,
 		},
 	}
