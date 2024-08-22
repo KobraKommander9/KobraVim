@@ -5,6 +5,10 @@ local brightness_modifier_param = 10
 
 -- turns #rrggbb -> { red, green, blue }
 local function rgb_str2num(str)
+	if type(str) == "number" then
+		str = string.format("#06x", str)
+	end
+
 	if str:find("#") == 1 then
 		str = str:sub(2, #str)
 	end
@@ -32,7 +36,6 @@ end
 -- returns average of colors in range 0 to 1
 -- used to determine contrast level
 local function get_color_avg(rgb)
-	vim.notify(vim.inspect(rgb))
 	local color = rgb_str2num(rgb)
 	return (color.red + color.green + color.blue) / 3 / 256
 end
@@ -162,7 +165,6 @@ M.inactive = M.normal
 
 for _, section in pairs(M) do
 	for _, hl in pairs(section) do
-		vim.notify(vim.inspect(hl))
 		apply_contrast(hl)
 	end
 end
