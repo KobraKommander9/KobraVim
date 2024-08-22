@@ -148,32 +148,31 @@ local M = {}
 
 function M.get_hl_groups()
 	local colors = get_colors()
-	vim.notify(vim.inspect(colors))
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
 			b = { bg = colors.normal_bright, fg = colors.back1 },
-			c = { bg = colors.back2, fg = colors.normal },
+			c = { bg = colors.back1, fg = colors.normal },
 		},
 		insert = {
 			a = { bg = colors.insert, fg = colors.back1, bold = true },
 			b = { bg = colors.insert_bright, fg = colors.back1 },
-			c = { bg = colors.back2, fg = colors.insert },
+			c = { bg = colors.back1, fg = colors.insert },
 		},
 		replace = {
 			a = { bg = colors.replace, fg = colors.back1, bold = true },
 			b = { bg = colors.replace_bright, fg = colors.back1 },
-			c = { bg = colors.back2, fg = colors.replace },
+			c = { bg = colors.back1, fg = colors.replace },
 		},
 		visual = {
 			a = { bg = colors.visual, fg = colors.back1, bold = true },
 			b = { bg = colors.visual_bright, fg = colors.back1 },
-			c = { bg = colors.back2, fg = colors.visual },
+			c = { bg = colors.back1, fg = colors.visual },
 		},
 		command = {
 			a = { bg = colors.command, fg = colors.back1, bold = true },
 			b = { bg = colors.command_bright, fg = colors.back1 },
-			c = { bg = colors.back2, fg = colors.command },
+			c = { bg = colors.back1, fg = colors.command },
 		},
 	}
 
