@@ -126,8 +126,6 @@ function M.setup(opts)
 			M.load("keymaps")
 
 			-- Kobra.format.setup()
-			KobraColors.setup()
-			KobraLines.setup()
 
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
@@ -149,6 +147,12 @@ function M.setup(opts)
 			vim.cmd.colorscheme("one_monokai")
 		end,
 	})
+	Kobra.track()
+
+	Kobra.track("statuslines")
+	KobraColors.setup()
+	KobraLines.setup()
+
 	Kobra.track()
 end
 

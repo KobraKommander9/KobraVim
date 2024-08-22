@@ -7,8 +7,6 @@ local brightness_modifier_param = 10
 local function rgb_str2num(str)
 	if type(str) == "number" then
 		str = ("%06x"):format(str)
-	elseif str == nil then
-		return { red = 0, green = 0, blue = 0 }
 	end
 
 	if str:find("#") == 1 then
