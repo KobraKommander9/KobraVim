@@ -27,7 +27,7 @@ local links = {
 function M.create_hl_groups()
 	local generated_colors = {}
 
-	local theme = KobraColors.theme
+	local theme = KobraColors.theme.get_hl_groups()
 	for mode, sections in pairs(theme) do
 		for section, color in pairs(sections) do
 			local name = table.concat({ "kobra", mode, section }, "_")

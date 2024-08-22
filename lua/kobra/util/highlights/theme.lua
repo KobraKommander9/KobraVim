@@ -90,83 +90,98 @@ local function apply_contrast(hl)
 end
 
 -- get colors to generate theme
-local colors = {
-	normal = KobraColors.utils.extract_color_from_hllist("bg", { "PmenuSel", "PmenuThumb", "TabLineSel" }, "#000000"),
-	insert = KobraColors.utils.extract_color_from_hllist("fg", { "String", "MoreMsg" }, "#000000"),
-	replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
-	visual = KobraColors.utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
-	command = KobraColors.utils.extract_color_from_hllist("fg", { "Identifier" }, "#000000"),
-	back1 = KobraColors.utils.extract_color_from_hllist("bg", { "Normal", "StatusLineNC" }, "#000000"),
-	fore = KobraColors.utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#000000"),
-	back2 = KobraColors.utils.extract_color_from_hllist("bg", { "StatusLine" }, "#000000"),
+local function get_colors()
+	local colors = {
+		normal = KobraColors.utils.extract_color_from_hllist(
+			"bg",
+			{ "PmenuSel", "PmenuThumb", "TabLineSel" },
+			"#000000"
+		),
+		insert = KobraColors.utils.extract_color_from_hllist("fg", { "String", "MoreMsg" }, "#000000"),
+		replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
+		visual = KobraColors.utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
+		command = KobraColors.utils.extract_color_from_hllist("fg", { "Identifier" }, "#000000"),
+		back1 = KobraColors.utils.extract_color_from_hllist("bg", { "Normal", "StatusLineNC" }, "#000000"),
+		fore = KobraColors.utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#000000"),
+		back2 = KobraColors.utils.extract_color_from_hllist("bg", { "StatusLine" }, "#000000"),
 
-	bright_bg = KobraColors.utils.extract_color_from_hllist("bg", { "Folded" }, "#000000"),
-	bright_fg = KobraColors.utils.extract_color_from_hllist("fg", { "Folded" }, "#000000"),
-	red = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#c94f6d"),
-	dark_red = KobraColors.utils.extract_color_from_hllist("bg", { "DiffDelete" }, "#000000"),
-	green = KobraColors.utils.extract_color_from_hllist("fg", { "String" }, "#81b29a"),
-	blue = KobraColors.utils.extract_color_from_hllist("fg", { "Function" }, "#719cd6"),
-	gray = KobraColors.utils.extract_color_from_hllist("fg", { "NonText" }, "#484848"),
-	orange = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#dbc074"),
-	purple = KobraColors.utils.extract_color_from_hllist("fg", { "Statement" }, "#9d79d6"),
-	cyan = KobraColors.utils.extract_color_from_hllist("fg", { "Special" }, "#63cdcf"),
-	diag_warn = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticWarn" }, "#000000"),
-	diag_error = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#000000"),
-	diag_hint = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticHint" }, "#000000"),
-	diag_info = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticInfo" }, "#000000"),
-	git_del = KobraColors.utils.extract_color_from_hllist("fg", { "diffDeleted" }, "#000000"),
-	git_add = KobraColors.utils.extract_color_from_hllist("fg", { "diffAdded" }, "#000000"),
-	git_change = KobraColors.utils.extract_color_from_hllist("fg", { "diffChanged" }, "#000000"),
-}
+		bright_bg = KobraColors.utils.extract_color_from_hllist("bg", { "Folded" }, "#000000"),
+		bright_fg = KobraColors.utils.extract_color_from_hllist("fg", { "Folded" }, "#000000"),
+		red = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#c94f6d"),
+		dark_red = KobraColors.utils.extract_color_from_hllist("bg", { "DiffDelete" }, "#000000"),
+		green = KobraColors.utils.extract_color_from_hllist("fg", { "String" }, "#81b29a"),
+		blue = KobraColors.utils.extract_color_from_hllist("fg", { "Function" }, "#719cd6"),
+		gray = KobraColors.utils.extract_color_from_hllist("fg", { "NonText" }, "#484848"),
+		orange = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#dbc074"),
+		purple = KobraColors.utils.extract_color_from_hllist("fg", { "Statement" }, "#9d79d6"),
+		cyan = KobraColors.utils.extract_color_from_hllist("fg", { "Special" }, "#63cdcf"),
+		diag_warn = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticWarn" }, "#000000"),
+		diag_error = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#000000"),
+		diag_hint = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticHint" }, "#000000"),
+		diag_info = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticInfo" }, "#000000"),
+		git_del = KobraColors.utils.extract_color_from_hllist("fg", { "diffDeleted" }, "#000000"),
+		git_add = KobraColors.utils.extract_color_from_hllist("fg", { "diffAdded" }, "#000000"),
+		git_change = KobraColors.utils.extract_color_from_hllist("fg", { "diffChanged" }, "#000000"),
+	}
 
--- change brightness of colors
--- darken if light theme or lighten if dark theme
-local normal_color = KobraColors.utils.extract_highlight_colors("Normal", "bg")
-if normal_color ~= nil then
-	if get_color_brightness(normal_color) > 0.5 then
-		brightness_modifier_param = -brightness_modifier_param
+	-- change brightness of colors
+	-- darken if light theme or lighten if dark theme
+	local normal_color = KobraColors.utils.extract_highlight_colors("Normal", "bg")
+	if normal_color ~= nil then
+		if get_color_brightness(normal_color) > 0.5 then
+			brightness_modifier_param = -brightness_modifier_param
+		end
+
+		for name, color in pairs(colors) do
+			colors[name] = brightness_modifier(color, brightness_modifier_param)
+		end
 	end
 
-	for name, color in pairs(colors) do
-		colors[name] = brightness_modifier(color, brightness_modifier_param)
-	end
+	return colors
 end
 
-local M = {
-	normal = {
-		a = { bg = colors.normal, fg = colors.back1, bold = true },
-		b = { bg = colors.back1, fg = colors.normal },
-		c = { bg = colors.back2, fg = colors.fore },
-	},
-	insert = {
-		a = { bg = colors.insert, fg = colors.back1, bold = true },
-		b = { bg = colors.back1, fg = colors.insert },
-		c = { bg = colors.back2, fg = colors.fore },
-	},
-	replace = {
-		a = { bg = colors.replace, fg = colors.back1, bold = true },
-		b = { bg = colors.back1, fg = colors.replace },
-		c = { bg = colors.back2, fg = colors.fore },
-	},
-	visual = {
-		a = { bg = colors.visual, fg = colors.back1, bold = true },
-		b = { bg = colors.back1, fg = colors.visual },
-		c = { bg = colors.back2, fg = colors.fore },
-	},
-	command = {
-		a = { bg = colors.command, fg = colors.back1, bold = true },
-		b = { bg = colors.back1, fg = colors.command },
-		c = { bg = colors.back2, fg = colors.fore },
-	},
-}
+local M = {}
 
-M.terminal = M.command
-M.inactive = M.normal
+function M.get_hl_groups()
+	local colors = get_colors()
+	local groups = {
+		normal = {
+			a = { bg = colors.normal, fg = colors.back1, bold = true },
+			b = { bg = colors.back1, fg = colors.normal },
+			c = { bg = colors.back2, fg = colors.fore },
+		},
+		insert = {
+			a = { bg = colors.insert, fg = colors.back1, bold = true },
+			b = { bg = colors.back1, fg = colors.insert },
+			c = { bg = colors.back2, fg = colors.fore },
+		},
+		replace = {
+			a = { bg = colors.replace, fg = colors.back1, bold = true },
+			b = { bg = colors.back1, fg = colors.replace },
+			c = { bg = colors.back2, fg = colors.fore },
+		},
+		visual = {
+			a = { bg = colors.visual, fg = colors.back1, bold = true },
+			b = { bg = colors.back1, fg = colors.visual },
+			c = { bg = colors.back2, fg = colors.fore },
+		},
+		command = {
+			a = { bg = colors.command, fg = colors.back1, bold = true },
+			b = { bg = colors.back1, fg = colors.command },
+			c = { bg = colors.back2, fg = colors.fore },
+		},
+	}
 
-for _, section in pairs(M) do
-	for _, hl in pairs(section) do
-		apply_contrast(hl)
+	groups.terminal = groups.command
+	groups.inactive = groups.normal
+
+	for _, section in pairs(groups) do
+		for _, hl in pairs(section) do
+			apply_contrast(hl)
+		end
 	end
+
+	return groups
 end
 
 return M
