@@ -19,7 +19,6 @@ function M.branch()
 		provider = function(self)
 			return Kobra.config.icons.kinds.Control .. shorten(self.status_dict.head)
 		end,
-		hl = { bold = true },
 	}
 end
 
