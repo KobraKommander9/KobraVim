@@ -12,6 +12,7 @@ function M.vi_mode()
 				vim.cmd("redrawstatus")
 			end),
 		},
+		hl = { bold = true },
 	}
 end
 
@@ -40,6 +41,7 @@ function M.search_count()
 
 			return string.format("[%d/%d]", search.current, total)
 		end,
+		hl = { bold = true },
 	}
 end
 
@@ -49,8 +51,9 @@ function M.macro_rec()
 			return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
 		end,
 		provider = function()
-			return " [" .. vim.fn.reg_recording() .. "]"
+			return "[" .. vim.fn.reg_recording() .. "] "
 		end,
+		hl = { bold = true },
 	}
 end
 

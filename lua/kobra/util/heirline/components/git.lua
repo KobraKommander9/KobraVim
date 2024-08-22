@@ -24,7 +24,7 @@ function M.diff()
 	return {
 		{
 			condition = function(self)
-				return self.has_changes == true
+				return self.has_changes
 			end,
 			provider = "(",
 		},
@@ -51,7 +51,7 @@ function M.diff()
 		},
 		{
 			condition = function(self)
-				return self.has_changes == true
+				return self.has_changes
 			end,
 			provider = ")",
 		},
@@ -74,7 +74,7 @@ function M.component()
 				changed = diff_summary.change or 0,
 			}
 			self.has_changes = self.status_dict.added ~= 0
-				or self.status_dict.deleted ~= 0
+				or self.status_dict.removed ~= 0
 				or self.status_dict.changed ~= 0
 		end,
 		hl = "kobra_default_purple_rv",
