@@ -33,21 +33,21 @@ function M.diff()
 				local count = self.status_dict.added or 0
 				return count > 0 and ("+" .. count)
 			end,
-			hl = { fg = KobraColors.get_hl_group("kobra_default_git_add") },
+			hl = { fg = KobraColors.get_hl_group("kobra_default_git_add").bg },
 		},
 		{
 			provider = function(self)
 				local count = self.status_dict.removed or 0
 				return count > 0 and ("-" .. count)
 			end,
-			hl = { fg = KobraColors.get_hl_group("kobra_default_git_del") },
+			hl = { fg = KobraColors.get_hl_group("kobra_default_git_del").bg },
 		},
 		{
 			provider = function(self)
 				local count = self.status_dict.changed or 0
 				return count > 0 and ("~" .. count)
 			end,
-			hl = { fg = KobraColors.get_hl_group("kobra_default_git_change") },
+			hl = { fg = KobraColors.get_hl_group("kobra_default_git_change").bg },
 		},
 		{
 			condition = function(self)
