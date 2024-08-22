@@ -6,7 +6,7 @@ local brightness_modifier_param = 10
 -- turns #rrggbb -> { red, green, blue }
 local function rgb_str2num(str)
 	if type(str) == "number" then
-		str = string.format("#06x", str)
+		str = ("%06x"):format(str)
 	end
 
 	if str:find("#") == 1 then
