@@ -8,7 +8,7 @@ M[#M + 1] = {
 		"echasnovski/mini.extra",
 		{
 			"echasnovski/mini.clue",
-			opts = Kobra.clue.options({
+			opts = Kobra.mini.clue.options({
 				{ mode = "n", keys = "<leader>v", desc = "+Visits" },
 			}),
 		},
@@ -29,7 +29,7 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = Kobra.clue.options(function()
+			opts = Kobra.mini.clue.options(function()
 				local keys = Kobra.keys
 
 				return {
@@ -75,7 +75,7 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = Kobra.clue.options({
+			opts = Kobra.mini.clue.options({
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
 				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
 			}),

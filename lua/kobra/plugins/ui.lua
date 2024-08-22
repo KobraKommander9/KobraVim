@@ -57,7 +57,7 @@ M[#M + 1] = {
 	dependencies = {
 		{
 			"echasnovski/mini.clue",
-			opts = Kobra.clue.options({
+			opts = Kobra.mini.clue.options({
 				{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
 			}),
 		},
