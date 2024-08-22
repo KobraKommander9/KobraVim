@@ -75,8 +75,8 @@ end
 
 -- changes brightness of foreground color to achieve contrast
 -- without changing the color
-local function apply_contrast(fg, bg)
-	local hl_bg_avg = get_color_avg(bg)
+local function apply_contrast(hl)
+	local hl_bg_avg = get_color_avg(hl.bg)
 	local contrast_thresh_cfg = clamp(contrast_threshold, 0, 0.5)
 	local contrast_change_step = 5
 	if hl_bg_avg > 0.5 then
@@ -85,12 +85,10 @@ local function apply_contrast(fg, bg)
 
 	-- max 25 iterations should be enough
 	local iter_count = 1
-	while math.abs(get_color_avg(fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
-		fg = contrast_modifier(fg, contrast_change_step)
+	while math.abs(get_color_avg(hl.fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
+		hl.fg = contrast_modifier(hl.fg, contrast_change_step)
 		iter_count = iter_count + 1
 	end
-
-  return fg
 end
 
 -- get colors to generate theme
@@ -221,11 +219,13 @@ function M.get_hl_groups()
 		},
 	}
 
-	for mode, section in pairs(groups) do
+  for _, section in pairs(groups) do
     for _, hl in pairs(section) do
-      hl.fg = apply_contrast(hl.fg, hl.bg)
+      apply_contrast(hl)
     end
+  end
 
+	for mode, section in pairs(groups) do
     if mode == "default" then
       goto continue
     end
