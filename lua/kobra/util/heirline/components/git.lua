@@ -24,7 +24,7 @@ function M.diff()
 	return {
 		{
 			condition = function(self)
-				return self.has_changes
+				return self.has_changes == true
 			end,
 			provider = "(",
 		},
@@ -51,7 +51,7 @@ function M.diff()
 		},
 		{
 			condition = function(self)
-				return self.has_changes
+				return self.has_changes == true
 			end,
 			provider = ")",
 		},
