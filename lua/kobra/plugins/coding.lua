@@ -7,7 +7,8 @@ M[#M + 1] = {
 		require("mini.git").setup(opts)
 
 		local format_summary = function(data)
-			vim.notify(vim.inspect(data))
+			local summary = vim.b[data.buf].minigit_summary
+			vim.b[data.buf].minigit_summary_string = summary.head_name or ""
 		end
 
 		vim.api.nvim_create_autocmd("User", {

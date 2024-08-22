@@ -61,12 +61,17 @@ end
 function M.component()
 	return {
 		condition = function()
-			return vim.b.gitsigns_head or vim.b.gitsigns_status_dict
+			return vim.b.minigit_summary and vim.b.minidiff_summary
 		end,
 		init = function(self)
-			self.status_dict = vim.b.gitsigns_status_dict
+			self.status_dict = {
+				head = vim.b.minigit_summary.head_name,
+				added = vim.b.minidiff_summary.add,
+				removed = vim.b.minidiff_summary.delete,
+				changed = vim.b.minidiff_summary.change,
+			}
 			self.has_changes = self.status_dict.added ~= 0
-				or self.status_dict.removed ~= 0
+				or self.status_dict.deleted ~= 0
 				or self.status_dict.changed ~= 0
 		end,
 		hl = "kobra_default_purple_rv",
