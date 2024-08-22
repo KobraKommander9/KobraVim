@@ -61,7 +61,7 @@ end
 function M.component()
 	return {
 		condition = function()
-			return vim.b.minigit_summary and vim.b.minidiff_summary
+			return vim.b.minigit_summary or vim.b.minidiff_summary
 		end,
 		init = function(self)
 			self.status_dict = {
