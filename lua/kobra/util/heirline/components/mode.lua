@@ -23,27 +23,27 @@ function M.component()
 		hl = "kobra_normal_a",
 		M.vi_mode(),
 		{
-			provider = "AA",
+			provider = " A ",
 			hl = "kobra_insert_a",
 		},
 		{
-			provider = "BB",
+			provider = " B ",
 			hl = "kobra_replace_a",
 		},
 		{
-			provider = "CC",
+			provider = " C ",
 			hl = "kobra_visual_a",
 		},
 		{
-			provider = "DD",
+			provider = " D ",
 			hl = "kobra_command_a",
 		},
 		{
-			provider = "EE",
+			provider = " E ",
 			hl = "kobra_terminal_a",
 		},
 		{
-			provider = "FF",
+			provider = " F ",
 			hl = "kobra_inactive_a",
 		},
 	}
