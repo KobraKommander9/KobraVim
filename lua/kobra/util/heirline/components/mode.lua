@@ -3,7 +3,7 @@ local M = {}
 function M.vi_mode()
 	return {
 		provider = function(self)
-			return "%2(" .. self.mode .. "%)"
+			return "%-2(" .. self.mode .. "%)"
 		end,
 		update = {
 			"ModeChanged",
