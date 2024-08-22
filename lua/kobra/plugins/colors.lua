@@ -7,24 +7,8 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"shaunsingh/moonlight.nvim",
-	lazy = true,
-	init = function()
-		vim.g.moonlight_borders = true
-	end,
-}
-
-M[#M + 1] = {
 	"EdenEast/nightfox.nvim",
 	lazy = true,
-}
-
-M[#M + 1] = {
-	"Mofiqul/dracula.nvim",
-	lazy = true,
-	opts = {
-		transparent_bg = false,
-	},
 }
 
 M[#M + 1] = {
@@ -42,7 +26,23 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"cpea2506/one_monokai.nvim",
+	lazy = true,
 	config = true,
+}
+
+M[#M + 1] = {
+	"sainnhe/edge",
+	lazy = true,
+}
+
+M[#M + 1] = {
+	"ray-x/aurora",
+	lazy = true,
+}
+
+M[#M + 1] = {
+	"ray-x/starry.nvim",
+	lazy = true,
 }
 
 return M
