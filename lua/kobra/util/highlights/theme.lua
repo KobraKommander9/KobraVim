@@ -85,7 +85,7 @@ local function apply_contrast(fg, bg)
 
 	-- max 25 iterations should be enough
 	local iter_count = 1
-	while math.abs(get_color_avg(fg.fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
+	while math.abs(get_color_avg(fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
 		fg = contrast_modifier(fg, contrast_change_step)
 		iter_count = iter_count + 1
 	end
