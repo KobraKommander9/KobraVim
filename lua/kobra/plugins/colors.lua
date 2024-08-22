@@ -14,9 +14,11 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"navarasu/onedark.nvim",
 	lazy = true,
-	opts = {
-		style = "deep",
-	},
+	opts = function(_, opts)
+		opts = opts or {}
+		opts.style = opts.style or "deep"
+		opts.transparent = opts.transparent or Kobra.config.ui.transparent == true
+	end,
 }
 
 M[#M + 1] = {
