@@ -15,7 +15,7 @@ function M.setup()
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		group = group,
 		callback = function()
-			utils.on_colorscheme(KobraColors.get_highlights())
+			utils.on_colorscheme(KobraColors.create_hl_groups())
 		end,
 	})
 end
