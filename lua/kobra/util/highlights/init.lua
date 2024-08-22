@@ -24,8 +24,14 @@ local links = {
 	["@lsp.type.decorator"] = "@function",
 }
 
+local generated_colors = {}
+
+function M.get_hl_group(name)
+	return generated_colors[name] or vim.api.nvim_get_hl(0, { name = name })
+end
+
 function M.create_hl_groups()
-	local generated_colors = {}
+	generated_colors = {}
 
 	local theme = KobraColors.theme.get_hl_groups()
 	for mode, sections in pairs(theme) do
@@ -45,7 +51,6 @@ function M.create_hl_groups()
 		end
 	end
 
-	vim.notify(vim.inspect(generated_colors))
 	return generated_colors
 end
 
