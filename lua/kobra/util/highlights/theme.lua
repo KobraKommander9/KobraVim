@@ -151,6 +151,25 @@ local M = {}
 function M.get_hl_groups()
 	local colors = get_colors()
 	local groups = {
+		default = {
+			bg = { bg = colors.bg, fg = colors.back2 },
+			fg = { bg = colors.fg, fg = colors.back2 },
+			red = { bg = colors.red, fg = colors.back2 },
+			dark_red = { bg = colors.dark_red, fg = colors.back2 },
+			green = { bg = colors.green, fg = colors.back2 },
+			blue = { bg = colors.blue, fg = colors.back2 },
+			gray = { bg = colors.gray, fg = colors.back2 },
+			orange = { bg = colors.orange, fg = colors.back2 },
+			purple = { bg = colors.purple, fg = colors.back2 },
+			cyan = { bg = colors.cyan, fg = colors.back2 },
+			diag_warn = { bg = colors.diag_warn, fg = colors.back2 },
+			diag_error = { bg = colors.diag_error, fg = colors.back2 },
+			diag_hint = { bg = colors.diag_hint, fg = colors.back2 },
+			diag_info = { bg = colors.diag_info, fg = colors.back2 },
+			git_del = { bg = colors.git_del, fg = colors.back2 },
+			git_add = { bg = colors.git_add, fg = colors.back2 },
+			git_change = { bg = colors.git_change, fg = colors.back2 },
+		},
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
 			b = { bg = colors.normal_bright, fg = colors.back1 },
@@ -195,12 +214,18 @@ function M.get_hl_groups()
 	end
 
 	for mode, section in pairs(groups) do
+    if mode == "default" then
+      goto continue
+    end
+
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
 
 		groups[mode].a_end = { bg = section.a.bg, fg = colors.back2 }
 		groups[mode].b_end = { bg = section.b.bg, fg = colors.back2 }
 		groups[mode].c_end = { bg = section.c.bg, fg = colors.back2 }
+
+    ::continue::
 	end
 
 	return groups

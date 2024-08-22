@@ -54,8 +54,11 @@ function M.macro_rec()
 	}
 end
 
-function M.mode_bubble(component1, component2)
+function M.component()
 	return {
+		init = function(self)
+			self.mode = Kobra.mode.get_mode()
+		end,
 		{
 			provider = "",
 			hl = function(self)
@@ -66,7 +69,10 @@ function M.mode_bubble(component1, component2)
 			hl = function(self)
 				return KobraColors.hl.get_mode_color(self.mode)
 			end,
-			component1,
+			{
+				M.macro_rec(),
+				M.vi_mode(),
+			},
 		},
 		{
 			provider = "",
@@ -78,26 +84,14 @@ function M.mode_bubble(component1, component2)
 			hl = function(self)
 				return KobraColors.hl.get_mode_color(self.mode, "b")
 			end,
-			component2,
+			M.search_count(),
 		},
 		{
-			provider = "",
+			provider = "",
 			hl = function(self)
 				return KobraColors.hl.get_mode_color(self.mode, "b_end_rv")
 			end,
 		},
-	}
-end
-
-function M.component()
-	return {
-		init = function(self)
-			self.mode = Kobra.mode.get_mode()
-		end,
-		M.mode_bubble({
-			M.macro_rec(),
-			M.vi_mode(),
-		}, M.search_count()),
 	}
 end
 
