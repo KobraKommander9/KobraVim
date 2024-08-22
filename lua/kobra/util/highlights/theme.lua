@@ -143,31 +143,43 @@ end
 local M = {}
 
 function M.get_hl_groups()
+	local bases = {
+		"normal",
+		"insert",
+		"replace",
+		"visual",
+		"command",
+	}
+
 	local colors = get_colors()
+	for _, name in ipairs(bases) do
+		colors[name .. "_bright"] = brightness_modifier(colors[name], 50)
+	end
+
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
-			b = { bg = colors.back1, fg = colors.normal },
+			b = { bg = colors.back1, fg = colors.normal_bright },
 			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		insert = {
 			a = { bg = colors.insert, fg = colors.back1, bold = true },
-			b = { bg = colors.back1, fg = colors.insert },
+			b = { bg = colors.back1, fg = colors.insert_bright },
 			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		replace = {
 			a = { bg = colors.replace, fg = colors.back1, bold = true },
-			b = { bg = colors.back1, fg = colors.replace },
+			b = { bg = colors.back1, fg = colors.replace_bright },
 			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		visual = {
 			a = { bg = colors.visual, fg = colors.back1, bold = true },
-			b = { bg = colors.back1, fg = colors.visual },
+			b = { bg = colors.back1, fg = colors.visual_bright },
 			c = { bg = colors.fore, fg = colors.back2 },
 		},
 		command = {
 			a = { bg = colors.command, fg = colors.back1, bold = true },
-			b = { bg = colors.back1, fg = colors.command },
+			b = { bg = colors.back1, fg = colors.command_bright },
 			c = { bg = colors.fore, fg = colors.back2 },
 		},
 	}
