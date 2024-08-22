@@ -101,6 +101,8 @@ local function get_colors()
 		replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
 		visual = KobraColors.utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
 		command = KobraColors.utils.extract_color_from_hllist("fg", { "Identifier" }, "#000000"),
+		terminal = KobraColors.utils.extract_color_from_hllist("fg", { "Function" }, "#000000"),
+		inactive = KobraColors.utils.extract_color_from_hllist("fg", { "NonText" }, "#000000"),
 		back1 = KobraColors.utils.extract_color_from_hllist("bg", { "Normal", "StatusLineNC" }, "#000000"),
 		fore = KobraColors.utils.extract_color_from_hllist("fg", { "Normal", "StatusLine" }, "#000000"),
 		back2 = KobraColors.utils.extract_color_from_hllist("bg", { "StatusLine" }, "#000000"),
@@ -151,7 +153,6 @@ function M.get_hl_groups()
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back1, bold = true },
-			ab = { bg = colors.normal_bright, fg = colors.normal },
 			b = { bg = colors.normal_bright, fg = colors.back1 },
 			c = { bg = colors.back1, fg = colors.normal },
 		},
@@ -175,17 +176,27 @@ function M.get_hl_groups()
 			b = { bg = colors.command_bright, fg = colors.back1 },
 			c = { bg = colors.back1, fg = colors.command },
 		},
+		terminal = {
+			a = { bg = colors.terminal, fg = colors.back1, bold = true },
+			b = { bg = colors.terminal_bright, fg = colors.back1 },
+			c = { bg = colors.back1, fg = colors.terminal },
+		},
+		inactive = {
+			a = { bg = colors.inactive, fg = colors.back1, bold = true },
+			b = { bg = colors.inactive_bright, fg = colors.back1 },
+			c = { bg = colors.back1, fg = colors.inactive },
+		},
 	}
 
-	groups.terminal = groups.command
-	groups.inactive = groups.normal
-
 	for _, section in pairs(groups) do
-		for name, hl in pairs(section) do
-			if #name == 1 then
-				apply_contrast(hl)
-			end
+		for _, hl in pairs(section) do
+			apply_contrast(hl)
 		end
+	end
+
+	for mode, section in pairs(groups) do
+		groups[mode].ab = { bg = section.b.fg, fg = section.a.bg }
+		groups[mode].bc = { bg = section.c.fg, fg = section.b.bg }
 	end
 
 	return groups
