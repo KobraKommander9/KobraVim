@@ -9,6 +9,17 @@ setmetatable(M, {
 	end,
 })
 
+function M.setup()
+	local utils = require("heirline.utils")
+	local group = vim.api.nvim_create_augroup("KobraLines", { clear = true })
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		group = group,
+		callback = function()
+			utils.on_colorscheme(KobraColors.get_highlights())
+		end,
+	})
+end
+
 function M.statusline()
 	return {
 		components.mode.component(),

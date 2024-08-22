@@ -127,6 +127,7 @@ function M.setup(opts)
 
 			-- Kobra.format.setup()
 			KobraColors.setup()
+			KobraLines.setup()
 
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
