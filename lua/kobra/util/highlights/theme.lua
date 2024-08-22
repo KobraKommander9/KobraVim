@@ -75,8 +75,8 @@ end
 
 -- changes brightness of foreground color to achieve contrast
 -- without changing the color
-local function apply_contrast(hl)
-	local hl_bg_avg = get_color_avg(hl.bg)
+local function apply_contrast(fg, bg)
+	local hl_bg_avg = get_color_avg(bg)
 	local contrast_thresh_cfg = clamp(contrast_threshold, 0, 0.5)
 	local contrast_change_step = 5
 	if hl_bg_avg > 0.5 then
@@ -85,10 +85,12 @@ local function apply_contrast(hl)
 
 	-- max 25 iterations should be enough
 	local iter_count = 1
-	while math.abs(get_color_avg(hl.fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
-		hl.fg = contrast_modifier(hl.fg, contrast_change_step)
+	while math.abs(get_color_avg(fg.fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
+		fg = contrast_modifier(fg, contrast_change_step)
 		iter_count = iter_count + 1
 	end
+
+  return fg
 end
 
 -- get colors to generate theme
@@ -143,7 +145,9 @@ local function get_colors()
 	end
 
 	for name, color in pairs(colors) do
-		colors[name .. "_bright"] = brightness_modifier(color, 50)
+    for _, brightness in ipairs({ 25, 50, 75 }) do
+      colors[name .. "_" .. brightness] = brightness_modifier(color, brightness)
+    end
 	end
 
 	return colors
@@ -174,59 +178,61 @@ function M.get_hl_groups()
 			git_change = { bg = colors.git_change, fg = colors.back2 },
 		},
 		normal = {
-			a = { bg = colors.normal, fg = colors.back1, bold = true },
-			b = { bg = colors.normal_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.normal },
+			a = { bg = colors.normal, fg = colors.back2 },
+			b = { bg = colors.normal_25, fg = colors.back2 },
+			c = { bg = colors.normal_50, fg = colors.back2 },
+			d = { bg = colors.normal_75, fg = colors.back2 },
 		},
 		insert = {
-			a = { bg = colors.insert, fg = colors.back1, bold = true },
-			b = { bg = colors.insert_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.insert },
+      a = { bg = colors.insert, fg = colors.back2 },
+      b = { bg = colors.insert_25, fg = colors.back2 },
+      c = { bg = colors.insert_50, fg = colors.back2 },
+      d = { bg = colors.insert_75, fg = colors.back2 },
 		},
 		replace = {
-			a = { bg = colors.replace, fg = colors.back1, bold = true },
-			b = { bg = colors.replace_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.replace },
+      a = { bg = colors.replace, fg = colors.back2 },
+      b = { bg = colors.replace_25, fg = colors.back2 },
+      c = { bg = colors.replace_50, fg = colors.back2 },
+      d = { bg = colors.replace_75, fg = colors.back2 },
 		},
 		visual = {
-			a = { bg = colors.visual, fg = colors.back1, bold = true },
-			b = { bg = colors.visual_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.visual },
+      a = { bg = colors.visual, fg = colors.back2 },
+      b = { bg = colors.visual_25, fg = colors.back2 },
+      c = { bg = colors.visual_50, fg = colors.back2 },
+      d = { bg = colors.visual_75, fg = colors.back2 },
 		},
 		command = {
-			a = { bg = colors.command, fg = colors.back1, bold = true },
-			b = { bg = colors.command_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.command },
+      a = { bg = colors.command, fg = colors.back2 },
+      b = { bg = colors.command_25, fg = colors.back2 },
+      c = { bg = colors.command_50, fg = colors.back2 },
+      d = { bg = colors.command_75, fg = colors.back2 },
 		},
 		terminal = {
-			a = { bg = colors.terminal, fg = colors.back1, bold = true },
-			b = { bg = colors.terminal_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.terminal },
+      a = { bg = colors.terminal, fg = colors.back2 },
+      b = { bg = colors.terminal_25, fg = colors.back2 },
+      c = { bg = colors.terminal_50, fg = colors.back2 },
+      d = { bg = colors.terminal_75, fg = colors.back2 },
 		},
 		inactive = {
-			a = { bg = colors.inactive, fg = colors.back1, bold = true },
-			b = { bg = colors.inactive_bright, fg = colors.back1 },
-			c = { bg = colors.back1, fg = colors.inactive },
+			a = { bg = colors.inactive, fg = colors.back2 },
+      b = { bg = colors.inactive_25, fg = colors.back2 },
+      c = { bg = colors.inactive_50, fg = colors.back2 },
+      d = { bg = colors.inactive_75, fg = colors.back2 },
 		},
 	}
 
-	for _, section in pairs(groups) do
-		for _, hl in pairs(section) do
-			apply_contrast(hl)
-		end
-	end
-
 	for mode, section in pairs(groups) do
+    for _, hl in pairs(section) do
+      hl.fg = apply_contrast(hl.fg, hl.bg)
+    end
+
     if mode == "default" then
       goto continue
     end
 
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
-
-		groups[mode].a_end = { bg = section.a.bg, fg = colors.back2 }
-		groups[mode].b_end = { bg = section.b.bg, fg = colors.back2 }
-		groups[mode].c_end = { bg = section.c.bg, fg = colors.back2 }
+    groups[mode].cd = { bg = section.d.bg, fg = section.c.bg }
 
     ::continue::
 	end

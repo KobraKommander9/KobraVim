@@ -65,12 +65,12 @@ function M.component()
 		{
 			provider = "",
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode) .. "_rv"
+				return KobraColors.mode.get_mode_color(self.mode) .. "_rv"
 			end,
 		},
 		{
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode)
+				return KobraColors.mode.get_mode_color(self.mode)
 			end,
 			{
 				M.macro_rec(),
@@ -80,19 +80,19 @@ function M.component()
 		{
 			provider = "",
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode, "ab")
+				return KobraColors.mode.get_mode_color(self.mode, "ab")
 			end,
 		},
 		{
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode, "b")
+				return KobraColors.mode.get_mode_color(self.mode, "b")
 			end,
 			M.search_count(),
 		},
 		{
 			provider = "",
 			hl = function(self)
-				return KobraColors.hl.get_mode_color(self.mode, "b_end_rv")
+				return KobraColors.mode.get_mode_color(self.mode, "b_rv")
 			end,
 		},
 	}
