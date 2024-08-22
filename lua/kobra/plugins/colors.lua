@@ -1,6 +1,27 @@
 local M = {}
 
 M[#M + 1] = {
+	"mini.colors",
+	keys = {
+		{
+			"<leader>uC",
+			function()
+				require("mini.colors").interactive({
+					mappings = {
+						Apply = "<leader>cca",
+						Reset = "<leader>ccr",
+						Quit = "<leader>ccq",
+						Write = "<leader>ccw",
+					},
+				})
+			end,
+			desc = "Interactive colorscheme editor",
+		},
+	},
+	config = true,
+}
+
+M[#M + 1] = {
 	"folke/tokyonight.nvim",
 	lazy = true,
 	opts = { style = "moon" },
