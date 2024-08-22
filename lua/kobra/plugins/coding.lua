@@ -1,10 +1,10 @@
 local M = {}
 
 M[#M + 1] = {
-	"echasnovski/mini.git",
+	"echasnovski/mini-git",
 	event = "VeryLazy",
 	config = function(_, opts)
-		require("mini.git").setup(opts)
+		require("mini-git").setup(opts)
 
 		local format_summary = function(data)
 			vim.notify(vim.inspect(data))
