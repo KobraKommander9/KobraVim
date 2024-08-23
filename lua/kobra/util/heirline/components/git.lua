@@ -77,7 +77,7 @@ function M.component()
 				or self.status_dict.removed ~= 0
 				or self.status_dict.changed ~= 0
 		end,
-		hl = "kobra_default_purple_rv",
+		hl = "kobra_term_purple_rv",
 		M.branch(),
 		M.diff(),
 	}
