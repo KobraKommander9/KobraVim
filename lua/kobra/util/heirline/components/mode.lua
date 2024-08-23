@@ -51,7 +51,7 @@ function M.macro_rec()
 			return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0
 		end,
 		provider = function()
-			return "[" .. vim.fn.reg_recording() .. "] "
+			return "[" .. vim.fn.reg_recording() .. "]"
 		end,
 		hl = { bold = true },
 	}

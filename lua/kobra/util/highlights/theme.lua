@@ -252,6 +252,9 @@ function M.get_hl_groups()
     for _, hl in pairs(section) do
       hl.fg = apply_contrast(hl.fg, hl.bg)
     end
+
+    groups[mode].a.bg = apply_contrast(section.a.bg, section.b.bg)
+    groups[mode].b.bg = apply_contrast(section.b.bg, section.c.bg)
     
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
