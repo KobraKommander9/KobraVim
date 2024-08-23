@@ -24,6 +24,7 @@ function M.statusline()
 	return {
 		components.mode.component(),
 		components.git.component(),
+    components.file.component(),
 	}
 end
 
