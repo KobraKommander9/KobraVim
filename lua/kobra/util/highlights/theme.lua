@@ -166,7 +166,7 @@ local function get_colors()
 		  colors[name] = brightness_modifier(color, brightness_modifier_param)
     end
 
-    for _, brightness in ipairs({ 50, 90 }) do
+    for _, brightness in ipairs({ 30, 80 }) do
       generated[name .. "_" .. brightness] = brightness_modifier(color, brightness)
     end
 	end
@@ -218,38 +218,38 @@ function M.get_hl_groups()
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back2 },
-			b = { bg = colors.normal_50, fg = colors.back2 },
-			c = { bg = colors.normal_90, fg = colors.back2 },
+			b = { bg = colors.normal_30, fg = colors.back2 },
+			c = { bg = colors.normal_80, fg = colors.back2 },
 		},
 		insert = {
       a = { bg = colors.insert, fg = colors.back2 },
-      b = { bg = colors.insert_50, fg = colors.back2 },
-      c = { bg = colors.insert_90, fg = colors.back2 },
+      b = { bg = colors.insert_30, fg = colors.back2 },
+      c = { bg = colors.insert_80, fg = colors.back2 },
 		},
 		replace = {
       a = { bg = colors.replace, fg = colors.back2 },
-      b = { bg = colors.replace_50, fg = colors.back2 },
-      c = { bg = colors.replace_90, fg = colors.back2 },
+      b = { bg = colors.replace_30, fg = colors.back2 },
+      c = { bg = colors.replace_80, fg = colors.back2 },
 		},
 		visual = {
       a = { bg = colors.visual, fg = colors.back2 },
-      b = { bg = colors.visual_50, fg = colors.back2 },
-      c = { bg = colors.visual_90, fg = colors.back2 },
+      b = { bg = colors.visual_30, fg = colors.back2 },
+      c = { bg = colors.visual_80, fg = colors.back2 },
 		},
 		command = {
       a = { bg = colors.command, fg = colors.back2 },
-      b = { bg = colors.command_50, fg = colors.back2 },
-      c = { bg = colors.command_90, fg = colors.back2 },
+      b = { bg = colors.command_30, fg = colors.back2 },
+      c = { bg = colors.command_80, fg = colors.back2 },
 		},
 		terminal = {
       a = { bg = colors.terminal, fg = colors.back2 },
-      b = { bg = colors.terminal_50, fg = colors.back2 },
-      c = { bg = colors.terminal_90, fg = colors.back2 },
+      b = { bg = colors.terminal_30, fg = colors.back2 },
+      c = { bg = colors.terminal_80, fg = colors.back2 },
 		},
 		inactive = {
 			a = { bg = colors.inactive, fg = colors.back2 },
-      b = { bg = colors.inactive_50, fg = colors.back2 },
-      c = { bg = colors.inactive_90, fg = colors.back2 },
+      b = { bg = colors.inactive_30, fg = colors.back2 },
+      c = { bg = colors.inactive_80, fg = colors.back2 },
 		},
 	}
 
