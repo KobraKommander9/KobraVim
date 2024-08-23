@@ -23,6 +23,10 @@ end
 function M.file_icon()
   return {
     init = function(self)
+      if not self.filename then
+        self.filename = vim.api.nvim_buf_get_name(0)
+      end
+      
       local filename = self.filename
       local extension = vim.fn.fnamemodify(filename, ":e")
       self.icon_data = require("mini.icons").get("file", filename .. extension)
