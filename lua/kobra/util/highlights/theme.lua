@@ -136,7 +136,7 @@ local function get_colors()
 		diag_error = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticError" }, "#000000"),
 		diag_hint = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticHint" }, "#000000"),
 		diag_info = KobraColors.utils.extract_color_from_hllist("fg", { "DiagnosticInfo" }, "#000000"),
-		git_del = KobraColors.utils.extract_color_from_hllist("fg", { "diffDeleted" }, "#000000"),
+		git_del = KobraColors.utils.extract_color_from_hllist("fg", { "diffRemoved", "diffDeleted" }, "#000000"),
 		git_add = KobraColors.utils.extract_color_from_hllist("fg", { "diffAdded" }, "#000000"),
 		git_change = KobraColors.utils.extract_color_from_hllist("fg", { "diffChanged" }, "#000000"),
 	}
