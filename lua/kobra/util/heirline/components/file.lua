@@ -32,7 +32,7 @@ function M.file_icon()
       self.icon_data = require("mini.icons").get("file", filename .. extension)
     end,
     provider = function(self)
-      return " " .. self.icon_data.icon and (self.icon_data.icon .. " ")
+      return " " .. (self.icon_data.icon and (self.icon_data.icon .. " ") or Kobra.config.icons.kinds.File .. " ")
     end,
     hl = "kobra_term_gray",
   }
