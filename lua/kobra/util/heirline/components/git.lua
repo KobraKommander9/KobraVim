@@ -72,6 +72,7 @@ function M.component()
 				added = diff_summary.add or 0,
 				removed = diff_summary.delete or 0,
 				changed = diff_summary.change or 0,
+        
 			}
 			self.has_changes = self.status_dict.added ~= 0
 				or self.status_dict.removed ~= 0

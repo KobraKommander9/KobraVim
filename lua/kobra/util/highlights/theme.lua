@@ -161,7 +161,7 @@ local function get_colors()
 		  colors[name] = brightness_modifier(color, brightness_modifier_param)
     end
 
-    for _, brightness in ipairs({ 25, 50, 75 }) do
+    for _, brightness in ipairs({ 50, 90 }) do
       generated[name .. "_" .. brightness] = brightness_modifier(color, brightness)
     end
 	end
@@ -213,45 +213,38 @@ function M.get_hl_groups()
 	local groups = {
 		normal = {
 			a = { bg = colors.normal, fg = colors.back2 },
-			b = { bg = colors.normal_25, fg = colors.back2 },
-			c = { bg = colors.normal_50, fg = colors.back2 },
-			d = { bg = colors.normal_75, fg = colors.back2 },
+			b = { bg = colors.normal_50, fg = colors.back2 },
+			c = { bg = colors.normal_90, fg = colors.back2 },
 		},
 		insert = {
       a = { bg = colors.insert, fg = colors.back2 },
-      b = { bg = colors.insert_25, fg = colors.back2 },
-      c = { bg = colors.insert_50, fg = colors.back2 },
-      d = { bg = colors.insert_75, fg = colors.back2 },
+      b = { bg = colors.insert_50, fg = colors.back2 },
+      c = { bg = colors.insert_90, fg = colors.back2 },
 		},
 		replace = {
       a = { bg = colors.replace, fg = colors.back2 },
-      b = { bg = colors.replace_25, fg = colors.back2 },
-      c = { bg = colors.replace_50, fg = colors.back2 },
-      d = { bg = colors.replace_75, fg = colors.back2 },
+      b = { bg = colors.replace_50, fg = colors.back2 },
+      c = { bg = colors.replace_90, fg = colors.back2 },
 		},
 		visual = {
       a = { bg = colors.visual, fg = colors.back2 },
-      b = { bg = colors.visual_25, fg = colors.back2 },
-      c = { bg = colors.visual_50, fg = colors.back2 },
-      d = { bg = colors.visual_75, fg = colors.back2 },
+      b = { bg = colors.visual_50, fg = colors.back2 },
+      c = { bg = colors.visual_90, fg = colors.back2 },
 		},
 		command = {
       a = { bg = colors.command, fg = colors.back2 },
-      b = { bg = colors.command_25, fg = colors.back2 },
-      c = { bg = colors.command_50, fg = colors.back2 },
-      d = { bg = colors.command_75, fg = colors.back2 },
+      b = { bg = colors.command_50, fg = colors.back2 },
+      c = { bg = colors.command_90, fg = colors.back2 },
 		},
 		terminal = {
       a = { bg = colors.terminal, fg = colors.back2 },
-      b = { bg = colors.terminal_25, fg = colors.back2 },
-      c = { bg = colors.terminal_50, fg = colors.back2 },
-      d = { bg = colors.terminal_75, fg = colors.back2 },
+      b = { bg = colors.terminal_50, fg = colors.back2 },
+      c = { bg = colors.terminal_90, fg = colors.back2 },
 		},
 		inactive = {
 			a = { bg = colors.inactive, fg = colors.back2 },
-      b = { bg = colors.inactive_25, fg = colors.back2 },
-      c = { bg = colors.inactive_50, fg = colors.back2 },
-      d = { bg = colors.inactive_75, fg = colors.back2 },
+      b = { bg = colors.inactive_50, fg = colors.back2 },
+      c = { bg = colors.inactive_90, fg = colors.back2 },
 		},
 	}
 
@@ -262,7 +255,6 @@ function M.get_hl_groups()
     
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
-    groups[mode].cd = { bg = section.d.bg, fg = section.c.bg }
 	end
 
   for name, section in pairs(generated) do
