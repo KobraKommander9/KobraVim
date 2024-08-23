@@ -33,21 +33,21 @@ function M.diff()
 				local count = self.status_dict.added or 0
 				return count > 0 and ("+" .. count)
 			end,
-			hl = "kobra_default_green_rv",
+			hl = "kobra_default_git_add_rv",
 		},
 		{
 			provider = function(self)
 				local count = self.status_dict.removed or 0
 				return count > 0 and ("-" .. count)
 			end,
-			hl = "kobra_default_red_rv",
+			hl = "kobra_default_git_del_rv",
 		},
 		{
 			provider = function(self)
 				local count = self.status_dict.changed or 0
 				return count > 0 and ("~" .. count)
 			end,
-			hl = "kobra_default_orange_rv",
+			hl = "kobra_default_git_change_rv",
 		},
 		{
 			condition = function(self)

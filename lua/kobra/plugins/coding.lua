@@ -49,7 +49,13 @@ M[#M + 1] = {
 	end,
 }
 
-M[#M + 1] = { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true }
+M[#M + 1] = {
+  "JoosepAlviste/nvim-ts-context-commentstring",
+  lazy = true,
+  opts = {
+    enable_autocmd = false,
+  },
+}
 
 M[#M + 1] = {
 	"echasnovski/mini.comment",

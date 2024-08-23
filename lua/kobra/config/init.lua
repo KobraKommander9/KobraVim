@@ -149,10 +149,9 @@ function M.setup(opts)
 	})
 	Kobra.track()
 
-	Kobra.track("statuslines")
+	Kobra.track("statusline")
 	KobraColors.setup()
 	KobraLines.setup()
-
 	Kobra.track()
 end
 

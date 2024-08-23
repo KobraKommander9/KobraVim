@@ -95,12 +95,22 @@ end
 
 -- get colors to generate theme
 local function get_colors()
+  local color_map = {
+    black   = { index = 0,  default = '#393b44' },
+    red     = { index = 1,  default = '#c94f6d' },
+    green   = { index = 2,  default = '#81b29a' },
+    yellow  = { index = 3,  default = '#dbc074' },
+    blue    = { index = 4,  default = '#719cd6' },
+    magenta = { index = 5,  default = '#9d79d6' },
+    cyan    = { index = 6,  default = '#63cdcf' },
+    white   = { index = 7,  default = '#dfdfe0' },
+    gray    = { index = 8,  default = '#484848' },
+    pink    = { index = 9,  default = '#f16da6' },
+    teal    = { index = 10, default = '#45c880' },
+    purple  = { index = 13, default = '#c8a5ff' },
+  }
+
 	local colors = {
-		-- normal = KobraColors.utils.extract_color_from_hllist(
-		-- 	"bg",
-		-- 	{ "PmenuSel", "PmenuThumb", "TabLineSel" },
-		-- 	"#000000"
-		-- ),
     normal = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#000000"),
 		insert = KobraColors.utils.extract_color_from_hllist("fg", { "String", "MoreMsg" }, "#000000"),
 		replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
@@ -130,6 +140,11 @@ local function get_colors()
 		git_add = KobraColors.utils.extract_color_from_hllist("fg", { "diffAdded" }, "#000000"),
 		git_change = KobraColors.utils.extract_color_from_hllist("fg", { "diffChanged" }, "#000000"),
 	}
+
+  for name, value in pairs(color_map) do
+    local global_name = 'terminal_color_' .. value.index
+    colors['term_' .. name] = vim.g[global_name] and vim.g[global_name] or value.default
+  end
 
 	-- change brightness of colors
 	-- darken if light theme or lighten if dark theme
@@ -179,6 +194,20 @@ function M.get_hl_groups()
       git_add = { bg = colors.git_add, fg = colors.back2 },
       git_change = { bg = colors.git_change, fg = colors.back2 },
     },
+    term = {
+      black = { bg = colors.term_black, fg = colors.back2 },
+      red = { bg = colors.term_red, fg = colors.back2 },
+      green = { bg = colors.term_green, fg = colors.back2 },
+      yellow = { bg = colors.term_yellow, fg = colors.back2 },
+      blue = { bg = colors.term_blue, fg = colors.back2 },
+      magenta = { bg = colors.term_magenta, fg = colors.back2 },
+      cyan = { bg = colors.term_cyan, fg = colors.back2 },
+      white = { bg = colors.term_white, fg = colors.back2 },
+      gray = { bg = colors.term_gray, fg = colors.back2 },
+      pink = { bg = colors.term_pink, fg = colors.back2 },
+      teal = { bg = colors.term_teal, fg = colors.back2 },
+      purple = { bg = colors.term_purple, fg = colors.back2 },
+    },
   }
 
 	local groups = {
@@ -227,20 +256,20 @@ function M.get_hl_groups()
 	}
 
 	for mode, section in pairs(groups) do
-    for _, hl in pairs(section) do
-      hl.fg = apply_contrast(hl.fg, hl.bg)
-    end
-
-    if mode == "default" then
-      goto continue
-    end
-
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
     groups[mode].cd = { bg = section.d.bg, fg = section.c.bg }
-
-    ::continue::
 	end
+
+  for name, section in pairs(generated) do
+    groups[name] = section
+  end
+
+  for _, section in pairs(groups) do
+    for _, hl in pairs(section) do
+      hl.fg = apply_contrast(hl.fg, hl.bg)
+    end
+  end
 
 	return groups
 end
