@@ -7,8 +7,8 @@ local brightness_modifier_param = 10
 local function rgb_str2num(str)
 	if type(str) == "number" then
 		str = ("%06x"):format(str)
-  elseif str == nil then
-    return { red = 0, green = 0, blue = 0 }
+	elseif str == nil then
+		return { red = 0, green = 0, blue = 0 }
 	end
 
 	if str:find("#") == 1 then
@@ -90,25 +90,25 @@ local function apply_contrast(fg, bg)
 		iter_count = iter_count + 1
 	end
 
-  return fg
+	return fg
 end
 
 -- get colors to generate theme
 local function get_colors()
-  local color_map = {
-    black   = { index = 0,  default = '#393b44' },
-    red     = { index = 1,  default = '#c94f6d' },
-    green   = { index = 2,  default = '#81b29a' },
-    yellow  = { index = 3,  default = '#dbc074' },
-    blue    = { index = 4,  default = '#719cd6' },
-    magenta = { index = 5,  default = '#9d79d6' },
-    cyan    = { index = 6,  default = '#63cdcf' },
-    white   = { index = 7,  default = '#dfdfe0' },
-    gray    = { index = 8,  default = '#484848' },
-    pink    = { index = 9,  default = '#f16da6' },
-    teal    = { index = 10, default = '#45c880' },
-    purple  = { index = 13, default = '#c8a5ff' },
-  }
+	local color_map = {
+		black = { index = 0, default = "#393b44" },
+		red = { index = 1, default = "#c94f6d" },
+		green = { index = 2, default = "#81b29a" },
+		yellow = { index = 3, default = "#dbc074" },
+		blue = { index = 4, default = "#719cd6" },
+		magenta = { index = 5, default = "#9d79d6" },
+		cyan = { index = 6, default = "#63cdcf" },
+		white = { index = 7, default = "#dfdfe0" },
+		gray = { index = 8, default = "#484848" },
+		pink = { index = 9, default = "#f16da6" },
+		teal = { index = 10, default = "#45c880" },
+		purple = { index = 13, default = "#c8a5ff" },
+	}
 
 	local colors = {
 		-- normal = KobraColors.utils.extract_color_from_hllist(
@@ -116,7 +116,7 @@ local function get_colors()
 		-- 	{ "PmenuSel", "PmenuThumb", "TabLineSel" },
 		-- 	"#000000"
 		-- ),
-    normal = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#000000"),
+		normal = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#000000"),
 		insert = KobraColors.utils.extract_color_from_hllist("fg", { "String", "MoreMsg" }, "#000000"),
 		replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
 		visual = KobraColors.utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
@@ -146,10 +146,10 @@ local function get_colors()
 		git_change = KobraColors.utils.extract_color_from_hllist("fg", { "diffChanged" }, "#000000"),
 	}
 
-  for name, value in pairs(color_map) do
-    local global_name = 'terminal_color_' .. value.index
-    colors['term_' .. name] = vim.g[global_name] and vim.g[global_name] or value.default
-  end
+	for name, value in pairs(color_map) do
+		local global_name = "terminal_color_" .. value.index
+		colors["term_" .. name] = vim.g[global_name] and vim.g[global_name] or value.default
+	end
 
 	-- change brightness of colors
 	-- darken if light theme or lighten if dark theme
@@ -158,17 +158,17 @@ local function get_colors()
 		if get_color_brightness(normal_color) > 0.5 then
 			brightness_modifier_param = -brightness_modifier_param
 		end
-  end
+	end
 
-  local generated = {}
+	local generated = {}
 	for name, color in pairs(colors) do
-    if normal_color ~= nil then
-		  colors[name] = brightness_modifier(color, brightness_modifier_param)
-    end
+		if normal_color ~= nil then
+			colors[name] = brightness_modifier(color, brightness_modifier_param)
+		end
 
-    for _, brightness in ipairs({ 30, 80 }) do
-      generated[name .. "_" .. brightness] = brightness_modifier(color, brightness)
-    end
+		for _, brightness in ipairs({ 30, 80 }) do
+			generated[name .. "_" .. brightness] = brightness_modifier(color, brightness)
+		end
 	end
 
 	return vim.tbl_extend("force", colors, generated)
@@ -179,41 +179,41 @@ local M = {}
 function M.get_hl_groups()
 	local colors = get_colors()
 
-  local generated = {
-    default = {
-      bg = { bg = colors.bg, fg = colors.back2 },
-      fg = { bg = colors.fg, fg = colors.back2 },
-      red = { bg = colors.red, fg = colors.back2 },
-      dark_red = { bg = colors.dark_red, fg = colors.back2 },
-      green = { bg = colors.green, fg = colors.back2 },
-      blue = { bg = colors.blue, fg = colors.back2 },
-      gray = { bg = colors.gray, fg = colors.back2 },
-      orange = { bg = colors.orange, fg = colors.back2 },
-      purple = { bg = colors.purple, fg = colors.back2 },
-      cyan = { bg = colors.cyan, fg = colors.back2 },
-      diag_warn = { bg = colors.diag_warn, fg = colors.back2 },
-      diag_error = { bg = colors.diag_error, fg = colors.back2 },
-      diag_hint = { bg = colors.diag_hint, fg = colors.back2 },
-      diag_info = { bg = colors.diag_info, fg = colors.back2 },
-      git_del = { bg = colors.git_del, fg = colors.back2 },
-      git_add = { bg = colors.git_add, fg = colors.back2 },
-      git_change = { bg = colors.git_change, fg = colors.back2 },
-    },
-    term = {
-      black = { bg = colors.term_black, fg = colors.back2 },
-      red = { bg = colors.term_red, fg = colors.back2 },
-      green = { bg = colors.term_green, fg = colors.back2 },
-      yellow = { bg = colors.term_yellow, fg = colors.back2 },
-      blue = { bg = colors.term_blue, fg = colors.back2 },
-      magenta = { bg = colors.term_magenta, fg = colors.back2 },
-      cyan = { bg = colors.term_cyan, fg = colors.back2 },
-      white = { bg = colors.term_white, fg = colors.back2 },
-      gray = { bg = colors.term_gray, fg = colors.back2 },
-      pink = { bg = colors.term_pink, fg = colors.back2 },
-      teal = { bg = colors.term_teal, fg = colors.back2 },
-      purple = { bg = colors.term_purple, fg = colors.back2 },
-    },
-  }
+	local generated = {
+		default = {
+			bg = { bg = colors.bg, fg = colors.back2 },
+			fg = { bg = colors.fg, fg = colors.back2 },
+			red = { bg = colors.red, fg = colors.back2 },
+			dark_red = { bg = colors.dark_red, fg = colors.back2 },
+			green = { bg = colors.green, fg = colors.back2 },
+			blue = { bg = colors.blue, fg = colors.back2 },
+			gray = { bg = colors.gray, fg = colors.back2 },
+			orange = { bg = colors.orange, fg = colors.back2 },
+			purple = { bg = colors.purple, fg = colors.back2 },
+			cyan = { bg = colors.cyan, fg = colors.back2 },
+			diag_warn = { bg = colors.diag_warn, fg = colors.back2 },
+			diag_error = { bg = colors.diag_error, fg = colors.back2 },
+			diag_hint = { bg = colors.diag_hint, fg = colors.back2 },
+			diag_info = { bg = colors.diag_info, fg = colors.back2 },
+			git_del = { bg = colors.git_del, fg = colors.back2 },
+			git_add = { bg = colors.git_add, fg = colors.back2 },
+			git_change = { bg = colors.git_change, fg = colors.back2 },
+		},
+		term = {
+			black = { bg = colors.term_black, fg = colors.back2 },
+			red = { bg = colors.term_red, fg = colors.back2 },
+			green = { bg = colors.term_green, fg = colors.back2 },
+			yellow = { bg = colors.term_yellow, fg = colors.back2 },
+			blue = { bg = colors.term_blue, fg = colors.back2 },
+			magenta = { bg = colors.term_magenta, fg = colors.back2 },
+			cyan = { bg = colors.term_cyan, fg = colors.back2 },
+			white = { bg = colors.term_white, fg = colors.back2 },
+			gray = { bg = colors.term_gray, fg = colors.back2 },
+			pink = { bg = colors.term_pink, fg = colors.back2 },
+			teal = { bg = colors.term_teal, fg = colors.back2 },
+			purple = { bg = colors.term_purple, fg = colors.back2 },
+		},
+	}
 
 	local groups = {
 		normal = {
@@ -222,53 +222,53 @@ function M.get_hl_groups()
 			c = { bg = colors.normal_80, fg = colors.back2 },
 		},
 		insert = {
-      a = { bg = colors.insert, fg = colors.back2 },
-      b = { bg = colors.insert_30, fg = colors.back2 },
-      c = { bg = colors.insert_80, fg = colors.back2 },
+			a = { bg = colors.insert, fg = colors.back2 },
+			b = { bg = colors.insert_30, fg = colors.back2 },
+			c = { bg = colors.insert_80, fg = colors.back2 },
 		},
 		replace = {
-      a = { bg = colors.replace, fg = colors.back2 },
-      b = { bg = colors.replace_30, fg = colors.back2 },
-      c = { bg = colors.replace_80, fg = colors.back2 },
+			a = { bg = colors.replace, fg = colors.back2 },
+			b = { bg = colors.replace_30, fg = colors.back2 },
+			c = { bg = colors.replace_80, fg = colors.back2 },
 		},
 		visual = {
-      a = { bg = colors.visual, fg = colors.back2 },
-      b = { bg = colors.visual_30, fg = colors.back2 },
-      c = { bg = colors.visual_80, fg = colors.back2 },
+			a = { bg = colors.visual, fg = colors.back2 },
+			b = { bg = colors.visual_30, fg = colors.back2 },
+			c = { bg = colors.visual_80, fg = colors.back2 },
 		},
 		command = {
-      a = { bg = colors.command, fg = colors.back2 },
-      b = { bg = colors.command_30, fg = colors.back2 },
-      c = { bg = colors.command_80, fg = colors.back2 },
+			a = { bg = colors.command, fg = colors.back2 },
+			b = { bg = colors.command_30, fg = colors.back2 },
+			c = { bg = colors.command_80, fg = colors.back2 },
 		},
 		terminal = {
-      a = { bg = colors.terminal, fg = colors.back2 },
-      b = { bg = colors.terminal_30, fg = colors.back2 },
-      c = { bg = colors.terminal_80, fg = colors.back2 },
+			a = { bg = colors.terminal, fg = colors.back2 },
+			b = { bg = colors.terminal_30, fg = colors.back2 },
+			c = { bg = colors.terminal_80, fg = colors.back2 },
 		},
 		inactive = {
 			a = { bg = colors.inactive, fg = colors.back2 },
-      b = { bg = colors.inactive_30, fg = colors.back2 },
-      c = { bg = colors.inactive_80, fg = colors.back2 },
+			b = { bg = colors.inactive_30, fg = colors.back2 },
+			c = { bg = colors.inactive_80, fg = colors.back2 },
 		},
 	}
 
 	for mode, section in pairs(groups) do
-    for _, hl in pairs(section) do
-      hl.fg = apply_contrast(hl.fg, hl.bg)
-    end
-    
+		for _, hl in pairs(section) do
+			hl.fg = apply_contrast(hl.fg, hl.bg)
+		end
+
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
 	end
 
-  for name, section in pairs(generated) do
-    for _, hl in pairs(section) do
-      hl.fg = apply_contrast(hl.fg, hl.bg)
-    end
-    
-    groups[name] = section
-  end
+	for name, section in pairs(generated) do
+		for _, hl in pairs(section) do
+			hl.fg = apply_contrast(hl.fg, hl.bg)
+		end
+
+		groups[name] = section
+	end
 
 	return groups
 end
