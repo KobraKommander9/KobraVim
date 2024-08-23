@@ -111,12 +111,12 @@ local function get_colors()
   }
 
 	local colors = {
-		normal = KobraColors.utils.extract_color_from_hllist(
-			"bg",
-			{ "PmenuSel", "PmenuThumb", "TabLineSel" },
-			"#000000"
-		),
-    -- normal = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#000000"),
+		-- normal = KobraColors.utils.extract_color_from_hllist(
+		-- 	"bg",
+		-- 	{ "PmenuSel", "PmenuThumb", "TabLineSel" },
+		-- 	"#000000"
+		-- ),
+    normal = KobraColors.utils.extract_color_from_hllist("fg", { "Constant" }, "#000000"),
 		insert = KobraColors.utils.extract_color_from_hllist("fg", { "String", "MoreMsg" }, "#000000"),
 		replace = KobraColors.utils.extract_color_from_hllist("fg", { "Number", "Type" }, "#000000"),
 		visual = KobraColors.utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
@@ -258,8 +258,8 @@ function M.get_hl_groups()
       hl.fg = apply_contrast(hl.fg, hl.bg)
     end
 
-    groups[mode].a.bg = apply_contrast(section.a.bg, section.b.bg)
-    groups[mode].b.bg = apply_contrast(section.b.bg, section.c.bg)
+    groups[mode].b.bg = apply_contrast(section.b.bg, section.a.bg)
+    groups[mode].c.bg = apply_contrast(section.c.bg, section.b.bg)
     
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
