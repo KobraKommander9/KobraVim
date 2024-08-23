@@ -81,12 +81,12 @@ function M.component()
 		},
 		{
 			hl = "kobra_term_gray",
-			{ provider = "" },
+			{ provider = "", hl = "kobra_term_gray_rv" },
 			M.work_dir(),
 			M.file_icon(),
 			M.file_name(),
 			M.file_flags(),
-			{ provider = "" },
+			{ provider = "", hl = "kobra_term_gray_rv" },
 		},
 		{ provider = "%<" },
 	}
