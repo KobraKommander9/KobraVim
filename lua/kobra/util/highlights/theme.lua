@@ -256,19 +256,21 @@ function M.get_hl_groups()
 	}
 
 	for mode, section in pairs(groups) do
+    for _, hl in pairs(section) do
+      hl.fg = apply_contrast(hl.fg, hl.bg)
+    end
+    
 		groups[mode].ab = { bg = section.b.bg, fg = section.a.bg }
 		groups[mode].bc = { bg = section.c.bg, fg = section.b.bg }
     groups[mode].cd = { bg = section.d.bg, fg = section.c.bg }
 	end
 
   for name, section in pairs(generated) do
-    groups[name] = section
-  end
-
-  for _, section in pairs(groups) do
     for _, hl in pairs(section) do
       hl.fg = apply_contrast(hl.fg, hl.bg)
     end
+    
+    groups[name] = section
   end
 
 	return groups
