@@ -75,8 +75,8 @@ end
 
 -- changes brightness of foreground color to achieve contrast
 -- without changing the color
-local function apply_contrast(hl)
-	local hl_bg_avg = get_color_avg(hl.bg)
+local function apply_contrast(fg, bg)
+	local hl_bg_avg = get_color_avg(bg)
 	local contrast_thresh_cfg = clamp(contrast_threshold, 0, 0.5)
 	local contrast_change_step = 5
 	if hl_bg_avg > 0.5 then
@@ -85,10 +85,12 @@ local function apply_contrast(hl)
 
 	-- max 25 iterations should be enough
 	local iter_count = 1
-	while math.abs(get_color_avg(hl.fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
-		hl.fg = contrast_modifier(hl.fg, contrast_change_step)
+	while math.abs(get_color_avg(fg) - hl_bg_avg) < contrast_thresh_cfg and iter_count < 25 do
+		fg = contrast_modifier(fg, contrast_change_step)
 		iter_count = iter_count + 1
 	end
+
+  return fg
 end
 
 -- get colors to generate theme
@@ -156,26 +158,30 @@ local M = {}
 
 function M.get_hl_groups()
 	local colors = get_colors()
+
+  local generated = {
+    default = {
+      bg = { bg = colors.bg, fg = colors.back2 },
+      fg = { bg = colors.fg, fg = colors.back2 },
+      red = { bg = colors.red, fg = colors.back2 },
+      dark_red = { bg = colors.dark_red, fg = colors.back2 },
+      green = { bg = colors.green, fg = colors.back2 },
+      blue = { bg = colors.blue, fg = colors.back2 },
+      gray = { bg = colors.gray, fg = colors.back2 },
+      orange = { bg = colors.orange, fg = colors.back2 },
+      purple = { bg = colors.purple, fg = colors.back2 },
+      cyan = { bg = colors.cyan, fg = colors.back2 },
+      diag_warn = { bg = colors.diag_warn, fg = colors.back2 },
+      diag_error = { bg = colors.diag_error, fg = colors.back2 },
+      diag_hint = { bg = colors.diag_hint, fg = colors.back2 },
+      diag_info = { bg = colors.diag_info, fg = colors.back2 },
+      git_del = { bg = colors.git_del, fg = colors.back2 },
+      git_add = { bg = colors.git_add, fg = colors.back2 },
+      git_change = { bg = colors.git_change, fg = colors.back2 },
+    },
+  }
+
 	local groups = {
-		default = {
-			bg = { bg = colors.bg, fg = colors.back2 },
-			fg = { bg = colors.fg, fg = colors.back2 },
-			red = { bg = colors.red, fg = colors.back2 },
-			dark_red = { bg = colors.dark_red, fg = colors.back2 },
-			green = { bg = colors.green, fg = colors.back2 },
-			blue = { bg = colors.blue, fg = colors.back2 },
-			gray = { bg = colors.gray, fg = colors.back2 },
-			orange = { bg = colors.orange, fg = colors.back2 },
-			purple = { bg = colors.purple, fg = colors.back2 },
-			cyan = { bg = colors.cyan, fg = colors.back2 },
-			diag_warn = { bg = colors.diag_warn, fg = colors.back2 },
-			diag_error = { bg = colors.diag_error, fg = colors.back2 },
-			diag_hint = { bg = colors.diag_hint, fg = colors.back2 },
-			diag_info = { bg = colors.diag_info, fg = colors.back2 },
-			git_del = { bg = colors.git_del, fg = colors.back2 },
-			git_add = { bg = colors.git_add, fg = colors.back2 },
-			git_change = { bg = colors.git_change, fg = colors.back2 },
-		},
 		normal = {
 			a = { bg = colors.normal, fg = colors.back2 },
 			b = { bg = colors.normal_25, fg = colors.back2 },
@@ -220,13 +226,11 @@ function M.get_hl_groups()
 		},
 	}
 
-  for _, section in pairs(groups) do
-    for _, hl in pairs(section) do
-      apply_contrast(hl)
-    end
-  end
-
 	for mode, section in pairs(groups) do
+    for _, hl in pairs(section) do
+      hl.fg = apply_contrast(hl.fg, hl.bg)
+    end
+
     if mode == "default" then
       goto continue
     end

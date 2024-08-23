@@ -105,8 +105,10 @@ M[#M + 1] = {
 	"echasnovski/mini.diff",
 	event = "BufReadPre",
 	opts = {
-		style = "sign",
-		signs = { add = "▎", change = "▎", delete = "" },
+    view = {
+      style = "sign",
+		  signs = { add = "▎", change = "▎", delete = "" },
+    },
 	},
 }
 

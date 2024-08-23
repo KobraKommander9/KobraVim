@@ -34,6 +34,14 @@ map("v", "p", '"_dP', { silent = true })
 map("n", Kobra.keys.j, 'v:count == 0 ? "gj" : "j"', { expr = true, silent = true })
 map("n", Kobra.keys.k, 'v:count == 0 ? "gk" : "k"', { expr = true, silent = true })
 
+-- move lines
+map("n", "<A-" .. Kobra.keys.j .. ">", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-" .. Kobra.keys.k .. ">", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<A-" .. Kobra.keys.j .. ">", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<A-" .. Kobra.keys.k .. ">", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<A-" .. Kobra.keys.j .. ">", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<A-" .. Kobra.keys.k .. ">", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+
 -- move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 map("n", "<C-" .. Kobra.keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
