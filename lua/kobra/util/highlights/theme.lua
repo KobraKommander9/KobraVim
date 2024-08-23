@@ -138,17 +138,18 @@ local function get_colors()
 		end
   end
 
+  local generated = {}
 	for name, color in pairs(colors) do
     if normal_color ~= nil then
 		  colors[name] = brightness_modifier(color, brightness_modifier_param)
     end
 
     for _, brightness in ipairs({ 25, 50, 75 }) do
-      colors[name .. "_" .. brightness] = brightness_modifier(color, brightness)
+      generated[name .. "_" .. brightness] = brightness_modifier(color, brightness)
     end
 	end
 
-	return colors
+	return vim.tbl_extend("force", colors, generated)
 end
 
 local M = {}
