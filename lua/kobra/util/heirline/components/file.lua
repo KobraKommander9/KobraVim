@@ -16,7 +16,6 @@ function M.work_dir()
 			local trail = cwd:sub(-1) == "/" and " " or "/ "
 			return icon .. cwd .. trail
 		end,
-		hl = "kobra_term_gray",
 	}
 end
 
@@ -34,7 +33,6 @@ function M.file_icon()
 		provider = function(self)
 			return " " .. (self.icon_data.icon and (self.icon_data.icon .. " ") or Kobra.config.icons.kinds.File .. " ")
 		end,
-		hl = "kobra_term_gray",
 	}
 end
 
@@ -52,7 +50,6 @@ function M.file_name()
 
 			return filename
 		end,
-		hl = "kobra_term_gray",
 	}
 end
 
@@ -82,12 +79,15 @@ function M.component()
 				self.filename = vim.api.nvim_buf_get_name(0)
 			end,
 		},
-		{ provider = "" },
-		M.work_dir(),
-		M.file_icon(),
-		M.file_name(),
-		M.file_flags(),
-		{ provider = "" },
+		{
+			hl = "kobra_term_gray",
+			{ provider = "" },
+			M.work_dir(),
+			M.file_icon(),
+			M.file_name(),
+			M.file_flags(),
+			{ provider = "" },
+		},
 		{ provider = "%<" },
 	}
 end
