@@ -229,31 +229,36 @@ M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 -- }
 
 M[#M + 1] = {
-	"rebelot/heirline.nvim",
-	event = "VeryLazy",
-	opts = function()
-		return {
-			statusline = KobraLines.statusline(),
-			-- winbar = KobraLines.winbar(),
-			-- tabline = KobraLines.tabline(),
-		}
-	end,
-	-- config = function()
-	-- 	require("heirline").setup({
-	-- 		statusline = require("kobra.core.config.ui.lines.statusline").statusline(),
-	-- 		winbar = require("kobra.core.config.ui.lines.winbar").winbar(),
-	-- 		-- tabline = require('kobra.core.config.ui.lines.tabline').tabline(),
-	-- 		opts = {
-	-- 			disable_winbar_cb = function(args)
-	-- 				return require("heirline.conditions").buffer_matches({
-	-- 					buftype = { "nofile", "prompt", "help", "quickfix" },
-	-- 					filetype = { "^git.*", "fugitive", "Trouble", "dashboard" },
-	-- 				}, args.buf)
-	-- 			end,
-	-- 		},
-	-- 	})
-	-- end,
+	"nvim-lualine/lualine.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
 }
+
+-- M[#M + 1] = {
+-- 	"rebelot/heirline.nvim",
+-- 	event = "VeryLazy",
+-- 	opts = function()
+-- 		return {
+-- 			statusline = KobraLines.statusline(),
+-- 			-- winbar = KobraLines.winbar(),
+-- 			-- tabline = KobraLines.tabline(),
+-- 		}
+-- 	end,
+-- 	-- config = function()
+-- 	-- 	require("heirline").setup({
+-- 	-- 		statusline = require("kobra.core.config.ui.lines.statusline").statusline(),
+-- 	-- 		winbar = require("kobra.core.config.ui.lines.winbar").winbar(),
+-- 	-- 		-- tabline = require('kobra.core.config.ui.lines.tabline').tabline(),
+-- 	-- 		opts = {
+-- 	-- 			disable_winbar_cb = function(args)
+-- 	-- 				return require("heirline.conditions").buffer_matches({
+-- 	-- 					buftype = { "nofile", "prompt", "help", "quickfix" },
+-- 	-- 					filetype = { "^git.*", "fugitive", "Trouble", "dashboard" },
+-- 	-- 				}, args.buf)
+-- 	-- 			end,
+-- 	-- 		},
+-- 	-- 	})
+-- 	-- end,
+-- }
 
 -- M[#M + 1] = {
 -- 	"SmiteshP/nvim-navic",

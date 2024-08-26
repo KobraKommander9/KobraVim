@@ -66,7 +66,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.extra",
 	dependencies = {
-		{ "echasnovski/mini.fuzzy", config = true },
+		"echasnovski/mini.fuzzy",
 		"echasnovski/mini.pick",
 	},
 	cmd = { "Pick" },
