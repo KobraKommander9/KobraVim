@@ -1,5 +1,19 @@
 local M = {}
 
+M[#M + 1] = {
+	"KobraKommander9/escapist",
+	event = "VeryLazy",
+	opts = function()
+		if Kobra.config.layout == "colemak" then
+			return {
+				keys = { "qn" },
+			}
+		end
+
+		return {}
+	end,
+}
+
 -- next key clues
 M[#M + 1] = {
 	"echasnovski/mini.clue",
@@ -104,14 +118,49 @@ M[#M + 1] = {
 
 -- easily jump to any location
 M[#M + 1] = {
-  "folke/flash.nvim",
-  keys = {
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-c>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-  },
+	"folke/flash.nvim",
+	keys = {
+		{
+			"s",
+			mode = { "n", "x", "o" },
+			function()
+				require("flash").jump()
+			end,
+			desc = "Flash",
+		},
+		{
+			"S",
+			mode = { "n", "x", "o" },
+			function()
+				require("flash").treesitter()
+			end,
+			desc = "Flash Treesitter",
+		},
+		{
+			"r",
+			mode = "o",
+			function()
+				require("flash").remote()
+			end,
+			desc = "Remote Flash",
+		},
+		{
+			"R",
+			mode = { "o", "x" },
+			function()
+				require("flash").treesitter_search()
+			end,
+			desc = "Treesitter Search",
+		},
+		{
+			"<c-c>",
+			mode = { "c" },
+			function()
+				require("flash").toggle()
+			end,
+			desc = "Toggle Flash Search",
+		},
+	},
 }
 
 return M

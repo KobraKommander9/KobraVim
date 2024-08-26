@@ -15,7 +15,7 @@ local setupDotFileToggle = function()
 	local toggle_dotfiles = function()
 		show_dotfiles = not show_dotfiles
 		local new_filter = show_dotfiles and filter_show or filter_hide
-		MiniFiles.refresh({ content = { filter = new_filter } })
+		require("mini.files").refresh({ content = { filter = new_filter } })
 	end
 
 	vim.api.nvim_create_autocmd("User", {
@@ -30,6 +30,8 @@ end
 local setupSplitMappings = function()
 	local map_split = function(buf_id, lhs, direction)
 		local rhs = function()
+			local MiniFiles = require("mini.files")
+
 			-- Make new window and set it as target
 			local new_target_window
 			vim.api.nvim_win_call(MiniFiles.get_target_window(), function()
@@ -58,6 +60,8 @@ end
 
 local setupCwdMapping = function()
 	local files_set_cwd = function(_)
+		local MiniFiles = require("mini.files")
+
 		-- Works only if cursor is on the valid file system entry
 		local cur_entry_path = MiniFiles.get_fs_entry().path
 		local cur_directory = vim.fs.dirname(cur_entry_path)
@@ -75,12 +79,13 @@ end
 -- file browser
 M[#M + 1] = {
 	"echasnovski/mini.files",
-  version = false,
+	version = false,
 	event = "VimEnter",
 	keys = {
 		{
 			"<leader>ff",
 			function()
+				local MiniFiles = require("mini.files")
 				if not MiniFiles.close() then
 					MiniFiles.open(vim.api.nvim_buf_get_name(0))
 				end
@@ -88,18 +93,18 @@ M[#M + 1] = {
 			desc = "View Files",
 		},
 	},
-  opts = function(_, opts)
-    local options = {}
+	opts = function(_, opts)
+		local options = {}
 
-    if Kobra.config.layout == "colemak" then
-      options.mappings = {
-        go_in = "i",
-        go_in_plus = "I",
-      }
-    end
+		if Kobra.config.layout == "colemak" then
+			options.mappings = {
+				go_in = "i",
+				go_in_plus = "I",
+			}
+		end
 
-    return vim.tbl_deep_extend("force", options, opts)
-  end,
+		return vim.tbl_deep_extend("force", options, opts)
+	end,
 	config = function(_, opts)
 		require("mini.files").setup(opts)
 

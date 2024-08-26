@@ -1,30 +1,16 @@
 local map = Kobra.safe_map
 
-if Kobra.config.layout == "colemak" then
-	-- N goes to the next match (replaces n)
-	-- E goes to previous match (replaces N)
-	-- I moves cursor to bottom of screen
-
-	-- l to insert mode
-	-- L to insert at beginning of line
-
-	-- K/k replaces E/e
-	-- previous word (B) and end of word (K) are next to each other
-
-	-- Help is on lower case j
-
-	local key_opts = { silent = true, noremap = true }
-	map("", "n", "j", key_opts)
-	map("", "N", "n", key_opts)
-	map("", "e", "k", key_opts)
-	map("", "E", "N", key_opts)
-	map("", "i", "l", key_opts)
-	map("", "I", "L", key_opts)
-	map("", "j", "K", key_opts)
-	map("", "k", "e", key_opts)
-	map("", "K", "E", key_opts)
-	map("", "l", "i", key_opts)
-	map("", "L", "I", key_opts)
+-- remap keys
+for lhs, rhs in pairs(Kobra.keys) do
+	-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+	if lhs == "nextMatch" then
+		map({ "n", "x", "o" }, lhs, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+	elseif lhs == "prevMatch" then
+		map({ "n", "x", "o" }, lhs, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+	else
+		map("", lhs, rhs, { silent = true, noremap = true })
+		map("", rhs, lhs, { silent = true, noremap = true })
+	end
 end
 
 -- better paste
@@ -42,12 +28,6 @@ map("i", "<A-" .. Kobra.keys.k .. ">", "<esc><cmd>m .-2<cr>==gi", { desc = "Move
 map("v", "<A-" .. Kobra.keys.j .. ">", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-" .. Kobra.keys.k .. ">", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
--- move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-" .. Kobra.keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-" .. Kobra.keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-" .. Kobra.keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
-
 -- clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
@@ -61,10 +41,6 @@ map(
 )
 
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
-
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map({ "n", "x", "o" }, Kobra.keys.nextMatch, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map({ "n", "x", "o" }, Kobra.keys.prevMatch, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr>", { desc = "Save file" })
@@ -111,10 +87,41 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- windows
-map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
-map("n", "<leader>ws", "<C-W>s", { desc = "Split window below" })
-map("n", "<leader>wv", "<C-W>v", { desc = "Split window right" })
+map("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
+map("n", "<leader>wN", "<C-w>n", { desc = "New window" })
+map("n", "<leader>ws", "<C-w>s", { desc = "Split window below" })
+map("n", "<leader>wv", "<C-w>v", { desc = "Split window right" })
+
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+map("n", "<C-" .. Kobra.keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
+map("n", "<C-" .. Kobra.keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
+map("n", "<C-" .. Kobra.keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
+
+map("n", "<leader>wh", "<C-w>h", { desc = "Go to left window" })
+map("n", "<leader>w" .. Kobra.keys.j, "<C-W>j", { desc = "Go to lower window" })
+map("n", "<leader>w" .. Kobra.keys.k, "<C-W>k", { desc = "Go to upper window" })
+map("n", "<leader>w" .. Kobra.keys.l, "<C-W>l", { desc = "Go to right window" })
+
+map("n", "<leader>wH", "<C-w>H", { desc = "Swap layout left" })
+map("n", "<leader>w" .. Kobra.keys.J, "<C-w>H", { desc = "Swap layout left" })
+
+map("n", "<leader>wb", "<C-w>b", { desc = "Cursor bottom-most" })
+map("n", "<leader>wp", "<C-w>p", { desc = "Previous window" })
+map("n", "<leader>wt", "<C-w>t", { desc = "Cursor top-most" })
+map("n", "<leader>ww", "<C-w>w", { desc = "Window below" })
+map("n", "<leader>wW", "<C-w>W", { desc = "Window above" })
+
+map("n", "<leader>wr", "<C-w>r", { desc = "Rotate windows right" })
+map("n", "<leader>wR", "<C-w>R", { desc = "Rotate windows left" })
+map("n", "<leader>wx", "<C-w>x", { desc = "Exchange next window" })
+
+map("n", "<leader>w=", "<C-w>=", { desc = "Equalize windows" })
+map("n", "<leader>w-", "<C-w>-", { desc = "Decrease height" })
+map("n", "<leader>w+", "<C-w>+", { desc = "Increase height" })
+map("n", "<leader>w_", "<C-w>+", { desc = "Maximize height" })
+map("n", "<leader>w<", "<C-w><", { desc = "Decrease width" })
+map("n", "<leader>w>", "<C-w>>", { desc = "Increase width" })
+map("n", "<leader>w|", "<C-w>|", { desc = "Maximize width" })
 
 -- tabs
 map("n", "<leader>al", "<cmd>tablast<cr>", { desc = "Last Tab" })

@@ -13,17 +13,37 @@ local defaults = {
 	},
 	layout = "default",
 	layouts = {
-		default = {
-			escape = {
-				keys = { "jk" },
-				timeout = vim.o.timeoutlen,
-			},
-		},
 		colemak = {
-			escape = {
-				keys = { "qn" },
-				timeout = vim.o.timeoutlen,
-			},
+			-- N goes to the next match (replaces n)
+			-- E goes to previous match (replaces N)
+			-- I moves cursor to bottom of screen
+
+			-- l to insert mode
+			-- L to insert at beginning of line
+
+			-- K/k replaces E/e
+			-- previous word (B) and end of word (K) are next to each other
+
+			-- Help is on lower case j
+
+			j = "n",
+			k = "e",
+			l = "i",
+
+			J = "N",
+			K = "E",
+			L = "I",
+
+			n = "j",
+			e = "k",
+			i = "l",
+
+			N = "J",
+			E = "K",
+			I = "L",
+
+			nextMatch = "N",
+			prevMatch = "E",
 		},
 	},
 	ui = {
