@@ -4,7 +4,7 @@ local Plugin = require("lazy.core.plugin")
 
 M.core_imports = {}
 
-M.lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
+M.kobra_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
 
 M.renames = {
 	["windwp/nvim-spectre"] = "nvim-pack/nvim-spectre",
@@ -31,7 +31,7 @@ function M.fix_renames()
 	end)
 end
 
-function M.lazy_file()
+function M.kobra_file()
 	vim.api.nvim_create_autocmd("BufReadPost", {
 		once = true,
 		callback = function(event)
@@ -52,13 +52,13 @@ function M.lazy_file()
 	})
 
 	local Event = require("lazy.core.handler.event")
-	Event.mappings.LazyFile = { id = "LazyFile", event = M.lazy_file_events }
-	Event.mappings["User LazyFile"] = Event.mappings.LazyFile
+	Event.mappings.KobraFile = { id = "KobraFile", event = M.kobra_file_events }
+	Event.mappings["User KobraFile"] = Event.mappings.KobraFile
 end
 
 function M.setup()
 	M.fix_renames()
-	M.lazy_file()
+	M.kobra_file()
 end
 
 return M
