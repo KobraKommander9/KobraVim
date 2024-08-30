@@ -22,6 +22,11 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
+	"rktjmp/lush.nvim",
+	cmd = { "Lushify", "LushImport", "LushRunTutorial" },
+}
+
+M[#M + 1] = {
 	"folke/tokyonight.nvim",
 	lazy = true,
 	opts = { style = "moon" },

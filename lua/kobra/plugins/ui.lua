@@ -228,11 +228,6 @@ M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 -- 	end,
 -- }
 
-M[#M + 1] = {
-	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-}
-
 -- M[#M + 1] = {
 -- 	"rebelot/heirline.nvim",
 -- 	event = "VeryLazy",
