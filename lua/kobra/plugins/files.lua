@@ -94,14 +94,12 @@ M[#M + 1] = {
 		},
 	},
 	opts = function(_, opts)
-		local options = {}
-
-		if Kobra.config.layout == "colemak" then
-			options.mappings = {
-				go_in = "i",
-				go_in_plus = "I",
-			}
-		end
+		local options = {
+			mappings = {
+				go_in = Kobra.keys.l,
+				go_in_plus = Kobra.keys.L,
+			},
+		}
 
 		return vim.tbl_deep_extend("force", options, opts)
 	end,
