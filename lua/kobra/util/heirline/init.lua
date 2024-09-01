@@ -1,3 +1,7 @@
+if true then
+	return {}
+end
+
 local M = {}
 
 local components = require("kobra.util.heirline.components")
@@ -24,7 +28,7 @@ function M.statusline()
 	return {
 		components.mode.component(),
 		components.git.component(),
-    components.file.component(),
+		components.file.component(),
 	}
 end
 
