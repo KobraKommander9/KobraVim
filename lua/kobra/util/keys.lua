@@ -14,6 +14,10 @@ function M.setup(name, layouts)
 	keys = vim.tbl_deep_extend("force", keys, layout)
 end
 
+function M.mappings()
+	return vim.deepcopy(keys)
+end
+
 setmetatable(M, {
 	__index = function(_, key)
 		if keys == nil then

@@ -1,7 +1,7 @@
 local map = Kobra.safe_map
 
 -- remap keys
-for lhs, rhs in pairs(Kobra.keys) do
+for lhs, rhs in pairs(Kobra.keys.mappings()) do
 	-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 	if lhs == "nextMatch" then
 		map({ "n", "x", "o" }, lhs, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
