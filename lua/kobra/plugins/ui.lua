@@ -1,22 +1,22 @@
 local M = {}
 
-M[#M + 1] = {
-	"Leviathenn/nvim-transparent",
-	event = "VimEnter",
-	opts = function()
-		return {
-			enable = Kobra.config.ui.transparent,
-			exclude = {
-				"KobraTLHead",
-				"KobraTLHeadSep",
-				"KobraTLActive",
-				"KobraTLActiveSep",
-				"KobraTLBoldLine",
-				"KobraTLLineSep",
-			},
-		}
-	end,
-}
+-- M[#M + 1] = {
+-- 	"Leviathenn/nvim-transparent",
+-- 	event = "VimEnter",
+-- 	opts = function()
+-- 		return {
+-- 			enable = Kobra.config.ui.transparent,
+-- 			exclude = {
+-- 				"KobraTLHead",
+-- 				"KobraTLHeadSep",
+-- 				"KobraTLActive",
+-- 				"KobraTLActiveSep",
+-- 				"KobraTLBoldLine",
+-- 				"KobraTLLineSep",
+-- 			},
+-- 		}
+-- 	end,
+-- }
 
 M[#M + 1] = {
 	"rcarriga/nvim-notify",

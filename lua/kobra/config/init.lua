@@ -48,7 +48,7 @@ local defaults = {
 	},
 	ui = {
 		transparent = true,
-		colorscheme = "one_monokai",
+		colorscheme = "autumn",
 	},
 	icons = {
 		misc = {
