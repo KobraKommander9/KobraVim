@@ -68,22 +68,6 @@ M[#M + 1] = {
 	end,
 }
 
--- better bracket jumps
-M[#M + 1] = {
-	"echasnovski/mini.bracketed",
-	event = "BufEnter",
-	dependencies = {
-		{
-			"echasnovski/mini.clue",
-			opts = Kobra.mini.clue_options({
-				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
-				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
-			}),
-		},
-	},
-	config = true,
-}
-
 -- global search and replace
 M[#M + 1] = {
 	"nvim-pack/nvim-spectre",
@@ -105,11 +89,23 @@ M[#M + 1] = {
 	"echasnovski/mini.diff",
 	event = "BufReadPre",
 	opts = {
-    view = {
-      style = "sign",
-		  signs = { add = "▎", change = "▎", delete = "" },
-    },
+		view = {
+			style = "sign",
+			signs = { add = "▎", change = "▎", delete = "" },
+		},
 	},
+}
+
+-- M[#M + 1] = {
+-- 	"echasnovski/mini.surround",
+-- 	event = "BufEnter",
+--   config = true,
+-- }
+
+M[#M + 1] = {
+	"echasnovski/mini.pairs",
+	event = "InsertEnter",
+	config = true,
 }
 
 return M

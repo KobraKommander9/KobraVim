@@ -121,20 +121,12 @@ M[#M + 1] = {
 	"folke/flash.nvim",
 	keys = {
 		{
-			"s",
+			"<cr>",
 			mode = { "n", "x", "o" },
 			function()
 				require("flash").jump()
 			end,
 			desc = "Flash",
-		},
-		{
-			"S",
-			mode = { "n", "x", "o" },
-			function()
-				require("flash").treesitter()
-			end,
-			desc = "Flash Treesitter",
 		},
 		{
 			"r",
@@ -145,14 +137,6 @@ M[#M + 1] = {
 			desc = "Remote Flash",
 		},
 		{
-			"R",
-			mode = { "o", "x" },
-			function()
-				require("flash").treesitter_search()
-			end,
-			desc = "Treesitter Search",
-		},
-		{
 			"<c-c>",
 			mode = { "c" },
 			function()
@@ -161,6 +145,22 @@ M[#M + 1] = {
 			desc = "Toggle Flash Search",
 		},
 	},
+}
+
+-- better bracket jumps
+M[#M + 1] = {
+	"echasnovski/mini.bracketed",
+	event = "BufEnter",
+	dependencies = {
+		{
+			"echasnovski/mini.clue",
+			opts = Kobra.mini.clue_options({
+				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
+				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
+			}),
+		},
+	},
+	config = true,
 }
 
 return M
