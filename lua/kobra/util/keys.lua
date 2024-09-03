@@ -6,16 +6,21 @@ local defaults = {
 }
 
 local keys
+local mappings
 function M.setup(name, layouts)
 	name = name or "default"
 	local layout = layouts[name] or {}
 
 	keys = vim.deepcopy(defaults)
 	keys = vim.tbl_deep_extend("force", keys, layout)
+
+	mappings = vim.deepcopy(keys)
+	mappings.nextMatch = nil
+	mappings.prevMatch = nil
 end
 
 function M.mappings()
-	return vim.deepcopy(keys)
+	return mappings
 end
 
 setmetatable(M, {

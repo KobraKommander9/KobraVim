@@ -2,16 +2,13 @@ local map = Kobra.safe_map
 
 -- remap keys
 for lhs, rhs in pairs(Kobra.keys.mappings()) do
-	-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-	if lhs == "nextMatch" then
-		map({ "n", "x", "o" }, rhs, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-	elseif lhs == "prevMatch" then
-		map({ "n", "x", "o" }, rhs, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-	else
-		map("", lhs, rhs, { silent = true, noremap = true })
-		map("", rhs, lhs, { silent = true, noremap = true })
-	end
+	map("", lhs, rhs, { silent = true, noremap = true })
+	map("", rhs, lhs, { silent = true, noremap = true })
 end
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+map({ "n", "x", "o" }, Kobra.keys.nextMatch, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map({ "n", "x", "o" }, Kobra.keys.prevMatch, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- better paste
 map("v", "p", '"_dP', { silent = true })
