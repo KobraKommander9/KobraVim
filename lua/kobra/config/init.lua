@@ -157,6 +157,7 @@ function M.setup(opts)
 			M.colorscheme()
 		else
 			vim.cmd.colorscheme(M.colorscheme)
+			vim.notify("set colorscheme to " .. M.colorscheme, "info", { title = "KobraVim" })
 		end
 	end, {
 		msg = "Could not load colorscheme",
