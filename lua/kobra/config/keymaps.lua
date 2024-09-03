@@ -4,9 +4,9 @@ local map = Kobra.safe_map
 for lhs, rhs in pairs(Kobra.keys.mappings()) do
 	-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 	if lhs == "nextMatch" then
-		map({ "n", "x", "o" }, lhs, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+		map({ "n", "x", "o" }, rhs, "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 	elseif lhs == "prevMatch" then
-		map({ "n", "x", "o" }, lhs, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+		map({ "n", "x", "o" }, rhs, "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 	else
 		map("", lhs, rhs, { silent = true, noremap = true })
 		map("", rhs, lhs, { silent = true, noremap = true })
