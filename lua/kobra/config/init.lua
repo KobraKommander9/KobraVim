@@ -153,11 +153,10 @@ function M.setup(opts)
 
 	Kobra.track("colorscheme")
 	Kobra.try(function()
-		if type(M.colorscheme) == "function" then
-			M.colorscheme()
+		if type(M.ui.colorscheme) == "function" then
+			M.ui.colorscheme()
 		else
-			vim.cmd.colorscheme(M.colorscheme)
-			vim.notify("set colorscheme to " .. M.colorscheme, "info", { title = "KobraVim" })
+			vim.cmd.colorscheme(M.ui.colorscheme)
 		end
 	end, {
 		msg = "Could not load colorscheme",
