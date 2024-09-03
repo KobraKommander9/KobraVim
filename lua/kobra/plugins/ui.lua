@@ -146,12 +146,6 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.animate",
-	event = "BufReadPost",
-	config = true,
-}
-
-M[#M + 1] = {
 	"echasnovski/mini.icons",
 	lazy = true,
 	config = true,
