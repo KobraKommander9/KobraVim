@@ -145,8 +145,6 @@ function M.setup(opts)
 			M.load("commands")
 			M.load("keymaps")
 
-			-- Kobra.format.setup()
-
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
 			end
@@ -164,7 +162,7 @@ function M.setup(opts)
 		msg = "Could not load colorscheme",
 		on_error = function(msg)
 			Kobra.error(msg)
-			vim.cmd.colorscheme("one_monokai")
+			vim.cmd.colorscheme("autumn")
 		end,
 	})
 	Kobra.track()
