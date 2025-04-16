@@ -3,6 +3,9 @@ local M = {}
 local defaults = {
 	nextMatch = "n",
 	prevMatch = "N",
+
+	cycleDown = "<C-n>",
+	cycleUp = "<C-p>",
 }
 
 local keys
@@ -17,6 +20,8 @@ function M.setup(name, layouts)
 	mappings = vim.deepcopy(keys)
 	mappings.nextMatch = nil
 	mappings.prevMatch = nil
+	mappings.cycleDown = nil
+	mappings.cycleUp = nil
 end
 
 function M.mappings()

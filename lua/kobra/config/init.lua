@@ -44,6 +44,9 @@ local defaults = {
 
 			nextMatch = "N",
 			prevMatch = "E",
+
+			cycleDown = "<C-p>",
+			cycleUp = "<C-f>",
 		},
 	},
 	ui = {
@@ -167,10 +170,10 @@ function M.setup(opts)
 	})
 	Kobra.track()
 
-	Kobra.track("statusline")
-	KobraColors.setup()
+	-- Kobra.track("statusline")
+	-- KobraColors.setup()
 	-- KobraLines.setup()
-	Kobra.track()
+	-- Kobra.track()
 end
 
 function M.load(name)
