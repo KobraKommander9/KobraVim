@@ -20,9 +20,9 @@ vim.api.nvim_create_autocmd("User", {
 	pattern = "KobraVimKeymapsDefaults",
 	callback = function()
 		-- VSCode-specific keymaps for search and navigation
-		-- vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
-		-- vim.keymap.set("n", "<leader>/", [[<cmd>lua require('vscode').action('workbench.action.findInFiles')<cr>]])
-		-- vim.keymap.set("n", "<leader>ss", [[<cmd>lua require('vscode').action('workbench.action.gotoSymbol')<cr>]])
+		vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
+		vim.keymap.set("n", "<leader>/", [[<cmd>lua require('vscode').action('workbench.action.findInFiles')<cr>]])
+		vim.keymap.set("n", "<leader>ss", [[<cmd>lua require('vscode').action('workbench.action.gotoSymbol')<cr>]])
 
 		-- Keep undo/redo lists in sync with VsCode
 		vim.keymap.set("n", "u", "<Cmd>call VSCodeNotify('undo')<CR>")

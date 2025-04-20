@@ -1,4 +1,5 @@
 require("kobravim.types")
+require("kobravim.config").init()
 
 local M = {}
 
