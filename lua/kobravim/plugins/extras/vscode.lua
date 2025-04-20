@@ -46,9 +46,23 @@ vim.api.nvim_create_autocmd("User", {
 			"<Cmd>call VSCodeNotify('workbench.action.moveEditorRight')<CR>"
 		)
 
-		-- Manage VSCode sidebars
-		vim.keymap.set("n", "<leader>L", "<Cmd>call VSCodeNotify('workbench.action.focusIntoPrimarySideBar')<CR>")
-		vim.keymap.set("n", "<leader>R", "<Cmd>call VSCodeNotify('workbench.action.focusIntoSecondarySideBar')<CR>")
+		-- Navigate VSCode editor groups
+		vim.keymap.set(
+			{ "n", "x" },
+			"<C-" .. KobraVim.keys.j .. ">",
+			"<Cmd>call VSCodeNotify('workbench.action.navigateDown')"
+		)
+		vim.keymap.set(
+			{ "n", "x" },
+			"<C-" .. KobraVim.keys.k .. ">",
+			"<Cmd>call VSCodeNotify('workbench.action.navigateUp')"
+		)
+		vim.keymap.set({ "n", "x" }, "<C-h>", "<Cmd>call VSCodeNotify('workbench.action.navigateLeft')")
+		vim.keymap.set(
+			{ "n", "x" },
+			"<C-" .. KobraVim.keys.l .. ">",
+			"<Cmd>call VSCodeNotify('workbench.action.navigateRight')"
+		)
 	end,
 })
 
