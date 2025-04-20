@@ -108,7 +108,7 @@ function M.setup(opts)
 	vim.api.nvim_create_autocmd("User", {
 		group = group,
 		pattern = "VeryLazy",
-		calllback = function()
+		callback = function()
 			if lazy_autocmds then
 				M.load("autocmds")
 			end
