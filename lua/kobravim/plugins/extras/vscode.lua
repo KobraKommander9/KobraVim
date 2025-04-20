@@ -20,17 +20,35 @@ vim.api.nvim_create_autocmd("User", {
 	pattern = "KobraVimKeymapsDefaults",
 	callback = function()
 		-- VSCode-specific keymaps for search and navigation
-		vim.keymap.set("n", "<leader><space>", "<cmd>Find<cr>")
-		vim.keymap.set("n", "<leader>/", [[<cmd>lua require('vscode').action('workbench.action.findInFiles')<cr>]])
+		vim.keymap.set("n", "<leader>/", "<cmd>Find<cr>")
+		vim.keymap.set("n", "<leader>f", [[<cmd>lua require('vscode').action('workbench.action.find')<cr>]])
+		vim.keymap.set("n", "<leader>F", [[<cmd>lua require('vscode').action('workbench.action.findInFiles')<cr>]])
 		vim.keymap.set("n", "<leader>ss", [[<cmd>lua require('vscode').action('workbench.action.gotoSymbol')<cr>]])
 
 		-- Keep undo/redo lists in sync with VsCode
 		vim.keymap.set("n", "u", "<Cmd>call VSCodeNotify('undo')<CR>")
 		vim.keymap.set("n", "<C-r>", "<Cmd>call VSCodeNotify('redo')<CR>")
 
-		-- Navigate VSCode tabs like lazyvim buffers
-		-- vim.keymap.set("n", "<S-h>", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
-		-- vim.keymap.set("n", "<S-l>", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
+		-- Navigate VSCode tabs
+		vim.keymap.set("n", "<leader>ac", "<Cmd>call VSCodeNotify('workbench.action.closeEditor')<CR>")
+		vim.keymap.set("n", "<leader>af", "<Cmd>call VSCodeNotify('workbench.action.openFirstEditorInGroup')<CR>")
+		vim.keymap.set("n", "<leader>al", "<Cmd>call VSCodeNotify('workbench.action.openLastEditorInGroup')<CR>")
+		vim.keymap.set("n", "<leader>an", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
+		vim.keymap.set("n", "<leader>ap", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
+		vim.keymap.set(
+			"n",
+			"<leader>am" .. KobraVim.keys.j,
+			"<Cmd>call VSCodeNotify('workbench.action.moveEditorLeft')<CR>"
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>am" .. KobraVim.keys.k,
+			"<Cmd>call VSCodeNotify('workbench.action.moveEditorRight')<CR>"
+		)
+
+		-- Manage VSCode sidebars
+		vim.keymap.set("n", "<leader>L", "<Cmd>call VSCodeNotify('workbench.action.focusIntoPrimarySideBar')<CR>")
+		vim.keymap.set("n", "<leader>R", "<Cmd>call VSCodeNotify('workbench.action.focusIntoSecondarySideBar')<CR>")
 	end,
 })
 
