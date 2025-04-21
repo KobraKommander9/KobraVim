@@ -11,6 +11,9 @@ local layouts = {
 		cycleUp = "<C-p>",
 
 		clearSearch = "<C-d>",
+		pick = {
+			toggle_preview = "<C-o>",
+		},
 	},
 	colemak = {
 		-- N goes to the next match (replaces n)
@@ -54,11 +57,12 @@ local layouts = {
 			delete_left = "<C-l>",
 			mark = "<C-o>",
 			move_up = "<C-e>",
-			paste = "<C-p>",
 
 			scroll_down = "<C-d>",
 			scroll_right = "<C-i>",
 			scroll_up = "<C-u>",
+
+			toggle_preview = "<C-p>",
 		},
 	},
 }
