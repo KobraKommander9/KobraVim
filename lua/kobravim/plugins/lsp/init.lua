@@ -30,7 +30,7 @@ M[#M + 1] = {
 			inlay_hints = {
 				enabled = true,
 			},
-			code_lens = {
+			codelens = {
 				enabled = false,
 			},
 			capabilities = {
