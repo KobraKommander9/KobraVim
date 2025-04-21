@@ -4,8 +4,17 @@ end
 
 local enabled = {
 	"KobraVim",
+	"flash.nvim",
 	"lazy.nvim",
+	"mini.ai",
+	"mini.bracketed",
+	"mini.comment",
+	"mini.pairs",
 	"nvim-treesitter",
+	"nvim-treesitter-textobjects",
+	"nvim-ts-autotag",
+	"ts-comments.nvim",
+	"vim-repeat",
 }
 
 local Config = require("lazy.core.config")

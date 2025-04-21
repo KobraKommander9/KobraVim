@@ -41,11 +41,9 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"JoosepAlviste/nvim-ts-context-commentstring",
-	lazy = true,
-	opts = {
-		enable_autocmd = false,
-	},
+	"folke/ts-comments.nvim",
+	event = "VeryLazy",
+	config = true,
 }
 
 M[#M + 1] = {

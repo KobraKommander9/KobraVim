@@ -63,4 +63,9 @@ M[#M + 1] = {
 	config = true,
 }
 
+M[#M + 1] = {
+	"tpope/vim-repeat",
+	event = "VeryLazy",
+}
+
 return M
