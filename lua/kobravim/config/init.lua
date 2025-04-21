@@ -12,6 +12,10 @@ local defaults = {
 		-- if you want to disable loading options, add `package.loaded["kobravim.config.options"] = true` to the top of your init.lua
 	},
 	keys = "default",
+	ui = {
+		transparent = true,
+		colorscheme = "autumn",
+	},
 	-- you can customize the "words" config here
 	-- words = {
 	--   refer to "defaults" in "kobravim.util.words"
@@ -128,6 +132,22 @@ function M.setup(opts)
 			KobraVim.format.setup()
 		end,
 	})
+
+	KobraVim.track("colorscheme")
+	KobraVim.try(function()
+		if type(M.ui.colorscheme) == "function" then
+			M.ui.colorscheme()
+		else
+			vim.cmd.colorscheme(M.ui.colorscheme)
+		end
+	end, {
+		msg = "Could not load colorscheme",
+		on_error = function(msg)
+			KobraVim.error(msg)
+			vim.cmd.colorscheme("autumn")
+		end,
+	})
+	KobraVim.track()
 end
 
 function M.load(name)
