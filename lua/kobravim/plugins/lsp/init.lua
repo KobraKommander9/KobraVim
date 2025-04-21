@@ -2,7 +2,7 @@ local M = {}
 
 M[#M + 1] = {
 	"neovim/nvim-lspconfig",
-	event = "LazyFile",
+	event = "KobraFile",
 	dependencies = {
 		"mason.nvim",
 		{ "williamboman/mason-lspconfig.nvim", config = function() end },

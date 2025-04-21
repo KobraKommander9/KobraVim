@@ -2,7 +2,7 @@ local M = {}
 
 M[#M + 1] = {
 	"nvimtools/none-ls.nvim",
-	event = "LazyFile",
+	event = "KobraFile",
 	dependencies = { "mason.nvim" },
 	init = function()
 		KobraVim.on_very_lazy(function()
