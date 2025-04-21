@@ -56,8 +56,43 @@ map("n", "<leader>cl", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
-map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
-map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
+map("n", "<leader>xl", function()
+	local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+	if not success and err then
+		vim.notify(err, vim.log.levels.ERROR)
+	end
+end, { desc = "Location List" })
+
+map("n", "<leader>xq", function()
+	local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+	if not success and err then
+		vim.notify(err, vim.log.levels.ERROR)
+	end
+end, { desc = "Quickfix List" })
+
+map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+
+-- formatting
+map({ "n", "v" }, "<leader>cf", function()
+	KobraVim.format({ force = true })
+end, { desc = "Format" })
+
+-- diagnostics
+local diagnostic_goto = function(next, severity)
+	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+	severity = severity and vim.diagnostic.severity[severity] or nil
+	return function()
+		go({ severity = severity })
+	end
+end
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
+map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- toggle options
 KobraVim.toggle.map("<leader>ua", KobraVim.toggle("autochdir", { name = "Auto Change Dir" }))
@@ -66,18 +101,24 @@ KobraVim.toggle.map(
 	KobraVim.toggle("conceallevel", { values = { 0, vim.o.conceallevel > 0 and vim.o.conceallevel or 2 } })
 )
 KobraVim.toggle.map("<leader>ud", KobraVim.toggle.diagnostics)
--- KobraVim.toggle.map("<leader>uf", KobraVim.toggle.format())
--- KobraVim.toggle.map("<leader>uF", KobraVim.toggle.format(true))
+KobraVim.toggle.map("<leader>uf", KobraVim.toggle.format())
+KobraVim.toggle.map("<leader>uF", KobraVim.toggle.format(true))
 KobraVim.toggle.map("<leader>ul", KobraVim.toggle.number)
 KobraVim.toggle.map("<leader>uL", KobraVim.toggle("relativenumber", { name = "Relative Number" }))
 KobraVim.toggle.map("<leader>us", KobraVim.toggle("spell", { name = "Spelling" }))
 KobraVim.toggle.map("<leader>uT", KobraVim.toggle.treesitter)
 KobraVim.toggle.map("<leader>uw", KobraVim.toggle("wrap", { name = "Wrap" }))
 
--- highlights under cursor
-if vim.fn.has("nvim-0.9.0") == 1 then
-	map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+if vim.lsp.inlay_hint then
+	KobraVim.toggle.map("<leader>uh", KobraVim.toggle.inlay_hints)
 end
+
+-- highlights under cursor
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+map("n", "<leader>uI", function()
+	vim.treesitter.inspect_tree()
+	vim.api.nvim_input("I")
+end, { desc = "Inspect Tree" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -130,8 +171,13 @@ map("n", "<leader>ap", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader>am" .. KobraVim.keys.j, "<cmd>+tabmove<cr>", { desc = "Move Current Tab to Next" })
 map("n", "<leader>am" .. KobraVim.keys.k, "<cmd>-tabmove<cr>", { desc = "Move Current Tab to Previous" })
 
--- diagnostics
-map("n", "<leader>dh", "<cmd>lua vim.diagnostic.open_float()<cr>", { desc = "Hover Diagnostic" })
-map("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<cr>", { desc = "Next Diagnostic" })
-map("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<cr>", { desc = "Previous Diagnostic" })
-map("n", "<leader>dq", "<cmd>lua vim.diagnostic.setqflist()<cr>", { desc = "Quickfix Diagnostic" })
+-- native snippets. only needed on < 0.11, as 0.11 creates these by default
+if vim.fn.has("nvim-0.11") == 0 then
+	map("s", "<Tab>", function()
+		return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
+	end, { expr = true, desc = "Jump Next" })
+
+	map({ "i", "s" }, "<S-Tab>", function()
+		return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
+	end, { expr = true, desc = "Jump Previous" })
+end

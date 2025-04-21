@@ -85,10 +85,6 @@ function M.enabled(buf)
 	return gaf == nil or gaf
 end
 
-function M.toggle(buf)
-	M.enable(not M.enabled(), buf)
-end
-
 function M.enable(enable, buf)
 	if enable == nil then
 		enable = true

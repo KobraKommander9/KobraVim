@@ -38,12 +38,38 @@ function M.option(option, opts)
 	})
 end
 
+function M.format(buf)
+	local name = (buf and "Buffer " or "Global ") .. "Format"
+	return M.wrap({
+		name = name,
+		get = function()
+			if not buf then
+				return vim.g.autoformat == nil or vim.g.autoformat
+			end
+			return KobraVim.format.enabled()
+		end,
+		set = function(state)
+			KobraVim.format.enable(state, buf)
+		end,
+	})
+end
+
 M.diagnostics = M.wrap({
 	name = "Diagnostics",
 	get = function()
 		return vim.diagnostic.is_enabled and vim.diagnostic.is_enabled()
 	end,
 	set = vim.diagnostic.enable,
+})
+
+M.inlay_hints = M.wrap({
+	name = "Inlay Hints",
+	get = function()
+		return vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+	end,
+	set = function(state)
+		vim.lsp.inlay_hint.enable(state, { bufnr = 0 })
+	end,
 })
 
 local nu = { number = true, relativenumber = true }
