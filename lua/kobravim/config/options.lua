@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- KobraVim auto format
--- vim.g.autoformat = true
+vim.g.autoformat = true
 
 local opt = vim.opt
 
@@ -24,7 +24,7 @@ opt.fillchars = {
 	eob = " ",
 }
 opt.foldlevel = 99
--- opt.formatexpr = "v:lua.require'kobravim.util'.format.formatexpr()"
+opt.formatexpr = "v:lua.require'kobravim.util'.format.formatexpr()"
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"

@@ -12,6 +12,10 @@ local defaults = {
 		-- if you want to disable loading options, add `package.loaded["kobravim.config.options"] = true` to the top of your init.lua
 	},
 	keys = "default",
+	-- you can customize the "words" config here
+	-- words = {
+	--   refer to "defaults" in "kobravim.util.words"
+	-- },
 	icons = {
 		misc = {
 			dots = "󰇘",
@@ -97,6 +101,7 @@ function M.setup(opts)
 	options = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
 
 	KobraVim.keys.setup(options.keys)
+	KobraVim.words.setup(options.words)
 
 	-- autocmds can be lazy loaded if not opening a file
 	local lazy_autocmds = vim.fn.argc(-1) == 0
@@ -119,6 +124,8 @@ function M.setup(opts)
 			if lazy_clipboard ~= nil then
 				vim.opt.clipboard = lazy_clipboard
 			end
+
+			KobraVim.format.setup()
 		end,
 	})
 end

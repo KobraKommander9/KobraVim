@@ -12,6 +12,33 @@ setmetatable(M, {
 	end,
 })
 
+function M.get_plugin(name)
+	return require("lazy.core.config").spec.plugins[name]
+end
+
+function M.has(plugin)
+	return M.get_plugin(plugin) ~= nil
+end
+
+function M.on_very_lazy(fn)
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "VeryLazy",
+		callback = function()
+			fn()
+		end,
+	})
+end
+
+function M.opts(name)
+	local plugin = M.get_plugin(name)
+	if not plugin then
+		return {}
+	end
+
+	local Plugin = require("lazy.core.plugin")
+	return Plugin.values(plugin, "opts", false)
+end
+
 function M.lazy_notify()
 	local notifs = {}
 	local function temp(...)
