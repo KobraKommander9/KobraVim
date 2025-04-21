@@ -1,9 +1,9 @@
 local M = {}
 
 if vim.g.vscode then
-	M[#M + 1] = {
+	table.insert(M, {
 		import = "kobravim.plugins.extras.vscode",
-	}
+	})
 end
 
 return M
