@@ -2,6 +2,8 @@ local M = {}
 
 local layouts = {
 	default = {
+		esc = "jk",
+
 		nextMatch = "n",
 		prevMatch = "N",
 
@@ -20,6 +22,8 @@ local layouts = {
 		-- previous word (B) and end of word (K) are next to each other
 
 		-- Help is on lower case j
+
+		esc = "qn",
 
 		j = "n",
 		k = "e",
@@ -57,6 +61,7 @@ function M.setup(layout)
 	keys = vim.deepcopy(layout)
 	mappings = vim.deepcopy(keys)
 
+	mappings.esc = nil
 	mappings.nextMatch = nil
 	mappings.prevMatch = nil
 	mappings.cycleDown = nil
