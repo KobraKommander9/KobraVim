@@ -10,13 +10,12 @@ M[#M + 1] = {
 	branch = "colorscheme",
 	lazy = true,
 	dependencies = { "rktjmp/lush.nvim" },
-	opts = function(_, opts)
-		opts = opts or {}
-		return vim.tbl_deep_extend("force", {
+	opts = function()
+		return {
 			transparency = {
 				enabled = KobraVim.config.ui.transparent,
 			},
-		}, opts)
+		}
 	end,
 }
 
