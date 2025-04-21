@@ -29,6 +29,7 @@ M[#M + 1] = {
 			},
 			inlay_hints = {
 				enabled = true,
+				exclude = { "vue" },
 			},
 			codelens = {
 				enabled = false,
@@ -109,7 +110,7 @@ M[#M + 1] = {
 					if
 						vim.api.nvim_buf_is_valid(buffer)
 						and vim.bo[buffer].buftype == ""
-						and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[buffer].filetype)
+						and not vim.tbl_contains(opts.inlay_hints.exclude or {}, vim.bo[buffer].filetype)
 					then
 						vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
 					end
