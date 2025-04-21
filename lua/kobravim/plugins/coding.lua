@@ -127,6 +127,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"saghen/blink.cmp",
+	dependencies = { "lazydev.nvim" },
 	opts = {
 		sources = {
 			default = { "lazydev" },
@@ -137,6 +138,19 @@ M[#M + 1] = {
 					score_offset = 100,
 				},
 			},
+		},
+	},
+}
+
+M[#M + 1] = {
+	"folke/lazydev.nvim",
+	ft = "lua",
+	cmd = "LazyDev",
+	opts = {
+		library = {
+			{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			{ path = "KobraVim", words = { "KobraVim" } },
+			{ path = "lazy.nvim", words = { "KobraVim" } },
 		},
 	},
 }
