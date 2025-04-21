@@ -9,6 +9,8 @@ local layouts = {
 
 		cycleDown = "<C-n>",
 		cycleUp = "<C-p>",
+
+		clearSearch = "<C-d>",
 	},
 	colemak = {
 		-- N goes to the next match (replaces n)
@@ -46,6 +48,18 @@ local layouts = {
 
 		cycleDown = "<C-p>",
 		cycleUp = "<C-f>",
+
+		clearSearch = "<C-q>",
+		pick = {
+			delete_left = "<C-l>",
+			mark = "<C-o>",
+			move_up = "<C-e>",
+			paste = "<C-p>",
+
+			scroll_down = "<C-d>",
+			scroll_right = "<C-i>",
+			scroll_up = "<C-u>",
+		},
 	},
 }
 
@@ -62,10 +76,15 @@ function M.setup(layout)
 	mappings = vim.deepcopy(keys)
 
 	mappings.esc = nil
+
 	mappings.nextMatch = nil
 	mappings.prevMatch = nil
+
 	mappings.cycleDown = nil
 	mappings.cycleUp = nil
+
+	mappings.clearSearch = nil
+	mappings.pick = nil
 end
 
 function M.mappings()

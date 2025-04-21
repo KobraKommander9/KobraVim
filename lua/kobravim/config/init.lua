@@ -36,11 +36,11 @@ local defaults = {
 			Hint = " ",
 			Info = " ",
 		},
-		-- 	git = {
-		-- 		added = " ",
-		-- 		modified = " ",
-		-- 		removed = " ",
-		-- 	},
+		diff = {
+			add = "▎",
+			change = "▎",
+			delete = "",
+		},
 		kinds = {
 			Array = " ",
 			Boolean = "󰨙 ",

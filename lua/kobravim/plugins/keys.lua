@@ -40,16 +40,16 @@ M[#M + 1] = {
 
 			-- clues
 			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
-			-- { mode = "n", keys = "<leader>b", desc = "+Buffers" },
+			{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
 			{ mode = "n", keys = "<leader>c", desc = "+Commands" },
 			-- { mode = "n", keys = "<leader>d", desc = "+Diagnostics" },
 			{ mode = "n", keys = "<leader>f", desc = "+Files" },
-			-- { mode = "n", keys = "<leader>g", desc = "+Git" },
+			{ mode = "n", keys = "<leader>g", desc = "+Git" },
 			-- { mode = "n", keys = "<leader>k", desc = "+Keys" },
-			-- { mode = "n", keys = "<leader>l", desc = "+LSP" },
+			{ mode = "n", keys = "<leader>l", desc = "+LSP" },
 			{ mode = "n", keys = "<leader>u", desc = "+UI" },
 			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
-			-- { mode = "n", keys = "<leader>s", desc = "+Search" },
+			{ mode = "n", keys = "<leader>s", desc = "+Search" },
 			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 			{ mode = "n", keys = "<leader>x", desc = "+Lists" },
 		}

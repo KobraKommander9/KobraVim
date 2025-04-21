@@ -12,6 +12,17 @@ setmetatable(M, {
 	end,
 })
 
+function M.dedup(items)
+	local seen = {}
+	return vim.tbl_filter(function(item)
+		if seen[item] then
+			return false
+		end
+		seen[item] = true
+		return true
+	end, items)
+end
+
 function M.get_plugin(name)
 	return require("lazy.core.config").spec.plugins[name]
 end
@@ -73,6 +84,11 @@ function M.lazy_notify()
 	end)
 
 	timer:start(500, 0, replay)
+end
+
+function M.is_loaded(name)
+	local Config = require("lazy.core.config")
+	return Config.plugins[name] and Config.plugins[name]._.loaded
 end
 
 return M
