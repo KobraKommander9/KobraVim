@@ -117,6 +117,20 @@ M[#M + 1] = {
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
+				["cmp.entry.get_documentation"] = true,
+			},
+		},
+		routes = {
+			{
+				filter = {
+					event = "msg_show",
+					any = {
+						{ find = "%d+L, %d+B" },
+						{ find = "; after #%d+" },
+						{ find = "; before #%d+" },
+					},
+				},
+				view = "mini",
 			},
 		},
 		presets = {
@@ -130,10 +144,22 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.icons",
 	lazy = true,
-	config = true,
+	opts = {
+		file = {
+			[".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+			["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+		},
+		filetype = {
+			dotenv = { glyph = "", hl = "MiniIconsYellow" },
+		},
+	},
+	init = function()
+		package.preload["nvim-web-devicons"] = function()
+			require("mini.icons").mock_nvim_web_devicons()
+			return package.loaded["nvim-web-devicons"]
+		end
+	end,
 }
-
-M[#M + 1] = { "nvim-tree/nvim-web-devicons", lazy = true }
 
 M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 

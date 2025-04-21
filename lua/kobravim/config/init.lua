@@ -27,13 +27,13 @@ local defaults = {
 		-- 	ft = {
 		-- 		octo = "",
 		-- 	},
-		-- 	dap = {
-		-- 		Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-		-- 		Breakpoint = " ",
-		-- 		BreakpointCondition = " ",
-		-- 		BreakpointRejected = { " ", "DiagnosticError" },
-		-- 		LogPoint = ".>",
-		-- 	},
+		dap = {
+			Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
+			Breakpoint = " ",
+			BreakpointCondition = " ",
+			BreakpointRejected = { " ", "DiagnosticError" },
+			LogPoint = ".>",
+		},
 		diagnostics = {
 			Error = " ",
 			Warn = " ",
