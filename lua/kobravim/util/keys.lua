@@ -112,16 +112,16 @@ function M.safe_map(mode, lhs, rhs, opts)
 end
 
 setmetatable(M, {
-	__index = function(_, key)
-		if M.keys == nil then
-			M.keys = vim.deepcopy(layouts["default"])[key]
+	__index = function(t, key)
+		if t.keys == nil then
+			t.keys = vim.deepcopy(layouts["default"])[key]
 		end
 
-		if not M.keys[key] then
+		if not t.keys[key] then
 			return key
 		end
 
-		return M.keys[key]
+		return t.keys[key]
 	end,
 })
 
