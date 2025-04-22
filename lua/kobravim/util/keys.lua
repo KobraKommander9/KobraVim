@@ -67,14 +67,17 @@ local layouts = {
 	},
 }
 
+local keys
+local mappings
+
 function M.setup(layout)
 	layout = layout or "default"
 	if type(layout) == "string" then
 		layout = layouts[layout] or {}
 	end
 
-	M.keys = vim.deepcopy(layout)
-	local mappings = vim.deepcopy(M.keys)
+	keys = vim.deepcopy(layout)
+	mappings = vim.deepcopy(M.keys)
 
 	mappings.esc = nil
 
@@ -86,8 +89,10 @@ function M.setup(layout)
 
 	mappings.clearSearch = nil
 	mappings.pick = nil
+end
 
-	M.mappings = vim.deepcopy(mappings)
+function M.mappings()
+	return mappings
 end
 
 function M.safe_map(mode, lhs, rhs, opts)
@@ -112,16 +117,16 @@ function M.safe_map(mode, lhs, rhs, opts)
 end
 
 setmetatable(M, {
-	__index = function(t, key)
-		if t.keys == nil then
-			t.keys = vim.deepcopy(layouts["default"])[key]
+	__index = function(_, key)
+		if keys == nil then
+			keys = vim.deepcopy(layouts["default"])[key]
 		end
 
-		if not t.keys[key] then
+		if not keys[key] then
 			return key
 		end
 
-		return t.keys[key]
+		return keys[key]
 	end,
 })
 
