@@ -1,5 +1,9 @@
 local M = {}
 
+if true then
+	return {}
+end
+
 -- buffer management
 M[#M + 1] = {
 	"echasnovski/mini.visits",
