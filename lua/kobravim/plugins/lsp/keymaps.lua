@@ -1,5 +1,9 @@
 local M = {}
 
+if true then
+	return {}
+end
+
 M._keys = nil
 
 function M.get()
