@@ -102,6 +102,7 @@ setmetatable(M, {
 })
 
 function M.setup(opts)
+	vim.notify("setting up")
 	options = vim.tbl_deep_extend("force", defaults, opts or {}) or {}
 
 	KobraVim.keys.setup(options.keys)
