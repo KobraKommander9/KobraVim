@@ -17,8 +17,7 @@ M[#M + 1] = {
 -- next key clues
 M[#M + 1] = {
 	"echasnovski/mini.clue",
-	event = "VeryLazy",
-	keys = { "<leader>" },
+	lazy = false,
 	opts = KobraVim.mini.clue_options(function()
 		local miniclue = require("mini.clue")
 		local keys = KobraVim.keys
