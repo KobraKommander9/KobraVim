@@ -119,8 +119,9 @@ end
 setmetatable(M, {
 	__index = function(_, key)
 		if keys == nil then
-			keys = vim.deepcopy(layouts["default"])[key]
+			M.setup(KobraVim.config.keys)
 		end
+		assert(keys, "keys not set")
 
 		if not keys[key] then
 			return key
