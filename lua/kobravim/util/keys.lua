@@ -71,6 +71,7 @@ local keys
 local mappings
 
 function M.setup(layout)
+	vim.notify("setting up keys")
 	layout = layout or "default"
 	if type(layout) == "string" then
 		layout = layouts[layout] or {}
