@@ -118,10 +118,7 @@ end
 
 setmetatable(M, {
 	__index = function(_, key)
-		if keys == nil then
-			M.setup(KobraVim.config.keys)
-		end
-		assert(keys, "keys not set")
+		assert(keys, "keys not initialized")
 
 		if not keys[key] then
 			return key
