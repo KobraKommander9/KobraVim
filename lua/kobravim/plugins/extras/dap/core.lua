@@ -84,7 +84,7 @@ M[#M + 1] = {
   -- stylua: ignore
   keys = {
     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "v" } },
-    { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+    { "<leader>dU", function() require("dapui").toggle({}) end, desc = "Dap UI" },
   },
 	opts = {},
 	config = function(_, opts)
