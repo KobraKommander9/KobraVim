@@ -18,6 +18,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.clue",
 	event = "VeryLazy",
+	keys = { "<leader>" },
 	opts = KobraVim.mini.clue_options(function()
 		local miniclue = require("mini.clue")
 		local keys = KobraVim.keys
@@ -89,35 +90,35 @@ M[#M + 1] = {
 }
 
 -- easily jump to any location
--- M[#M + 1] = {
--- 	"folke/flash.nvim",
--- 	keys = {
--- 		{
--- 			"<cr>",
--- 			mode = { "n", "x", "o" },
--- 			function()
--- 				require("flash").jump()
--- 			end,
--- 			desc = "Flash",
--- 		},
--- 		{
--- 			"r",
--- 			mode = "o",
--- 			function()
--- 				require("flash").remote()
--- 			end,
--- 			desc = "Remote Flash",
--- 		},
--- 		{
--- 			"<c-c>",
--- 			mode = { "c" },
--- 			function()
--- 				require("flash").toggle()
--- 			end,
--- 			desc = "Toggle Flash Search",
--- 		},
--- 	},
--- }
+M[#M + 1] = {
+	"folke/flash.nvim",
+	keys = {
+		{
+			"<cr>",
+			mode = { "n", "x", "o" },
+			function()
+				require("flash").jump()
+			end,
+			desc = "Flash",
+		},
+		{
+			"r",
+			mode = "o",
+			function()
+				require("flash").remote()
+			end,
+			desc = "Remote Flash",
+		},
+		{
+			"<c-c>",
+			mode = { "c" },
+			function()
+				require("flash").toggle()
+			end,
+			desc = "Toggle Flash Search",
+		},
+	},
+}
 
 -- better bracket jumps
 M[#M + 1] = {
