@@ -1,5 +1,9 @@
 local M = {}
 
+if true then
+	return {}
+end
+
 M[#M + 1] = {
 	"rktjmp/lush.nvim",
 	cmd = { "Lushify", "LushImport", "LushRunTutorial" },

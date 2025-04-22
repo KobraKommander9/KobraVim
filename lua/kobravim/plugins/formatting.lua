@@ -1,5 +1,9 @@
 local M = {}
 
+if true then
+	return {}
+end
+
 local function setup(_, opts)
 	for _, key in ipairs({ "format_on_save", "format_after_save" }) do
 		if opts[key] then
