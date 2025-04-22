@@ -118,8 +118,6 @@ setmetatable(M, {
 			return mappings
 		end
 
-		vim.notify(vim.inspect(KobraVim.config.keys))
-
 		if not keys[key] then
 			return key
 		end
