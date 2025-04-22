@@ -76,8 +76,10 @@ function M.setup(layout)
 	if type(layout) == "string" then
 		layout = layouts[layout] or {}
 	end
+	vim.notify(vim.inspect(layout))
 
 	keys = vim.deepcopy(layout)
+	vim.notify(vim.inspect(keys))
 	mappings = vim.deepcopy(keys)
 
 	mappings.esc = nil
