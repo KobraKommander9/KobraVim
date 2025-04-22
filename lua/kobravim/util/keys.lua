@@ -67,35 +67,25 @@ local layouts = {
 	},
 }
 
-local keys
-local mappings
-
 function M.setup(layout)
-	vim.notify("setting up keys")
 	layout = layout or "default"
 	if type(layout) == "string" then
 		layout = layouts[layout] or {}
 	end
-	vim.notify(vim.inspect(layout))
 
-	keys = vim.deepcopy(layout)
-	vim.notify(vim.inspect(keys))
-	mappings = vim.deepcopy(keys)
+	M.keys = vim.deepcopy(layout)
+	M.mappings = vim.deepcopy(M.keys)
 
-	mappings.esc = nil
+	M.mappings.esc = nil
 
-	mappings.nextMatch = nil
-	mappings.prevMatch = nil
+	M.mappings.nextMatch = nil
+	M.mappings.prevMatch = nil
 
-	mappings.cycleDown = nil
-	mappings.cycleUp = nil
+	M.mappings.cycleDown = nil
+	M.mappings.cycleUp = nil
 
-	mappings.clearSearch = nil
-	mappings.pick = nil
-end
-
-function M.mappings()
-	return mappings
+	M.mappings.clearSearch = nil
+	M.mappings.pick = nil
 end
 
 function M.safe_map(mode, lhs, rhs, opts)
@@ -120,14 +110,14 @@ function M.safe_map(mode, lhs, rhs, opts)
 end
 
 setmetatable(M, {
-	__index = function(_, key)
-		assert(keys, "keys not initialized")
+	__index = function(t, key)
+		assert(t.keys, "keys not initialized")
 
-		if not keys[key] then
+		if not t.keys[key] then
 			return key
 		end
 
-		return keys[key]
+		return t.keys[key]
 	end,
 })
 

@@ -1,7 +1,7 @@
 local map = KobraVim.keys.safe_map
 
 -- remap keys
-for lhs, rhs in pairs(KobraVim.keys.mappings()) do
+for lhs, rhs in pairs(KobraVim.keys.mappings) do
 	map("", lhs, rhs, { silent = true, noremap = true })
 	map("", rhs, lhs, { silent = true, noremap = true })
 end
