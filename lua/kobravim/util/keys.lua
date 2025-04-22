@@ -111,8 +111,6 @@ end
 
 setmetatable(M, {
 	__index = function(t, key)
-		assert(t.keys, "keys not initialized")
-
 		if not t.keys[key] then
 			return key
 		end
