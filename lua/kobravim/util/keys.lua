@@ -77,7 +77,7 @@ function M.setup(layout)
 	end
 
 	keys = vim.deepcopy(layout)
-	mappings = vim.deepcopy(M.keys)
+	mappings = vim.deepcopy(keys)
 
 	mappings.esc = nil
 
