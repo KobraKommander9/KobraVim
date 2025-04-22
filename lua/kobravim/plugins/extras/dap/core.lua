@@ -33,7 +33,9 @@ M[#M + 1] = {
 		},
 	},
 	keys = function()
-  -- stylua: ignore
+		vim.notify("loading dap keys")
+
+    -- stylua: ignore
     return {
       { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
       { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
