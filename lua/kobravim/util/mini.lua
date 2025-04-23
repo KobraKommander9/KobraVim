@@ -56,6 +56,8 @@ function M.clue_options(clues, triggers)
 		for _, clue in ipairs(clues or {}) do
 			table.insert(opts.clues, clue)
 		end
+
+		return opts
 	end
 end
 
