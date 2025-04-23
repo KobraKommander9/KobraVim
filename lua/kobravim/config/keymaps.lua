@@ -125,41 +125,18 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>qa", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- windows
-map("n", "<leader>wc", "<C-w>c", { desc = "Close window" })
-map("n", "<leader>wN", "<C-w>n", { desc = "New window" })
-map("n", "<leader>ws", "<C-w>s", { desc = "Split window below" })
-map("n", "<leader>wv", "<C-w>v", { desc = "Split window right" })
+map("n", "<C-H>", "<C-w>H", { desc = "Move to very left" })
+map("n", "<C-" .. KobraVim.keys.J .. ">", "<C-w>J", { desc = "Move to very bottom" })
+map("n", "<C-" .. KobraVim.keys.K .. ">", "<C-w>K", { desc = "Move to very top" })
+map("n", "<C-" .. KobraVim.keys.L .. ">", "<C-w>L", { desc = "Move to very right" })
 
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-" .. KobraVim.keys.j .. ">", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-" .. KobraVim.keys.k .. ">", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-" .. KobraVim.keys.l .. ">", "<C-w>l", { desc = "Go to right window" })
+map("n", "<C-h>", "<C-w>h", { desc = "Focus left" })
+map("n", "<C-" .. KobraVim.keys.j .. ">", "<C-w>j", { desc = "Focus down" })
+map("n", "<C-" .. KobraVim.keys.k .. ">", "<C-w>k", { desc = "Focus up" })
+map("n", "<C-" .. KobraVim.keys.l .. ">", "<C-w>l", { desc = "Focus right" })
 
-map("n", "<leader>wh", "<C-w>h", { desc = "Go to left window" })
-map("n", "<leader>w" .. KobraVim.keys.j, "<C-W>j", { desc = "Go to lower window" })
-map("n", "<leader>w" .. KobraVim.keys.k, "<C-W>k", { desc = "Go to upper window" })
-map("n", "<leader>w" .. KobraVim.keys.l, "<C-W>l", { desc = "Go to right window" })
-
-map("n", "<leader>wH", "<C-w>H", { desc = "Swap layout left" })
-map("n", "<leader>w" .. KobraVim.keys.J, "<C-w>H", { desc = "Swap layout left" })
-
-map("n", "<leader>wb", "<C-w>b", { desc = "Cursor bottom-most" })
-map("n", "<leader>wp", "<C-w>p", { desc = "Previous window" })
-map("n", "<leader>wt", "<C-w>t", { desc = "Cursor top-most" })
-map("n", "<leader>ww", "<C-w>w", { desc = "Window below" })
-map("n", "<leader>wW", "<C-w>W", { desc = "Window above" })
-
-map("n", "<leader>wr", "<C-w>r", { desc = "Rotate windows right" })
-map("n", "<leader>wR", "<C-w>R", { desc = "Rotate windows left" })
-map("n", "<leader>wx", "<C-w>x", { desc = "Exchange next window" })
-
-map("n", "<leader>w=", "<C-w>=", { desc = "Equalize windows" })
-map("n", "<leader>w-", "<C-w>-", { desc = "Decrease height" })
-map("n", "<leader>w+", "<C-w>+", { desc = "Increase height" })
-map("n", "<leader>w_", "<C-w>+", { desc = "Maximize height" })
-map("n", "<leader>w<", "<C-w><", { desc = "Decrease width" })
-map("n", "<leader>w>", "<C-w>>", { desc = "Increase width" })
-map("n", "<leader>w|", "<C-w>|", { desc = "Maximize width" })
+map("n", "<C-w>" + KobraVim.keys.n, "<C-w>n", { desc = "Open new" })
+map("n", "<C-w>" + KobraVim.keys.i, "<C-w>i", { desc = "Split + jump to declaration" })
 
 -- tabs
 map("n", "<leader>al", "<cmd>tablast<cr>", { desc = "Last Tab" })

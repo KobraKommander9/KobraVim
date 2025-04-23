@@ -6,6 +6,7 @@ M[#M + 1] = {
 		"jbyuki/one-small-step-for-vimkind",
 		config = function()
 			local dap = require("dap")
+
 			dap.adapters.nlua = function(callback, conf)
 				local adapter = {
 					type = "server",

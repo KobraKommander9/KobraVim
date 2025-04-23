@@ -25,12 +25,7 @@ M[#M + 1] = {
 			"theHamsta/nvim-dap-virtual-text",
 			opts = {},
 		},
-		{
-			"echasnovski/mini.clue",
-			opts = KobraVim.mini.clue_options({
-				{ mode = "n", key = "<leader>d", desc = "+Debug" },
-			}),
-		},
+		"echasnovski/mini.clue",
 	},
 
   -- stylua: ignore
@@ -74,6 +69,19 @@ M[#M + 1] = {
 		local json = require("plenary.json")
 		vscode.json_decode = function(str)
 			return vim.json.decode(json.json_strip_comments(str))
+		end
+
+		-- Configure mini.clue for dap
+		if KobraVim.has("mini.clue") then
+			local opts = KobraVim.opts("mini.clue") or {}
+			opts = vim.tbl_deep_extend(
+				"force",
+				opts,
+				KobraVim.mini.clue_options({
+					{ mode = "n", key = "<leader>d", desc = "+Debug" },
+				})
+			)
+			require("mini.clue").setup(opts)
 		end
 	end,
 }

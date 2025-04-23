@@ -35,7 +35,6 @@ M[#M + 1] = {
 
 			-- clues
 			{ mode = "n", keys = "<leader>a", desc = "+Tabs" },
-			{ mode = "n", keys = "<leader>am", desc = "+Move" },
 			{ mode = "n", keys = "<leader>b", desc = "+Buffers" },
 			{ mode = "n", keys = "<leader>c", desc = "+Commands" },
 			{ mode = "n", keys = "<leader>f", desc = "+Files" },
@@ -44,13 +43,15 @@ M[#M + 1] = {
 			{ mode = "n", keys = "<leader>u", desc = "+UI" },
 			{ mode = "n", keys = "<leader>q", desc = "+Quit" },
 			{ mode = "n", keys = "<leader>s", desc = "+Search" },
-			{ mode = "n", keys = "<leader>w", desc = "+Windows" },
 			{ mode = "n", keys = "<leader>x", desc = "+Lists" },
+
+			-- tabs
+			{ mode = "n", keys = "<leader>am", desc = "+Move" },
 		}
 	end, {
 		-- Leader triggers
-		{ mode = "n", keys = "<Leader>" },
-		{ mode = "x", keys = "<Leader>" },
+		{ mode = "n", keys = "<leader>" },
+		{ mode = "x", keys = "<leader>" },
 
 		-- Built-in completion
 		{ mode = "i", keys = "<C-x>" },
