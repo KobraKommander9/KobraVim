@@ -1,9 +1,5 @@
 local M = {}
 
-if true then
-	return {}
-end
-
 M[#M + 1] = {
 	"rcarriga/nvim-notify",
 	keys = {

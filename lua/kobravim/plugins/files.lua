@@ -1,9 +1,5 @@
 local M = {}
 
-if true then
-	return {}
-end
-
 -- file utilities
 local setupDotFileToggle = function()
 	local show_dotfiles = true

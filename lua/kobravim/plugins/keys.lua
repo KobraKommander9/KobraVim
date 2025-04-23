@@ -87,52 +87,52 @@ M[#M + 1] = {
 		{ mode = "n", keys = "[" },
 	}),
 }
---
--- -- easily jump to any location
--- M[#M + 1] = {
--- 	"folke/flash.nvim",
--- 	keys = {
--- 		{
--- 			"<cr>",
--- 			mode = { "n", "x", "o" },
--- 			function()
--- 				require("flash").jump()
--- 			end,
--- 			desc = "Flash",
--- 		},
--- 		{
--- 			"r",
--- 			mode = "o",
--- 			function()
--- 				require("flash").remote()
--- 			end,
--- 			desc = "Remote Flash",
--- 		},
--- 		{
--- 			"<c-c>",
--- 			mode = { "c" },
--- 			function()
--- 				require("flash").toggle()
--- 			end,
--- 			desc = "Toggle Flash Search",
--- 		},
--- 	},
--- }
---
--- -- better bracket jumps
--- M[#M + 1] = {
--- 	"echasnovski/mini.bracketed",
--- 	event = "BufEnter",
--- 	dependencies = {
--- 		{
--- 			"echasnovski/mini.clue",
--- 			opts = KobraVim.mini.clue_options({
--- 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
--- 				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
--- 			}),
--- 		},
--- 	},
--- 	config = true,
--- }
+
+-- easily jump to any location
+M[#M + 1] = {
+	"folke/flash.nvim",
+	keys = {
+		{
+			"<cr>",
+			mode = { "n", "x", "o" },
+			function()
+				require("flash").jump()
+			end,
+			desc = "Flash",
+		},
+		{
+			"r",
+			mode = "o",
+			function()
+				require("flash").remote()
+			end,
+			desc = "Remote Flash",
+		},
+		{
+			"<c-c>",
+			mode = { "c" },
+			function()
+				require("flash").toggle()
+			end,
+			desc = "Toggle Flash Search",
+		},
+	},
+}
+
+-- better bracket jumps
+M[#M + 1] = {
+	"echasnovski/mini.bracketed",
+	event = "BufEnter",
+	dependencies = {
+		{
+			"echasnovski/mini.clue",
+			opts = KobraVim.mini.clue_options({
+				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
+				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },
+			}),
+		},
+	},
+	config = true,
+}
 
 return M
