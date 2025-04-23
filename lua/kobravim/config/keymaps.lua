@@ -135,8 +135,8 @@ map("n", "<C-" .. KobraVim.keys.j .. ">", "<C-w>j", { desc = "Focus down" })
 map("n", "<C-" .. KobraVim.keys.k .. ">", "<C-w>k", { desc = "Focus up" })
 map("n", "<C-" .. KobraVim.keys.l .. ">", "<C-w>l", { desc = "Focus right" })
 
-map("n", "<C-w>" + KobraVim.keys.n, "<C-w>n", { desc = "Open new" })
-map("n", "<C-w>" + KobraVim.keys.i, "<C-w>i", { desc = "Split + jump to declaration" })
+map("n", "<C-w>" .. KobraVim.keys.n, "<C-w>n", { desc = "Open new" })
+map("n", "<C-w>" .. KobraVim.keys.i, "<C-w>i", { desc = "Split + jump to declaration" })
 
 -- tabs
 map("n", "<leader>al", "<cmd>tablast<cr>", { desc = "Last Tab" })
