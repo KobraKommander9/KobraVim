@@ -1,6 +1,24 @@
 local M = {}
 
 M[#M + 1] = {
+	"xiyaowong/transparent.nvim",
+	opts = {
+		groups = {
+			"DiagnosticVirtualTextError",
+			"DiagnosticVirtualTextWarn",
+			"DiagnosticVirtualTextInfo",
+			"DiagnosticVirtualTextHint",
+			"DiagnosticVirtualTextOk",
+			"LspInlayHint",
+			"Normal",
+			"NormalFloat",
+			"NormalNC",
+			"Pmenu",
+		},
+	},
+}
+
+M[#M + 1] = {
 	"rcarriga/nvim-notify",
 	keys = {
 		{
