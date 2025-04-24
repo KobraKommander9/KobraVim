@@ -56,6 +56,14 @@ M[#M + 1] = {
 				ghost_text = {
 					enabled = true,
 				},
+				menu = {
+					auto_show = function()
+						return vim.fn.getcmdtype() == ":"
+					end,
+				},
+			},
+			keymap = {
+				["<Tab>"] = { "show", "accept" },
 			},
 		},
 		keymap = {
