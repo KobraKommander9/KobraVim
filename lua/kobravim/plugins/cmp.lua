@@ -52,7 +52,11 @@ M[#M + 1] = {
 			default = { "lsp", "path", "snippets", "buffer" },
 		},
 		cmdline = {
-			enabled = true,
+			completion = {
+				ghost_text = {
+					enabled = true,
+				},
+			},
 		},
 		keymap = {
 			preset = "enter",
