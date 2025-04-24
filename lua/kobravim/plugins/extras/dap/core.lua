@@ -18,21 +18,19 @@ local function get_args(config)
 end
 
 M[#M + 1] = {
-	"echasnovski/mini.clue",
-	opts = {
-		clues = {
-			{ mode = "n", key = "<leader>d", desc = "+Debug" },
-		},
-	},
-}
-
-M[#M + 1] = {
 	"mfussenegger/nvim-dap",
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		{
 			"theHamsta/nvim-dap-virtual-text",
 			opts = {},
+		},
+		{
+
+			"echasnovski/mini.clue",
+			opts = KobraVim.mini.clue_options({
+				{ mode = "n", key = "<leader>d", desc = "+Debug" },
+			}),
 		},
 	},
 
