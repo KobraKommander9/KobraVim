@@ -2,6 +2,7 @@ local M = {}
 
 M[#M + 1] = {
 	"xiyaowong/transparent.nvim",
+	cmd = { "TransparentEnable", "TransparentDisable", "TransparentToggle" },
 	opts = {
 		groups = {
 			"DiagnosticVirtualTextError",
