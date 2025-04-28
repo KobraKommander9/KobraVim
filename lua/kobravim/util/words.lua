@@ -20,7 +20,7 @@ local ns2 = vim.api.nvim_create_namespace("nvim.lsp.references")
 local timer = assert((vim.uv or vim.loop).new_timer())
 
 function M.enable()
-	if M.enabled then
+	if M.enabled or vim.g.vscode then
 		return
 	end
 	M.enabled = true
