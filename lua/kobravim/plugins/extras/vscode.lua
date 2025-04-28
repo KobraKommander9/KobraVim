@@ -39,39 +39,39 @@ vim.api.nvim_create_autocmd("User", {
 		vim.keymap.set("n", "<C-r>", "<Cmd>call VSCodeNotify('redo')<CR>")
 
 		-- Navigate VSCode tabs
-		vim.keymap.set("n", "<leader>ac", "<Cmd>call VSCodeNotify('workbench.action.closeEditor')<CR>")
-		vim.keymap.set("n", "<leader>af", "<Cmd>call VSCodeNotify('workbench.action.openFirstEditorInGroup')<CR>")
-		vim.keymap.set("n", "<leader>al", "<Cmd>call VSCodeNotify('workbench.action.openLastEditorInGroup')<CR>")
-		vim.keymap.set("n", "<leader>an", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
-		vim.keymap.set("n", "<leader>ap", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
-		vim.keymap.set(
-			"n",
-			"<leader>am" .. KobraVim.keys.j,
-			"<Cmd>call VSCodeNotify('workbench.action.moveEditorLeft')<CR>"
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>am" .. KobraVim.keys.k,
-			"<Cmd>call VSCodeNotify('workbench.action.moveEditorRight')<CR>"
-		)
+		-- vim.keymap.set("n", "<leader>ac", "<Cmd>call VSCodeNotify('workbench.action.closeEditor')<CR>")
+		-- vim.keymap.set("n", "<leader>af", "<Cmd>call VSCodeNotify('workbench.action.openFirstEditorInGroup')<CR>")
+		-- vim.keymap.set("n", "<leader>al", "<Cmd>call VSCodeNotify('workbench.action.openLastEditorInGroup')<CR>")
+		-- vim.keymap.set("n", "<leader>an", "<Cmd>call VSCodeNotify('workbench.action.nextEditor')<CR>")
+		-- vim.keymap.set("n", "<leader>ap", "<Cmd>call VSCodeNotify('workbench.action.previousEditor')<CR>")
+		-- vim.keymap.set(
+		-- 	"n",
+		-- 	"<leader>am" .. KobraVim.keys.j,
+		-- 	"<Cmd>call VSCodeNotify('workbench.action.moveEditorLeft')<CR>"
+		-- )
+		-- vim.keymap.set(
+		-- 	"n",
+		-- 	"<leader>am" .. KobraVim.keys.k,
+		-- 	"<Cmd>call VSCodeNotify('workbench.action.moveEditorRight')<CR>"
+		-- )
 
 		-- Navigate VSCode editor groups
-		vim.keymap.set(
-			{ "n", "x" },
-			"<C-" .. KobraVim.keys.j .. ">",
-			"<Cmd>call VSCodeNotify('workbench.action.navigateDown')"
-		)
-		vim.keymap.set(
-			{ "n", "x" },
-			"<C-" .. KobraVim.keys.k .. ">",
-			"<Cmd>call VSCodeNotify('workbench.action.navigateUp')"
-		)
-		vim.keymap.set({ "n", "x" }, "<C-h>", "<Cmd>call VSCodeNotify('workbench.action.navigateLeft')")
-		vim.keymap.set(
-			{ "n", "x" },
-			"<C-" .. KobraVim.keys.l .. ">",
-			"<Cmd>call VSCodeNotify('workbench.action.navigateRight')"
-		)
+		-- vim.keymap.set(
+		-- 	{ "n", "x" },
+		-- 	"<C-" .. KobraVim.keys.j .. ">",
+		-- 	"<Cmd>call VSCodeNotify('workbench.action.navigateDown')"
+		-- )
+		-- vim.keymap.set(
+		-- 	{ "n", "x" },
+		-- 	"<C-" .. KobraVim.keys.k .. ">",
+		-- 	"<Cmd>call VSCodeNotify('workbench.action.navigateUp')"
+		-- )
+		-- vim.keymap.set({ "n", "x" }, "<C-h>", "<Cmd>call VSCodeNotify('workbench.action.navigateLeft')")
+		-- vim.keymap.set(
+		-- 	{ "n", "x" },
+		-- 	"<C-" .. KobraVim.keys.l .. ">",
+		-- 	"<Cmd>call VSCodeNotify('workbench.action.navigateRight')"
+		-- )
 	end,
 })
 
