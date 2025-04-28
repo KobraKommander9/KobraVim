@@ -81,7 +81,7 @@ return {
 		config = function(_, opts)
 			opts = opts or {}
 			-- disable the colorscheme
-			opts.colorscheme = function() end
+			opts.ui.colorscheme = function() end
 			require("kobravim").setup(opts)
 		end,
 	},
