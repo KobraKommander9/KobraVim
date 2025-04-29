@@ -54,6 +54,7 @@ local setupSplitMappings = function()
 			local buf_id = args.data.buf_id
 			map_split(buf_id, "gs", "belowright horizontal")
 			map_split(buf_id, "gv", "belowright vertical")
+			map_split(buf_id, "gt", "tab")
 		end,
 	})
 end
@@ -79,6 +80,7 @@ end
 -- file browser
 M[#M + 1] = {
 	"echasnovski/mini.files",
+	dependencies = { "mini.icons" },
 	version = false,
 	event = "VimEnter",
 	keys = {
@@ -106,9 +108,9 @@ M[#M + 1] = {
 	config = function(_, opts)
 		require("mini.files").setup(opts)
 
+		setupCwdMapping()
 		setupDotFileToggle()
 		setupSplitMappings()
-		setupCwdMapping()
 	end,
 }
 
