@@ -158,6 +158,13 @@ M[#M + 1] = {
 	end,
 }
 
+M[#M + 1] = {
+	"lukas-reineke/indent-blankline.nvim",
+	event = "BufRead",
+	main = "ibl",
+	config = true,
+}
+
 M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 
 return M
