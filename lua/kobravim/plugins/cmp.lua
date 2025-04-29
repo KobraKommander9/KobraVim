@@ -88,12 +88,6 @@ M[#M + 1] = {
 		keymap = {
 			preset = "default",
 		},
-		signature = {
-			enabled = true,
-			window = {
-				show_documentation = false,
-			},
-		},
 	},
 	config = function(_, opts)
 		local enabled = opts.sources.default
