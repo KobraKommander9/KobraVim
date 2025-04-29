@@ -37,6 +37,24 @@ M[#M + 1] = {
 			menu = {
 				draw = {
 					treesitter = { "lsp" },
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+								return kind_icon
+							end,
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+						kind = {
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+					},
 				},
 			},
 			documentation = {
@@ -45,6 +63,7 @@ M[#M + 1] = {
 			},
 			ghost_text = {
 				enabled = true,
+				show_with_menu = false,
 			},
 		},
 		sources = {
@@ -67,8 +86,13 @@ M[#M + 1] = {
 			},
 		},
 		keymap = {
-			preset = "enter",
-			["<C-y>"] = { "select_and_accept" },
+			preset = "default",
+		},
+		signature = {
+			enabled = true,
+			window = {
+				show_documentation = false,
+			},
 		},
 	},
 	config = function(_, opts)
