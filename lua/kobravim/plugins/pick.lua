@@ -33,7 +33,7 @@ M[#M + 1] = {
 		{ "<leader>sg", KobraVim.pick.builtin("grep_live"), desc = "Search (grep live)" },
 		{ "<leader>sG", KobraVim.pick.builtin("grep"), desc = "Search (grep)" },
 		{ "<leader>sH", KobraVim.pick.builtin("help"), desc = "Search help tags" },
-		{ "<leader>sr", KobraVim.pick.builtin("resume"), desc = "Resume search" },
+		{ "<leader>sR", KobraVim.pick.builtin("resume"), desc = "Resume search" },
 	},
 	opts = function(_, opts)
 		opts = opts or {}
