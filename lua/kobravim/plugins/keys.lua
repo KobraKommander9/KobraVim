@@ -85,6 +85,32 @@ M[#M + 1] = {
 	}),
 }
 
+-- track key mappings
+M[#M + 1] = {
+	"tris203/hawtkeys.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
+	keys = {
+		{ "<leader>kk", "<cmd>Hawtkeys<cr>", desc = "Show key mappings" },
+		{ "<leader>kK", "<cmd>HawtkeysAll<cr>", desc = "Show all key mappings" },
+		{ "<leader>kd", "<cmd>HawtkeysDupes<cr>", desc = "Show duplicate key mappings" },
+	},
+	opts = function(_, opts)
+		opts.customMaps = opts.customMaps or {}
+		table.insert(opts.customMaps, {
+			["lazy"] = {
+				method = "lazy",
+			},
+		})
+
+		if Kobra.config.layout == "colemak" then
+			opts.keyboardLayout = "colemak"
+		end
+	end,
+}
+
 -- easily jump to any location
 M[#M + 1] = {
 	"folke/flash.nvim",
