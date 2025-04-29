@@ -133,6 +133,12 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
+	"echasnovski/mini.animate",
+	event = "VeryLazy",
+	config = true,
+}
+
+M[#M + 1] = {
 	"echasnovski/mini.icons",
 	lazy = true,
 	opts = {
