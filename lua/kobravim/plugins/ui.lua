@@ -135,7 +135,11 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"echasnovski/mini.animate",
 	event = "VeryLazy",
-	config = true,
+	opts = {
+		cursor = {
+			enable = false,
+		},
+	},
 }
 
 M[#M + 1] = {
