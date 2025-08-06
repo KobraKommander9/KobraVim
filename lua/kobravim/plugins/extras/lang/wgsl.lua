@@ -32,7 +32,7 @@ M[#M + 1] = {
 		parser_config.wgsl = {
 			install_info = {
 				url = "https://github.com/szebniok/tree-sitter-wgsl",
-				files = { "src/parser.c" },
+				files = { "src/parser.c", "src/scanner.c" },
 			},
 			filetype = "wgsl",
 		}
