@@ -45,7 +45,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"williamboman/mason.nvim",
-	opts = { ensure_installed = { "wgsl_analyzer" } },
+	opts = { ensure_installed = { "wgsl-analyzer" } },
 }
 
 return M
