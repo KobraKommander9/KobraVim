@@ -44,6 +44,17 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
+	"neovim/nvim-lspconfig",
+	opts = {
+		servers = {
+			wgsl_analyzer = {
+				filetypes = { "wgsl" },
+			},
+		},
+	},
+}
+
+M[#M + 1] = {
 	"williamboman/mason.nvim",
 	opts = { ensure_installed = { "wgsl-analyzer" } },
 }
