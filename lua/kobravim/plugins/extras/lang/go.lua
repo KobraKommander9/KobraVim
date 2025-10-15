@@ -102,7 +102,7 @@ M[#M + 1] = {
 	optional = true,
 	opts = {
 		formatters_by_ft = {
-			go = { "gofumpt" },
+			go = { "gofumpt", "lsp_format" },
 		},
 	},
 }

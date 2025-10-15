@@ -51,7 +51,7 @@ function M.formatter(opts)
 			end, clients)
 
 			return vim.tbl_map(function(client)
-				return client.nae
+				return client.name
 			end, ret)
 		end,
 	}
