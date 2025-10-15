@@ -75,7 +75,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"williamboman/mason.nvim",
-	opts = { ensure_installed = { "goimports", "gofumpt" } },
+	opts = { ensure_installed = { "gofumpt" } },
 }
 
 M[#M + 1] = {
@@ -92,7 +92,6 @@ M[#M + 1] = {
 		opts.sources = vim.list_extend(opts.sources or {}, {
 			nls.builtins.code_actions.gomodifytags,
 			nls.builtins.code_actions.impl,
-			nls.builtins.formatting.goimports,
 			nls.builtins.formatting.gofumpt,
 		})
 	end,
@@ -103,7 +102,7 @@ M[#M + 1] = {
 	optional = true,
 	opts = {
 		formatters_by_ft = {
-			go = { "goimports", "gofumpt" },
+			go = { "gofumpt" },
 		},
 	},
 }
