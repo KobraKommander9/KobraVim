@@ -8,7 +8,6 @@ M[#M + 1] = {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		{
-
 			"echasnovski/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", key = "<leader>t", desc = "+Test" },
@@ -18,11 +17,13 @@ M[#M + 1] = {
 
   -- stylua: ignore
   keys = {
-    { "<leader>ta", function() require("neotest").run.attach() end, desc = "Stop Test" },
+    { "<leader>ta", function() require("neotest").run.attach() end, desc = "Attach to Test" },
     { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run Current File" },
     { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest Test" },
     { "<leader>ts", function() require("neotest").run.stop() end, desc = "Stop Test" },
   },
+
+	config = true,
 }
 
 return M

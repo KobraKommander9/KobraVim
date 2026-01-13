@@ -117,7 +117,7 @@ M[#M + 1] = {
 		},
 		{
 			"leoluz/nvim-dap-go",
-			opts = {},
+			config = true,
 		},
 	},
 	config = function()
