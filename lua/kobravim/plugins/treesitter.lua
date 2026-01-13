@@ -3,6 +3,7 @@ local M = {}
 M[#M + 1] = {
 	"nvim-treesitter/nvim-treesitter",
 	version = false,
+	branch = "main",
 	build = ":TSUpdate",
 	event = { "KobraFile", "VeryLazy" },
 	lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
