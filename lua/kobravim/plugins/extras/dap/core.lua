@@ -50,7 +50,8 @@ M[#M + 1] = {
     { "<leader>do", function() require("dap").step_out() end, desc = "Step Out" },
     { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
     { "<leader>ds", function() require("dap").session() end, desc = "Session" },
-    { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
+    { "<leader>dT", function() require("dap").terminate() end, desc = "Terminate" },
+    { "<leader>dt", function() require("neotest").run.run({strategy = "dap"}) end, desc = "Debug Nearest Test" },
     { "<leader>du", function() require("dap").up() end, desc = "Up" },
     { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
   },
@@ -87,7 +88,11 @@ M[#M + 1] = {
     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "v" } },
     { "<leader>dU", function() require("dapui").toggle({}) end, desc = "Dap UI" },
   },
-	opts = {},
+	opts = {
+		mappings = {
+			edit = "c",
+		},
+	},
 	config = function(_, opts)
 		local dap = require("dap")
 		local dapui = require("dapui")

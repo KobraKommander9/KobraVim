@@ -120,6 +120,19 @@ M[#M + 1] = {
 			opts = {},
 		},
 	},
+	config = function()
+		local dap = require("dap")
+		table.insert(dap.configurations.go, {
+			type = "go",
+			name = "Debug (Prompt for Program, Tags, & Args)",
+			request = "launch",
+			program = function()
+				return vim.fn.input("Path to executable/directory: ", vim.fn.getcwd() .. "/", "file")
+			end,
+			args = require("dap-go").get_arguments,
+			buildFlags = require("dap-go").get_build_flags,
+		})
+	end,
 }
 
 M[#M + 1] = {
