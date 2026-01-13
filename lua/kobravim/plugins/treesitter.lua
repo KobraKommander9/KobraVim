@@ -5,20 +5,11 @@ M[#M + 1] = {
 	version = false,
 	branch = "main",
 	build = ":TSUpdate",
-	event = { "KobraFile", "VeryLazy" },
 	lazy = false,
 	init = function(plugin)
 		require("lazy.core.loader").add_to_rtp(plugin)
 	end,
-	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-	keys = {
-		{ "<C-space>", desc = "Increment Selection" },
-		{ "<bs>", desc = "Decrement Selection", mode = "x" },
-	},
-	opts_extend = { "ensure_installed" },
 	opts = {
-		highlight = { enable = true },
-		indent = { enable = true },
 		ensure_installed = {
 			"bash",
 			"c",
@@ -45,68 +36,65 @@ M[#M + 1] = {
 			"xml",
 			"yaml",
 		},
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "<C-space>",
-				node_incremental = "<C-space>",
-				scope_incremental = false,
-				node_decremental = "<bs>",
-			},
-		},
-		textobjects = {
-			move = {
-				enable = true,
-				goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-				goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-				goto_previous_start = {
-					["[f"] = "@function.outer",
-					["[c"] = "@class.outer",
-					["[a"] = "@parameter.inner",
-				},
-				goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
-			},
-		},
 	},
 	config = function(_, opts)
-		if type(opts.ensure_installed) == "table" then
-			opts.ensure_installed = KobraVim.dedup(opts.ensure_installed)
+		local ts = require("nvim-treesitter")
+
+		if opts.ensure_installed and #opts.ensure_installed > 0 then
+			ts.install(KobraVim.dedup(opts.ensure_installed))
 		end
-		require("nvim-treesitter.config").setup(opts)
+
+		ts.setup()
+
+		vim.api.nvim_create_autocmd("FileType", {
+			group = vim.api.nvim_create_augroup("KobraTS", { clear = true }),
+			callback = function(args)
+				local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+				if lang then
+					pcall(vim.treesitter.start, args.buf, lang)
+					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end
+			end,
+		})
 	end,
 }
 
 M[#M + 1] = {
 	"nvim-treesitter/nvim-treesitter-textobjects",
-	event = "VeryLazy",
 	branch = "main",
-	enabled = true,
-	config = function()
-		if KobraVim.is_loaded("nvim-treesitter") then
-			local opts = KobraVim.opts("nvim-treesitter")
-			require("nvim-treesitter.config").setup({ textobjects = opts.textobjects })
-		end
-
-		local move = require("nvim-treesitter-textobjects.move")
-		local configs = require("nvim-treesitter.config")
-
-		for name, fn in pairs(move) do
-			if name:find("goto") == 1 then
-				move[name] = function(q, ...)
-					if vim.wo.diff then
-						local config = configs.get_module("textobjects.move")[name]
-						for key, query in pairs(config or {}) do
-							if q == query and key:find("[%]%[][cC]") then
-								vim.cmd("normal! " .. key)
-								return
-							end
-						end
-					end
-					return fn(q, ...)
-				end
-			end
-		end
-	end,
+	opts = {
+		move = {
+			enable = true,
+			set_jumps = true,
+			goto_next_start = {
+				["]f"] = "@function.outer",
+				["]c"] = "@class.outer",
+				["]a"] = "@parameter.inner",
+			},
+			goto_next_end = {
+				["]F"] = "@function.outer",
+				["]C"] = "@class.outer",
+				["]A"] = "@parameter.inner",
+			},
+			goto_previous_start = {
+				["[f"] = "@function.outer",
+				["[c"] = "@class.outer",
+				["[a"] = "@parameter.inner",
+			},
+			goto_previous_end = {
+				["[F"] = "@function.outer",
+				["[C"] = "@class.outer",
+				["[A"] = "@parameter.inner",
+			},
+		},
+		lsp_interop = {
+			enable = true,
+			peek_definition_code = {
+				["<leader>lf"] = "@function.outer",
+				["<leader>lF"] = "@class.outer",
+			},
+		},
+	},
 }
 
 -- Automatically add closing tags for HTML and JSX

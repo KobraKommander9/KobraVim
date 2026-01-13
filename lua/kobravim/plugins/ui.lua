@@ -136,8 +136,10 @@ M[#M + 1] = {
 	"folke/snacks.nvim",
 	event = "VeryLazy",
 	opts = {
-		animate = { enabled = true },
 		indent = { enabled = true },
+		scroll = {
+			enabled = true,
+		},
 	},
 }
 
