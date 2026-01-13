@@ -6,7 +6,7 @@ M[#M + 1] = {
 	branch = "main",
 	build = ":TSUpdate",
 	event = { "KobraFile", "VeryLazy" },
-	lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+	lazy = false,
 	init = function(plugin)
 		require("lazy.core.loader").add_to_rtp(plugin)
 	end,
