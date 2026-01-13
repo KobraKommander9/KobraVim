@@ -88,7 +88,7 @@ M[#M + 1] = {
 		end
 
 		local move = require("nvim-treesitter-textobjects.move")
-		local configs = require("nvim-treesitter.configs")
+		local configs = require("nvim-treesitter.config")
 
 		for name, fn in pairs(move) do
 			if name:find("goto") == 1 then
