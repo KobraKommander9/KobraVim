@@ -1,19 +1,18 @@
 local M = {}
 
 M[#M + 1] = {
-	"echasnovski/mini.clue",
-	opts = KobraVim.mini.clue_options({
-		{ mode = "n", key = "<leader>t", desc = "+Test" },
-	}),
-}
-
-M[#M + 1] = {
 	"nvim-neotest/neotest",
 	dependencies = {
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
+		{
+			"echasnovski/mini.clue",
+			opts = KobraVim.mini.clue_options({
+				{ mode = "n", key = "<leader>t", desc = "+Test" },
+			}),
+		},
 	},
 
   -- stylua: ignore
@@ -24,9 +23,7 @@ M[#M + 1] = {
     { "<leader>ts", function() require("neotest").run.stop() end, desc = "Stop Test" },
   },
 
-	opts = {
-		log_level = vim.log.levels.DEBUG,
-	},
+	config = true,
 }
 
 return M

@@ -37,7 +37,7 @@ M[#M + 1] = {
 			filetype = "wgsl",
 		}
 
-		require("nvim-treesitter.configs").setup(opts)
+		require("nvim-treesitter.config").setup(opts)
 
 		copy_queries()
 	end,
