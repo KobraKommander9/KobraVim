@@ -141,13 +141,13 @@ M[#M + 1] = {
 	dependencies = {
 		"fredrikaverpil/neotest-golang",
 	},
-	opts = {
-		adapters = {
-			["neotest-golang"] = {
-				dap_go_enabled = true,
+	opts = function()
+		return {
+			adapters = {
+				require("neotest-golang"),
 			},
-		},
-	},
+		}
+	end,
 }
 
 M[#M + 1] = {
