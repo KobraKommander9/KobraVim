@@ -79,6 +79,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	event = "VeryLazy",
+	branch = "main",
 	enabled = true,
 	config = function()
 		if KobraVim.is_loaded("nvim-treesitter") then
