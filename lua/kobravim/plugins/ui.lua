@@ -133,12 +133,11 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.animate",
+	"folke/snacks.nvim",
 	event = "VeryLazy",
 	opts = {
-		cursor = {
-			enable = false,
-		},
+		animate = { enabled = true },
+		indent = { enabled = true },
 	},
 }
 
@@ -160,13 +159,6 @@ M[#M + 1] = {
 			return package.loaded["nvim-web-devicons"]
 		end
 	end,
-}
-
-M[#M + 1] = {
-	"lukas-reineke/indent-blankline.nvim",
-	event = "BufRead",
-	main = "ibl",
-	config = true,
 }
 
 M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
