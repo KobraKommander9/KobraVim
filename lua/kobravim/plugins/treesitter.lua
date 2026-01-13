@@ -87,7 +87,7 @@ M[#M + 1] = {
 			require("nvim-treesitter.config").setup({ textobjects = opts.textobjects })
 		end
 
-		local move = require("nvim-treesitter.textobjects.move")
+		local move = require("nvim-treesitter-textobjects.move")
 		local configs = require("nvim-treesitter.configs")
 
 		for name, fn in pairs(move) do
