@@ -1,23 +1,5 @@
 local M = {}
 
-M[#M + 1] = {
-	"echasnovski/mini-git",
-	event = "VeryLazy",
-	config = function(_, opts)
-		require("mini.git").setup(opts)
-
-		local format_summary = function(data)
-			local summary = vim.b[data.buf].minigit_summary
-			vim.b[data.buf].minigit_summary_string = summary.head_name or ""
-		end
-
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "MiniGitUpdated",
-			callback = format_summary,
-		})
-	end,
-}
-
 -- better a/i textobjects
 M[#M + 1] = {
 	"echasnovski/mini.ai",
