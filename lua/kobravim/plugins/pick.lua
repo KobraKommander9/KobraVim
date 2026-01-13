@@ -82,10 +82,10 @@ M[#M + 1] = {
 		{ "<leader>fo", KobraVim.pick.extra("oldfiles"), desc = "Search old files" },
 
 		-- Git
-		{ "<leader>gb", KobraVim.pick.extra("git_branches"), desc = "Search git branches" },
-		{ "<leader>gc", KobraVim.pick.extra("git_commits"), desc = "Search git commits" },
-		{ "<leader>gf", KobraVim.pick.extra("git_files"), desc = "Search git files" },
-		{ "<leader>gh", KobraVim.pick.extra("git_hunks"), desc = "Search git hunks" },
+		{ "<leader>gB", KobraVim.pick.extra("git_branches"), desc = "Search git branches" },
+		{ "<leader>gC", KobraVim.pick.extra("git_commits"), desc = "Search git commits" },
+		{ "<leader>gF", KobraVim.pick.extra("git_files"), desc = "Search git files" },
+		{ "<leader>gH", KobraVim.pick.extra("git_hunks"), desc = "Search git hunks" },
 
 		-- LSP
 		{ "<leader>ld", KobraVim.pick.extra("lsp", "{ scope = 'declaration' }"), desc = "Search LSP declarations" },

@@ -1,5 +1,20 @@
 local M = {}
 
+M[#M + 1] = {
+	"FabijanZulj/blame.nvim",
+	cmd = "BlameToggle",
+	keys = {
+		{ "<leader>gb", "<cmd>BlameToggle<cr>", desc = "Toggle blame" },
+	},
+	opts = function()
+		return {
+			mappings = {
+				commit_info = KobraVim.keys.extra.info,
+			},
+		}
+	end,
+}
+
 -- better a/i textobjects
 M[#M + 1] = {
 	"echasnovski/mini.ai",

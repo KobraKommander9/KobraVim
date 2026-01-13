@@ -14,6 +14,9 @@ local layouts = {
 		pick = {
 			toggle_preview = "<C-o>",
 		},
+		extra = {
+			info = "i",
+		},
 	},
 	colemak = {
 		-- N goes to the next match (replaces n)
@@ -64,6 +67,9 @@ local layouts = {
 
 			toggle_preview = "<C-p>",
 		},
+		extra = {
+			info = "k",
+		},
 	},
 }
 
@@ -89,6 +95,7 @@ function M.setup(layout)
 
 	mappings.clearSearch = nil
 	mappings.pick = nil
+	mappings.extra = nil
 end
 
 function M.safe_map(mode, lhs, rhs, opts)
