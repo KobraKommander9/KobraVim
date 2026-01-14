@@ -2,7 +2,7 @@ local M = {}
 
 M[#M + 1] = {
 	"nvimtools/none-ls.nvim",
-	event = "KobraFile",
+	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "mason.nvim" },
 	init = function()
 		KobraVim.on_very_lazy(function()

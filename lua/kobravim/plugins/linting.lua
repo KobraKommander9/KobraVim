@@ -2,7 +2,7 @@ local M = {}
 
 M[#M + 1] = {
 	"mfussenegger/nvim-lint",
-	event = "KobraFile",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		linters_by_ft = {

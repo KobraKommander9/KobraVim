@@ -2,8 +2,6 @@ local M = {}
 
 local Plugin = require("lazy.core.plugin")
 
-M.kobra_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
-
 M.renames = {
 	["windwp/nvim-spectre"] = "nvim-pack/nvim-spectre",
 	["jose-elias-alvarez/null-ls.nvim"] = "nvimtools/none-ls.nvim",
@@ -29,15 +27,8 @@ function M.fix_renames()
 	end)
 end
 
-function M.kobra_file()
-	local Event = require("lazy.core.handler.event")
-	Event.mappings.KobraFile = { id = "KobraFile", event = M.kobra_file_events }
-	Event.mappings["User KobraFile"] = Event.mappings.KobraFile
-end
-
 function M.setup()
 	M.fix_renames()
-	M.kobra_file()
 end
 
 return M

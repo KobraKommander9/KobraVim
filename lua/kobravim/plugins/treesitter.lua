@@ -100,7 +100,7 @@ M[#M + 1] = {
 -- Automatically add closing tags for HTML and JSX
 M[#M + 1] = {
 	"windwp/nvim-ts-autotag",
-	event = "KobraFile",
+	event = "InsertEnter",
 	config = true,
 }
 
