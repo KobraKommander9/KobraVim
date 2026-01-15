@@ -1,10 +1,7 @@
 local M = {}
 
+KobraVim.rtp.add_current_dir(debug.getinfo(1, "S").source:sub(2))
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
-
-local current_file_path = debug.getinfo(1, "S").source:sub(2)
-local current_dir = vim.fn.fnamemodify(current_file_path, ":p:h")
-vim.opt.rtp:append(current_dir)
 
 M[#M + 1] = {
 	"nvim-treesitter/nvim-treesitter",
