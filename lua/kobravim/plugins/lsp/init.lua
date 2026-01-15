@@ -35,6 +35,17 @@ M[#M + 1] = {
 				enabled = false,
 			},
 			capabilities = {
+				textDocument = {
+					semanticTokens = {
+						dynamicRegistration = true,
+						requests = {
+							full = {
+								delta = true,
+							},
+							range = true,
+						},
+					},
+				},
 				workspace = {
 					fileOperations = {
 						didRename = true,
