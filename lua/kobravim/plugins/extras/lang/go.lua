@@ -55,6 +55,22 @@ M[#M + 1] = {
 			},
 		},
 	},
+	setup = {
+		gopls = function(_, opts)
+			opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, {
+				textDocument = {
+					semanticTokens = {
+						dynamicRegistration = true,
+						requests = { full = true },
+					},
+				},
+			})
+
+			vim.lsp.enable("gopls", opts)
+
+			return true
+		end,
+	},
 }
 
 M[#M + 1] = {
