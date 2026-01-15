@@ -99,10 +99,6 @@ M[#M + 1] = {
 		KobraVim.format.register(KobraVim.lsp.formatter())
 
 		KobraVim.lsp.on_attach(function(client, buffer)
-			if client.supports_method("textDocument/semanticTokens/full") then
-				vim.lsp.semantic_tokens.start(buffer, client.id)
-			end
-
 			require("kobravim.plugins.lsp.keymaps").on_attach(client, buffer)
 		end)
 
