@@ -106,7 +106,7 @@ M[#M + 1] = {
 			},
 		})
 
-		if Kobra.config.layout == "colemak" then
+		if KobraVim.config.layout == "colemak" then
 			opts.keyboardLayout = "colemak"
 		end
 	end,

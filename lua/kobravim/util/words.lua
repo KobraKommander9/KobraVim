@@ -7,7 +7,7 @@ local defaults = {
 	foldopen = true, -- open folds after jumping
 	jumplist = true, -- set jump point before jumping
 	modes = { "n", "i", "c" }, -- modes to show references
-	filter = function(buf) -- what buffers to enable `kobra.words`
+	filter = function(buf) -- what buffers to enable `kobravim.words`
 		return vim.g.kobra_words ~= false and vim.b[buf].kobra_words ~= false
 	end,
 }
