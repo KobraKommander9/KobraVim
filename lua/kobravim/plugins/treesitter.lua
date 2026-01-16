@@ -35,6 +35,7 @@ M[#M + 1] = {
 			"vimdoc",
 			"xml",
 			"yaml",
+			"zsh",
 		},
 	},
 	config = function(_, opts)

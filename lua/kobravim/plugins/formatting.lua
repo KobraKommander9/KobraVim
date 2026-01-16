@@ -70,6 +70,7 @@ M[#M + 1] = {
 				lua = { "stylua" },
 				fish = { "fish_indent" },
 				sh = { "shfmt" },
+				zsh = { "beautysh" },
 			},
 			formatters = {
 				injected = { options = { ignore_errors = true } },

@@ -227,6 +227,7 @@ M[#M + 1] = {
 	opts_extend = { "ensure_installed" },
 	opts = {
 		ensure_installed = {
+			"beautysh",
 			"stylua",
 			"shfmt",
 		},
