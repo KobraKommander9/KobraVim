@@ -1,7 +1,14 @@
-local M = {}
+vim.api.nvim_echo({
+	{
+		"Do not use this repository directly\n",
+		"ErrorMsg",
+	},
+	{
+		"Please check the docs on how to get started with KobraVim\n",
+		"WarningMsg",
+	},
+	{ "Press any key to exit", "MoreMsg" },
+}, true, {})
 
-function M.setup(opts)
-	require("kobra.core").setup(opts)
-end
-
-return M
+vim.fn.getchar()
+vim.cmd([[quit]])
