@@ -221,7 +221,7 @@ M[#M + 1] = {
 
 M[#M + 1] = {
 	"williamboman/mason.nvim",
-	cmd = "Mason",
+	cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 	keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
 	build = ":MasonUpdate",
 	opts_extend = { "ensure_installed" },
