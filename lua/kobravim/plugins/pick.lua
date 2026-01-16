@@ -27,6 +27,7 @@ M[#M + 1] = {
 		},
 
 		-- Files
+		{ "<leader>fh", KobraVim.pick.hidden_files(), desc = "Search files + hidden" },
 		{ "<leader>fs", KobraVim.pick.builtin("files"), desc = "Search files" },
 
 		-- Search
