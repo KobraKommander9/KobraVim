@@ -37,24 +37,19 @@ end
 
 function M.clue_options(clues, triggers)
 	return function(_, opts)
-		if type(clues) == "function" then
-			clues = clues()
-		end
-
-		if type(triggers) == "function" then
-			triggers = triggers()
-		end
-
 		opts = opts or {}
-
+		opts.clues = opts.clues or {}
 		opts.triggers = opts.triggers or {}
-		for _, trigger in ipairs(triggers or {}) do
-			table.insert(opts.triggers, trigger)
+
+		clues = type(clues) == "function" and clues() or clues or {}
+		triggers = type(triggers) == "function" and triggers() or triggers or {}
+
+		for _, clue in ipairs(clues) do
+			table.insert(opts.clues, clue)
 		end
 
-		opts.clues = opts.clues or {}
-		for _, clue in ipairs(clues or {}) do
-			table.insert(opts.clues, clue)
+		for _, trigger in ipairs(triggers) do
+			table.insert(opts.triggers, trigger)
 		end
 
 		return opts
