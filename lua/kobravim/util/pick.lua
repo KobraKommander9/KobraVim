@@ -9,29 +9,31 @@ function M.extra(fn, opts)
 end
 
 function M.hidden_files()
-	return M.builtin("files", {
-		path_filter = function(name)
-			-- always include normal (non-dot) files
-			if not name:match("^%.") then
-				return true
-			end
-
-			local exclude = {
-				".git",
-				".DS_Store",
-				".gitmodules",
-			}
-
-			for _, ex in ipairs(exclude) do
-				if name == ex then
-					return false
+	return function()
+		require("mini.pick").builtin.files({
+			path_filter = function(name)
+				-- always include normal (non-dot) files
+				if not name:match("^%.") then
+					return true
 				end
-			end
 
-			-- include all other dotfiles
-			return true
-		end,
-	})
+				local exclude = {
+					".git",
+					".DS_Store",
+					".gitmodules",
+				}
+
+				for _, ex in ipairs(exclude) do
+					if name == ex then
+						return false
+					end
+				end
+
+				-- include all other dotfiles
+				return true
+			end,
+		})
+	end
 end
 
 return M
