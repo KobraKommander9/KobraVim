@@ -146,7 +146,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"rebelot/heirline.nvim",
 	event = "VeryLazy",
-	ops = function()
+	opts = function()
 		return {
 			statusline = KobraVim.bars.statusline(),
 			opts = {
