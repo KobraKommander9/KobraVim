@@ -144,6 +144,19 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
+	"rebelot/heirline.nvim",
+	event = "VeryLazy",
+	ops = function()
+		return {
+			statusline = KobraVim.bars.statusline(),
+			opts = {
+				colors = KobraVim.bars.palette,
+			},
+		}
+	end,
+}
+
+M[#M + 1] = {
 	"echasnovski/mini.icons",
 	lazy = true,
 	opts = {

@@ -91,4 +91,20 @@ function M.is_loaded(name)
 	return Config.plugins[name] and Config.plugins[name]._.loaded
 end
 
+function M.make_package(t, prefix)
+	return setmetatable(t, {
+		__index = function(table, key)
+			local path = prefix .. "." .. key
+			local status, mod = pcall(require, path)
+
+			if status then
+				rawset(table, key, mod)
+				return mod
+			end
+
+			return nil
+		end,
+	})
+end
+
 return M
