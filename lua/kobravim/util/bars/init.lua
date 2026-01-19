@@ -14,7 +14,7 @@ function M.statusline()
 
 		{ provider = "%=" },
 
-		M.surround(M.surrounds.right, palette.bright_bg, { provider = " " }),
+		M.surround(M.surrounds.right, palette.bright_bg, { provider = "" }),
 	}
 end
 
