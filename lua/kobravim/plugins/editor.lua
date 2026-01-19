@@ -41,7 +41,9 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"nvim-mini/mini-git",
 	event = "BufReadPre",
-	config = true,
+	config = function(_, opts)
+		require("mini.git").setup(opts)
+	end,
 }
 
 -- file changes
