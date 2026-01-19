@@ -98,11 +98,6 @@ return {
 		"ModeChanged",
 		"RecordingEnter",
 		"RecordingLeave",
-		{ -- Update search count when cursor moves or search finishes
-			category = "CmdLineLeave",
-			callback = function()
-				vim.schedule(vim.cmd.redrawstatus)
-			end,
-		},
+		"CmdlineLeave",
 	},
 }
