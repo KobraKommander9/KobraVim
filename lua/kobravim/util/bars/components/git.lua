@@ -3,16 +3,21 @@ local palette = bars.palette
 
 return {
 	condition = function()
-		return vim.b.minidiff_summary ~= nil
+		return vim.b.minigit_summary ~= nil
 	end,
 
 	init = function(self)
-		local summary = vim.b.minidiff_summary
-		self.head = summary.source_name or ""
-		self.added = summary.add or 0
-		self.changed = summary.change or 0
-		self.removed = summary.delete or 0
-		self.has_changes = (self.added + self.changed + self.removed) > 0
+		local summary = vim.b.minigit_summary
+		self.head = summary and summary.head_name or ""
+
+		local diff_summary = vim.b.minidiff_summary
+		if diff_summary then
+			self.added = diff_summary.add or 0
+			self.changed = diff_summary.change or 0
+			self.removed = diff_summary.delete or 0
+		end
+
+		self.has_changes = diff_summary and (self.added + self.changed + self.removed) > 0
 	end,
 
 	hl = { fg = palette.magenta },
