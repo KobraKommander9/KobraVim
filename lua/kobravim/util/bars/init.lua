@@ -16,7 +16,7 @@ function M.statusline()
 
 		{ provider = "%=" },
 
-		components.lsp,
+		-- components.lsp,
 
 		M.surround(M.surrounds.right, palette.blue, components.ruler),
 	}
