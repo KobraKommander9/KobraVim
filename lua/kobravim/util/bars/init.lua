@@ -10,18 +10,11 @@ function M.statusline()
 	local palette = KobraVim.bars.palette
 
 	return {
-		M.surround({ "", "" }, palette.get_mode_color, components.mode),
+		M.surround(M.surrounds.left, palette.get_mode_color, components.mode),
 
 		{ provider = "%=" },
 
-		{
-			provider = "",
-			hl = { fg = palette.bright_bg, bg = "NONE" },
-		},
-		{
-			provider = "",
-			hl = { fg = palette.bright_bg, bg = "NONE" },
-		},
+		M.surround(M.surrounds.right, palette.bright_bg, { provider = " " }),
 	}
 end
 
