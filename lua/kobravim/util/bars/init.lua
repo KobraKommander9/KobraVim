@@ -11,6 +11,7 @@ function M.statusline()
 
 	return {
 		M.surround(M.surrounds.left, palette.get_mode_color, components.mode),
+		components.git,
 
 		{ provider = "%=" },
 

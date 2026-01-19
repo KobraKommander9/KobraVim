@@ -45,21 +45,14 @@ return {
 		},
 	},
 
-	-- hl = function(self)
-	-- 	local mode = self.mode:sub(1, 1)
-	-- 	return {
-	-- 		fg = palette.mode_map[mode] or palette.blue,
-	-- 		bold = true,
-	-- 	}
-	-- end,
+	hl = { bold = true },
 
 	{ -- macro recording
 		condition = function()
 			return vim.fn.reg_recording() ~= ""
 		end,
 		provider = " ",
-		hl = { anim = true },
-		-- hl = { fg = palette.red, anim = true },
+		-- hl = { fg = palette.red },
 		utils.surround({ " ", " " }, nil, {
 			provider = function()
 				return vim.fn.reg_recording()
