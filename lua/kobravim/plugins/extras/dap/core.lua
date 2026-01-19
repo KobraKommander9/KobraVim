@@ -27,7 +27,7 @@ M[#M + 1] = {
 		},
 		{
 
-			"echasnovski/mini.clue",
+			"nvim-mini/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", keys = "<leader>d", desc = "+Debug" },
 			}),

@@ -16,7 +16,7 @@ M[#M + 1] = {
 
 -- next key clues
 M[#M + 1] = {
-	"echasnovski/mini.clue",
+	"nvim-mini/mini.clue",
 	event = "VeryLazy",
 	opts = KobraVim.mini.clue_options(function()
 		local miniclue = require("mini.clue")
@@ -127,11 +127,11 @@ M[#M + 1] = {
 
 -- better bracket jumps
 M[#M + 1] = {
-	"echasnovski/mini.bracketed",
+	"nvim-mini/mini.bracketed",
 	event = "BufEnter",
 	dependencies = {
 		{
-			"echasnovski/mini.clue",
+			"nvim-mini/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", keys = "]b", postkeys = "]", desc = "next bracket" },
 				{ mode = "n", keys = "[b", postkeys = "[", desc = "previous bracket" },

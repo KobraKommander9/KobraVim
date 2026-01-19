@@ -79,7 +79,7 @@ end
 
 -- file browser
 M[#M + 1] = {
-	"echasnovski/mini.files",
+	"nvim-mini/mini.files",
 	dependencies = { "mini.icons" },
 	version = false,
 	event = "VimEnter",

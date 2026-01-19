@@ -1,7 +1,7 @@
 local M = {}
 
 M[#M + 1] = {
-	"echasnovski/mini.pick",
+	"nvim-mini/mini.pick",
 	cmd = { "Pick" },
 	keys = {
 		-- Buffers
@@ -54,9 +54,9 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.extra",
+	"nvim-mini/mini.extra",
 	dependencies = {
-		"echasnovski/mini.pick",
+		"nvim-mini/mini.pick",
 	},
 	cmd = { "Pick" },
 	keys = {

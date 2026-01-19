@@ -8,7 +8,7 @@ M[#M + 1] = {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		{
-			"echasnovski/mini.clue",
+			"nvim-mini/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", keys = "<leader>t", desc = "+Test" },
 			}),

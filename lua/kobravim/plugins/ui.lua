@@ -57,7 +57,7 @@ M[#M + 1] = {
 	event = "VeryLazy",
 	dependencies = {
 		{
-			"echasnovski/mini.clue",
+			"nvim-mini/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", keys = "<leader>sn", desc = "+Noice" },
 			}),
@@ -157,7 +157,7 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.icons",
+	"nvim-mini/mini.icons",
 	lazy = true,
 	opts = {
 		file = {

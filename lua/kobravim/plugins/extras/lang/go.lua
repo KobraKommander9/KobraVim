@@ -135,7 +135,7 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.icons",
+	"nvim-mini/mini.icons",
 	opts = {
 		file = {
 			[".go-version"] = { glyph = "", hl = "MiniIconsBlue" },

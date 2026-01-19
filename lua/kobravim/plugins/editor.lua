@@ -2,12 +2,12 @@ local M = {}
 
 -- buffer management
 M[#M + 1] = {
-	"echasnovski/mini.visits",
+	"nvim-mini/mini.visits",
 	event = "BufReadPre",
 	dependencies = {
-		"echasnovski/mini.extra",
+		"nvim-mini/mini.extra",
 		{
-			"echasnovski/mini.clue",
+			"nvim-mini/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", keys = "<leader>v", desc = "+Visits" },
 			}),
@@ -38,9 +38,15 @@ M[#M + 1] = {
 	config = true,
 }
 
+M[#M + 1] = {
+	"nvim-mini/mini-git",
+	event = "BufReadPre",
+	config = true,
+}
+
 -- file changes
 M[#M + 1] = {
-	"echasnovski/mini.diff",
+	"nvim-mini/mini.diff",
 	event = "BufReadPre",
 	opts = function(_, opts)
 		opts = opts or {}
@@ -58,7 +64,7 @@ M[#M + 1] = {
 }
 
 M[#M + 1] = {
-	"echasnovski/mini.pairs",
+	"nvim-mini/mini.pairs",
 	event = "InsertEnter",
 	config = true,
 }
