@@ -19,7 +19,7 @@ return {
 
 	{ -- branch name
 		provider = function(self)
-			local name = self.status.head ~= "" and self.status.head or ""
+			local name = self.head ~= "" and self.head or ""
 			if name == "" then
 				return ""
 			end
