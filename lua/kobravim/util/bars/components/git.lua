@@ -40,29 +40,29 @@ return {
 		end,
 		{
 			provider = " (",
-			hl = { bg = palette.blue },
+			hl = { fg = palette.blue },
 		},
 		{
 			provider = function(self)
 				return self.added > 0 and ("+" .. self.added)
 			end,
-			hl = { bg = palette.get_hl("DiffAdd") },
+			hl = { fg = palette.get_hl("DiffAdd") },
 		},
 		{
 			provider = function(self)
 				return self.removed > 0 and ("-" .. self.removed)
 			end,
-			hl = { bg = palette.get_hl("DiffDelete") },
+			hl = { fg = palette.get_hl("DiffDelete") },
 		},
 		{
 			provider = function(self)
 				return self.changed > 0 and ("~" .. self.changed)
 			end,
-			hl = { bg = palette.get_hl("DiffChange") },
+			hl = { fg = palette.get_hl("DiffChange") },
 		},
 		{
 			provider = ")",
-			hl = { bg = palette.blue },
+			hl = { fg = palette.blue },
 		},
 	},
 }
