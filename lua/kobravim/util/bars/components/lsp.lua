@@ -3,7 +3,7 @@ local bars = KobraVim.bars
 return {
 	{ -- lsp server name
 		condition = function()
-			return #vim.lsp.get_clients({ bufnr = 0 }) > 0
+			return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
 		end,
 
 		update = { "LspAttach", "LspDetach" },
