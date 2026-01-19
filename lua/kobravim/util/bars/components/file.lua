@@ -37,7 +37,7 @@ return {
 
 			return " " .. dir .. "/"
 		end,
-		hl = { italic = true, alpha = 0.8 },
+		hl = { italic = true },
 	},
 
 	{ -- filename
