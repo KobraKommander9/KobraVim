@@ -53,7 +53,8 @@ return {
 		condition = function()
 			return vim.bo.modified
 		end,
-		provider = " ●",
+		provider = " [+]",
+		hl = { fg = palette.get_hl("DiffAdd") },
 	},
 
 	{
@@ -61,6 +62,7 @@ return {
 			return not vim.bo.modifiable or vim.bo.readonly
 		end,
 		provider = " ",
+		hl = { fg = palette.orange },
 	},
 
 	{ provider = "%<" },
