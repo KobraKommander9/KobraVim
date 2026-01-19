@@ -20,7 +20,7 @@ return {
 		self.has_changes = diff_summary and (self.added + self.changed + self.removed) > 0
 	end,
 
-	hl = { fg = palette.magenta },
+	hl = { bg = palette.magenta },
 
 	{ -- branch name
 		provider = function(self)
@@ -40,29 +40,29 @@ return {
 		end,
 		{
 			provider = " (",
-			hl = { fg = palette.blue },
+			hl = { bg = palette.blue },
 		},
 		{
 			provider = function(self)
 				return self.added > 0 and ("+" .. self.added)
 			end,
-			hl = { fg = "DiffAdd" },
+			hl = { bg = palette.get_hl("DiffAdd") },
 		},
 		{
 			provider = function(self)
 				return self.removed > 0 and ("-" .. self.removed)
 			end,
-			hl = { fg = "DiffDelete" },
+			hl = { bg = palette.get_hl("DiffDelete") },
 		},
 		{
 			provider = function(self)
 				return self.changed > 0 and ("~" .. self.changed)
 			end,
-			hl = { fg = "DiffChange" },
+			hl = { bg = palette.get_hl("DiffChange") },
 		},
 		{
 			provider = ")",
-			hl = { fg = palette.blue },
+			hl = { bg = palette.blue },
 		},
 	},
 }

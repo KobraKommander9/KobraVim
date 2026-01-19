@@ -36,6 +36,7 @@ for name, hex in pairs(colors) do
 	M[name] = hex
 end
 
+M.get_hl = get_hl
 M.mode_map = mode_map
 
 function M.get_mode_color()
