@@ -8,34 +8,22 @@ return {
 
 	hl = { bg = palette.blue },
 
-	-- status flags
-	{
-		condition = function()
-			return vim.bo.modified
-		end,
-		provider = "● ",
-	},
-
-	{
-		condition = function()
-			return not vim.bo.modifiable or vim.bo.readonly
-		end,
-		provider = " ",
-	},
-
 	{ -- directory
+		init = function(self)
+			self.is_local = vim.fn.haslocaldir(0) == 1
+			local cwd = vim.fn.getcwd(0)
+
+			cwd = vim.fn.fnamemodify(cwd, ":~")
+			if #cwd > vim.api.nvim_win_get_width(0) * 0.25 then
+				cwd = vim.fn.pathshorten(cwd)
+			end
+
+			self.cwd = cwd
+		end,
 		provider = function(self)
-			local path = vim.fn.fnamemodify(self.filename, ":.")
-			if path == "" then
-				return ""
-			end
-
-			local dir = vim.fn.fnamemodify(path, ":h")
-			if dir == "." then
-				return ""
-			end
-
-			return " " .. dir .. "/"
+			local icon = self.is_local and "󱂬 " or "󰉖 "
+			local trail = self.cwd:sub(-1) == "/" and "" or "/"
+			return icon .. self.cwd .. trail
 		end,
 		hl = { italic = true },
 	},
@@ -58,6 +46,21 @@ return {
 		provider = function(self)
 			return self.icon and (self.icon .. " ")
 		end,
+	},
+
+	-- status flags
+	{
+		condition = function()
+			return vim.bo.modified
+		end,
+		provider = " ●",
+	},
+
+	{
+		condition = function()
+			return not vim.bo.modifiable or vim.bo.readonly
+		end,
+		provider = " ",
 	},
 
 	{ provider = "%<" },
