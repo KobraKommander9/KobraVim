@@ -10,7 +10,7 @@ function M.statusline()
 	local palette = KobraVim.bars.palette
 
 	return {
-		M.surround({ "", "" }, palette.bright_bg, components.mode),
+		M.surround({ "", "" }, palette.get_mode_color, components.mode),
 
 		{ provider = "%=" },
 
@@ -26,6 +26,8 @@ function M.statusline()
 end
 
 function M.surround(delimiters, color, component)
+	color = type(color) == "function" and color() or color
+
 	return {
 		{
 			provider = delimiters[1],

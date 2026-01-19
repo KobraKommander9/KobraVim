@@ -1,6 +1,3 @@
-local bars = KobraVim.bars
-local palette = bars.palette
-
 local utils = require("heirline.utils")
 
 return {
@@ -48,20 +45,21 @@ return {
 		},
 	},
 
-	hl = function(self)
-		local mode = self.mode:sub(1, 1)
-		return {
-			fg = palette.mode_map[mode] or palette.blue,
-			bold = true,
-		}
-	end,
+	-- hl = function(self)
+	-- 	local mode = self.mode:sub(1, 1)
+	-- 	return {
+	-- 		fg = palette.mode_map[mode] or palette.blue,
+	-- 		bold = true,
+	-- 	}
+	-- end,
 
 	{ -- macro recording
 		condition = function()
 			return vim.fn.reg_recording() ~= ""
 		end,
 		provider = " ",
-		hl = { fg = palette.red, anim = true },
+		hl = { anim = true },
+		-- hl = { fg = palette.red, anim = true },
 		utils.surround({ " ", " " }, nil, {
 			provider = function()
 				return vim.fn.reg_recording()

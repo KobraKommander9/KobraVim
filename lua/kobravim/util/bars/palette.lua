@@ -38,4 +38,9 @@ end
 
 M.mode_map = mode_map
 
+function M.get_mode_color()
+	local mode = vim.fn.mode(1):sub(1, 1)
+	return M.mode_map[mode] or M.blue
+end
+
 return M
