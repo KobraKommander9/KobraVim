@@ -20,8 +20,6 @@ return {
 		self.has_changes = diff_summary and (self.added + self.changed + self.removed) > 0
 	end,
 
-	hl = { bg = palette.magenta },
-
 	{ -- branch name
 		provider = function(self)
 			local name = self.head ~= "" and self.head or ""

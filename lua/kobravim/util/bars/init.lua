@@ -11,12 +11,21 @@ function M.statusline()
 
 	return {
 		M.surround(M.surrounds.left, palette.get_mode_color, components.mode),
-		components.git,
-		components.file,
+		{
+			components.git,
+			hl = { bg = palette.magenta },
+		},
+		{
+			components.file,
+			hl = { bg = palette.blue },
+		},
 
 		{ provider = "%=" },
 
-		-- components.lsp,
+		{
+			components.lsp,
+			hl = { bg = palette.blue },
+		},
 
 		M.surround(M.surrounds.right, palette.blue, components.ruler),
 	}

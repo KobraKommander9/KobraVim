@@ -6,8 +6,6 @@ return {
 		self.filename = vim.api.nvim_buf_get_name(0)
 	end,
 
-	hl = { bg = palette.blue },
-
 	{ -- directory
 		init = function(self)
 			self.is_local = vim.fn.haslocaldir(0) == 1

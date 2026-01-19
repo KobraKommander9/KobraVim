@@ -1,12 +1,9 @@
 local bars = KobraVim.bars
-local palette = bars.palette
 
 return {
 	condition = function()
 		return #vim.lsp.get_clients({ bufnr = 0 }) > 0
 	end,
-
-	hl = { bg = palette.blue },
 
 	{ -- lsp server name
 		provider = function()
