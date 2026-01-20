@@ -179,11 +179,10 @@ M[#M + 1] = {
 M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 
 M[#M + 1] = {
-	"Godswill-255/colorviewer.nvim",
+	"norcalli/nvim-colorizer.lua",
+	cmd = { "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerToggle" },
 	event = "BufReadPost",
-	opts = {
-		symbol = "■",
-	},
+	config = true,
 }
 
 return M
