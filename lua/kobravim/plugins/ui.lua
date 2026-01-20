@@ -180,6 +180,7 @@ M[#M + 1] = { "MunifTanjim/nui.nvim", lazy = true }
 
 M[#M + 1] = {
 	"Godswill-255/colorviewer.nvim",
+	event = "BufReadPost",
 	opts = {
 		symbol = "■",
 	},
