@@ -1,7 +1,7 @@
 local M = {}
 
 M[#M + 1] = {
-	"KobraKommander9/autumn.nvim",
+	"KobraKommander9/vintage-rose.nvim",
 	branch = "colorscheme",
 	lazy = true,
 	opts = function()

@@ -14,7 +14,7 @@ local defaults = {
 	keys = "default",
 	ui = {
 		transparent = true,
-		colorscheme = "autumn",
+		colorscheme = "vintage-rose",
 	},
 	-- you can customize the "words" config here
 	-- words = {
@@ -141,7 +141,7 @@ function M.setup(opts)
 		msg = "Could not load colorscheme",
 		on_error = function(msg)
 			KobraVim.error(msg)
-			vim.cmd.colorscheme("autumn")
+			vim.cmd.colorscheme("vintage-rose")
 		end,
 	})
 	KobraVim.track()
