@@ -19,7 +19,7 @@ M.status = {
 			table.insert(names, server.name)
 		end
 
-		return " [" .. table.concat(names, " ") .. "]"
+		return " [" .. table.concat(names, " ") .. "] "
 	end,
 }
 
