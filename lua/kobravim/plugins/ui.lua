@@ -150,10 +150,11 @@ M[#M + 1] = {
 		KobraVim.bars.setup()
 
 		return {
-			statusline = KobraVim.bars.statusline(),
 			opts = {
 				colors = KobraVim.bars.palette,
 			},
+			statusline = KobraVim.bars.statusline(),
+			tabline = KobraVim.bars.tabline(),
 		}
 	end,
 }

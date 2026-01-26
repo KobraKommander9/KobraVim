@@ -24,7 +24,14 @@ return {
 				return ""
 			end
 
-			return "  " .. (name:len() > 20 and name:sub(1, 17) .. "..." or name) .. " "
+			local short_name = name:match("([^/]+)$") or name
+			short_name = short_name:match("([^-]+)") or name
+
+			if short_name:len() > 20 then
+				short_name = short_name:sub(1, 17) .. "..."
+			end
+
+			return "  " .. short_name .. " "
 		end,
 		hl = { bold = true },
 	},

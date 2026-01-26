@@ -75,7 +75,11 @@ function M.statusline()
 			hl = { fg = "hint", bg = "info" },
 		},
 		{
-			components.lsp.info,
+			components.lsp.hint,
+			hl = { fg = "bg", bg = "hint" },
+		},
+		{
+			provider = "",
 			hl = { fg = "bg", bg = "hint" },
 		},
 	}
@@ -86,7 +90,7 @@ function M.statusline()
 			hl = function()
 				return {
 					fg = palette.get_mode_color(),
-					bg = "hint",
+					bg = "bg",
 				}
 			end,
 		},
@@ -117,6 +121,30 @@ function M.statusline()
 		LspBlock,
 		RulerBlock,
 	}
+end
+
+function M.tabline()
+	local components = KobraVim.bars.components
+	local utils = require("heirline.utils")
+
+	local Tabpage = {
+		provider = "",
+		hl = function(self)
+			if not self.is_active then
+				return { fg = "bg", bg = "bg_bright" }
+			else
+				return { fg = "bg", bg = "func" }
+			end
+		end,
+
+		components.tab,
+
+		{
+			provider = "",
+		},
+	}
+
+	return utils.make_tablist(Tabpage)
 end
 
 return KobraVim.make_package(M, "kobravim.util.bars")

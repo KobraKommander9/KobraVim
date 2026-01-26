@@ -27,28 +27,24 @@ M.error = {
 	provider = function()
 		return get_diag("", "ERROR")
 	end,
-	hl = "error",
 }
 
 M.warn = {
 	provider = function()
 		return get_diag("", "WARN")
 	end,
-	hl = "warn",
 }
 
 M.info = {
 	provider = function()
 		return get_diag("", "INFO")
 	end,
-	hl = "info",
 }
 
 M.hint = {
 	provider = function()
 		return get_diag("", "HINT")
 	end,
-	hl = "hint",
 }
 
 return M

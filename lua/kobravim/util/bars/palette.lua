@@ -13,6 +13,7 @@ function M.build()
 		return {
 			bg = get_hl("StatusLine", "bg") or "NONE",
 			bg_bright = get_hl("Folded", "bg") or "NONE",
+			fg_dim = get_hl("Folded") or "NONE",
 
 			func = get_hl("Function") or "NONE",
 			key = get_hl("Keyword") or "NONE",
@@ -39,6 +40,7 @@ function M.build()
 	return {
 		bg = roles.ui.bg.alt,
 		bg_bright = roles.ui.bg.visual,
+		fg_dim = roles.ui.fg.dim,
 
 		func = roles.syntax.func.fg,
 		key = roles.syntax.keyword.fg,

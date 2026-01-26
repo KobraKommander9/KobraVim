@@ -51,8 +51,8 @@ return {
 		condition = function()
 			return vim.fn.reg_recording() ~= ""
 		end,
-		provider = " ",
-		utils.surround({ " ", " " }, nil, {
+		provider = "",
+		utils.surround({ "[", "] " }, nil, {
 			provider = function()
 				return vim.fn.reg_recording()
 			end,
@@ -71,7 +71,7 @@ return {
 			return vim.v.hlsearch ~= 0
 		end,
 		init = function(self)
-			local ok, search = pcall(vim.fn.searchcount)
+			local ok, search = pcall(vim.fn.searchcount, { recompute = 1 })
 			if ok and search.total then
 				self.search = search
 			end
@@ -89,5 +89,6 @@ return {
 		"RecordingEnter",
 		"RecordingLeave",
 		"CmdlineLeave",
+		"CursorMoved",
 	},
 }
