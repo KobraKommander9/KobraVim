@@ -1,6 +1,3 @@
-local bars = KobraVim.bars
-local palette = bars.palette
-
 return {
 	init = function(self)
 		self.filename = vim.api.nvim_buf_get_name(0)
@@ -21,7 +18,7 @@ return {
 		provider = function(self)
 			local icon = self.is_local and "󱂬 " or "󰉖 "
 			local trail = self.cwd:sub(-1) == "/" and "" or "/"
-			return icon .. self.cwd .. trail
+			return " " .. icon .. self.cwd .. trail
 		end,
 		hl = { italic = true },
 	},
@@ -51,17 +48,13 @@ return {
 		condition = function()
 			return vim.bo.modified
 		end,
-		provider = " [+]",
-		hl = { fg = palette.get_hl("DiffAdd") },
+		provider = "[+] ",
 	},
 
 	{
 		condition = function()
 			return not vim.bo.modifiable or vim.bo.readonly
 		end,
-		provider = " ",
-		hl = { fg = palette.orange },
+		provider = " ",
 	},
-
-	{ provider = "%<" },
 }

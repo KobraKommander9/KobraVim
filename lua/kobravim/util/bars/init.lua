@@ -1,52 +1,121 @@
 local M = {}
 
-M.surrounds = {
-	left = { "", "" },
-	right = { "", "" },
-}
+function M.setup()
+	require("heirline").load_colors(KobraVim.bars.palette.build())
+
+	vim.api.nvim_create_augroup("Heirline", { clear = true })
+	vim.api.nvim_create_autocmd("ColorScheme", {
+		callback = function()
+			require("heirline.utils").on_colorscheme(KobraVim.bars.palette.build())
+		end,
+		group = "Heirline",
+	})
+end
 
 function M.statusline()
 	local components = KobraVim.bars.components
 	local palette = KobraVim.bars.palette
+	local utils = require("heirline.utils")
 
-	return {
-		M.surround(M.surrounds.left, palette.get_mode_color, components.mode),
+	local ModeBlock = utils.surround({ "", "" }, palette.get_mode_color, {
+		components.mode,
+		hl = { fg = "bg" },
+	})
+
+	local FileBlock = {
 		{
-			components.git,
-			hl = { bg = palette.magenta },
+			provider = "",
+			hl = { fg = "bg", bg = "func" },
 		},
 		{
 			components.file,
-			hl = { bg = palette.blue },
+			hl = { fg = "bg", bg = "func" },
 		},
-
-		{ provider = "%=" },
-
 		{
-			components.lsp,
-			hl = { bg = palette.blue },
+			provider = "",
+			hl = { fg = "func", bg = "bg" },
 		},
-
-		M.surround(M.surrounds.right, palette.blue, components.ruler),
 	}
-end
 
-function M.surround(delimiters, color, component)
-	color = type(color) == "function" and color() or color
+	local LspBlock = {
+		{
+			provider = "",
+			hl = { fg = "bg_bright", bg = "bg" },
+		},
+		{
+			components.lsp.status,
+			hl = { bg = "bg_bright" },
+		},
+		{
+			provider = "",
+			hl = { fg = "error", bg = "bg_bright" },
+		},
+		{
+			components.lsp.error,
+			hl = { fg = "bg", bg = "error" },
+		},
+		{
+			provider = "",
+			hl = { fg = "warn", bg = "error" },
+		},
+		{
+			components.lsp.warn,
+			hl = { fg = "bg", bg = "warn" },
+		},
+		{
+			provider = "",
+			hl = { fg = "info", bg = "warn" },
+		},
+		{
+			components.lsp.info,
+			hl = { fg = "bg", bg = "info" },
+		},
+		{
+			provider = "",
+			hl = { fg = "hint", bg = "info" },
+		},
+		{
+			components.lsp.info,
+			hl = { fg = "bg", bg = "hint" },
+		},
+	}
+
+	local RulerBlock = {
+		{
+			provider = "",
+			hl = function()
+				return {
+					fg = palette.get_mode_color(),
+					bg = "hint",
+				}
+			end,
+		},
+		{
+			components.ruler,
+			hl = function()
+				return {
+					fg = "bg",
+					bg = palette.get_mode_color(),
+				}
+			end,
+		},
+		{
+			provider = "",
+			hl = function()
+				return {
+					fg = palette.get_mode_color(),
+				}
+			end,
+		},
+	}
 
 	return {
-		{
-			provider = delimiters[1],
-			hl = { fg = color, bg = "NONE" },
-		},
-		{
-			hl = { bg = color, fg = "bright_bg" },
-			component,
-		},
-		{
-			provider = delimiters[2],
-			hl = { fg = color, bg = "NONE" },
-		},
+		ModeBlock,
+		components.git,
+		FileBlock,
+		{ provider = "%=" },
+		LspBlock,
+		RulerBlock,
 	}
 end
 

@@ -52,7 +52,6 @@ return {
 			return vim.fn.reg_recording() ~= ""
 		end,
 		provider = " ",
-		-- hl = { fg = palette.red },
 		utils.surround({ " ", " " }, nil, {
 			provider = function()
 				return vim.fn.reg_recording()

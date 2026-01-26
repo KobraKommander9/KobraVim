@@ -1,36 +1,54 @@
-local bars = KobraVim.bars
+local M = {}
 
-return {
-	{ -- lsp server name
-		condition = function()
-			return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
-		end,
+local conditions = require("heirline.conditions")
 
-		update = { "LspAttach", "LspDetach" },
+local function get_diag(icon, str)
+	local diagnostics = vim.diagnostic.get(0, { severity = vim.diagnostic.severity[str] })
+	local count = #diagnostics
 
-		provider = function()
-			local names = {}
-			for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-				table.insert(names, server.name)
-			end
+	return (count > 0) and icon .. " " .. count .. " " or ""
+end
 
-			return "  [" .. table.concat(names, ",") .. "] "
-		end,
-	},
+M.status = {
+	-- lsp server name
+	condition = conditions.lsp_attached,
+	update = { "LspAttach", "LspDetach" },
+	provider = function()
+		local names = {}
+		for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+			table.insert(names, server.name)
+		end
 
-	{ -- error count
-		provider = function()
-			local count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-			return count > 0 and ("  " .. count .. " ")
-		end,
-		hl = { fg = bars.get_hl("DiagnosticError") },
-	},
-
-	{ -- warning count
-		provider = function()
-			local count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-			return count > 0 and ("  " .. count .. " ")
-		end,
-		hl = { fg = bars.get_hl("DiagnosticWarn") },
-	},
+		return " [" .. table.concat(names, " ") .. "]"
+	end,
 }
+
+M.error = {
+	provider = function()
+		return get_diag("", "ERROR")
+	end,
+	hl = "error",
+}
+
+M.warn = {
+	provider = function()
+		return get_diag("", "WARN")
+	end,
+	hl = "warn",
+}
+
+M.info = {
+	provider = function()
+		return get_diag("", "INFO")
+	end,
+	hl = "info",
+}
+
+M.hint = {
+	provider = function()
+		return get_diag("", "HINT")
+	end,
+	hl = "hint",
+}
+
+return M

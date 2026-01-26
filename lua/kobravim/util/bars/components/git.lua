@@ -1,6 +1,3 @@
-local bars = KobraVim.bars
-local palette = bars.palette
-
 return {
 	condition = function()
 		return vim.b.minigit_summary ~= nil
@@ -38,29 +35,27 @@ return {
 		end,
 		{
 			provider = " (",
-			hl = { fg = palette.blue },
 		},
 		{
 			provider = function(self)
 				return self.added > 0 and ("+" .. self.added)
 			end,
-			hl = { fg = palette.get_hl("DiffAdd") },
+			hl = "added",
 		},
 		{
 			provider = function(self)
 				return self.removed > 0 and ("-" .. self.removed)
 			end,
-			hl = { fg = palette.get_hl("DiffDelete") },
+			hl = "removed",
 		},
 		{
 			provider = function(self)
 				return self.changed > 0 and ("~" .. self.changed)
 			end,
-			hl = { fg = palette.get_hl("DiffChange") },
+			hl = "changed",
 		},
 		{
-			provider = ")",
-			hl = { fg = palette.blue },
+			provider = ") ",
 		},
 	},
 }
