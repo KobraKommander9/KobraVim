@@ -24,7 +24,7 @@ return {
 				return ""
 			end
 
-			return "  " .. (name:len() > 20 and name:sub(1, 17) .. "..." or name)
+			return "  " .. (name:len() > 20 and name:sub(1, 17) .. "..." or name) .. " "
 		end,
 		hl = { bold = true },
 	},
@@ -34,7 +34,7 @@ return {
 			return self.has_changes
 		end,
 		{
-			provider = " (",
+			provider = "(",
 		},
 		{
 			provider = function(self)
