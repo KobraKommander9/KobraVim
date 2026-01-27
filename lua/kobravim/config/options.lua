@@ -23,6 +23,7 @@ opt.fillchars = {
 	diff = "╱",
 	eob = " ",
 }
+opt.foldcolumn = "1"
 opt.foldlevel = 99
 opt.formatexpr = "v:lua.require'kobravim.util'.format.formatexpr()"
 opt.formatoptions = "jcroqlnt" -- tcqj
