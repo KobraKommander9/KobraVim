@@ -119,6 +119,7 @@ function M.statusline()
 		FileBlock,
 		{ provider = "%=" },
 		LspBlock,
+		components.journal,
 		RulerBlock,
 	}
 end

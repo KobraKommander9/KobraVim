@@ -75,6 +75,7 @@ M[#M + 1] = {
 		{ "<leader>jrr", "<cmd>BookwyrmNotebookRename<cr>", desc = "Rename active notebook" },
 		{ "<leader>jrs", search_notebooks, desc = "Search notebooks" },
 	},
+	event = "VeryLazy",
 	config = true,
 }
 
