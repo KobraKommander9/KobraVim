@@ -1,8 +1,7 @@
 local M = {}
 
-local function notebook_picker()
-	local BW = require("bookwyrm")
-	local notebooks = BW.api.get_notebook_list()
+local function notebook_picker(cb)
+	local notebooks = require("bookwyrm").api.get_notebook_list()
 
 	local items = vim.tbl_map(function(nb)
 		return {
@@ -16,12 +15,21 @@ local function notebook_picker()
 		source = {
 			items = items,
 			name = "Notebooks",
-			choose = function(item)
-				BW.api.select_notebook(item.nb_id)
-				vim.notify("Active: " .. item.title)
-			end,
+			choose = cb,
 		},
 	})
+end
+
+local function delete_notebook()
+	notebook_picker(function(item)
+		require("bookwyrm").api.delete_notebook(item.nb_id)
+	end)
+end
+
+local function search_notebooks()
+	notebook_picker(function(item)
+		require("bookwyrm").api.select_notebook(item.nb_id)
+	end)
 end
 
 M[#M + 1] = {
@@ -38,8 +46,9 @@ M[#M + 1] = {
 	},
 	cmd = { "BookwyrmRegister" },
 	keys = {
-		{ "<leader>js", notebook_picker, desc = "Search notebooks" },
-		{ "<leader>jr", "<cmd>BookwyrmRegister<cr>", desc = "Register current dir" },
+		{ "<leader>jD", delete_notebook, desc = "Delete notebooks" },
+		{ "<leader>jR", "<cmd>BookwyrmRegister<cr>", desc = "Register current dir" },
+		{ "<leader>jS", search_notebooks, desc = "Search notebooks" },
 	},
 	config = true,
 }
