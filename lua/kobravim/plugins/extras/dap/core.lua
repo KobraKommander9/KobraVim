@@ -26,7 +26,6 @@ M[#M + 1] = {
 			opts = {},
 		},
 		{
-
 			"nvim-mini/mini.clue",
 			opts = KobraVim.mini.clue_options({
 				{ mode = "n", keys = "<leader>d", desc = "+Debug" },
