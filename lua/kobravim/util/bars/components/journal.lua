@@ -5,18 +5,18 @@ return {
 			return false
 		end
 
-		return bw.api.get_active_title() ~= nil
+		return bw.api.get_active_notebook() ~= nil
 	end,
 
 	init = function(self)
-		self.title = require("bookwyrm").api.get_active_title()
+		self.nb = require("bookwyrm").api.get_active_notebook()
 	end,
 
 	provider = function(self)
-		if self.title == "" then
+		if not self.nb then
 			return ""
 		end
 
-		return " 󱓧 " .. self.title .. " "
+		return " 󱓧 " .. self.nb.title .. " "
 	end,
 }

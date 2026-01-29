@@ -53,6 +53,21 @@ local function search_notebooks()
 	end)
 end
 
+local function search_notes()
+	local notes = require("bookwyrm").api.get_notes()
+
+	vim.ui.select(notes, {
+		prompt = "Notes",
+		format_item = function(item)
+			return item.title
+		end,
+	}, function(choice)
+		if choice then
+			vim.cmd("edit " .. vim.fn.fnameescape(choice.path))
+		end
+	end)
+end
+
 M[#M + 1] = {
 	"KobraKommander9/bookwyrm.nvim",
 	dependencies = {
@@ -66,14 +81,24 @@ M[#M + 1] = {
 			}),
 		},
 	},
-	cmd = { "BookwyrmNotebookRegister", "BookwyrmNotebookRename", "BookwyrmNotebookSetDefault" },
+	cmd = {
+		"BookwyrmNoteCreate",
+		"BookwyrmNotebookRegister",
+		"BookwyrmNotebookRename",
+		"BookwyrmNotebookSetDefault",
+	},
 	keys = {
+		-- registry
 		{ "<leader>jrd", "<cmd>BookwyrmNotebookSetDefault<cr>", desc = "Set active default" },
 		{ "<leader>jrD", delete_notebook, desc = "Delete notebooks" },
 		{ "<leader>jrN", register_notebook, desc = "Register notebook" },
 		{ "<leader>jrn", "<cmd>BookwyrmNotebookRegister<cr>", desc = "Register current dir" },
 		{ "<leader>jrr", "<cmd>BookwyrmNotebookRename<cr>", desc = "Rename active notebook" },
 		{ "<leader>jrs", search_notebooks, desc = "Search notebooks" },
+
+		-- notebook
+		{ "<leader>jn", "<cmd>BookwyrmNoteCreate<cr>", desc = "Create note" },
+		{ "<leader>js", search_notes, desc = "Search notes" },
 	},
 	event = "VeryLazy",
 	config = true,
