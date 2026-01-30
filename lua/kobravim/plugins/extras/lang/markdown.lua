@@ -1,7 +1,7 @@
 local M = {}
 
 local function notebook_picker(cb)
-	local notebooks = require("bookwyrm").api.get_notebook_list()
+	local notebooks = require("bookwyrm").api.list_notebooks()
 
 	local items = vim.tbl_map(function(nb)
 		return {
@@ -22,7 +22,10 @@ end
 
 local function delete_notebook()
 	notebook_picker(function(item)
-		require("bookwyrm").api.delete_notebook(item.nb_id)
+		require("bookwyrm").api.unregister_notebook({
+			delete = true,
+			id = item.nb_id,
+		})
 	end)
 end
 
@@ -48,13 +51,23 @@ end
 
 local function search_notebooks()
 	notebook_picker(function(item)
-		require("bookwyrm").api.select_notebook(item.nb_id)
+		require("bookwyrm").api.switch_to_notebook(item.nb_id)
 		vim.notify("Active: " .. item.title)
 	end)
 end
 
+local function create_note()
+	vim.ui.input({
+		prompt = "Enter Note Title: ",
+	}, function(title)
+		if title and title ~= "" then
+			require("bookwyrm").api.create_note(title, { open = "split" })
+		end
+	end)
+end
+
 local function search_notes()
-	local notes = require("bookwyrm").api.get_notes()
+	local notes = require("bookwyrm").api.list_notes()
 
 	vim.ui.select(notes, {
 		prompt = "Notes",
@@ -97,7 +110,7 @@ M[#M + 1] = {
 		{ "<leader>jrs", search_notebooks, desc = "Search notebooks" },
 
 		-- notebook
-		{ "<leader>jn", "<cmd>BookwyrmNoteCreate<cr>", desc = "Create note" },
+		{ "<leader>jn", create_note, desc = "Create note" },
 		{ "<leader>js", search_notes, desc = "Search notes" },
 	},
 	event = "VeryLazy",
