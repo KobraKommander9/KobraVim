@@ -47,7 +47,7 @@ opt.showmode = false -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.smartcase = true -- Don't ignore case with capitals
-opt.smartindent = false -- Insert indents automatically
+opt.smartindent = true -- Insert indents automatically
 opt.spelllang = { "en" }
 opt.spelloptions:append("noplainbuffer")
 opt.splitbelow = true -- Put new windows below current
@@ -68,7 +68,6 @@ opt.writebackup = false
 opt.swapfile = false
 opt.backup = false
 
-vim.api.nvim_command("filetype indent off")
 vim.cmd([[set whichwrap+=<,>,[,],h,l]])
 vim.cmd([[set iskeyword+=1]])
 
