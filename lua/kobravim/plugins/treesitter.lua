@@ -4,12 +4,20 @@ M[#M + 1] = {
 	"nvim-treesitter/nvim-treesitter",
 	version = false,
 	branch = "main",
-	build = ":TSUpdate",
-	lazy = false,
-	init = function(plugin)
-		require("lazy.core.loader").add_to_rtp(plugin)
+	build = function()
+		local ts = require("nvim-treesitter")
+		package.loaded["kobravim.util.treesitter"] = nil
+		KobraVim.treesitter.build(function()
+			ts.update(nil, { summary = true })
+		end)
 	end,
+	event = { "VeryLazy" },
+	cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+	opts_extend = { "ensure_installed" },
 	opts = {
+		indent = { enable = true },
+		highlight = { enable = true },
+		folds = { enable = true },
 		ensure_installed = {
 			"bash",
 			"c",
@@ -41,29 +49,55 @@ M[#M + 1] = {
 	config = function(_, opts)
 		local ts = require("nvim-treesitter")
 
-		ts.setup()
+		ts.setup(opts)
+		KobraVim.treesitter.get_installed(true)
 
-		print(vim.inspect(opts))
-		if opts.ensure_installed then
-			local installed = require("nvim-treesitter.config").installed_parsers()
-			local to_install = vim.tbl_filter(function(p)
-				return not vim.tbl_contains(installed, p)
-			end, opts.ensure_installed)
+		local install = vim.tbl_filter(function(lang)
+			return not KobraVim.treesitter.have(lang)
+		end, opts.ensure_installed or {})
 
-			if #to_install > 0 then
-				ts.install(to_install)
-			end
+		if #install > 0 then
+			KobraVim.treesitter.build(function()
+				ts.install(install, { summary = true }):await(function()
+					KobraVim.treesitter.get_installed(true)
+				end)
+			end)
 		end
 
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("KobraTS", { clear = true }),
 			callback = function(args)
-				local ft = vim.bo[args.buf].filetype
-				local lang = vim.treesitter.language.get_lang(ft)
+				local ft, lang = args.match, vim.treesitter.language.get_lang(args.match)
+				if not KobraVim.treesitter.have(ft) then
+					return
+				end
 
-				if lang then
-					pcall(vim.treesitter.start, args.buf, lang)
-					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				local function enabled(feat, query)
+					local f = opts[feat] or {}
+					return f.enable ~= false
+						and not (type(f.disable) == "table" and vim.tbl_contains(f.disable, lang))
+						and not KobraVim.treesitter.have(ft, query)
+				end
+
+				if enabled("highlight", "highlights") then
+					pcall(vim.treesitter.start, args.buf)
+				end
+
+				if enabled("indent", "indents") then
+					vim.api.nvim_set_option_value(
+						"indentexpr",
+						"v:lua.KobraVim.treesitter.indentexpr()",
+						{ scope = "local" }
+					)
+				end
+
+				if enabled("folds", "folds") then
+					vim.api.nvim_set_option_value("foldmethod", "expr", { scope = "local" })
+					vim.api.nvim_set_option_value(
+						"foldexpr",
+						"v:lua.KobraVim.treesitter.foldexpr()",
+						{ scope = "local" }
+					)
 				end
 			end,
 		})
