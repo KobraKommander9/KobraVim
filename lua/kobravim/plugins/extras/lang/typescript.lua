@@ -14,10 +14,8 @@ M[#M + 1] = {
 				filetypes = {
 					"javascript",
 					"javascriptreact",
-					"javascript.jsx",
 					"typescript",
 					"typescriptreact",
-					"typescript.tsx",
 				},
 				settings = {
 					complete_function_calls = true,
