@@ -41,16 +41,26 @@ M[#M + 1] = {
 	config = function(_, opts)
 		local ts = require("nvim-treesitter")
 
-		if opts.ensure_installed and #opts.ensure_installed > 0 then
-			ts.install(KobraVim.dedup(opts.ensure_installed))
-		end
-
 		ts.setup()
+
+		print(vim.inspect(opts))
+		if opts.ensure_installed then
+			local installed = require("nvim-treesitter.config").installed_parsers()
+			local to_install = vim.tbl_filter(function(p)
+				return not vim.tbl_contains(installed, p)
+			end, opts.ensure_installed)
+
+			if #to_install > 0 then
+				ts.install(to_install)
+			end
+		end
 
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("KobraTS", { clear = true }),
 			callback = function(args)
-				local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+				local ft = vim.bo[args.buf].filetype
+				local lang = vim.treesitter.language.get_lang(ft)
+
 				if lang then
 					pcall(vim.treesitter.start, args.buf, lang)
 					vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
