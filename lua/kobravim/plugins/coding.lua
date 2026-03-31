@@ -46,7 +46,7 @@ M[#M + 1] = {
 M[#M + 1] = {
 	"folke/lazydev.nvim",
 	ft = "lua",
-	cmd = "LazyDev",
+	cmd = "VeryLazy",
 	opts = {
 		library = {
 			{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
