@@ -40,7 +40,7 @@ M[#M + 1] = {
 	},
 	event = "VeryLazy",
 	opts = {
-		silent = true,
+		silent = false,
 	},
 }
 
