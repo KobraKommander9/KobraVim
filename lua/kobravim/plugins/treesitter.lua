@@ -72,18 +72,17 @@ M[#M + 1] = {
 					return
 				end
 
-				local function enabled(feat, query)
+				local function enabled(feat)
 					local f = opts[feat] or {}
 					return f.enable ~= false
 						and not (type(f.disable) == "table" and vim.tbl_contains(f.disable, lang))
-						and not KobraVim.treesitter.have(ft, query)
 				end
 
-				if enabled("highlight", "highlights") then
+				if enabled("highlight") then
 					pcall(vim.treesitter.start, args.buf)
 				end
 
-				if enabled("indent", "indents") then
+				if enabled("indent") then
 					vim.api.nvim_set_option_value(
 						"indentexpr",
 						"v:lua.KobraVim.treesitter.indentexpr()",
@@ -91,7 +90,7 @@ M[#M + 1] = {
 					)
 				end
 
-				if enabled("folds", "folds") then
+				if enabled("folds") then
 					vim.api.nvim_set_option_value("foldmethod", "expr", { scope = "local" })
 					vim.api.nvim_set_option_value(
 						"foldexpr",
@@ -101,6 +100,20 @@ M[#M + 1] = {
 				end
 			end,
 		})
+
+		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.api.nvim_buf_is_loaded(buf) then
+				local ft = vim.bo[buf].filetype
+				if ft ~= "" then
+					vim.api.nvim_exec_autocmds("FileType", {
+						group = "KobraTS",
+						pattern = ft,
+						buffer = buf,
+						modeline = false,
+					})
+				end
+			end
+		end
 	end,
 }
 
