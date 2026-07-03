@@ -25,6 +25,7 @@ M[#M + 1] = {
 -- global search and replace
 M[#M + 1] = {
 	"nvim-pack/nvim-spectre",
+	build = "./build.sh",
 	cmd = { "Spectre" },
 	keys = {
 		{
@@ -35,7 +36,13 @@ M[#M + 1] = {
 			desc = "Replace in files (Spectre)",
 		},
 	},
-	config = true,
+	config = {
+		default = {
+			replace = {
+				cmd = "oxi",
+			},
+		},
+	},
 }
 
 M[#M + 1] = {
